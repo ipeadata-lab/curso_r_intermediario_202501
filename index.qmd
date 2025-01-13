@@ -1,0 +1,61 @@
+---
+title: 'R intermediário e pesquisa reprodutível'
+---
+<img src="images/00_RStudio_logo.png" align="right" width="120px" class = "img-rstudio">
+
+
+## Introdução ao material 
+
+
+Este site apresenta o material de apoio para o curso **"R intermediário e pesquisa reprodutível"**, oferecido em 2025 para servidores do Instituto de Pesquisa Econômica Aplicada (Ipea).
+
+O curso será realizado de forma remota híbrida, com aulas ao vivo e atividades práticas.
+
+Além deste site, o material do curso também é composto por:
+
+- [Scripts em R que foram utilizados nas aulas](https://github.com/ipeadata-lab/curso_r_intermediario_202501/tree/main/scripts)
+
+- Gravação das aulas, em um link disponibilizado para as pessoas matriculadas no curso.
+
+
+:::{.callout-important}
+Recomendamos que todas as pessoas participantes que verifiquem a página [Instruções de instalação](00_instrucoes_pre_curso.qmd) antes do início do curso.
+
+Caso tenha alguma dificuldade, entre em contato com a equipe do curso o quanto antes.
+:::
+
+
+
+## Equipe do curso
+
+**Beatriz Milz** <br>
+*Pesquisadora Colaboradora | Estágio pós-doutoral* <br>
+[Laboratório de Planejamento Territorial (LaPlan)](https://laplan.pesquisa.ufabc.edu.br/) - Universidade Federal do ABC (UFABC) <br>
+[Email](mailto:milz.bea@gmail.com) | [GitHub](https://github.com/beatrizmilz) | [LinkedIn](https://www.linkedin.com/in/beatrizmilz/) |
+[ResearchGate](https://www.researchgate.net/profile/Beatriz-Milz) | [Currículo Lattes](http://lattes.cnpq.br/5150665880581477) | [Orcid](https://orcid.org/0000-0002-3064-4486)
+
+
+**Pedro Cavalcanti Gonçalves Ferreira** <br>
+*Coordenação de Ciência de Dados - COCD* <br>
+Instituto de Pesquisa Econômica Aplicada (Ipea) <br>
+[GitHub](https://github.com/cavalcanti1985) |
+[LinkedIn](https://www.linkedin.com/in/pedro-cavalcanti-256806235/) |
+[Currículo Lattes](http://lattes.cnpq.br/1425315335920636) |
+[Orcid](https://orcid.org/0000-0002-8540-1860) 
+
+
+
+**Rafael H. M. Pereira** <br> *Coordenador de Ciência de Dados* <br> Instituto de Pesquisa Econômica Aplicada (Ipea) <br> [Website](https://www.urbandemographics.org/about/) |
+[Google Scholar](https://scholar.google.com.br/citations?user=dbRivsEAAAAJ&hl) | [Linkedin](https://www.linkedin.com/in/rafael-h-m-pereira/) | 
+
+
+
+## Sobre este material
+
+<!-- ### Contribuidores -->
+
+<!-- Além da equipe do curso, esse material recebeu contribuições de: -->
+
+### Licença
+
+Esse material está disponível sob a [licença CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).

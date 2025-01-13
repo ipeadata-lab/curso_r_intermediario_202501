@@ -1,0 +1,53 @@
+project:
+  type: book
+  output-dir: docs
+  
+execute:
+  freeze: auto
+
+lang: pt 
+
+book:
+  title: "R intermediário e pesquisa reprodutível"
+  site-url: "https://ipeadata-lab.github.io/curso_r_intermediario_202501"
+  repo-url: "https://github.com/ipeadata-lab/curso_r_intermediario_202501"
+  chapters:
+    - part: "Pré-curso"
+      chapters:
+      - index.qmd
+      - 00_instrucoes_pre_curso.qmd
+    # - part: "Conceitos básicos"
+    #   chapters:      
+    #   - 01_r_rstudio.qmd
+  
+  sidebar:
+    style: "docked"
+    search: true
+    tools: 
+      - icon: github
+        text: github
+        href: https://github.com/ipeadata-lab/curso_r_intermediario_202501
+
+
+page-navigation: true
+
+page-footer: 
+  border: true
+  left: "Copyright 2025, Beatriz Milz e IPEA/COCD" 
+  right: 
+    - icon: github
+      href: https://github.com/ipeadata-lab/curso_r_intermediario_202501
+
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-depth: 5
+    link-external-icon: false
+    link-external-newwindow: true
+
+bibliography: references.bib
+
+editor: source
