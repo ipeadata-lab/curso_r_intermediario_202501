@@ -14,21 +14,11 @@ book:
   chapters:
     - text: "Página inicial"
       href: index.qmd  
-    - part: "Pré-curso"
-      chapters:
-
-      - 00_instrucoes_pre_curso.qmd
+    - href: calendario.qmd
+    - href: instalacao.qmd
     # - part: "Conceitos básicos"
     #   chapters:      
     #   - 01_r_rstudio.qmd
-  
-  sidebar:
-    style: "docked"
-    search: true
-    tools: 
-      - icon: github
-        text: github
-        href: https://github.com/ipeadata-lab/curso_r_intermediario_202501
 
 
 page-navigation: true
