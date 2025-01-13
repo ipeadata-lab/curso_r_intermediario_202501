@@ -1,0 +1,22 @@
+/* css styles */
+
+em{
+  color: "#000000";
+}
+
+.img-rstudio {
+  position: relative;
+  top: -8em;
+}
+
+@media screen and (max-width: 1200px) {
+  .img-rstudio {
+  position: static;
+  top: 0em;
+  }
+}
+
+pre code .cell-output .cell-output-stdout{
+  background-color: #EFF1F3 !important;
+  border-radius: 3px !important;
+}
