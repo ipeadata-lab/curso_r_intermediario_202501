@@ -1,0 +1,15 @@
+{
+  "hash": "e8f11ee35a9f081722924fc6bea875a4",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Instalação\"\ncode-annotations: hover\n---\n\n\n\n\n:::{.callout-important}\nOs softwares R e RStudio devem ser instalados antes do início do curso. Caso tenha alguma dúvida, consulte as [instruções de instalação do curso introdutório](https://ipeadata-lab.github.io/curso_r_intro_202409/00_instrucoes_pre_curso.html).\n\n\n:::\n\n## Instalação de pacotes necessários\n\nPara instalar os pacotes necessários para o curso, execute o seguinte código:\n\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\ninstall.packages(\"pacman\") # <1>\npacman::p_load(tidyverse, usethis, renv, targets,  #<2>\n               here, fuzzyjoin, furrr, dbplyr,\n               arrow, vroom, duckdb,  sf,\n               geobr, quarto) #<2>\n```\n:::\n\n\n\n1. Instalar o pacote `pacman`, que facilita a instalação e carregamento de pacotes.\n2. Usar a função `p_load` do pacote `pacman`. Essa função verifica se os pacotes estão instalados e, caso não estejam, instala-os. \n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

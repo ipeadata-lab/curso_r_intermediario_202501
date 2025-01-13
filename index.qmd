@@ -4,7 +4,7 @@ title: 'R intermediário e pesquisa reprodutível'
 <img src="images/00_RStudio_logo.png" align="right" width="120px" class = "img-rstudio">
 
 
-## Introdução ao material 
+## Introdução ao material {.unnumbered}
 
 
 Este site apresenta o material de apoio para o curso **"R intermediário e pesquisa reprodutível"**, oferecido em 2025 para servidores do Instituto de Pesquisa Econômica Aplicada (Ipea).
@@ -26,7 +26,7 @@ Caso tenha alguma dificuldade, entre em contato com a equipe do curso o quanto a
 
 
 
-## Equipe do curso
+## Equipe do curso {.unnumbered}
 
 **Beatriz Milz** <br>
 *Pesquisadora Colaboradora | Estágio pós-doutoral* <br>
@@ -50,12 +50,12 @@ Instituto de Pesquisa Econômica Aplicada (Ipea) <br>
 
 
 
-## Sobre este material
+## Sobre este material {.unnumbered}
 
 <!-- ### Contribuidores -->
 
 <!-- Além da equipe do curso, esse material recebeu contribuições de: -->
 
-### Licença
+### Licença {.unnumbered}
 
 Esse material está disponível sob a [licença CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).

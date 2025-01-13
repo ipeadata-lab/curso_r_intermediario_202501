@@ -1,0 +1,27 @@
+---
+title: "Instalação"
+code-annotations: hover
+---
+
+:::{.callout-important}
+Os softwares R e RStudio devem ser instalados antes do início do curso. Caso tenha alguma dúvida, consulte as [instruções de instalação do curso introdutório](https://ipeadata-lab.github.io/curso_r_intro_202409/00_instrucoes_pre_curso.html).
+
+
+:::
+
+## Instalação de pacotes necessários
+
+Para instalar os pacotes necessários para o curso, execute o seguinte código:
+
+
+```{r}
+#| eval: false
+install.packages("pacman") # <1>
+pacman::p_load(tidyverse, usethis, renv, targets,  #<2>
+               here, fuzzyjoin, furrr, dbplyr,
+               arrow, vroom, duckdb,  sf,
+               geobr, quarto) #<2>
+```
+1. Instalar o pacote `pacman`, que facilita a instalação e carregamento de pacotes.
+2. Usar a função `p_load` do pacote `pacman`. Essa função verifica se os pacotes estão instalados e, caso não estejam, instala-os. 
+

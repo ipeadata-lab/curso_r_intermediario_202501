@@ -12,9 +12,11 @@ book:
   site-url: "https://ipeadata-lab.github.io/curso_r_intermediario_202501"
   repo-url: "https://github.com/ipeadata-lab/curso_r_intermediario_202501"
   chapters:
+    - text: "Página inicial"
+      href: index.qmd  
     - part: "Pré-curso"
       chapters:
-      - index.qmd
+
       - 00_instrucoes_pre_curso.qmd
     # - part: "Conceitos básicos"
     #   chapters:      
