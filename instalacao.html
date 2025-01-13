@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R intermediário e pesquisa reprodutível</title>
+<title>3&nbsp; Instalação – R intermediário e pesquisa reprodutível</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./calendario.html" rel="next">
+<link href="./calendario.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Página inicial</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./instalacao.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalação</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -111,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Página inicial</span></span></a>
   </div>
 </li>
@@ -123,7 +157,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./instalacao.html" class="sidebar-item-text sidebar-link">
+  <a href="./instalacao.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalação</span></span></a>
   </div>
 </li>
@@ -137,12 +171,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#introdução-ao-material" id="toc-introdução-ao-material" class="nav-link active" data-scroll-target="#introdução-ao-material">Introdução ao material</a></li>
-  <li><a href="#equipe-do-curso" id="toc-equipe-do-curso" class="nav-link" data-scroll-target="#equipe-do-curso">Equipe do curso</a></li>
-  <li><a href="#sobre-este-material" id="toc-sobre-este-material" class="nav-link" data-scroll-target="#sobre-este-material">Sobre este material</a>
-  <ul>
-  <li><a href="#licença" id="toc-licença" class="nav-link" data-scroll-target="#licença">Licença</a></li>
-  </ul></li>
+  <li><a href="#instalação-de-pacotes-necessários" id="toc-instalação-de-pacotes-necessários" class="nav-link active" data-scroll-target="#instalação-de-pacotes-necessários"><span class="header-section-number">3.1</span> Instalação de pacotes necessários</a></li>
   </ul>
 </nav>
     </div>
@@ -151,7 +180,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">R intermediário e pesquisa reprodutível</h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalação</span></h1>
 </div>
 
 
@@ -168,16 +197,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src="images/00_RStudio_logo.png" align="right" width="120px" class="img-rstudio"></p>
-<section id="introdução-ao-material" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="introdução-ao-material">Introdução ao material</h2>
-<p>Este site apresenta o material de apoio para o curso <strong>“R intermediário e pesquisa reprodutível”</strong>, oferecido em 2025 para servidores do Instituto de Pesquisa Econômica Aplicada (Ipea).</p>
-<p>O curso será realizado de forma remota híbrida, com aulas ao vivo e atividades práticas.</p>
-<p>Além deste site, o material do curso também é composto por:</p>
-<ul>
-<li><p><a href="https://github.com/ipeadata-lab/curso_r_intermediario_202501/tree/main/scripts">Scripts em R que foram utilizados nas aulas</a></p></li>
-<li><p>Gravação das aulas, em um link disponibilizado para as pessoas matriculadas no curso.</p></li>
-</ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -188,27 +207,33 @@ Importante
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Recomendamos que todas as pessoas participantes que verifiquem a página <a href="./instalacao.html">Instruções de instalação</a> antes do início do curso.</p>
-<p>Caso tenha alguma dificuldade, entre em contato com a equipe do curso o quanto antes.</p>
+<p>Os softwares R e RStudio devem ser instalados antes do início do curso. Caso tenha alguma dúvida, consulte as <a href="https://ipeadata-lab.github.io/curso_r_intro_202409/00_instrucoes_pre_curso.html">instruções de instalação do curso introdutório</a>.</p>
 </div>
 </div>
-</section>
-<section id="equipe-do-curso" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="equipe-do-curso">Equipe do curso</h2>
-<p><strong>Beatriz Milz</strong> <br> <em>Pesquisadora Colaboradora | Estágio pós-doutoral</em> <br> <a href="https://laplan.pesquisa.ufabc.edu.br/">Laboratório de Planejamento Territorial (LaPlan)</a> - Universidade Federal do ABC (UFABC) <br> <a href="mailto:milz.bea@gmail.com">Email</a> | <a href="https://github.com/beatrizmilz">GitHub</a> | <a href="https://www.linkedin.com/in/beatrizmilz/">LinkedIn</a> | <a href="https://www.researchgate.net/profile/Beatriz-Milz">ResearchGate</a> | <a href="http://lattes.cnpq.br/5150665880581477">Currículo Lattes</a> | <a href="https://orcid.org/0000-0002-3064-4486">Orcid</a></p>
-<p><strong>Pedro Cavalcanti Gonçalves Ferreira</strong> <br> <em>Coordenação de Ciência de Dados - COCD</em> <br> Instituto de Pesquisa Econômica Aplicada (Ipea) <br> <a href="https://github.com/cavalcanti1985">GitHub</a> | <a href="https://www.linkedin.com/in/pedro-cavalcanti-256806235/">LinkedIn</a> | <a href="http://lattes.cnpq.br/1425315335920636">Currículo Lattes</a> | <a href="https://orcid.org/0000-0002-8540-1860">Orcid</a></p>
-<p><strong>Rafael H. M. Pereira</strong> <br> <em>Coordenador de Ciência de Dados</em> <br> Instituto de Pesquisa Econômica Aplicada (Ipea) <br> <a href="https://www.urbandemographics.org/about/">Website</a> | <a href="https://scholar.google.com.br/citations?user=dbRivsEAAAAJ&amp;hl">Google Scholar</a> | <a href="https://www.linkedin.com/in/rafael-h-m-pereira/">Linkedin</a> |</p>
-</section>
-<section id="sobre-este-material" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="sobre-este-material">Sobre este material</h2>
-<!-- ### Contribuidores -->
-<!-- Além da equipe do curso, esse material recebeu contribuições de: -->
-<section id="licença" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="licença">Licença</h3>
-<p>Esse material está disponível sob a <a href="https://creativecommons.org/licenses/by-sa/4.0/">licença CC BY-SA 4.0</a>.</p>
+<section id="instalação-de-pacotes-necessários" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="instalação-de-pacotes-necessários"><span class="header-section-number">3.1</span> Instalação de pacotes necessários</h2>
+<p>Para instalar os pacotes necessários para o curso, execute o seguinte código:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"pacman"</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, usethis, renv, targets,</span>
+<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>               here, fuzzyjoin, furrr, dbplyr,</span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a>               arrow, vroom, duckdb,  sf,</span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5" aria-hidden="true" tabindex="-1"></a>               geobr, quarto)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="1" data-code-annotation="1">Instalar o pacote <code>pacman</code>, que facilita a instalação e carregamento de pacotes.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="2,5" data-code-annotation="2">Usar a função <code>p_load</code> do pacote <code>pacman</code>. Essa função verifica se os pacotes estão instalados e, caso não estejam, instala-os.</span>
+</dd>
+</dl>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -575,25 +600,64 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
           }
-        });
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;
@@ -636,11 +700,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./calendario.html" class="pagination-link" aria-label="Calendário do curso">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Calendário do curso</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./calendario.html" class="pagination-link" aria-label="Calendário do curso">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Calendário do curso</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

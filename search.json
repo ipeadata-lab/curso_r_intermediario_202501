@@ -40,14 +40,23 @@
     ]
   },
   {
-    "objectID": "00_instrucoes_pre_curso.html",
-    "href": "00_instrucoes_pre_curso.html",
-    "title": "2  Instalação",
+    "objectID": "calendario.html",
+    "href": "calendario.html",
+    "title": "2  Calendário do curso",
     "section": "",
-    "text": "2.1 Instalação de pacotes necessários\nPara instalar os pacotes necessários para o curso, execute o seguinte código:\n1install.packages(\"pacman\")\n2pacman::p_load(tidyverse, usethis, renv, targets,\n               here, fuzzyjoin, furrr, dbplyr,\n               arrow, vroom, duckdb,  sf,\n               geobr, quarto)\n\n\n1\n\nInstalar o pacote pacman, que facilita a instalação e carregamento de pacotes.\n\n2\n\nUsar a função p_load do pacote pacman. Essa função verifica se os pacotes estão instalados e, caso não estejam, instala-os.",
+    "text": "A maioria das aulas acontecerão às segundas e quartas-feiras, exceto a aula do dia 30/01/2025, que acontecerá numa quinta-feira.\nAs aulas acontecerão das 09h às 12h, com intervalo de 15 minutos.\nSegue o calendário do curso:\n\n\n\n\n\n\n\n\n\n\nSemana\nData\nHorário\nDia da semana\nConteúdo previsto\n\n\n\n\n1\n20/01/2025\n09h-12h\nSegunda-feira\nApresentação do curso, Reprodutibilidade e estruturação de projeto\n\n\n1\n22/01/2025\n09h-12h\nQuarta-feira\nReprodutibilidade e estruturação de projeto\n\n\n2\n29/01/2025\n09h-12h\nQuarta-feira\nProdução de relatórios com RMarkdown/Quarto (Parte 1)\n\n\n2\n30/01/2025\n09h-12h\nQuinta-feira (*)\nProdução de relatórios com RMarkdown/Quarto (Parte 2)\n\n\n3\n03/02/2025\n09h-12h\nSegunda-feira\nManipulação de strings e datas (Parte 1)\n\n\n3\n05/02/2025\n09h-12h\nQuarta-feira\nManipulação de strings e datas (Parte 2)\n\n\n4\n10/02/2025\n09h-12h\nSegunda-feira\nDados espaciais no R (Parte 1)\n\n\n4\n12/02/2025\n09h-12h\nQuarta-feira\nDados espaciais no R (Parte 2)\n\n\n5\n17/02/2025\n09h-12h\nSegunda-feira\nProgramação funcional e paralelização\n\n\n5\n19/02/2025\n09h-12h\nQuarta-feira\nIntrodução à Big Data no R\n\n\n6\n24/02/2025\n09h-11h (*)\nSegunda-feira\nDúvidas e encerramento\n\n\n\n\n(*): Atenção para as datas e horários diferentes.",
     "crumbs": [
-      "Pré-curso",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instalação</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Calendário do curso</span>"
+    ]
+  },
+  {
+    "objectID": "instalacao.html",
+    "href": "instalacao.html",
+    "title": "3  Instalação",
+    "section": "",
+    "text": "3.1 Instalação de pacotes necessários\nPara instalar os pacotes necessários para o curso, execute o seguinte código:\n1install.packages(\"pacman\")\n2pacman::p_load(tidyverse, usethis, renv, targets,\n               here, fuzzyjoin, furrr, dbplyr,\n               arrow, vroom, duckdb,  sf,\n               geobr, quarto)\n\n\n1\n\nInstalar o pacote pacman, que facilita a instalação e carregamento de pacotes.\n\n2\n\nUsar a função p_load do pacote pacman. Essa função verifica se os pacotes estão instalados e, caso não estejam, instala-os.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalação</span>"
     ]
   }
 ]
