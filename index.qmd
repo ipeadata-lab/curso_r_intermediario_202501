@@ -1,11 +1,10 @@
 ---
 title: 'R intermediário e pesquisa reprodutível'
 ---
+
+## Introdução {.unnumbered}
+
 <img src="images/00_RStudio_logo.png" align="right" width="120px" class = "img-rstudio">
-
-
-## Introdução ao material {.unnumbered}
-
 
 Este site apresenta o material de apoio para o curso **"R intermediário e pesquisa reprodutível"**, oferecido em 2025 para servidores do Instituto de Pesquisa Econômica Aplicada (Ipea).
 
