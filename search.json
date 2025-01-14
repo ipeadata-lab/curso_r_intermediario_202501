@@ -4,14 +4,14 @@
     "href": "index.html",
     "title": "R intermediário e pesquisa reprodutível",
     "section": "",
-    "text": "Introdução ao material\nEste site apresenta o material de apoio para o curso “R intermediário e pesquisa reprodutível”, oferecido em 2025 para servidores do Instituto de Pesquisa Econômica Aplicada (Ipea).\nO curso será realizado de forma remota híbrida, com aulas ao vivo e atividades práticas.\nAlém deste site, o material do curso também é composto por:",
+    "text": "Introdução\nEste site apresenta o material de apoio para o curso “R intermediário e pesquisa reprodutível”, oferecido em 2025 para servidores do Instituto de Pesquisa Econômica Aplicada (Ipea).\nO curso será realizado de forma remota híbrida, com aulas ao vivo e atividades práticas.\nAlém deste site, o material do curso também é composto por:",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Página inicial</span>"
     ]
   },
   {
-    "objectID": "index.html#introdução-ao-material",
-    "href": "index.html#introdução-ao-material",
+    "objectID": "index.html#introdução",
+    "href": "index.html#introdução",
     "title": "R intermediário e pesquisa reprodutível",
     "section": "",
     "text": "Scripts em R que foram utilizados nas aulas\nGravação das aulas, em um link disponibilizado para as pessoas matriculadas no curso.\n\n\n\n\n\n\n\nImportante\n\n\n\nRecomendamos que todas as pessoas participantes que verifiquem a página Instruções de instalação antes do início do curso.\nCaso tenha alguma dificuldade, entre em contato com a equipe do curso o quanto antes.",
@@ -44,7 +44,7 @@
     "href": "calendario.html",
     "title": "2  Calendário do curso",
     "section": "",
-    "text": "A maioria das aulas acontecerão às segundas e quartas-feiras, exceto a aula do dia 30/01/2025, que acontecerá numa quinta-feira.\nAs aulas acontecerão das 09h às 12h, com intervalo de 15 minutos.\nSegue o calendário do curso:\n\n\n\n\n\n\n\n\n\n\nSemana\nData\nHorário\nDia da semana\nConteúdo previsto\n\n\n\n\n1\n20/01/2025\n09h-12h\nSegunda-feira\nApresentação do curso, Reprodutibilidade e estruturação de projeto\n\n\n1\n22/01/2025\n09h-12h\nQuarta-feira\nReprodutibilidade e estruturação de projeto\n\n\n2\n29/01/2025\n09h-12h\nQuarta-feira\nProdução de relatórios com RMarkdown/Quarto (Parte 1)\n\n\n2\n30/01/2025\n09h-12h\nQuinta-feira (*)\nProdução de relatórios com RMarkdown/Quarto (Parte 2)\n\n\n3\n03/02/2025\n09h-12h\nSegunda-feira\nManipulação de strings e datas\n\n\n4\n10/02/2025\n09h-12h\nSegunda-feira\nDados espaciais no R (Parte 1)\n\n\n4\n12/02/2025\n09h-12h\nQuarta-feira\nDados espaciais no R (Parte 2)\n\n\n5\n17/02/2025\n09h-12h\nSegunda-feira\nProgramação funcional e paralelização\n\n\n5\n19/02/2025\n09h-12h\nQuarta-feira\nIntrodução à Big Data no R\n\n\n6\n24/02/2025\n09h-11h (*)\nSegunda-feira\nDúvidas e encerramento\n\n\n\n\n(*): Atenção para as datas e horários diferentes.",
+    "text": "A maioria das aulas acontecerão às segundas e quartas-feiras, exceto a aula do dia 30/01/2025, que acontecerá numa quinta-feira.\nAs aulas acontecerão das 09h às 12h, com intervalo de 15 minutos.\nSegue o calendário do curso:\n\n\n\n\n\n\n\n\n\n\nSemana\nData\nHorário\nDia da semana\nConteúdo previsto\n\n\n\n\n1\n20/01/2025\n09h-12h\nSegunda-feira\nApresentação do curso, Reprodutibilidade e estruturação de projeto\n\n\n1\n22/01/2025\n09h-12h\nQuarta-feira\nReprodutibilidade e estruturação de projeto\n\n\n2\n29/01/2025\n09h-12h\nQuarta-feira\nProdução de relatórios com RMarkdown/Quarto (Parte 1)\n\n\n2\n30/01/2025\n09h-12h\nQuinta-feira (*)\nProdução de relatórios com RMarkdown/Quarto (Parte 2)\n\n\n3\n03/02/2025\n09h-12h\nSegunda-feira\nManipulação de textos e datas\n\n\n4\n10/02/2025\n09h-12h\nSegunda-feira\nDados espaciais (Parte 1)\n\n\n4\n12/02/2025\n09h-12h\nQuarta-feira\nDados espaciais (Parte 2)\n\n\n5\n17/02/2025\n09h-12h\nSegunda-feira\nProgramação funcional e paralelização\n\n\n5\n19/02/2025\n09h-12h\nQuarta-feira\nIntrodução à Big Data\n\n\n6\n24/02/2025\n09h-11h (*)\nSegunda-feira\nDúvidas e encerramento\n\n\n\n\n(*): Atenção para as datas e horários diferentes.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Calendário do curso</span>"
     ]
@@ -54,9 +54,69 @@
     "href": "instalacao.html",
     "title": "3  Instalação",
     "section": "",
-    "text": "3.1 Instalação de pacotes necessários\nPara instalar os pacotes necessários para o curso, execute o seguinte código:\n1install.packages(\"pacman\")\n2pacman::p_load(tidyverse, usethis, renv, targets,\n               here, fuzzyjoin, furrr, dbplyr,\n               arrow, vroom, duckdb,  sf,\n               geobr, quarto)\n\n\n1\n\nInstalar o pacote pacman, que facilita a instalação e carregamento de pacotes.\n\n2\n\nUsar a função p_load do pacote pacman. Essa função verifica se os pacotes estão instalados e, caso não estejam, instala-os.",
+    "text": "3.1 Instalação de pacotes necessários\nPara instalar os pacotes necessários para o curso, execute o seguinte código:\ninstall.packages(c(\"tidyverse\", \n                   \"usethis\",\n                   \"renv\",\n                   \"here\",\n                   \"fuzzyjoin\",\n                   \"furrr\",\n                   \"dbplyr\",\n                   \"arrow\",\n                   \"vroom\",\n                   \"duckdb\",\n                   \"sf\",\n                   \"geobr\",\n                   \"quarto\"\n                   ))",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalação</span>"
+    ]
+  },
+  {
+    "objectID": "reprodutibilidade.html",
+    "href": "reprodutibilidade.html",
+    "title": "4  Reprodutibilidade e estruturação de projeto",
+    "section": "",
+    "text": "Em breve!",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reprodutibilidade e estruturação de projeto</span>"
+    ]
+  },
+  {
+    "objectID": "relatorios.html",
+    "href": "relatorios.html",
+    "title": "5  rodução de relatórios com RMarkdown/Quarto",
+    "section": "",
+    "text": "Em breve!",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>rodução de relatórios com RMarkdown/Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "texto-data.html",
+    "href": "texto-data.html",
+    "title": "6  Manipulação de textos e datas",
+    "section": "",
+    "text": "Em breve!",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Manipulação de textos e datas</span>"
+    ]
+  },
+  {
+    "objectID": "dados-espaciais.html",
+    "href": "dados-espaciais.html",
+    "title": "7  Dados espaciais",
+    "section": "",
+    "text": "Em breve!",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Dados espaciais</span>"
+    ]
+  },
+  {
+    "objectID": "programacao-funcional.html",
+    "href": "programacao-funcional.html",
+    "title": "8  Programação funcional",
+    "section": "",
+    "text": "Em breve!",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Programação funcional</span>"
+    ]
+  },
+  {
+    "objectID": "big-data.html",
+    "href": "big-data.html",
+    "title": "9  Introdução à Big Data",
+    "section": "",
+    "text": "Em breve!",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introdução à *Big Data*</span>"
     ]
   }
 ]

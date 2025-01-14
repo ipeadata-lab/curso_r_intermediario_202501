@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R intermediário e pesquisa reprodutível</title>
+<title>4&nbsp; Reprodutibilidade e estruturação de projeto – R intermediário e pesquisa reprodutível</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./calendario.html" rel="next">
+<link href="./relatorios.html" rel="next">
+<link href="./instalacao.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Página inicial</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./reprodutibilidade.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reprodutibilidade e estruturação de projeto</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -111,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Página inicial</span></span></a>
   </div>
 </li>
@@ -129,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./reprodutibilidade.html" class="sidebar-item-text sidebar-link">
+  <a href="./reprodutibilidade.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reprodutibilidade e estruturação de projeto</span></span></a>
   </div>
 </li>
@@ -168,26 +169,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Índice</h2>
-   
-  <ul>
-  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
-  <li><a href="#equipe-do-curso" id="toc-equipe-do-curso" class="nav-link" data-scroll-target="#equipe-do-curso">Equipe do curso</a></li>
-  <li><a href="#sobre-este-material" id="toc-sobre-este-material" class="nav-link" data-scroll-target="#sobre-este-material">Sobre este material</a>
-  <ul>
-  <li><a href="#licença" id="toc-licença" class="nav-link" data-scroll-target="#licença">Licença</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">R intermediário e pesquisa reprodutível</h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reprodutibilidade e estruturação de projeto</span></h1>
 </div>
 
 
@@ -204,48 +194,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="introdução" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="introdução">Introdução</h2>
-<p><img src="images/00_RStudio_logo.png" align="right" width="120px" class="img-rstudio"></p>
-<p>Este site apresenta o material de apoio para o curso <strong>“R intermediário e pesquisa reprodutível”</strong>, oferecido em 2025 para servidores do Instituto de Pesquisa Econômica Aplicada (Ipea).</p>
-<p>O curso será realizado de forma remota híbrida, com aulas ao vivo e atividades práticas.</p>
-<p>Além deste site, o material do curso também é composto por:</p>
-<ul>
-<li><p><a href="https://github.com/ipeadata-lab/curso_r_intermediario_202501/tree/main/scripts">Scripts em R que foram utilizados nas aulas</a></p></li>
-<li><p>Gravação das aulas, em um link disponibilizado para as pessoas matriculadas no curso.</p></li>
-</ul>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Importante
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Recomendamos que todas as pessoas participantes que verifiquem a página <a href="./instalacao.html">Instruções de instalação</a> antes do início do curso.</p>
-<p>Caso tenha alguma dificuldade, entre em contato com a equipe do curso o quanto antes.</p>
-</div>
-</div>
-</section>
-<section id="equipe-do-curso" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="equipe-do-curso">Equipe do curso</h2>
-<p><strong>Beatriz Milz</strong> <br> <em>Pesquisadora Colaboradora | Estágio pós-doutoral</em> <br> <a href="https://laplan.pesquisa.ufabc.edu.br/">Laboratório de Planejamento Territorial (LaPlan)</a> - Universidade Federal do ABC (UFABC) <br> <a href="mailto:milz.bea@gmail.com">Email</a> | <a href="https://github.com/beatrizmilz">GitHub</a> | <a href="https://www.linkedin.com/in/beatrizmilz/">LinkedIn</a> | <a href="https://www.researchgate.net/profile/Beatriz-Milz">ResearchGate</a> | <a href="http://lattes.cnpq.br/5150665880581477">Currículo Lattes</a> | <a href="https://orcid.org/0000-0002-3064-4486">Orcid</a></p>
-<p><strong>Pedro Cavalcanti Gonçalves Ferreira</strong> <br> <em>Coordenação de Ciência de Dados - COCD</em> <br> Instituto de Pesquisa Econômica Aplicada (Ipea) <br> <a href="https://github.com/cavalcanti1985">GitHub</a> | <a href="https://www.linkedin.com/in/pedro-cavalcanti-256806235/">LinkedIn</a> | <a href="http://lattes.cnpq.br/1425315335920636">Currículo Lattes</a> | <a href="https://orcid.org/0000-0002-8540-1860">Orcid</a></p>
-<p><strong>Rafael H. M. Pereira</strong> <br> <em>Coordenador de Ciência de Dados</em> <br> Instituto de Pesquisa Econômica Aplicada (Ipea) <br> <a href="https://www.urbandemographics.org/about/">Website</a> | <a href="https://scholar.google.com.br/citations?user=dbRivsEAAAAJ&amp;hl">Google Scholar</a> | <a href="https://www.linkedin.com/in/rafael-h-m-pereira/">Linkedin</a> |</p>
-</section>
-<section id="sobre-este-material" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="sobre-este-material">Sobre este material</h2>
-<!-- ### Contribuidores -->
-<!-- Além da equipe do curso, esse material recebeu contribuições de: -->
-<section id="licença" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="licença">Licença</h3>
-<p>Esse material está disponível sob a <a href="https://creativecommons.org/licenses/by-sa/4.0/">licença CC BY-SA 4.0</a>.</p>
+<p>Em breve!</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -611,25 +562,64 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
           }
-        });
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;
@@ -672,10 +662,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./instalacao.html" class="pagination-link" aria-label="Instalação">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalação</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./calendario.html" class="pagination-link" aria-label="Calendário do curso">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Calendário do curso</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./relatorios.html" class="pagination-link" aria-label="rodução de relatórios com RMarkdown/Quarto">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">rodução de relatórios com RMarkdown/Quarto</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
