@@ -16,6 +16,12 @@ book:
       href: index.qmd  
     - href: calendario.qmd
     - href: instalacao.qmd
+    - href: reprodutibilidade.qmd
+    - href: relatorios.qmd
+    - href: texto-data.qmd
+    - href: dados-espaciais.qmd
+    - href: programacao-funcional.qmd
+    - href: big-data.qmd
     # - part: "Conceitos básicos"
     #   chapters:      
     #   - 01_r_rstudio.qmd
