@@ -18,6 +18,7 @@ book:
     - href: instalacao.qmd
     - href: reprodutibilidade.qmd
     - href: relatorios.qmd
+    - href: git-github.qmd    
     - href: texto-data.qmd
     - href: dados-espaciais.qmd
     - href: programacao-funcional.qmd

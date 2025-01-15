@@ -1,5 +1,5 @@
 ---
-title: "rodução de relatórios com RMarkdown/Quarto"
+title: "Produção de relatórios com RMarkdown/Quarto"
 code-annotations: hover
 ---
 
