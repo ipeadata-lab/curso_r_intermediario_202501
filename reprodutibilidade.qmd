@@ -1,6 +1,135 @@
 ---
 title: "Reprodutibilidade e estruturação de projeto"
 code-annotations: hover
+
+# Rproject (retomar, começar)
+# 
+# GitHub (explicar controle de versão, conceitos como commit/pull/push, conectar o rstudio e o github, pull request**, mostrar no RStudio mas mencionar que dá para usar com outras ferramentas, como o GitHub Extensions e GitHub Desktop)
+# 
+#  renv (explicar, mas não demora muito)
+# 
+#  targets** (explicar que existe, mostrar um exemplo de projeto que usa o targets)
 ---
 
-Em breve!
+Nesta aula, o objetivo é apresentar o conceito de reprodutibilidade, e apresentar abordagens e ferramentas para estruturar projetos em ciência de dados, buscando garantir a reprodutibilidade dos resultados.
+
+## Introdução à Reprodutibilidade
+
+> "Reprodutibilidade é como escovar os dentes. Isso é bom para você, mas leva tempo e esforço. Depois de aprender, torna-se um hábito". - Irakli Loladze, em pesquisa conduzida por Baker [-@Baker2016].
+
+A reprodutibilidade é um conceito central na ciência, embora não tenha uma definição única e comum [@gundersen2021reproducibility]. Ao fazer um levantamento sobre o conceito de reprodutibilidade, Gundersen [-@gundersen2021reproducibility] elaborou a seguinte definição:
+
+> "Reproducibility is the ability of independent investigators to draw the same conclusions from an experiment by following the documentation shared by the original investigators."
+
+Tradução livre: 
+
+> "Reprodutibilidade é a capacidade de investigadores independentes chegarem às mesmas conclusões de um experimento ao seguir a documentação compartilhada pelos investigadores originais."
+
+A definição prática de reprodutibilidade é frequentemente associada à capacidade de reproduzir os resultados de uma pesquisa a partir dos dados brutos e do código utilizado.
+
+De acordo com Baker [-@Baker2016], a partir de um questionário realizado pela revista *Nature* sobre reprodutibilidade com mais de 1500 pesquisadores, vários fatores contribuem para pesquisas não reprodutíveis, como a não disponibilização de códigos, métodos e dados brutos. A figura abaixo apresenta os fatores mais citados pelos respondentes:
+
+![Fatores que contribuem para pesquisas não reprodutíveis. Fonte: @Baker2016.](images/irreproducible.png){fig-align="center" width="60%"}
+
+### Exercício
+
+1) Reflita sobre a seguinte pergunta: Como você acha que a reprodutibilidade está relacionada ao seu trabalho?  Se possível, discuta em grupo e posteriormente compartilhe com a turma suas ideias.
+
+
+
+## Boas práticas em projetos de análise de dados
+
+Para aumentar a chance de desenvolver um projeto de análise de dados que seja reprodutível, algumas boas práticas podem ser adotadas, como: 
+
+  - não utilizar caminhos absolutos
+
+  - evitar o uso de caracteres especiais em caminhos, variáveis e nomes de colunas 
+
+  - armazenar os arquivos de maneira consistente 
+  
+  - registrar quais são as dependências (versões do R e dos pacotes utilizados) 
+  
+  - documentar as análises realizadas
+  
+  - controlar as versões dos arquivos por meio de ferramentas como o Git e GitHub.
+  
+  - compartilhamento de dados brutos, códigos e documentação
+  
+Uma prática que pode ajudar a checar a reprodutibilidade de uma análise de dados é solicitar que outra pessoa que trabalha com você tente reproduzir os resultados a partir dos códigos, dados brutos e documentação [@Markowetz2015]. 
+
+
+### Exercício
+
+1) Você já teve alguma experiência em que a falta de reprodutibilidade foi um problema? Se sim, o que você aprendeu com essa experiência?
+
+2) Considerando a seguir e a discussão feita em sala, o que você mudaria no código a seguir?
+
+```{r}
+#| eval: false
+#| echo: true
+library(tidyverse)
+data <- read_rds("C:/Users/usuario/Downloads/sidra_4092_arrumado.rds")
+dados <- dados |>
+  filter(ano == max(ano))
+dados |>
+  group_by(uf) |>
+  mutate(diferenca = perc_desocupacao - last(perc_desocupacao)) |>
+  ungroup() |>
+  mutate(uf = fct_reorder(uf, diferenca)) |>
+  ggplot(aes(x = perc_desocupacao, y = uf)) +
+  geom_point(aes(color = trimestre_codigo)) +
+  theme_light()
+```
+
+
+
+## Estrutura de projetos
+
+
+Projetos estruturados são essenciais para a reprodutibilidade na ciência de dados. Ferramentas como projetos do RStudio, pacotes em R, controle de versão com Git e GitHub, relatórios reprodutíveis com [Quarto](https://quarto.org), [`{renv}`](https://rstudio.github.io/renv/articles/renv.html) e [`{targets}`](https://books.ropensci.org/targets/) ajudam a organizar o trabalho, gerenciar dependências e automatizar processos, aumentando as chances que outras pessoas posam reproduzir os resultados a partir dos códigos e dados brutos. Ao adotar essas práticas, é possível reduzir erros, aumentar a confiabilidade e promover uma ciência mais transparente e colaborativa.
+
+A seguir, vamos apresentar algumas dessas ferramentas e práticas!
+
+## Projetos no RStudio
+
+Em breve
+
+<!-- -   O que é um RProject. -->
+
+<!-- -   Como criar um projeto no RStudio. -->
+
+<!-- -   Organização básica: pastas e estrutura de arquivos (ex.: data/, scripts/, outputs/). -->
+
+<!-- -   Demonstração prática: criar um novo projeto. -->
+
+<!-- -   O RStudio permite a criação de Projetos. -->
+
+<!-- -   O projeto é uma pasta no computador, onde devemos armazenar todos os arquivos usados ou criados em uma análise. Essa pasta irá conter também um arquivo com o nome do projeto e a extensão `.Rproj`. -->
+
+<!-- -   Para cada análise, lembre-se de criar um `.Rproj` correspondente. -->
+
+## renv: gerenciando dependências
+
+Em breve
+
+<!-- -   O que é o renv e por que usá-lo. -->
+<!-- -   Fluxo básico: -->
+<!--     -   Inicializar o renv em um projeto. -->
+<!--     -   Instalar e registrar pacotes no renv.lock. -->
+<!--     -   Reproduzir o ambiente em outra máquina. -->
+
+## Introdução ao targets
+
+Em breve
+
+<!-- -   Conceito de pipelines reprodutíveis. -->
+<!-- -   Diferença entre targets e scripts tradicionais. -->
+<!-- -   Demonstração: Criar um exemplo simples de pipeline com targets (ex.: carregar dados, processá-los e gerar uma tabela ou gráfico). -->
+<!-- -   Mostre um projeto já configurado para destacar a utilidade do targets. -->
+
+## Materiais
+
+Este material foi desenvolvido com base na aula [Introdução ao conceito de reprodutibilidade](https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/slides/03-reprodutibilidade.html) do curso [Relatórios reprodutíveis com R](https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/), ministrado por Beatriz Milz no [programa de Verão do IME-USP](https://www.ime.usp.br/verao/).
+
+
+## Referências citadas
