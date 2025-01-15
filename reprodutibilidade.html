@@ -20,7 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -175,8 +229,27 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#introdução-à-reprodutibilidade" id="toc-introdução-à-reprodutibilidade" class="nav-link active" data-scroll-target="#introdução-à-reprodutibilidade"><span class="header-section-number">4.1</span> Introdução à Reprodutibilidade</a>
+  <ul>
+  <li><a href="#exercício" id="toc-exercício" class="nav-link" data-scroll-target="#exercício"><span class="header-section-number">4.1.1</span> Exercício</a></li>
+  </ul></li>
+  <li><a href="#boas-práticas-em-projetos-de-análise-de-dados" id="toc-boas-práticas-em-projetos-de-análise-de-dados" class="nav-link" data-scroll-target="#boas-práticas-em-projetos-de-análise-de-dados"><span class="header-section-number">4.2</span> Boas práticas em projetos de análise de dados</a>
+  <ul>
+  <li><a href="#exercício-1" id="toc-exercício-1" class="nav-link" data-scroll-target="#exercício-1"><span class="header-section-number">4.2.1</span> Exercício</a></li>
+  </ul></li>
+  <li><a href="#estrutura-de-projetos" id="toc-estrutura-de-projetos" class="nav-link" data-scroll-target="#estrutura-de-projetos"><span class="header-section-number">4.3</span> Estrutura de projetos</a></li>
+  <li><a href="#projetos-no-rstudio" id="toc-projetos-no-rstudio" class="nav-link" data-scroll-target="#projetos-no-rstudio"><span class="header-section-number">4.4</span> Projetos no RStudio</a></li>
+  <li><a href="#renv-gerenciando-dependências" id="toc-renv-gerenciando-dependências" class="nav-link" data-scroll-target="#renv-gerenciando-dependências"><span class="header-section-number">4.5</span> renv: gerenciando dependências</a></li>
+  <li><a href="#introdução-ao-targets" id="toc-introdução-ao-targets" class="nav-link" data-scroll-target="#introdução-ao-targets"><span class="header-section-number">4.6</span> Introdução ao targets</a></li>
+  <li><a href="#materiais" id="toc-materiais" class="nav-link" data-scroll-target="#materiais"><span class="header-section-number">4.7</span> Materiais</a></li>
+  <li><a href="#referências-citadas" id="toc-referências-citadas" class="nav-link" data-scroll-target="#referências-citadas"><span class="header-section-number">4.8</span> Referências citadas</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -200,9 +273,123 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Em breve!</p>
+<p>Nesta aula, o objetivo é apresentar o conceito de reprodutibilidade, e apresentar abordagens e ferramentas para estruturar projetos em ciência de dados, buscando garantir a reprodutibilidade dos resultados.</p>
+<section id="introdução-à-reprodutibilidade" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="introdução-à-reprodutibilidade"><span class="header-section-number">4.1</span> Introdução à Reprodutibilidade</h2>
+<blockquote class="blockquote">
+<p>“Reprodutibilidade é como escovar os dentes. Isso é bom para você, mas leva tempo e esforço. Depois de aprender, torna-se um hábito”. - Irakli Loladze, em pesquisa conduzida por Baker <span class="citation" data-cites="Baker2016">(<a href="#ref-Baker2016" role="doc-biblioref">2016</a>)</span>.</p>
+</blockquote>
+<p>A reprodutibilidade é um conceito central na ciência, embora não tenha uma definição única e comum <span class="citation" data-cites="gundersen2021reproducibility">(<a href="#ref-gundersen2021reproducibility" role="doc-biblioref">Gundersen 2021</a>)</span>. Ao fazer um levantamento sobre o conceito de reprodutibilidade, Gundersen <span class="citation" data-cites="gundersen2021reproducibility">(<a href="#ref-gundersen2021reproducibility" role="doc-biblioref">2021</a>)</span> elaborou a seguinte definição:</p>
+<blockquote class="blockquote">
+<p>“Reproducibility is the ability of independent investigators to draw the same conclusions from an experiment by following the documentation shared by the original investigators.”</p>
+</blockquote>
+<p>Tradução livre:</p>
+<blockquote class="blockquote">
+<p>“Reprodutibilidade é a capacidade de investigadores independentes chegarem às mesmas conclusões de um experimento ao seguir a documentação compartilhada pelos investigadores originais.”</p>
+</blockquote>
+<p>A definição prática de reprodutibilidade é frequentemente associada à capacidade de reproduzir os resultados de uma pesquisa a partir dos dados brutos e do código utilizado.</p>
+<p>De acordo com Baker <span class="citation" data-cites="Baker2016">(<a href="#ref-Baker2016" role="doc-biblioref">2016</a>)</span>, a partir de um questionário realizado pela revista <em>Nature</em> sobre reprodutibilidade com mais de 1500 pesquisadores, vários fatores contribuem para pesquisas não reprodutíveis, como a não disponibilização de códigos, métodos e dados brutos. A figura abaixo apresenta os fatores mais citados pelos respondentes:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/irreproducible.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Fatores que contribuem para pesquisas não reprodutíveis. Fonte: <span class="citation" data-cites="Baker2016">Baker (<a href="#ref-Baker2016" role="doc-biblioref">2016</a>)</span>.</figcaption>
+</figure>
+</div>
+<section id="exercício" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="exercício"><span class="header-section-number">4.1.1</span> Exercício</h3>
+<ol type="1">
+<li>Reflita sobre a seguinte pergunta: Como você acha que a reprodutibilidade está relacionada ao seu trabalho? Se possível, discuta em grupo e posteriormente compartilhe com a turma suas ideias.</li>
+</ol>
+</section>
+</section>
+<section id="boas-práticas-em-projetos-de-análise-de-dados" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="boas-práticas-em-projetos-de-análise-de-dados"><span class="header-section-number">4.2</span> Boas práticas em projetos de análise de dados</h2>
+<p>Para aumentar a chance de desenvolver um projeto de análise de dados que seja reprodutível, algumas boas práticas podem ser adotadas, como:</p>
+<ul>
+<li><p>não utilizar caminhos absolutos</p></li>
+<li><p>evitar o uso de caracteres especiais em caminhos, variáveis e nomes de colunas</p></li>
+<li><p>armazenar os arquivos de maneira consistente</p></li>
+<li><p>registrar quais são as dependências (versões do R e dos pacotes utilizados)</p></li>
+<li><p>documentar as análises realizadas</p></li>
+<li><p>controlar as versões dos arquivos por meio de ferramentas como o Git e GitHub.</p></li>
+<li><p>compartilhamento de dados brutos, códigos e documentação</p></li>
+</ul>
+<p>Uma prática que pode ajudar a checar a reprodutibilidade de uma análise de dados é solicitar que outra pessoa que trabalha com você tente reproduzir os resultados a partir dos códigos, dados brutos e documentação <span class="citation" data-cites="Markowetz2015">(<a href="#ref-Markowetz2015" role="doc-biblioref">Markowetz 2015</a>)</span>.</p>
+<section id="exercício-1" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="exercício-1"><span class="header-section-number">4.2.1</span> Exercício</h3>
+<ol type="1">
+<li><p>Você já teve alguma experiência em que a falta de reprodutibilidade foi um problema? Se sim, o que você aprendeu com essa experiência?</p></li>
+<li><p>Considerando a seguir e a discussão feita em sala, o que você mudaria no código a seguir?</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"C:/Users/usuario/Downloads/sidra_4092_arrumado.rds"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> dados <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ano <span class="sc">==</span> <span class="fu">max</span>(ano))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(uf) <span class="sc">|&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diferenca =</span> perc_desocupacao <span class="sc">-</span> <span class="fu">last</span>(perc_desocupacao)) <span class="sc">|&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">uf =</span> <span class="fu">fct_reorder</span>(uf, diferenca)) <span class="sc">|&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> perc_desocupacao, <span class="at">y =</span> uf)) <span class="sc">+</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> trimestre_codigo)) <span class="sc">+</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="estrutura-de-projetos" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="estrutura-de-projetos"><span class="header-section-number">4.3</span> Estrutura de projetos</h2>
+<p>Projetos estruturados são essenciais para a reprodutibilidade na ciência de dados. Ferramentas como projetos do RStudio, pacotes em R, controle de versão com Git e GitHub, relatórios reprodutíveis com <a href="https://quarto.org">Quarto</a>, <a href="https://rstudio.github.io/renv/articles/renv.html"><code>{renv}</code></a> e <a href="https://books.ropensci.org/targets/"><code>{targets}</code></a> ajudam a organizar o trabalho, gerenciar dependências e automatizar processos, aumentando as chances que outras pessoas posam reproduzir os resultados a partir dos códigos e dados brutos. Ao adotar essas práticas, é possível reduzir erros, aumentar a confiabilidade e promover uma ciência mais transparente e colaborativa.</p>
+<p>A seguir, vamos apresentar algumas dessas ferramentas e práticas!</p>
+</section>
+<section id="projetos-no-rstudio" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="projetos-no-rstudio"><span class="header-section-number">4.4</span> Projetos no RStudio</h2>
+<p>Em breve</p>
+<!-- -   O que é um RProject. -->
+<!-- -   Como criar um projeto no RStudio. -->
+<!-- -   Organização básica: pastas e estrutura de arquivos (ex.: data/, scripts/, outputs/). -->
+<!-- -   Demonstração prática: criar um novo projeto. -->
+<!-- -   O RStudio permite a criação de Projetos. -->
+<!-- -   O projeto é uma pasta no computador, onde devemos armazenar todos os arquivos usados ou criados em uma análise. Essa pasta irá conter também um arquivo com o nome do projeto e a extensão `.Rproj`. -->
+<!-- -   Para cada análise, lembre-se de criar um `.Rproj` correspondente. -->
+</section>
+<section id="renv-gerenciando-dependências" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="renv-gerenciando-dependências"><span class="header-section-number">4.5</span> renv: gerenciando dependências</h2>
+<p>Em breve</p>
+<!-- -   O que é o renv e por que usá-lo. -->
+<!-- -   Fluxo básico: -->
+<!--     -   Inicializar o renv em um projeto. -->
+<!--     -   Instalar e registrar pacotes no renv.lock. -->
+<!--     -   Reproduzir o ambiente em outra máquina. -->
+</section>
+<section id="introdução-ao-targets" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="introdução-ao-targets"><span class="header-section-number">4.6</span> Introdução ao targets</h2>
+<p>Em breve</p>
+<!-- -   Conceito de pipelines reprodutíveis. -->
+<!-- -   Diferença entre targets e scripts tradicionais. -->
+<!-- -   Demonstração: Criar um exemplo simples de pipeline com targets (ex.: carregar dados, processá-los e gerar uma tabela ou gráfico). -->
+<!-- -   Mostre um projeto já configurado para destacar a utilidade do targets. -->
+</section>
+<section id="materiais" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="materiais"><span class="header-section-number">4.7</span> Materiais</h2>
+<p>Este material foi desenvolvido com base na aula <a href="https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/slides/03-reprodutibilidade.html">Introdução ao conceito de reprodutibilidade</a> do curso <a href="https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/">Relatórios reprodutíveis com R</a>, ministrado por Beatriz Milz no <a href="https://www.ime.usp.br/verao/">programa de Verão do IME-USP</a>.</p>
+</section>
+<section id="referências-citadas" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="referências-citadas"><span class="header-section-number">4.8</span> Referências citadas</h2>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Baker2016" class="csl-entry" role="listitem">
+Baker, Monya. 2016. <span>«1, 500 scientists lift the lid on reproducibility»</span>. <em>Nature</em> 533 (7604): 452–54. <a href="https://doi.org/10.1038/533452a">https://doi.org/10.1038/533452a</a>.
+</div>
+<div id="ref-gundersen2021reproducibility" class="csl-entry" role="listitem">
+Gundersen, Odd Erik. 2021. <span>«The fundamental principles of reproducibility»</span>. <em>Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences</em> 379 (2197): 20200210. <a href="https://doi.org/10.1098/rsta.2020.0210">https://doi.org/10.1098/rsta.2020.0210</a>.
+</div>
+<div id="ref-Markowetz2015" class="csl-entry" role="listitem">
+Markowetz, Florian. 2015. <span>«Five selfish reasons to work reproducibly»</span>. <em>Genome Biology</em> 16 (1). <a href="https://doi.org/10.1186/s13059-015-0850-7">https://doi.org/10.1186/s13059-015-0850-7</a>.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

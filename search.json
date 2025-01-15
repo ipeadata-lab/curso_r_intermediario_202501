@@ -64,7 +64,87 @@
     "href": "reprodutibilidade.html",
     "title": "4  Reprodutibilidade e estruturação de projeto",
     "section": "",
-    "text": "Em breve!",
+    "text": "4.1 Introdução à Reprodutibilidade\nNesta aula, o objetivo é apresentar o conceito de reprodutibilidade, e apresentar abordagens e ferramentas para estruturar projetos em ciência de dados, buscando garantir a reprodutibilidade dos resultados.\nA reprodutibilidade é um conceito central na ciência, embora não tenha uma definição única e comum (Gundersen 2021). Ao fazer um levantamento sobre o conceito de reprodutibilidade, Gundersen (2021) elaborou a seguinte definição:\nTradução livre:\nA definição prática de reprodutibilidade é frequentemente associada à capacidade de reproduzir os resultados de uma pesquisa a partir dos dados brutos e do código utilizado.\nDe acordo com Baker (2016), a partir de um questionário realizado pela revista Nature sobre reprodutibilidade com mais de 1500 pesquisadores, vários fatores contribuem para pesquisas não reprodutíveis, como a não disponibilização de códigos, métodos e dados brutos. A figura abaixo apresenta os fatores mais citados pelos respondentes:",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reprodutibilidade e estruturação de projeto</span>"
+    ]
+  },
+  {
+    "objectID": "reprodutibilidade.html#introdução-à-reprodutibilidade",
+    "href": "reprodutibilidade.html#introdução-à-reprodutibilidade",
+    "title": "4  Reprodutibilidade e estruturação de projeto",
+    "section": "",
+    "text": "“Reprodutibilidade é como escovar os dentes. Isso é bom para você, mas leva tempo e esforço. Depois de aprender, torna-se um hábito”. - Irakli Loladze, em pesquisa conduzida por Baker (2016).\n\n\n\n“Reproducibility is the ability of independent investigators to draw the same conclusions from an experiment by following the documentation shared by the original investigators.”\n\n\n\n“Reprodutibilidade é a capacidade de investigadores independentes chegarem às mesmas conclusões de um experimento ao seguir a documentação compartilhada pelos investigadores originais.”\n\n\n\n\n\n\nFatores que contribuem para pesquisas não reprodutíveis. Fonte: Baker (2016).\n\n\n\n4.1.1 Exercício\n\nReflita sobre a seguinte pergunta: Como você acha que a reprodutibilidade está relacionada ao seu trabalho? Se possível, discuta em grupo e posteriormente compartilhe com a turma suas ideias.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reprodutibilidade e estruturação de projeto</span>"
+    ]
+  },
+  {
+    "objectID": "reprodutibilidade.html#boas-práticas-em-projetos-de-análise-de-dados",
+    "href": "reprodutibilidade.html#boas-práticas-em-projetos-de-análise-de-dados",
+    "title": "4  Reprodutibilidade e estruturação de projeto",
+    "section": "4.2 Boas práticas em projetos de análise de dados",
+    "text": "4.2 Boas práticas em projetos de análise de dados\nPara aumentar a chance de desenvolver um projeto de análise de dados que seja reprodutível, algumas boas práticas podem ser adotadas, como:\n\nnão utilizar caminhos absolutos\nevitar o uso de caracteres especiais em caminhos, variáveis e nomes de colunas\narmazenar os arquivos de maneira consistente\nregistrar quais são as dependências (versões do R e dos pacotes utilizados)\ndocumentar as análises realizadas\ncontrolar as versões dos arquivos por meio de ferramentas como o Git e GitHub.\ncompartilhamento de dados brutos, códigos e documentação\n\nUma prática que pode ajudar a checar a reprodutibilidade de uma análise de dados é solicitar que outra pessoa que trabalha com você tente reproduzir os resultados a partir dos códigos, dados brutos e documentação (Markowetz 2015).\n\n4.2.1 Exercício\n\nVocê já teve alguma experiência em que a falta de reprodutibilidade foi um problema? Se sim, o que você aprendeu com essa experiência?\nConsiderando a seguir e a discussão feita em sala, o que você mudaria no código a seguir?\n\n\nlibrary(tidyverse)\ndata &lt;- read_rds(\"C:/Users/usuario/Downloads/sidra_4092_arrumado.rds\")\ndados &lt;- dados |&gt;\n  filter(ano == max(ano))\ndados |&gt;\n  group_by(uf) |&gt;\n  mutate(diferenca = perc_desocupacao - last(perc_desocupacao)) |&gt;\n  ungroup() |&gt;\n  mutate(uf = fct_reorder(uf, diferenca)) |&gt;\n  ggplot(aes(x = perc_desocupacao, y = uf)) +\n  geom_point(aes(color = trimestre_codigo)) +\n  theme_light()",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reprodutibilidade e estruturação de projeto</span>"
+    ]
+  },
+  {
+    "objectID": "reprodutibilidade.html#estrutura-de-projetos",
+    "href": "reprodutibilidade.html#estrutura-de-projetos",
+    "title": "4  Reprodutibilidade e estruturação de projeto",
+    "section": "4.3 Estrutura de projetos",
+    "text": "4.3 Estrutura de projetos\nProjetos estruturados são essenciais para a reprodutibilidade na ciência de dados. Ferramentas como projetos do RStudio, pacotes em R, controle de versão com Git e GitHub, relatórios reprodutíveis com Quarto, {renv} e {targets} ajudam a organizar o trabalho, gerenciar dependências e automatizar processos, aumentando as chances que outras pessoas posam reproduzir os resultados a partir dos códigos e dados brutos. Ao adotar essas práticas, é possível reduzir erros, aumentar a confiabilidade e promover uma ciência mais transparente e colaborativa.\nA seguir, vamos apresentar algumas dessas ferramentas e práticas!",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reprodutibilidade e estruturação de projeto</span>"
+    ]
+  },
+  {
+    "objectID": "reprodutibilidade.html#projetos-no-rstudio",
+    "href": "reprodutibilidade.html#projetos-no-rstudio",
+    "title": "4  Reprodutibilidade e estruturação de projeto",
+    "section": "4.4 Projetos no RStudio",
+    "text": "4.4 Projetos no RStudio\nEm breve",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reprodutibilidade e estruturação de projeto</span>"
+    ]
+  },
+  {
+    "objectID": "reprodutibilidade.html#renv-gerenciando-dependências",
+    "href": "reprodutibilidade.html#renv-gerenciando-dependências",
+    "title": "4  Reprodutibilidade e estruturação de projeto",
+    "section": "4.5 renv: gerenciando dependências",
+    "text": "4.5 renv: gerenciando dependências\nEm breve",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reprodutibilidade e estruturação de projeto</span>"
+    ]
+  },
+  {
+    "objectID": "reprodutibilidade.html#introdução-ao-targets",
+    "href": "reprodutibilidade.html#introdução-ao-targets",
+    "title": "4  Reprodutibilidade e estruturação de projeto",
+    "section": "4.6 Introdução ao targets",
+    "text": "4.6 Introdução ao targets\nEm breve",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reprodutibilidade e estruturação de projeto</span>"
+    ]
+  },
+  {
+    "objectID": "reprodutibilidade.html#materiais",
+    "href": "reprodutibilidade.html#materiais",
+    "title": "4  Reprodutibilidade e estruturação de projeto",
+    "section": "4.7 Materiais",
+    "text": "4.7 Materiais\nEste material foi desenvolvido com base na aula Introdução ao conceito de reprodutibilidade do curso Relatórios reprodutíveis com R, ministrado por Beatriz Milz no programa de Verão do IME-USP.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reprodutibilidade e estruturação de projeto</span>"
+    ]
+  },
+  {
+    "objectID": "reprodutibilidade.html#referências-citadas",
+    "href": "reprodutibilidade.html#referências-citadas",
+    "title": "4  Reprodutibilidade e estruturação de projeto",
+    "section": "4.8 Referências citadas",
+    "text": "4.8 Referências citadas\n\n\n\n\nBaker, Monya. 2016. «1, 500 scientists lift the lid on reproducibility». Nature 533 (7604): 452–54. https://doi.org/10.1038/533452a.\n\n\nGundersen, Odd Erik. 2021. «The fundamental principles of reproducibility». Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 379 (2197): 20200210. https://doi.org/10.1098/rsta.2020.0210.\n\n\nMarkowetz, Florian. 2015. «Five selfish reasons to work reproducibly». Genome Biology 16 (1). https://doi.org/10.1186/s13059-015-0850-7.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reprodutibilidade e estruturação de projeto</span>"
     ]
