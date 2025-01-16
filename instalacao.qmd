@@ -1,12 +1,10 @@
 ---
-title: "Instalação"
+title: "Instalações e outros preparativos"
 code-annotations: hover
 ---
 
-:::{.callout-important}
+::: callout-important
 Os softwares R e RStudio devem ser instalados antes do início do curso. Caso tenha alguma dúvida, consulte as [instruções de instalação do curso introdutório](https://ipeadata-lab.github.io/curso_r_intro_202409/00_instrucoes_pre_curso.html).
-
-
 :::
 
 ## Instalação de pacotes necessários
@@ -15,19 +13,52 @@ Para instalar os pacotes necessários para o curso, execute o seguinte código:
 
 ```{r}
 #| eval: false
-install.packages(c("tidyverse", 
-                   "usethis",
-                   "renv",
-                   "here",
-                   "fuzzyjoin",
-                   "furrr",
-                   "dbplyr",
-                   "arrow",
-                   "vroom",
-                   "duckdb",
-                   "sf",
-                   "geobr",
-                   "quarto"
-                   )) 
+install.packages(c("tidyverse", "usethis", "renv",
+                   "here", "fuzzyjoin", "furrr",
+                   "dbplyr", "arrow", "vroom",
+                   "duckdb", "sf", "geobr", "quarto")) 
 ```
 
+## Instalação do TinyTeX
+
+Para a aula de ["Produção de relatórios com Quarto"](relatorios.qmd), para exportar o relatório em PDF será necessário ter algum sistema de LaTeX instalado. O TinyTeX é uma versão mínima do LaTeX que é suficiente para o uso no curso.
+
+Primeiramente, precisamos instalar o pacote `tinytex`:
+
+```{r}
+#| eval: false
+install.packages('tinytex')
+```
+
+E então instalar o TinyTeX:
+
+```{r}
+#| eval: false
+tinytex::install_tinytex()
+```
+
+## Instalação do Git
+
+Para a aula de ["Introdução controle de versão com Git e GitHub"](git-github.qmd), é necessário ter o Git instalado. 
+
+O Git **não** é um pacote, e sim um software que deve ser instalado no seu computador.
+
+Para instalar o Git, acesse a página oficial do [Git](https://git-scm.com/downloads) e siga as instruções de instalação para o seu sistema operacional.
+
+[![](images/install-git.png){fig-align="center" width="100%"}](https://git-scm.com/downloads)
+
+Para verificar se o Git foi instalado corretamente, execute o seguinte comando no painel "Terminal" do RStudio:
+
+```{bash}
+git --version
+```
+
+## Conta no GitHub
+
+Para a aula de ["Introdução controle de versão com Git e GitHub"](git-github.qmd), é necessário ter uma conta no GitHub.
+
+Caso ainda não tenha uma conta, acesse a página oficial do [GitHub](https://github.com/), clique em "Sign up" e crie uma conta gratuitamente.
+
+![Página inicial do GitHub](images/github-home.png){fig-align="center" width="100%"}
+
+![Página para criar a conta gratuitamente](images/github-signup.png){fig-align="center" width="100%"}
