@@ -179,7 +179,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./instalacao.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalação</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalações e outros preparativos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -191,7 +191,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./relatorios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Produção de relatórios com RMarkdown/Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Produção de relatórios com Quarto</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -243,7 +243,10 @@ div.csl-indent {
   <li><a href="#exercício-1" id="toc-exercício-1" class="nav-link" data-scroll-target="#exercício-1"><span class="header-section-number">4.2.1</span> Exercício</a></li>
   </ul></li>
   <li><a href="#estrutura-de-projetos" id="toc-estrutura-de-projetos" class="nav-link" data-scroll-target="#estrutura-de-projetos"><span class="header-section-number">4.3</span> Estrutura de projetos</a></li>
-  <li><a href="#projetos-no-rstudio" id="toc-projetos-no-rstudio" class="nav-link" data-scroll-target="#projetos-no-rstudio"><span class="header-section-number">4.4</span> Projetos no RStudio</a></li>
+  <li><a href="#projetos-no-rstudio" id="toc-projetos-no-rstudio" class="nav-link" data-scroll-target="#projetos-no-rstudio"><span class="header-section-number">4.4</span> Projetos no RStudio</a>
+  <ul>
+  <li><a href="#exercício-2" id="toc-exercício-2" class="nav-link" data-scroll-target="#exercício-2"><span class="header-section-number">4.4.1</span> Exercício</a></li>
+  </ul></li>
   <li><a href="#renv-gerenciando-dependências" id="toc-renv-gerenciando-dependências" class="nav-link" data-scroll-target="#renv-gerenciando-dependências"><span class="header-section-number">4.5</span> renv: gerenciando dependências</a></li>
   <li><a href="#introdução-ao-targets" id="toc-introdução-ao-targets" class="nav-link" data-scroll-target="#introdução-ao-targets"><span class="header-section-number">4.6</span> Introdução ao targets</a></li>
   <li><a href="#materiais" id="toc-materiais" class="nav-link" data-scroll-target="#materiais"><span class="header-section-number">4.7</span> Materiais</a></li>
@@ -306,8 +309,8 @@ div.csl-indent {
 <h2 data-number="4.2" class="anchored" data-anchor-id="boas-práticas-em-projetos-de-análise-de-dados"><span class="header-section-number">4.2</span> Boas práticas em projetos de análise de dados</h2>
 <p>Para aumentar a chance de desenvolver um projeto de análise de dados que seja reprodutível, algumas boas práticas podem ser adotadas, como:</p>
 <ul>
-<li><p>não utilizar caminhos absolutos</p></li>
-<li><p>evitar o uso de caracteres especiais em caminhos, variáveis e nomes de colunas</p></li>
+<li><p>não utilizar caminhos absolutos<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p></li>
+<li><p>evitar o uso de caracteres especiais em caminhos, variáveis e nomes de colunas<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p></li>
 <li><p>armazenar os arquivos de maneira consistente</p></li>
 <li><p>registrar quais são as dependências (versões do R e dos pacotes utilizados)</p></li>
 <li><p>documentar as análises realizadas</p></li>
@@ -339,19 +342,54 @@ div.csl-indent {
 </section>
 <section id="estrutura-de-projetos" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="estrutura-de-projetos"><span class="header-section-number">4.3</span> Estrutura de projetos</h2>
-<p>Projetos estruturados são essenciais para a reprodutibilidade na ciência de dados. Ferramentas como projetos do RStudio, pacotes em R, controle de versão com Git e GitHub, relatórios reprodutíveis com <a href="https://quarto.org">Quarto</a>, <a href="https://rstudio.github.io/renv/articles/renv.html"><code>{renv}</code></a> e <a href="https://books.ropensci.org/targets/"><code>{targets}</code></a> ajudam a organizar o trabalho, gerenciar dependências e automatizar processos, aumentando as chances que outras pessoas posam reproduzir os resultados a partir dos códigos e dados brutos. Ao adotar essas práticas, é possível reduzir erros, aumentar a confiabilidade e promover uma ciência mais transparente e colaborativa.</p>
+<p>Projetos estruturados são essenciais para a reprodutibilidade na ciência de dados. Ferramentas como projetos do RStudio, pacotes em R, controle de versão com Git e GitHub<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, relatórios reprodutíveis com <a href="https://quarto.org">Quarto</a><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>, <a href="https://rstudio.github.io/renv/articles/renv.html"><code>{renv}</code></a> e <a href="https://books.ropensci.org/targets/"><code>{targets}</code></a> ajudam a organizar o trabalho, gerenciar dependências e automatizar processos, aumentando as chances que outras pessoas posam reproduzir os resultados a partir dos códigos e dados brutos. Ao adotar essas práticas, é possível reduzir erros, aumentar a confiabilidade e promover uma ciência mais transparente e colaborativa.</p>
 <p>A seguir, vamos apresentar algumas dessas ferramentas e práticas!</p>
 </section>
 <section id="projetos-no-rstudio" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="projetos-no-rstudio"><span class="header-section-number">4.4</span> Projetos no RStudio</h2>
-<p>Em breve</p>
-<!-- -   O que é um RProject. -->
-<!-- -   Como criar um projeto no RStudio. -->
-<!-- -   Organização básica: pastas e estrutura de arquivos (ex.: data/, scripts/, outputs/). -->
-<!-- -   Demonstração prática: criar um novo projeto. -->
-<!-- -   O RStudio permite a criação de Projetos. -->
-<!-- -   O projeto é uma pasta no computador, onde devemos armazenar todos os arquivos usados ou criados em uma análise. Essa pasta irá conter também um arquivo com o nome do projeto e a extensão `.Rproj`. -->
-<!-- -   Para cada análise, lembre-se de criar um `.Rproj` correspondente. -->
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O conteúdo sobre projetos no RStudio foi abordado no curso “<a href="https://ipeadata-lab.github.io/curso_r_intro_202409/01_1_rproj.html">Introdução à análise de dados no R</a>”.</p>
+</div>
+</div>
+<p>O RStudio oferece uma funcionalidade chamada <strong>projetos</strong>, que facilita a organização e a reprodutibilidade do trabalho em ciência de dados. Ao criar um projeto no RStudio, uma nova pasta é gerada no computador, e o RStudio automaticamente define essa pasta como o diretório de trabalho. Além disso, o RStudio também cria um arquivo com a extensão <code>.Rproj</code> dentro dessa pasta, que contém informações sobre o projeto.</p>
+<p>Trabalhar com projetos no RStudio é altamente recomendado, pois ajuda a manter os arquivos organizados e facilita a reprodução do código. Sempre que iniciar uma nova análise de dados, crie um projeto correspondente. Isso garante que todos os arquivos relacionados ao projeto estejam em um único local e evita problemas comuns, como dependência de caminhos absolutos.</p>
+<p>É recomendado que sempre trabalhemos em projetos no RStudio, pois isso facilita a organização dos arquivos e a reprodução do código. Portanto, ao começar a trabalhar em uma novo projeto de análise de dados, lembre-se de criar um <code>.Rproj</code> correspondente.</p>
+<p>Para manter a organização, salve os arquivos relacionados ao projeto (como scripts, bases de dados e resultados) dentro da pasta principal do projeto. No entanto, é uma boa prática estruturar o projeto em subpastas para separar diferentes tipos de arquivos, como dados, scripts e relatórios.</p>
+<p>Um exemplo de estrutura básica de projeto pode incluir as seguintes subpastas:</p>
+<ul>
+<li><p><strong><code>dados/</code></strong>: Para armazenar bases de dados.</p></li>
+<li><p><strong><code>scripts/</code></strong>: Para salvar scripts R utilizados na análise.</p></li>
+<li><p><strong><code>relatorios/</code></strong>: Para guardar relatórios gerados.</p></li>
+</ul>
+<section id="exercício-2" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="exercício-2"><span class="header-section-number">4.4.1</span> Exercício</h3>
+<ol type="1">
+<li><p>No RStudio, crie um novo projeto para ser utilizado ao longo do curso. Lembre-se de criar o projeto em uma pasta que você possa acessar facilmente.</p></li>
+<li><p>Dentro do projeto, crie as seguintes pastas para organizar os arquivos:</p>
+<ul>
+<li><strong><code>dados/</code></strong></li>
+<li><strong><code>dados_output/</code></strong></li>
+<li><strong><code>scripts/</code></strong></li>
+<li><strong><code>relatorios/</code></strong></li>
+</ul></li>
+</ol>
+<p>Você pode criar as pastas manualmente ou utilizar a função <code>dir.create()</code> para criar as pastas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"dados"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"dados_output"</span>) </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"scripts"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"relatorios"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 </section>
 <section id="renv-gerenciando-dependências" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="renv-gerenciando-dependências"><span class="header-section-number">4.5</span> renv: gerenciando dependências</h2>
@@ -389,6 +427,15 @@ Gundersen, Odd Erik. 2021. <span>«The fundamental principles of reproducibility
 Markowetz, Florian. 2015. <span>«Five selfish reasons to work reproducibly»</span>. <em>Genome Biology</em> 16 (1). <a href="https://doi.org/10.1186/s13059-015-0850-7">https://doi.org/10.1186/s13059-015-0850-7</a>.
 </div>
 </div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Os conceitos diretório de trabalho, caminhos absolutos e caminhos relativos foram abordados na aula sobre <a href="https://ipeadata-lab.github.io/curso_r_intro_202409/01_1_rproj.html">diretórios de trabalho e projetos</a> do curso “<a href="https://ipeadata-lab.github.io/curso_r_intro_202409/">Introdução à análise de dados no R</a>”.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Caso queira revisar este tópico, recomendamos a leitura da seção sobre <a href="https://ipeadata-lab.github.io/curso_r_intro_202409/02_conceitos_basicos_r.html#boas-pr%C3%A1ticas-para-nomear-objetos-no-r">boas práticas para nomear objetos no R</a> do curso “<a href="https://ipeadata-lab.github.io/curso_r_intro_202409/">Introdução à análise de dados no R</a>”.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Será abordado na aula sobre <a href="./relatorios.html">introdução ao controle de versão com Git e GitHub</a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Será abordado na aula sobre <a href="./relatorios.html">produção de relatórios com Quarto</a>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -855,13 +902,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./instalacao.html" class="pagination-link" aria-label="Instalação">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalação</span></span>
+      <a href="./instalacao.html" class="pagination-link" aria-label="Instalações e outros preparativos">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalações e outros preparativos</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./relatorios.html" class="pagination-link" aria-label="Produção de relatórios com RMarkdown/Quarto">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Produção de relatórios com RMarkdown/Quarto</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./relatorios.html" class="pagination-link" aria-label="Produção de relatórios com Quarto">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Produção de relatórios com Quarto</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

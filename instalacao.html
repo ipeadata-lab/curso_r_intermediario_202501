@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Instalação – R intermediário e pesquisa reprodutível</title>
+<title>3&nbsp; Instalações e outros preparativos – R intermediário e pesquisa reprodutível</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -116,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./instalacao.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalação</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./instalacao.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalações e outros preparativos</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -159,7 +159,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./instalacao.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalação</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalações e outros preparativos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -171,7 +171,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./relatorios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Produção de relatórios com RMarkdown/Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Produção de relatórios com Quarto</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -215,6 +215,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#instalação-de-pacotes-necessários" id="toc-instalação-de-pacotes-necessários" class="nav-link active" data-scroll-target="#instalação-de-pacotes-necessários"><span class="header-section-number">3.1</span> Instalação de pacotes necessários</a></li>
+  <li><a href="#instalação-do-tinytex" id="toc-instalação-do-tinytex" class="nav-link" data-scroll-target="#instalação-do-tinytex"><span class="header-section-number">3.2</span> Instalação do TinyTeX</a></li>
+  <li><a href="#instalação-do-git" id="toc-instalação-do-git" class="nav-link" data-scroll-target="#instalação-do-git"><span class="header-section-number">3.3</span> Instalação do Git</a></li>
+  <li><a href="#conta-no-github" id="toc-conta-no-github" class="nav-link" data-scroll-target="#conta-no-github"><span class="header-section-number">3.4</span> Conta no GitHub</a></li>
   </ul>
 </nav>
     </div>
@@ -223,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalação</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalações e outros preparativos</span></h1>
 </div>
 
 
@@ -257,20 +260,57 @@ Importante
 <h2 data-number="3.1" class="anchored" data-anchor-id="instalação-de-pacotes-necessários"><span class="header-section-number">3.1</span> Instalação de pacotes necessários</h2>
 <p>Para instalar os pacotes necessários para o curso, execute o seguinte código:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"usethis"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"renv"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"here"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"fuzzyjoin"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"furrr"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"dbplyr"</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"arrow"</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"vroom"</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"duckdb"</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"sf"</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"geobr"</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"quarto"</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                   )) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"usethis"</span>, <span class="st">"renv"</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"here"</span>, <span class="st">"fuzzyjoin"</span>, <span class="st">"furrr"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"dbplyr"</span>, <span class="st">"arrow"</span>, <span class="st">"vroom"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"duckdb"</span>, <span class="st">"sf"</span>, <span class="st">"geobr"</span>, <span class="st">"quarto"</span>)) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="instalação-do-tinytex" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="instalação-do-tinytex"><span class="header-section-number">3.2</span> Instalação do TinyTeX</h2>
+<p>Para a aula de <a href="./relatorios.html">“Produção de relatórios com Quarto”</a>, para exportar o relatório em PDF será necessário ter algum sistema de LaTeX instalado. O TinyTeX é uma versão mínima do LaTeX que é suficiente para o uso no curso.</p>
+<p>Primeiramente, precisamos instalar o pacote <code>tinytex</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'tinytex'</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>E então instalar o TinyTeX:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="instalação-do-git" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="instalação-do-git"><span class="header-section-number">3.3</span> Instalação do Git</h2>
+<p>Para a aula de <a href="./git-github.html">“Introdução controle de versão com Git e GitHub”</a>, é necessário ter o Git instalado.</p>
+<p>O Git <strong>não</strong> é um pacote, e sim um software que deve ser instalado no seu computador.</p>
+<p>Para instalar o Git, acesse a página oficial do <a href="https://git-scm.com/downloads">Git</a> e siga as instruções de instalação para o seu sistema operacional.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://git-scm.com/downloads"><img src="images/install-git.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a></p>
+</figure>
+</div>
+<p>Para verificar se o Git foi instalado corretamente, execute o seguinte comando no painel “Terminal” do RStudio:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>git version 2.47.1</code></pre>
+</div>
+</div>
+</section>
+<section id="conta-no-github" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="conta-no-github"><span class="header-section-number">3.4</span> Conta no GitHub</h2>
+<p>Para a aula de <a href="./git-github.html">“Introdução controle de versão com Git e GitHub”</a>, é necessário ter uma conta no GitHub.</p>
+<p>Caso ainda não tenha uma conta, acesse a página oficial do <a href="https://github.com/">GitHub</a>, clique em “Sign up” e crie uma conta gratuitamente.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/github-home.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Página inicial do GitHub</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/github-signup.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Página para criar a conta gratuitamente</figcaption>
+</figure>
 </div>
 
 

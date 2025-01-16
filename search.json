@@ -44,7 +44,7 @@
     "href": "calendario.html",
     "title": "2  Calendário do curso",
     "section": "",
-    "text": "A maioria das aulas acontecerão às segundas e quartas-feiras, exceto a aula do dia 30/01/2025, que acontecerá numa quinta-feira.\nAs aulas acontecerão das 09h às 12h, com intervalo de 15 minutos.\nSegue o calendário do curso:\n\n\n\n\n\n\n\n\n\n\nSemana\nData\nHorário\nDia da semana\nConteúdo previsto\n\n\n\n\n1\n20/01/2025\n09h-12h\nSegunda-feira\nApresentação do curso, Reprodutibilidade e estruturação de projeto\n\n\n1\n22/01/2025\n09h-12h\nQuarta-feira\nProdução de relatórios com RMarkdown/Quarto (Parte 1)\n\n\n2\n29/01/2025\n09h-12h\nQuarta-feira\nProdução de relatórios com RMarkdown/Quarto (Parte 2)\n\n\n2\n30/01/2025\n09h-12h\nQuinta-feira (*)\nIntrodução ao controle de versão com Git e GitHub\n\n\n3\n03/02/2025\n09h-12h\nSegunda-feira\nManipulação de textos e datas\n\n\n4\n10/02/2025\n09h-12h\nSegunda-feira\nIntrodução à Big Data\n\n\n4\n12/02/2025\n09h-12h\nQuarta-feira\nProgramação funcional e paralelização (Parte 1)\n\n\n5\n17/02/2025\n09h-12h\nSegunda-feira\nProgramação funcional e paralelização (Parte 2)\n\n\n5\n19/02/2025\n09h-12h\nQuarta-feira\nDados espaciais (Parte 1)\n\n\n6\n24/02/2025\n09h-12h\nSegunda-feira\nDados espaciais (Parte 2)\n\n\n7\n26/02/2025\n09h-11h (*)\nQuarta-feira\nDúvidas e encerramento\n\n\n\n\n(*): Atenção para as datas e horários diferentes.",
+    "text": "A maioria das aulas acontecerão às segundas e quartas-feiras, exceto a aula do dia 30/01/2025, que acontecerá numa quinta-feira.\nAs aulas acontecerão das 09h às 12h, com intervalo de 15 minutos.\nSegue o calendário do curso:\n\n\n\n\n\n\n\n\n\n\nSemana\nData\nHorário\nDia da semana\nConteúdo previsto\n\n\n\n\n1\n20/01/2025\n09h-12h\nSegunda-feira\nApresentação do curso, Reprodutibilidade e estruturação de projeto\n\n\n1\n22/01/2025\n09h-12h\nQuarta-feira\nProdução de relatórios com Quarto (Parte 1)\n\n\n2\n29/01/2025\n09h-12h\nQuarta-feira\nProdução de relatórios com Quarto (Parte 2)\n\n\n2\n30/01/2025\n09h-12h\nQuinta-feira (*)\nIntrodução ao controle de versão com Git e GitHub\n\n\n3\n03/02/2025\n09h-12h\nSegunda-feira\nManipulação de textos e datas\n\n\n4\n10/02/2025\n09h-12h\nSegunda-feira\nIntrodução à Big Data\n\n\n4\n12/02/2025\n09h-12h\nQuarta-feira\nProgramação funcional e paralelização (Parte 1)\n\n\n5\n17/02/2025\n09h-12h\nSegunda-feira\nProgramação funcional e paralelização (Parte 2)\n\n\n5\n19/02/2025\n09h-12h\nQuarta-feira\nDados espaciais (Parte 1)\n\n\n6\n24/02/2025\n09h-12h\nSegunda-feira\nDados espaciais (Parte 2)\n\n\n7\n26/02/2025\n09h-11h (*)\nQuarta-feira\nDúvidas e encerramento\n\n\n\n\n(*): Atenção para as datas e horários diferentes.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Calendário do curso</span>"
     ]
@@ -52,11 +52,41 @@
   {
     "objectID": "instalacao.html",
     "href": "instalacao.html",
-    "title": "3  Instalação",
+    "title": "3  Instalações e outros preparativos",
     "section": "",
-    "text": "3.1 Instalação de pacotes necessários\nPara instalar os pacotes necessários para o curso, execute o seguinte código:\ninstall.packages(c(\"tidyverse\", \n                   \"usethis\",\n                   \"renv\",\n                   \"here\",\n                   \"fuzzyjoin\",\n                   \"furrr\",\n                   \"dbplyr\",\n                   \"arrow\",\n                   \"vroom\",\n                   \"duckdb\",\n                   \"sf\",\n                   \"geobr\",\n                   \"quarto\"\n                   ))",
+    "text": "3.1 Instalação de pacotes necessários\nPara instalar os pacotes necessários para o curso, execute o seguinte código:\ninstall.packages(c(\"tidyverse\", \"usethis\", \"renv\",\n                   \"here\", \"fuzzyjoin\", \"furrr\",\n                   \"dbplyr\", \"arrow\", \"vroom\",\n                   \"duckdb\", \"sf\", \"geobr\", \"quarto\"))",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalação</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalações e outros preparativos</span>"
+    ]
+  },
+  {
+    "objectID": "instalacao.html#instalação-do-tinytex",
+    "href": "instalacao.html#instalação-do-tinytex",
+    "title": "3  Instalações e outros preparativos",
+    "section": "3.2 Instalação do TinyTeX",
+    "text": "3.2 Instalação do TinyTeX\nPara a aula de “Produção de relatórios com Quarto”, para exportar o relatório em PDF será necessário ter algum sistema de LaTeX instalado. O TinyTeX é uma versão mínima do LaTeX que é suficiente para o uso no curso.\nPrimeiramente, precisamos instalar o pacote tinytex:\n\ninstall.packages('tinytex')\n\nE então instalar o TinyTeX:\n\ntinytex::install_tinytex()",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalações e outros preparativos</span>"
+    ]
+  },
+  {
+    "objectID": "instalacao.html#instalação-do-git",
+    "href": "instalacao.html#instalação-do-git",
+    "title": "3  Instalações e outros preparativos",
+    "section": "3.3 Instalação do Git",
+    "text": "3.3 Instalação do Git\nPara a aula de “Introdução controle de versão com Git e GitHub”, é necessário ter o Git instalado.\nO Git não é um pacote, e sim um software que deve ser instalado no seu computador.\nPara instalar o Git, acesse a página oficial do Git e siga as instruções de instalação para o seu sistema operacional.\n\n\n\n\n\nPara verificar se o Git foi instalado corretamente, execute o seguinte comando no painel “Terminal” do RStudio:\n\ngit --version\n\ngit version 2.47.1",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalações e outros preparativos</span>"
+    ]
+  },
+  {
+    "objectID": "instalacao.html#conta-no-github",
+    "href": "instalacao.html#conta-no-github",
+    "title": "3  Instalações e outros preparativos",
+    "section": "3.4 Conta no GitHub",
+    "text": "3.4 Conta no GitHub\nPara a aula de “Introdução controle de versão com Git e GitHub”, é necessário ter uma conta no GitHub.\nCaso ainda não tenha uma conta, acesse a página oficial do GitHub, clique em “Sign up” e crie uma conta gratuitamente.\n\n\n\nPágina inicial do GitHub\n\n\n\n\n\nPágina para criar a conta gratuitamente",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalações e outros preparativos</span>"
     ]
   },
   {
@@ -84,7 +114,7 @@
     "href": "reprodutibilidade.html#boas-práticas-em-projetos-de-análise-de-dados",
     "title": "4  Reprodutibilidade e estruturação de projeto",
     "section": "4.2 Boas práticas em projetos de análise de dados",
-    "text": "4.2 Boas práticas em projetos de análise de dados\nPara aumentar a chance de desenvolver um projeto de análise de dados que seja reprodutível, algumas boas práticas podem ser adotadas, como:\n\nnão utilizar caminhos absolutos\nevitar o uso de caracteres especiais em caminhos, variáveis e nomes de colunas\narmazenar os arquivos de maneira consistente\nregistrar quais são as dependências (versões do R e dos pacotes utilizados)\ndocumentar as análises realizadas\ncontrolar as versões dos arquivos por meio de ferramentas como o Git e GitHub.\ncompartilhamento de dados brutos, códigos e documentação\n\nUma prática que pode ajudar a checar a reprodutibilidade de uma análise de dados é solicitar que outra pessoa que trabalha com você tente reproduzir os resultados a partir dos códigos, dados brutos e documentação (Markowetz 2015).\n\n4.2.1 Exercício\n\nVocê já teve alguma experiência em que a falta de reprodutibilidade foi um problema? Se sim, o que você aprendeu com essa experiência?\nConsiderando a seguir e a discussão feita em sala, o que você mudaria no código a seguir?\n\n\nlibrary(tidyverse)\ndata &lt;- read_rds(\"C:/Users/usuario/Downloads/sidra_4092_arrumado.rds\")\ndados &lt;- dados |&gt;\n  filter(ano == max(ano))\ndados |&gt;\n  group_by(uf) |&gt;\n  mutate(diferenca = perc_desocupacao - last(perc_desocupacao)) |&gt;\n  ungroup() |&gt;\n  mutate(uf = fct_reorder(uf, diferenca)) |&gt;\n  ggplot(aes(x = perc_desocupacao, y = uf)) +\n  geom_point(aes(color = trimestre_codigo)) +\n  theme_light()",
+    "text": "4.2 Boas práticas em projetos de análise de dados\nPara aumentar a chance de desenvolver um projeto de análise de dados que seja reprodutível, algumas boas práticas podem ser adotadas, como:\n\nnão utilizar caminhos absolutos1\nevitar o uso de caracteres especiais em caminhos, variáveis e nomes de colunas2\narmazenar os arquivos de maneira consistente\nregistrar quais são as dependências (versões do R e dos pacotes utilizados)\ndocumentar as análises realizadas\ncontrolar as versões dos arquivos por meio de ferramentas como o Git e GitHub.\ncompartilhamento de dados brutos, códigos e documentação\n\nUma prática que pode ajudar a checar a reprodutibilidade de uma análise de dados é solicitar que outra pessoa que trabalha com você tente reproduzir os resultados a partir dos códigos, dados brutos e documentação (Markowetz 2015).\n\n4.2.1 Exercício\n\nVocê já teve alguma experiência em que a falta de reprodutibilidade foi um problema? Se sim, o que você aprendeu com essa experiência?\nConsiderando a seguir e a discussão feita em sala, o que você mudaria no código a seguir?\n\n\nlibrary(tidyverse)\ndata &lt;- read_rds(\"C:/Users/usuario/Downloads/sidra_4092_arrumado.rds\")\ndados &lt;- dados |&gt;\n  filter(ano == max(ano))\ndados |&gt;\n  group_by(uf) |&gt;\n  mutate(diferenca = perc_desocupacao - last(perc_desocupacao)) |&gt;\n  ungroup() |&gt;\n  mutate(uf = fct_reorder(uf, diferenca)) |&gt;\n  ggplot(aes(x = perc_desocupacao, y = uf)) +\n  geom_point(aes(color = trimestre_codigo)) +\n  theme_light()",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reprodutibilidade e estruturação de projeto</span>"
     ]
@@ -94,7 +124,7 @@
     "href": "reprodutibilidade.html#estrutura-de-projetos",
     "title": "4  Reprodutibilidade e estruturação de projeto",
     "section": "4.3 Estrutura de projetos",
-    "text": "4.3 Estrutura de projetos\nProjetos estruturados são essenciais para a reprodutibilidade na ciência de dados. Ferramentas como projetos do RStudio, pacotes em R, controle de versão com Git e GitHub, relatórios reprodutíveis com Quarto, {renv} e {targets} ajudam a organizar o trabalho, gerenciar dependências e automatizar processos, aumentando as chances que outras pessoas posam reproduzir os resultados a partir dos códigos e dados brutos. Ao adotar essas práticas, é possível reduzir erros, aumentar a confiabilidade e promover uma ciência mais transparente e colaborativa.\nA seguir, vamos apresentar algumas dessas ferramentas e práticas!",
+    "text": "4.3 Estrutura de projetos\nProjetos estruturados são essenciais para a reprodutibilidade na ciência de dados. Ferramentas como projetos do RStudio, pacotes em R, controle de versão com Git e GitHub3, relatórios reprodutíveis com Quarto4, {renv} e {targets} ajudam a organizar o trabalho, gerenciar dependências e automatizar processos, aumentando as chances que outras pessoas posam reproduzir os resultados a partir dos códigos e dados brutos. Ao adotar essas práticas, é possível reduzir erros, aumentar a confiabilidade e promover uma ciência mais transparente e colaborativa.\nA seguir, vamos apresentar algumas dessas ferramentas e práticas!",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reprodutibilidade e estruturação de projeto</span>"
     ]
@@ -104,7 +134,7 @@
     "href": "reprodutibilidade.html#projetos-no-rstudio",
     "title": "4  Reprodutibilidade e estruturação de projeto",
     "section": "4.4 Projetos no RStudio",
-    "text": "4.4 Projetos no RStudio\nEm breve",
+    "text": "4.4 Projetos no RStudio\n\n\n\n\n\n\nNota\n\n\n\nO conteúdo sobre projetos no RStudio foi abordado no curso “Introdução à análise de dados no R”.\n\n\nO RStudio oferece uma funcionalidade chamada projetos, que facilita a organização e a reprodutibilidade do trabalho em ciência de dados. Ao criar um projeto no RStudio, uma nova pasta é gerada no computador, e o RStudio automaticamente define essa pasta como o diretório de trabalho. Além disso, o RStudio também cria um arquivo com a extensão .Rproj dentro dessa pasta, que contém informações sobre o projeto.\nTrabalhar com projetos no RStudio é altamente recomendado, pois ajuda a manter os arquivos organizados e facilita a reprodução do código. Sempre que iniciar uma nova análise de dados, crie um projeto correspondente. Isso garante que todos os arquivos relacionados ao projeto estejam em um único local e evita problemas comuns, como dependência de caminhos absolutos.\nÉ recomendado que sempre trabalhemos em projetos no RStudio, pois isso facilita a organização dos arquivos e a reprodução do código. Portanto, ao começar a trabalhar em uma novo projeto de análise de dados, lembre-se de criar um .Rproj correspondente.\nPara manter a organização, salve os arquivos relacionados ao projeto (como scripts, bases de dados e resultados) dentro da pasta principal do projeto. No entanto, é uma boa prática estruturar o projeto em subpastas para separar diferentes tipos de arquivos, como dados, scripts e relatórios.\nUm exemplo de estrutura básica de projeto pode incluir as seguintes subpastas:\n\ndados/: Para armazenar bases de dados.\nscripts/: Para salvar scripts R utilizados na análise.\nrelatorios/: Para guardar relatórios gerados.\n\n\n4.4.1 Exercício\n\nNo RStudio, crie um novo projeto para ser utilizado ao longo do curso. Lembre-se de criar o projeto em uma pasta que você possa acessar facilmente.\nDentro do projeto, crie as seguintes pastas para organizar os arquivos:\n\ndados/\ndados_output/\nscripts/\nrelatorios/\n\n\nVocê pode criar as pastas manualmente ou utilizar a função dir.create() para criar as pastas:\n\ndir.create(\"dados\")\ndir.create(\"dados_output\") \ndir.create(\"scripts\")\ndir.create(\"relatorios\")",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reprodutibilidade e estruturação de projeto</span>"
     ]
@@ -150,13 +180,23 @@
     ]
   },
   {
+    "objectID": "reprodutibilidade.html#footnotes",
+    "href": "reprodutibilidade.html#footnotes",
+    "title": "4  Reprodutibilidade e estruturação de projeto",
+    "section": "",
+    "text": "Os conceitos diretório de trabalho, caminhos absolutos e caminhos relativos foram abordados na aula sobre diretórios de trabalho e projetos do curso “Introdução à análise de dados no R”.↩︎\nCaso queira revisar este tópico, recomendamos a leitura da seção sobre boas práticas para nomear objetos no R do curso “Introdução à análise de dados no R”.↩︎\nSerá abordado na aula sobre introdução ao controle de versão com Git e GitHub.↩︎\nSerá abordado na aula sobre produção de relatórios com Quarto.↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reprodutibilidade e estruturação de projeto</span>"
+    ]
+  },
+  {
     "objectID": "relatorios.html",
     "href": "relatorios.html",
-    "title": "5  Produção de relatórios com RMarkdown/Quarto",
+    "title": "5  Produção de relatórios com Quarto",
     "section": "",
     "text": "Em breve!",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Produção de relatórios com RMarkdown/Quarto</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Produção de relatórios com Quarto</span>"
     ]
   },
   {
