@@ -20,13 +20,9 @@ book:
     - href: relatorios.qmd
     - href: git-github.qmd    
     - href: texto-data.qmd
-    - href: dados-espaciais.qmd
+    - href: big-data.qmd    
     - href: programacao-funcional.qmd
-    - href: big-data.qmd
-    # - part: "Conceitos básicos"
-    #   chapters:      
-    #   - 01_r_rstudio.qmd
-
+    - href: dados-espaciais.qmd    
 
 page-navigation: true
 
