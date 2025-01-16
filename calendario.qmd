@@ -11,8 +11,8 @@ Segue o calendário do curso:
 | Semana | Data | Horário | Dia da semana | Conteúdo previsto |
 |--|------|--------|---------------|-------------------|
 | 1 | 20/01/2025 | 09h-12h | Segunda-feira | Apresentação do curso, Reprodutibilidade e estruturação de projeto |
-| 1 | 22/01/2025 | 09h-12h |  Quarta-feira | Produção de relatórios com RMarkdown/Quarto (Parte 1) |
-| 2 | 29/01/2025 | 09h-12h |  Quarta-feira | Produção de relatórios com RMarkdown/Quarto (Parte 2) |
+| 1 | 22/01/2025 | 09h-12h |  Quarta-feira | Produção de relatórios com Quarto (Parte 1) |
+| 2 | 29/01/2025 | 09h-12h |  Quarta-feira | Produção de relatórios com Quarto (Parte 2) |
 | 2 | 30/01/2025 | 09h-12h |  Quinta-feira (*) | Introdução ao controle de versão com Git e GitHub |
 | 3 | 03/02/2025 | 09h-12h |  Segunda-feira | Manipulação de textos e datas |
 | 4 | 10/02/2025 | 09h-12h |  Segunda-feira | Introdução à *Big Data* |
