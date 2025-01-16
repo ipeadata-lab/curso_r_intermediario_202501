@@ -21,7 +21,7 @@ A reprodutibilidade é um conceito central na ciência, embora não tenha uma de
 
 > "Reproducibility is the ability of independent investigators to draw the same conclusions from an experiment by following the documentation shared by the original investigators."
 
-Tradução livre: 
+Tradução livre:
 
 > "Reprodutibilidade é a capacidade de investigadores independentes chegarem às mesmas conclusões de um experimento ao seguir a documentação compartilhada pelos investigadores originais."
 
@@ -33,36 +33,38 @@ De acordo com Baker [-@Baker2016], a partir de um questionário realizado pela r
 
 ### Exercício
 
-1) Reflita sobre a seguinte pergunta: Como você acha que a reprodutibilidade está relacionada ao seu trabalho?  Se possível, discuta em grupo e posteriormente compartilhe com a turma suas ideias.
-
-
+1)  Reflita sobre a seguinte pergunta: Como você acha que a reprodutibilidade está relacionada ao seu trabalho? Se possível, discuta em grupo e posteriormente compartilhe com a turma suas ideias.
 
 ## Boas práticas em projetos de análise de dados
 
-Para aumentar a chance de desenvolver um projeto de análise de dados que seja reprodutível, algumas boas práticas podem ser adotadas, como: 
+Para aumentar a chance de desenvolver um projeto de análise de dados que seja reprodutível, algumas boas práticas podem ser adotadas, como:
 
-  - não utilizar caminhos absolutos
+-   não utilizar caminhos absolutos[^reprodutibilidade-1]
 
-  - evitar o uso de caracteres especiais em caminhos, variáveis e nomes de colunas 
+-   evitar o uso de caracteres especiais em caminhos, variáveis e nomes de colunas[^reprodutibilidade-2]
 
-  - armazenar os arquivos de maneira consistente 
-  
-  - registrar quais são as dependências (versões do R e dos pacotes utilizados) 
-  
-  - documentar as análises realizadas
-  
-  - controlar as versões dos arquivos por meio de ferramentas como o Git e GitHub.
-  
-  - compartilhamento de dados brutos, códigos e documentação
-  
-Uma prática que pode ajudar a checar a reprodutibilidade de uma análise de dados é solicitar que outra pessoa que trabalha com você tente reproduzir os resultados a partir dos códigos, dados brutos e documentação [@Markowetz2015]. 
+-   armazenar os arquivos de maneira consistente
 
+-   registrar quais são as dependências (versões do R e dos pacotes utilizados)
+
+-   documentar as análises realizadas
+
+-   controlar as versões dos arquivos por meio de ferramentas como o Git e GitHub.
+
+-   compartilhamento de dados brutos, códigos e documentação
+
+[^reprodutibilidade-1]: Os conceitos diretório de trabalho, caminhos absolutos e caminhos relativos foram abordados na aula sobre [diretórios de trabalho e projetos](https://ipeadata-lab.github.io/curso_r_intro_202409/01_1_rproj.html) do curso "[Introdução à análise de dados no R](https://ipeadata-lab.github.io/curso_r_intro_202409/)".
+
+[^reprodutibilidade-2]: Caso queira revisar este tópico, recomendamos a leitura da seção sobre [boas práticas para nomear objetos no R](https://ipeadata-lab.github.io/curso_r_intro_202409/02_conceitos_basicos_r.html#boas-pr%C3%A1ticas-para-nomear-objetos-no-r) do curso "[Introdução à análise de dados no R](https://ipeadata-lab.github.io/curso_r_intro_202409/)".
+
+
+Uma prática que pode ajudar a checar a reprodutibilidade de uma análise de dados é solicitar que outra pessoa que trabalha com você tente reproduzir os resultados a partir dos códigos, dados brutos e documentação [@Markowetz2015].
 
 ### Exercício
 
-1) Você já teve alguma experiência em que a falta de reprodutibilidade foi um problema? Se sim, o que você aprendeu com essa experiência?
+1)  Você já teve alguma experiência em que a falta de reprodutibilidade foi um problema? Se sim, o que você aprendeu com essa experiência?
 
-2) Considerando a seguir e a discussão feita em sala, o que você mudaria no código a seguir?
+2)  Considerando a seguir e a discussão feita em sala, o que você mudaria no código a seguir?
 
 ```{r}
 #| eval: false
@@ -81,41 +83,76 @@ dados |>
   theme_light()
 ```
 
-
-
 ## Estrutura de projetos
 
+Projetos estruturados são essenciais para a reprodutibilidade na ciência de dados. Ferramentas como projetos do RStudio, pacotes em R, controle de versão com Git e GitHub[^reprodutibilidade-3], relatórios reprodutíveis com [Quarto](https://quarto.org)[^reprodutibilidade-4], [`{renv}`](https://rstudio.github.io/renv/articles/renv.html) e [`{targets}`](https://books.ropensci.org/targets/) ajudam a organizar o trabalho, gerenciar dependências e automatizar processos, aumentando as chances que outras pessoas posam reproduzir os resultados a partir dos códigos e dados brutos. Ao adotar essas práticas, é possível reduzir erros, aumentar a confiabilidade e promover uma ciência mais transparente e colaborativa.
 
-Projetos estruturados são essenciais para a reprodutibilidade na ciência de dados. Ferramentas como projetos do RStudio, pacotes em R, controle de versão com Git e GitHub, relatórios reprodutíveis com [Quarto](https://quarto.org), [`{renv}`](https://rstudio.github.io/renv/articles/renv.html) e [`{targets}`](https://books.ropensci.org/targets/) ajudam a organizar o trabalho, gerenciar dependências e automatizar processos, aumentando as chances que outras pessoas posam reproduzir os resultados a partir dos códigos e dados brutos. Ao adotar essas práticas, é possível reduzir erros, aumentar a confiabilidade e promover uma ciência mais transparente e colaborativa.
+
+
+[^reprodutibilidade-3]: Será abordado na aula sobre [introdução ao controle de versão com Git e GitHub](relatorios.qmd).
+
+
+[^reprodutibilidade-4]: Será abordado na aula sobre [produção de relatórios com Quarto](relatorios.qmd).
+
 
 A seguir, vamos apresentar algumas dessas ferramentas e práticas!
 
 ## Projetos no RStudio
 
-Em breve
+::: {.callout-note}
+O conteúdo sobre projetos no RStudio foi abordado no curso "[Introdução à análise de dados no R](https://ipeadata-lab.github.io/curso_r_intro_202409/01_1_rproj.html)".
+:::
 
-<!-- -   O que é um RProject. -->
 
-<!-- -   Como criar um projeto no RStudio. -->
+O RStudio oferece uma funcionalidade chamada **projetos**, que facilita a organização e a reprodutibilidade do trabalho em ciência de dados. Ao criar um projeto no RStudio, uma nova pasta é gerada no computador, e o RStudio automaticamente define essa pasta como o diretório de trabalho. Além disso, o RStudio também cria um arquivo com a extensão `.Rproj` dentro dessa pasta, que contém informações sobre o projeto.
 
-<!-- -   Organização básica: pastas e estrutura de arquivos (ex.: data/, scripts/, outputs/). -->
+Trabalhar com projetos no RStudio é altamente recomendado, pois ajuda a manter os arquivos organizados e facilita a reprodução do código. Sempre que iniciar uma nova análise de dados, crie um projeto correspondente. Isso garante que todos os arquivos relacionados ao projeto estejam em um único local e evita problemas comuns, como dependência de caminhos absolutos.
 
-<!-- -   Demonstração prática: criar um novo projeto. -->
+É recomendado que sempre trabalhemos em projetos no RStudio, pois isso facilita a organização dos arquivos e a reprodução do código. Portanto, ao começar a trabalhar em uma novo projeto de análise de dados, lembre-se de criar um `.Rproj` correspondente.
 
-<!-- -   O RStudio permite a criação de Projetos. -->
+Para manter a organização, salve os arquivos relacionados ao projeto (como scripts, bases de dados e resultados) dentro da pasta principal do projeto. No entanto, é uma boa prática estruturar o projeto em subpastas para separar diferentes tipos de arquivos, como dados, scripts e relatórios.
 
-<!-- -   O projeto é uma pasta no computador, onde devemos armazenar todos os arquivos usados ou criados em uma análise. Essa pasta irá conter também um arquivo com o nome do projeto e a extensão `.Rproj`. -->
+Um exemplo de estrutura básica de projeto pode incluir as seguintes subpastas:
 
-<!-- -   Para cada análise, lembre-se de criar um `.Rproj` correspondente. -->
+  - **`dados/`**: Para armazenar bases de dados.
+  
+  - **`scripts/`**: Para salvar scripts R utilizados na análise.
+
+  - **`relatorios/`**: Para guardar relatórios gerados.
+
+
+### Exercício
+
+1. No RStudio, crie um novo projeto para ser utilizado ao longo do curso. Lembre-se de criar o projeto em uma pasta que você possa acessar facilmente.
+
+2. Dentro do projeto, crie as seguintes pastas para organizar os arquivos:
+   - **`dados/`**
+   - **`dados_output/`**
+   - **`scripts/`**
+   - **`relatorios/`**
+   
+Você pode criar as pastas manualmente ou utilizar a função `dir.create()` para criar as pastas:
+
+```{r}
+#| eval: false
+dir.create("dados")
+dir.create("dados_output") 
+dir.create("scripts")
+dir.create("relatorios")
+```
 
 ## renv: gerenciando dependências
 
 Em breve
 
 <!-- -   O que é o renv e por que usá-lo. -->
+
 <!-- -   Fluxo básico: -->
+
 <!--     -   Inicializar o renv em um projeto. -->
+
 <!--     -   Instalar e registrar pacotes no renv.lock. -->
+
 <!--     -   Reproduzir o ambiente em outra máquina. -->
 
 ## Introdução ao targets
@@ -123,13 +160,15 @@ Em breve
 Em breve
 
 <!-- -   Conceito de pipelines reprodutíveis. -->
+
 <!-- -   Diferença entre targets e scripts tradicionais. -->
+
 <!-- -   Demonstração: Criar um exemplo simples de pipeline com targets (ex.: carregar dados, processá-los e gerar uma tabela ou gráfico). -->
+
 <!-- -   Mostre um projeto já configurado para destacar a utilidade do targets. -->
 
 ## Materiais
 
 Este material foi desenvolvido com base na aula [Introdução ao conceito de reprodutibilidade](https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/slides/03-reprodutibilidade.html) do curso [Relatórios reprodutíveis com R](https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/), ministrado por Beatriz Milz no [programa de Verão do IME-USP](https://www.ime.usp.br/verao/).
-
 
 ## Referências citadas
