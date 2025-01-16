@@ -247,8 +247,15 @@ div.csl-indent {
   <ul>
   <li><a href="#exercício-2" id="toc-exercício-2" class="nav-link" data-scroll-target="#exercício-2"><span class="header-section-number">4.4.1</span> Exercício</a></li>
   </ul></li>
-  <li><a href="#renv-gerenciando-dependências" id="toc-renv-gerenciando-dependências" class="nav-link" data-scroll-target="#renv-gerenciando-dependências"><span class="header-section-number">4.5</span> renv: gerenciando dependências</a></li>
-  <li><a href="#introdução-ao-targets" id="toc-introdução-ao-targets" class="nav-link" data-scroll-target="#introdução-ao-targets"><span class="header-section-number">4.6</span> Introdução ao targets</a></li>
+  <li><a href="#renv-gerenciando-dependências" id="toc-renv-gerenciando-dependências" class="nav-link" data-scroll-target="#renv-gerenciando-dependências"><span class="header-section-number">4.5</span> <code>{renv}</code>: gerenciando dependências</a>
+  <ul>
+  <li><a href="#arquivo-renv.lock" id="toc-arquivo-renv.lock" class="nav-link" data-scroll-target="#arquivo-renv.lock"><span class="header-section-number">4.5.1</span> Arquivo <code>renv.lock</code></a></li>
+  <li><a href="#principais-funções-do-renv" id="toc-principais-funções-do-renv" class="nav-link" data-scroll-target="#principais-funções-do-renv"><span class="header-section-number">4.5.2</span> Principais funções do <code>{renv}</code></a></li>
+  </ul></li>
+  <li><a href="#introdução-ao-targets" id="toc-introdução-ao-targets" class="nav-link" data-scroll-target="#introdução-ao-targets"><span class="header-section-number">4.6</span> Introdução ao <code>{targets}</code></a>
+  <ul>
+  <li><a href="#materiais-de-referência-sobre-targets" id="toc-materiais-de-referência-sobre-targets" class="nav-link" data-scroll-target="#materiais-de-referência-sobre-targets"><span class="header-section-number">4.6.1</span> Materiais de referência sobre targets</a></li>
+  </ul></li>
   <li><a href="#materiais" id="toc-materiais" class="nav-link" data-scroll-target="#materiais"><span class="header-section-number">4.7</span> Materiais</a></li>
   <li><a href="#referências-citadas" id="toc-referências-citadas" class="nav-link" data-scroll-target="#referências-citadas"><span class="header-section-number">4.8</span> Referências citadas</a></li>
   </ul>
@@ -347,6 +354,7 @@ div.csl-indent {
 </section>
 <section id="projetos-no-rstudio" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="projetos-no-rstudio"><span class="header-section-number">4.4</span> Projetos no RStudio</h2>
+<p><img src="images/rproj-logo.png" class="img-rstudio" align="right" width="120px"></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -392,25 +400,136 @@ Nota
 </section>
 </section>
 <section id="renv-gerenciando-dependências" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="renv-gerenciando-dependências"><span class="header-section-number">4.5</span> renv: gerenciando dependências</h2>
-<p>Em breve</p>
-<!-- -   O que é o renv e por que usá-lo. -->
-<!-- -   Fluxo básico: -->
-<!--     -   Inicializar o renv em um projeto. -->
-<!--     -   Instalar e registrar pacotes no renv.lock. -->
-<!--     -   Reproduzir o ambiente em outra máquina. -->
+<h2 data-number="4.5" class="anchored" data-anchor-id="renv-gerenciando-dependências"><span class="header-section-number">4.5</span> <code>{renv}</code>: gerenciando dependências</h2>
+<p><img src="images/renv-logo.svg" class="img-rstudio" align="right" width="120px"></p>
+<p>O R e seus pacotes estão em constante evolução, com novas versões sendo lançadas regularmente para corrigir erros, adicionar funcionalidades e melhorar a eficiência. No entanto, essas atualizações podem introduzir mudanças que “quebram” análises anteriores, especialmente se as versões dos pacotes usados em um projeto não forem registradas. Para evitar esses problemas e garantir que as análises sejam reprodutíveis ao longo do tempo, é essencial utilizar ferramentas que ajudem a gerenciar as dependências do projeto.</p>
+<p>O pacote <a href="https://rstudio.github.io/renv/articles/renv.html"><code>{renv}</code></a> é uma ferramenta que permite gerenciar as dependências de pacotes em projetos R, garantindo que cada projeto tenha seu próprio ambiente isolado. Ele registra quais foram os pacotes utilizados, quais é a versão de cada um deles, e a fonte de instalação (se foram instalados do CRAN, GitHub, R Universe, Bioconductor, etc). Isso possibilita que o ambiente seja reproduzido em qualquer máquina ou momento, mesmo se o R ou os pacotes forem atualizados.</p>
+<p>O <code>{renv}</code> é especialmente útil em projetos colaborativos, em que diferentes pessoas podem estar trabalhando no mesmo projeto, ou em projetos que serão retomados após um longo período de tempo. Ele garante que o ambiente de pacotes seja consistente e reprodutível, independentemente de atualizações futuras.</p>
+<p>Apesar de poderoso, o <code>{renv}</code> pode não ser necessário para projetos muito simples ou temporários.</p>
+<section id="arquivo-renv.lock" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="arquivo-renv.lock"><span class="header-section-number">4.5.1</span> Arquivo <code>renv.lock</code></h3>
+<p>O <code>{renv}</code> registra as dependências do projeto no arquivo <code>renv.lock</code>, que é um arquivo que contém informações sobre as versões dos pacotes instalados. Com esse arquivo, é possível recriar o ambiente de pacotes exatamente como ele estava quando o arquivo foi gerado. Isso é útil para garantir a reprodutibilidade do projeto e evitar problemas com pacotes desatualizados.</p>
+<p>Atenção: o arquivo <code>renv.lock</code> <strong>não</strong> deve ser alterado manualmente.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expanda para ver um exemplo de conteúdo do <code>renv.lock</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>No exemplo abaixo, temos um exemplo do conteúdo do <code>renv.lock</code>. Observe que está registrado que estamos usando o R versão 4.4.1 e o pacote <code>readr</code> (deixamos apenas um pacote para servir de exemplo, mas o arquivo contém informações sobre todos os pacotes utilizados no projeto):</p>
+<pre><code>{
+  "R": {
+    "Version": "4.4.1",
+    "Repositories": [
+      {
+        "Name": "CRAN",
+        "URL": "https://cloud.r-project.org"
+      }
+    ]
+  },
+  "Packages": {
+    "readr": {
+      "Package": "readr",
+      "Version": "2.1.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "R6",
+        "cli",
+        "clipr",
+        "cpp11",
+        "crayon",
+        "hms",
+        "lifecycle",
+        "methods",
+        "rlang",
+        "tibble",
+        "tzdb",
+        "utils",
+        "vroom"
+      ],
+      "Hash": "9de96463d2117f6ac49980577939dfb3"
+    }
+  }
+}
+</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="principais-funções-do-renv" class="level3" data-number="4.5.2">
+<h3 data-number="4.5.2" class="anchored" data-anchor-id="principais-funções-do-renv"><span class="header-section-number">4.5.2</span> Principais funções do <code>{renv}</code></h3>
+<p>Para começar a utilizar o <code>{renv}</code> em um projeto, podemos utilizar a função <code>renv::init()</code>. Isso criará uma pasta <code>renv/</code> e um arquivo <code>renv.lock</code>, que registrará as dependências do projeto. Além disso, o <code>{renv}</code> armazenará as bibliotecas de pacotes do projeto na pasta <code>renv/library</code> (chamamos isso de <strong>isolamento</strong>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para verificar o status do ambiente e quais pacotes estão instalados, podemos usar a função <code>renv::status()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">status</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>renv::snapshot()</code> é utilizada para registrar/atualizar as dependências do projeto no arquivo <code>renv.lock</code>. Isso é útil quando novos pacotes são instalados ou atualizados, e queremos registrar essas mudanças.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para restaurar o ambiente de pacotes de um projeto a partir do arquivo <code>renv.lock</code>, podemos utilizar a função <code>renv::restore()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Também é possível utilizar a função <code>renv::snapshot()</code> com um projeto que não foi iniciado com <code>{renv}</code> (iniciado com o <code>renv::init()</code>).</p>
+<p>Neste caso, ele registrará o estado atual das dependências nos caminhos das bibliotecas atuais. Isso torna possível restaurar os pacotes atuais, fornecendo portabilidade e reprodutibilidade leves sem o isolamento de ambiente.</p>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="introdução-ao-targets" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="introdução-ao-targets"><span class="header-section-number">4.6</span> Introdução ao targets</h2>
-<p>Em breve</p>
-<!-- -   Conceito de pipelines reprodutíveis. -->
-<!-- -   Diferença entre targets e scripts tradicionais. -->
-<!-- -   Demonstração: Criar um exemplo simples de pipeline com targets (ex.: carregar dados, processá-los e gerar uma tabela ou gráfico). -->
-<!-- -   Mostre um projeto já configurado para destacar a utilidade do targets. -->
+<h2 data-number="4.6" class="anchored" data-anchor-id="introdução-ao-targets"><span class="header-section-number">4.6</span> Introdução ao <code>{targets}</code></h2>
+<p><img src="images/targets-logo.png" class="img-rstudio" align="right" width="120px"></p>
+<p>O pacote <a href="https://books.ropensci.org/targets/"><code>{targets}</code></a> é uma ferramenta para gerenciamento de pipelines reprodutíveis e escaláveis em R. Ele foi projetado para ajudar a organizar e automatizar análises de dados complexas, garantindo que todos os passos da análise sejam executados na ordem correta e de forma eficiente.</p>
+<p>O <code>{targets}</code> utiliza o conceito de pipelines: cada etapa da análise é definida como um “alvo” (ou <em>target</em>), e as dependências entre essas etapas são gerenciadas automaticamente. Isso significa que, quando algo é alterado em uma etapa inicial, o <code>{targets}</code> identifica quais etapas subsequentes precisam ser reexecutadas e atualiza apenas essas partes, economizando tempo e esforço.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://wlandau.github.io/targets-tutorial/#8"><img src="images/targets-pipeline_graph.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Exemplo de gráfico de pipeline com targets, por Will Landau"></a></p>
+</figure>
+</div>
+<figcaption>Exemplo de gráfico de pipeline com targets, por Will Landau</figcaption>
+</figure>
+</div>
+<p>O <code>{targets}</code> é especialmente útil em análises que incluem múltiplas etapas interdependentes, como pré-processamento, modelagem e visualização. Ele também é indicado para situações em que se trabalha com grandes volumes de dados ou análises que demandam muito tempo de execução.</p>
+<p>Embora seja uma ferramenta poderosa, o <code>{targets}</code> pode ser excessivo para análises simples que consistem em poucas etapas. Ele é mais indicado para fluxos de trabalho complexos.</p>
+<section id="materiais-de-referência-sobre-targets" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="materiais-de-referência-sobre-targets"><span class="header-section-number">4.6.1</span> Materiais de referência sobre targets</h3>
+<ul>
+<li><p><a href="https://docs.ropensci.org/targets/">Documentação do pacote</a></p></li>
+<li><p><a href="https://books.ropensci.org/targets/">Livro sobre <code>{targets}</code></a></p></li>
+<li><p>Apresentação <a href="https://wlandau.github.io/targets-tutorial/">“Reproducible computation at scale in R”</a> por Will Landau.</p></li>
+</ul>
+</section>
 </section>
 <section id="materiais" class="level2" data-number="4.7">
 <h2 data-number="4.7" class="anchored" data-anchor-id="materiais"><span class="header-section-number">4.7</span> Materiais</h2>
-<p>Este material foi desenvolvido com base na aula <a href="https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/slides/03-reprodutibilidade.html">Introdução ao conceito de reprodutibilidade</a> do curso <a href="https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/">Relatórios reprodutíveis com R</a>, ministrado por Beatriz Milz no <a href="https://www.ime.usp.br/verao/">programa de Verão do IME-USP</a>.</p>
+<p>Este material foi inicialmente desenvolvido com base na aula <a href="https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/slides/03-reprodutibilidade.html">Introdução ao conceito de reprodutibilidade</a> do curso <a href="https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/">Relatórios reprodutíveis com R</a>, ministrado por Beatriz Milz no <a href="https://www.ime.usp.br/verao/">programa de Verão do IME-USP</a>.</p>
 </section>
 <section id="referências-citadas" class="level2" data-number="4.8">
 <h2 data-number="4.8" class="anchored" data-anchor-id="referências-citadas"><span class="header-section-number">4.8</span> Referências citadas</h2>
