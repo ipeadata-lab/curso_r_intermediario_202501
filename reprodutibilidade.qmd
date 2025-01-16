@@ -57,7 +57,6 @@ Para aumentar a chance de desenvolver um projeto de análise de dados que seja r
 
 [^reprodutibilidade-2]: Caso queira revisar este tópico, recomendamos a leitura da seção sobre [boas práticas para nomear objetos no R](https://ipeadata-lab.github.io/curso_r_intro_202409/02_conceitos_basicos_r.html#boas-pr%C3%A1ticas-para-nomear-objetos-no-r) do curso "[Introdução à análise de dados no R](https://ipeadata-lab.github.io/curso_r_intro_202409/)".
 
-
 Uma prática que pode ajudar a checar a reprodutibilidade de uma análise de dados é solicitar que outra pessoa que trabalha com você tente reproduzir os resultados a partir dos códigos, dados brutos e documentação [@Markowetz2015].
 
 ### Exercício
@@ -87,22 +86,19 @@ dados |>
 
 Projetos estruturados são essenciais para a reprodutibilidade na ciência de dados. Ferramentas como projetos do RStudio, pacotes em R, controle de versão com Git e GitHub[^reprodutibilidade-3], relatórios reprodutíveis com [Quarto](https://quarto.org)[^reprodutibilidade-4], [`{renv}`](https://rstudio.github.io/renv/articles/renv.html) e [`{targets}`](https://books.ropensci.org/targets/) ajudam a organizar o trabalho, gerenciar dependências e automatizar processos, aumentando as chances que outras pessoas posam reproduzir os resultados a partir dos códigos e dados brutos. Ao adotar essas práticas, é possível reduzir erros, aumentar a confiabilidade e promover uma ciência mais transparente e colaborativa.
 
-
-
 [^reprodutibilidade-3]: Será abordado na aula sobre [introdução ao controle de versão com Git e GitHub](relatorios.qmd).
 
-
 [^reprodutibilidade-4]: Será abordado na aula sobre [produção de relatórios com Quarto](relatorios.qmd).
-
 
 A seguir, vamos apresentar algumas dessas ferramentas e práticas!
 
 ## Projetos no RStudio
 
-::: {.callout-note}
+<img src="images/rproj-logo.png" class="img-rstudio" align="right" width="120px"/>
+
+::: callout-note
 O conteúdo sobre projetos no RStudio foi abordado no curso "[Introdução à análise de dados no R](https://ipeadata-lab.github.io/curso_r_intro_202409/01_1_rproj.html)".
 :::
-
 
 O RStudio oferece uma funcionalidade chamada **projetos**, que facilita a organização e a reprodutibilidade do trabalho em ciência de dados. Ao criar um projeto no RStudio, uma nova pasta é gerada no computador, e o RStudio automaticamente define essa pasta como o diretório de trabalho. Além disso, o RStudio também cria um arquivo com a extensão `.Rproj` dentro dessa pasta, que contém informações sobre o projeto.
 
@@ -114,23 +110,23 @@ Para manter a organização, salve os arquivos relacionados ao projeto (como scr
 
 Um exemplo de estrutura básica de projeto pode incluir as seguintes subpastas:
 
-  - **`dados/`**: Para armazenar bases de dados.
-  
-  - **`scripts/`**: Para salvar scripts R utilizados na análise.
+-   **`dados/`**: Para armazenar bases de dados.
 
-  - **`relatorios/`**: Para guardar relatórios gerados.
+-   **`scripts/`**: Para salvar scripts R utilizados na análise.
 
+-   **`relatorios/`**: Para guardar relatórios gerados.
 
 ### Exercício
 
-1. No RStudio, crie um novo projeto para ser utilizado ao longo do curso. Lembre-se de criar o projeto em uma pasta que você possa acessar facilmente.
+1.  No RStudio, crie um novo projeto para ser utilizado ao longo do curso. Lembre-se de criar o projeto em uma pasta que você possa acessar facilmente.
 
-2. Dentro do projeto, crie as seguintes pastas para organizar os arquivos:
-   - **`dados/`**
-   - **`dados_output/`**
-   - **`scripts/`**
-   - **`relatorios/`**
-   
+2.  Dentro do projeto, crie as seguintes pastas para organizar os arquivos:
+
+    -   **`dados/`**
+    -   **`dados_output/`**
+    -   **`scripts/`**
+    -   **`relatorios/`**
+
 Você pode criar as pastas manualmente ou utilizar a função `dir.create()` para criar as pastas:
 
 ```{r}
@@ -141,34 +137,137 @@ dir.create("scripts")
 dir.create("relatorios")
 ```
 
-## renv: gerenciando dependências
+## `{renv}`: gerenciando dependências
 
-Em breve
+<img src="images/renv-logo.svg" class="img-rstudio" align="right" width="120px"/>
 
-<!-- -   O que é o renv e por que usá-lo. -->
 
-<!-- -   Fluxo básico: -->
+O R e seus pacotes estão em constante evolução, com novas versões sendo lançadas regularmente para corrigir erros, adicionar funcionalidades e melhorar a eficiência. No entanto, essas atualizações podem introduzir mudanças que "quebram" análises anteriores, especialmente se as versões dos pacotes usados em um projeto não forem registradas. Para evitar esses problemas e garantir que as análises sejam reprodutíveis ao longo do tempo, é essencial utilizar ferramentas que ajudem a gerenciar as dependências do projeto. 
 
-<!--     -   Inicializar o renv em um projeto. -->
+O pacote [`{renv}`](https://rstudio.github.io/renv/articles/renv.html)  é uma ferramenta que permite gerenciar as dependências de pacotes em projetos R, garantindo que cada projeto tenha seu próprio ambiente isolado. Ele registra quais foram os pacotes utilizados, quais é a versão de cada um deles, e a fonte de instalação (se foram instalados do CRAN, GitHub, R Universe, Bioconductor, etc). Isso possibilita que o ambiente seja reproduzido em qualquer máquina ou momento, mesmo se o R ou os pacotes forem atualizados.
 
-<!--     -   Instalar e registrar pacotes no renv.lock. -->
+O `{renv}` é especialmente útil em projetos colaborativos, em que diferentes pessoas podem estar trabalhando no mesmo projeto, ou em projetos que serão retomados após um longo período de tempo. Ele garante que o ambiente de pacotes seja consistente e reprodutível, independentemente de atualizações futuras.
 
-<!--     -   Reproduzir o ambiente em outra máquina. -->
+Apesar de poderoso, o `{renv}` pode não ser necessário para projetos muito simples ou temporários.
 
-## Introdução ao targets
+### Arquivo `renv.lock`
 
-Em breve
+O `{renv}` registra as dependências do projeto no arquivo `renv.lock`, que é um arquivo que contém informações sobre as versões dos pacotes instalados. Com esse arquivo, é possível recriar o ambiente de pacotes exatamente como ele estava quando o arquivo foi gerado. Isso é útil para garantir a reprodutibilidade do projeto e evitar problemas com pacotes desatualizados.
 
-<!-- -   Conceito de pipelines reprodutíveis. -->
+Atenção: o arquivo `renv.lock` **não** deve ser alterado manualmente. 
 
-<!-- -   Diferença entre targets e scripts tradicionais. -->
+::: {.callout-note collapse="true"}
+## Expanda para ver um exemplo de conteúdo do `renv.lock`
 
-<!-- -   Demonstração: Criar um exemplo simples de pipeline com targets (ex.: carregar dados, processá-los e gerar uma tabela ou gráfico). -->
+No exemplo abaixo, temos um exemplo do conteúdo do `renv.lock`. Observe que está registrado que estamos usando o R versão 4.4.1 e o pacote `readr` (deixamos apenas um pacote para servir de exemplo, mas o arquivo contém informações sobre todos os pacotes utilizados no projeto): 
 
-<!-- -   Mostre um projeto já configurado para destacar a utilidade do targets. -->
+````
+{
+  "R": {
+    "Version": "4.4.1",
+    "Repositories": [
+      {
+        "Name": "CRAN",
+        "URL": "https://cloud.r-project.org"
+      }
+    ]
+  },
+  "Packages": {
+    "readr": {
+      "Package": "readr",
+      "Version": "2.1.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "R6",
+        "cli",
+        "clipr",
+        "cpp11",
+        "crayon",
+        "hms",
+        "lifecycle",
+        "methods",
+        "rlang",
+        "tibble",
+        "tzdb",
+        "utils",
+        "vroom"
+      ],
+      "Hash": "9de96463d2117f6ac49980577939dfb3"
+    }
+  }
+}
+
+````
+:::
+
+### Principais funções do `{renv}`
+
+Para começar a utilizar o `{renv}` em um projeto, podemos utilizar a função `renv::init()`. Isso criará uma pasta `renv/` e um arquivo `renv.lock`, que registrará as dependências do projeto. Além disso, o `{renv}` armazenará as bibliotecas de pacotes do projeto na pasta `renv/library` (chamamos isso de **isolamento**). 
+
+```{r}
+#| eval: false
+renv::init()
+```
+
+Para verificar o status do ambiente e quais pacotes estão instalados, podemos usar a função `renv::status()`:
+
+```{r}
+#| eval: false
+renv::status()
+```
+
+A função `renv::snapshot()` é utilizada para registrar/atualizar as dependências do projeto no arquivo `renv.lock`. Isso é útil quando novos pacotes são instalados ou atualizados, e queremos registrar essas mudanças.
+
+```{r}
+#| eval: false
+renv::snapshot()
+```
+
+
+Para restaurar o ambiente de pacotes de um projeto a partir do arquivo `renv.lock`, podemos utilizar a função `renv::restore()`:
+
+```{r}
+#| eval: false
+renv::restore()
+```
+
+
+::: {.callout-note collapse="true"}
+Também é possível utilizar a função `renv::snapshot()` com um projeto que não foi iniciado com `{renv}` (iniciado com o `renv::init()`).
+
+Neste caso, ele registrará o estado atual das dependências nos caminhos das bibliotecas atuais. Isso torna possível restaurar os pacotes atuais, fornecendo portabilidade e reprodutibilidade leves sem o isolamento de ambiente.
+::: 
+
+
+
+
+## Introdução ao `{targets}`
+
+<img src="images/targets-logo.png" class="img-rstudio" align="right" width="120px"/>
+
+O pacote [`{targets}`](https://books.ropensci.org/targets/) é uma ferramenta para gerenciamento de pipelines reprodutíveis e escaláveis em R. Ele foi projetado para ajudar a organizar e automatizar análises de dados complexas, garantindo que todos os passos da análise sejam executados na ordem correta e de forma eficiente.
+
+O `{targets}` utiliza o conceito de pipelines: cada etapa da análise é definida como um "alvo" (ou *target*), e as dependências entre essas etapas são gerenciadas automaticamente. Isso significa que, quando algo é alterado em uma etapa inicial, o `{targets}` identifica quais etapas subsequentes precisam ser reexecutadas e atualiza apenas essas partes, economizando tempo e esforço.
+
+[![Exemplo de gráfico de pipeline com targets, por Will Landau](images/targets-pipeline_graph.png){fig-align="center" width="100%"}](https://wlandau.github.io/targets-tutorial/#8)
+
+O `{targets}` é especialmente útil em análises que incluem múltiplas etapas interdependentes, como pré-processamento, modelagem e visualização. Ele também é indicado para situações em que se trabalha com grandes volumes de dados ou análises que demandam muito tempo de execução. 
+
+Embora seja uma ferramenta poderosa, o `{targets}` pode ser excessivo para análises simples que consistem em poucas etapas. Ele é mais indicado para fluxos de trabalho complexos.
+
+
+### Materiais de referência sobre targets
+
+-   [Documentação do pacote](https://docs.ropensci.org/targets/)
+
+-   [Livro sobre `{targets}`](https://books.ropensci.org/targets/)
+
+-   Apresentação ["Reproducible computation at scale in R"](https://wlandau.github.io/targets-tutorial/) por Will Landau.
 
 ## Materiais
 
-Este material foi desenvolvido com base na aula [Introdução ao conceito de reprodutibilidade](https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/slides/03-reprodutibilidade.html) do curso [Relatórios reprodutíveis com R](https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/), ministrado por Beatriz Milz no [programa de Verão do IME-USP](https://www.ime.usp.br/verao/).
+Este material foi inicialmente desenvolvido com base na aula [Introdução ao conceito de reprodutibilidade](https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/slides/03-reprodutibilidade.html) do curso [Relatórios reprodutíveis com R](https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/), ministrado por Beatriz Milz no [programa de Verão do IME-USP](https://www.ime.usp.br/verao/).
 
 ## Referências citadas

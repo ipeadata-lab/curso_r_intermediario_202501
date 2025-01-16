@@ -17,12 +17,16 @@ Além deste site, o material do curso também é composto por:
 - Gravação das aulas, em um link disponibilizado para as pessoas matriculadas no curso.
 
 
-:::{.callout-important}
+:::{.callout-note}
 Recomendamos que todas as pessoas participantes que verifiquem a página [Instruções de instalação](instalacao.qmd) antes do início do curso.
 
 Caso tenha alguma dificuldade, entre em contato com a equipe do curso o quanto antes.
 :::
 
+
+## Pré-requisitos {.unnumbered}
+
+Este curso é uma continuação do [Introdução à análise de dados no R](https://ipeadata-lab.github.io/curso_r_intro_202409/), e recomendamos que você tenha familiaridade com os conceitos abordados nele para aproveitar ao máximo os conteúdos aqui apresentados.
 
 
 ## Equipe do curso {.unnumbered}
