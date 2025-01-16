@@ -44,7 +44,7 @@
     "href": "calendario.html",
     "title": "2  Calendário do curso",
     "section": "",
-    "text": "A maioria das aulas acontecerão às segundas e quartas-feiras, exceto a aula do dia 30/01/2025, que acontecerá numa quinta-feira.\nAs aulas acontecerão das 09h às 12h, com intervalo de 15 minutos.\nSegue o calendário do curso:\n\n\n\n\n\n\n\n\n\n\nSemana\nData\nHorário\nDia da semana\nConteúdo previsto\n\n\n\n\n1\n20/01/2025\n09h-12h\nSegunda-feira\nApresentação do curso, Reprodutibilidade e estruturação de projeto\n\n\n1\n22/01/2025\n09h-12h\nQuarta-feira\nProdução de relatórios com RMarkdown/Quarto (Parte 1)\n\n\n2\n29/01/2025\n09h-12h\nQuarta-feira\nProdução de relatórios com RMarkdown/Quarto (Parte 2)\n\n\n2\n30/01/2025\n09h-12h\nQuinta-feira (*)\nIntrodução ao controle de versão com Git e GitHub\n\n\n3\n03/02/2025\n09h-12h\nSegunda-feira\nManipulação de textos e datas\n\n\n4\n10/02/2025\n09h-12h\nSegunda-feira\nDados espaciais (Parte 1)\n\n\n4\n12/02/2025\n09h-12h\nQuarta-feira\nDados espaciais (Parte 2)\n\n\n5\n17/02/2025\n09h-12h\nSegunda-feira\nProgramação funcional e paralelização\n\n\n5\n19/02/2025\n09h-12h\nQuarta-feira\nIntrodução à Big Data\n\n\n6\n24/02/2025\n09h-11h (*)\nSegunda-feira\nDúvidas e encerramento\n\n\n\n\n(*): Atenção para as datas e horários diferentes.",
+    "text": "A maioria das aulas acontecerão às segundas e quartas-feiras, exceto a aula do dia 30/01/2025, que acontecerá numa quinta-feira.\nAs aulas acontecerão das 09h às 12h, com intervalo de 15 minutos.\nSegue o calendário do curso:\n\n\n\n\n\n\n\n\n\n\nSemana\nData\nHorário\nDia da semana\nConteúdo previsto\n\n\n\n\n1\n20/01/2025\n09h-12h\nSegunda-feira\nApresentação do curso, Reprodutibilidade e estruturação de projeto\n\n\n1\n22/01/2025\n09h-12h\nQuarta-feira\nProdução de relatórios com RMarkdown/Quarto (Parte 1)\n\n\n2\n29/01/2025\n09h-12h\nQuarta-feira\nProdução de relatórios com RMarkdown/Quarto (Parte 2)\n\n\n2\n30/01/2025\n09h-12h\nQuinta-feira (*)\nIntrodução ao controle de versão com Git e GitHub\n\n\n3\n03/02/2025\n09h-12h\nSegunda-feira\nManipulação de textos e datas\n\n\n4\n10/02/2025\n09h-12h\nSegunda-feira\nIntrodução à Big Data\n\n\n4\n12/02/2025\n09h-12h\nQuarta-feira\nProgramação funcional e paralelização (Parte 1)\n\n\n5\n17/02/2025\n09h-12h\nSegunda-feira\nProgramação funcional e paralelização (Parte 2)\n\n\n5\n19/02/2025\n09h-12h\nQuarta-feira\nDados espaciais (Parte 1)\n\n\n6\n24/02/2025\n09h-12h\nSegunda-feira\nDados espaciais (Parte 2)\n\n\n7\n26/02/2025\n09h-11h (*)\nQuarta-feira\nDúvidas e encerramento\n\n\n\n\n(*): Atenção para as datas e horários diferentes.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Calendário do curso</span>"
     ]
@@ -180,13 +180,13 @@
     ]
   },
   {
-    "objectID": "dados-espaciais.html",
-    "href": "dados-espaciais.html",
-    "title": "8  Dados espaciais",
+    "objectID": "big-data.html",
+    "href": "big-data.html",
+    "title": "8  Introdução à Big Data",
     "section": "",
     "text": "Em breve!",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Dados espaciais</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Introdução à *Big Data*</span>"
     ]
   },
   {
@@ -200,13 +200,13 @@
     ]
   },
   {
-    "objectID": "big-data.html",
-    "href": "big-data.html",
-    "title": "10  Introdução à Big Data",
+    "objectID": "dados-espaciais.html",
+    "href": "dados-espaciais.html",
+    "title": "10  Dados espaciais",
     "section": "",
     "text": "Em breve!",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introdução à *Big Data*</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Dados espaciais</span>"
     ]
   }
 ]
