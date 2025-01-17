@@ -3,4 +3,60 @@ title: "Produção de relatórios com Quarto"
 code-annotations: hover
 ---
 
+## Introdução
+
+No curso [Introdução à análise de dados no R](https://ipeadata-lab.github.io/curso_r_intro_202409/), utilizamos arquivos `.R` para escrever os códigos em R. Em scripts `.R`, todo o conteúdo é interpretado como código em R, exceto o que estava precedido de `#` (utilizado para comentários).
+
+
+Para superar essa limitação, existe um conceito chamado *literate programming*, ou programação literária, criado por [Donald Knuth](https://www-cs-faculty.stanford.edu/~knuth/lp.html). Esse conceito propõe a escrita de códigos intercalados com texto explicativo, de forma que o fluxo de raciocínio do autor fique claro para leitores e colaboradores. A ideia central é que o código seja parte da comunicação, tornando o relatório um documento legível tanto para computadores quanto para humanos.
+
+Com base nesse conceito, surgiram ferramentas que tornam possível criar relatórios reprodutíveis que combinam texto, código e resultados.
+
+## R Markdown
+<img src="images/hex-rmarkdown.png" class="img-rstudio" align="right" width="120px"/>
+
+
+O [R Markdown](https://rmarkdown.rstudio.com/) é um pacote em R que possibilita criar arquivos com códigos em R, resultados dos códigos, e textos explicativos. Esses arquivos tem extensão `.Rmd`.
+
+Lançado em 2015[^rmarkdown-curiosidade], ele rapidamente se tornou uma das ferramentas mais populares para a criação de relatórios dinâmicos e reprodutíveis na comunidade R.
+
+[^rmarkdown-curiosidade]: Curiosidade: o criador do pacote R Markdown, Yihui Xie, fez uma [apresentação sobre a história do R Markdown](https://slides.yihui.org/2021-Brazilian-R-Day.html#1) no R-Day Brasil em 2021.
+
+![Exemplo de um arquivo .Rmd](images/exemplo-rmarkdown.png)
+
+O R Markdown possibilita exportar os arquivos em diversos formatos, como HTML, PDF, Word, apresentações, entre outros.
+
+## Quarto
+
 Em breve!
+
+### Tipos de output
+
+Em breve
+
+### Adicionar conteúdos
+
+Em breve
+
+### Opções de campos de código (*chunk options*)
+
+Em breve
+
+<!-- Rmarkdown - mais histórico  -->
+
+<!-- Markdown básico (visual ,mostrar o de-para) -->
+
+<!-- Introdução ao Quarto -->
+
+<!-- Code blocks, opções de campos de código -->
+
+<!-- alterar o tipo de output: Documentos (pdf,  html, docx, Apresentações) -->
+
+<!-- adicionar conteúdos: tabela (knitr::kable()), gráficos, código em linha, expressões matemáticas em LaTeX (regressão linear simples como exemplo), callout blocks,   -->
+
+<!-- em -->
+
+<!-- Apresentações -->
+
+
+
