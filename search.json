@@ -204,7 +204,37 @@
     "href": "relatorios.html",
     "title": "5  Produção de relatórios com Quarto",
     "section": "",
-    "text": "Em breve!",
+    "text": "5.1 Introdução\nNo curso Introdução à análise de dados no R, utilizamos arquivos .R para escrever os códigos em R. Em scripts .R, todo o conteúdo é interpretado como código em R, exceto o que estava precedido de # (utilizado para comentários).\nPara superar essa limitação, existe um conceito chamado literate programming, ou programação literária, criado por Donald Knuth. Esse conceito propõe a escrita de códigos intercalados com texto explicativo, de forma que o fluxo de raciocínio do autor fique claro para leitores e colaboradores. A ideia central é que o código seja parte da comunicação, tornando o relatório um documento legível tanto para computadores quanto para humanos.\nCom base nesse conceito, surgiram ferramentas que tornam possível criar relatórios reprodutíveis que combinam texto, código e resultados.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Produção de relatórios com Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "relatorios.html#r-markdown",
+    "href": "relatorios.html#r-markdown",
+    "title": "5  Produção de relatórios com Quarto",
+    "section": "5.2 R Markdown",
+    "text": "5.2 R Markdown\n\nO R Markdown é um pacote em R que possibilita criar arquivos com códigos em R, resultados dos códigos, e textos explicativos. Esses arquivos tem extensão .Rmd.\nLançado em 20151, ele rapidamente se tornou uma das ferramentas mais populares para a criação de relatórios dinâmicos e reprodutíveis na comunidade R.\n\n\n\nExemplo de um arquivo .Rmd\n\n\nO R Markdown possibilita exportar os arquivos em diversos formatos, como HTML, PDF, Word, apresentações, entre outros.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Produção de relatórios com Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "relatorios.html#quarto",
+    "href": "relatorios.html#quarto",
+    "title": "5  Produção de relatórios com Quarto",
+    "section": "5.3 Quarto",
+    "text": "5.3 Quarto\nEm breve!\n\n5.3.1 Tipos de output\nEm breve\n\n\n5.3.2 Adicionar conteúdos\nEm breve\n\n\n5.3.3 Opções de campos de código (chunk options)\nEm breve",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Produção de relatórios com Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "relatorios.html#footnotes",
+    "href": "relatorios.html#footnotes",
+    "title": "5  Produção de relatórios com Quarto",
+    "section": "",
+    "text": "Curiosidade: o criador do pacote R Markdown, Yihui Xie, fez uma apresentação sobre a história do R Markdown no R-Day Brasil em 2021.↩︎",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Produção de relatórios com Quarto</span>"
     ]
