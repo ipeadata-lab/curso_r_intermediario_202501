@@ -253,7 +253,7 @@ Neste caso, ele registrará o estado atual das dependências nos caminhos das bi
 
 Neste exercício, vamos praticar a utilização do `{renv}` em um projeto, **utilizando o isolamento de ambiente**.
 
-1. Crie um novo projeto no RStudio, para que possamos trabalhar neste exercício com o `{renv}`.
+1. Abra o projeto criado no exercício anterior (ou crie um novo projeto, se preferir).
 
 2. Inicie o `{renv}` no projeto utilizando a função `renv::init()`.
 
