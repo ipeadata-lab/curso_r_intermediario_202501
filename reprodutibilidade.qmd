@@ -84,7 +84,7 @@ dados |>
 
 ## Estrutura de projetos
 
-Projetos estruturados são essenciais para a reprodutibilidade na ciência de dados. Ferramentas como projetos do RStudio, pacotes em R, controle de versão com Git e GitHub[^reprodutibilidade-3], relatórios reprodutíveis com [Quarto](https://quarto.org)[^reprodutibilidade-4], [`{renv}`](https://rstudio.github.io/renv/articles/renv.html) e [`{targets}`](https://books.ropensci.org/targets/) ajudam a organizar o trabalho, gerenciar dependências e automatizar processos, aumentando as chances que outras pessoas posam reproduzir os resultados a partir dos códigos e dados brutos. Ao adotar essas práticas, é possível reduzir erros, aumentar a confiabilidade e promover uma ciência mais transparente e colaborativa.
+Projetos estruturados são importantes para a reprodutibilidade na ciência de dados. Ferramentas como projetos do RStudio, pacotes em R, controle de versão com Git e GitHub[^reprodutibilidade-3], relatórios reprodutíveis com [Quarto](https://quarto.org)[^reprodutibilidade-4], [`{renv}`](https://rstudio.github.io/renv/articles/renv.html) e [`{targets}`](https://books.ropensci.org/targets/) ajudam a organizar o trabalho, gerenciar dependências e automatizar processos, aumentando as chances que outras pessoas posam reproduzir os resultados a partir dos códigos e dados brutos. Ao adotar essas práticas, é possível reduzir erros, aumentar a confiabilidade e promover uma ciência mais transparente e colaborativa.
 
 [^reprodutibilidade-3]: Será abordado na aula sobre [introdução ao controle de versão com Git e GitHub](relatorios.qmd).
 
@@ -142,11 +142,15 @@ dir.create("relatorios")
 <img src="images/renv-logo.svg" class="img-rstudio" align="right" width="120px"/>
 
 
-O R e seus pacotes estão em constante evolução, com novas versões sendo lançadas regularmente para corrigir erros, adicionar funcionalidades e melhorar a eficiência. No entanto, essas atualizações podem introduzir mudanças que "quebram" análises anteriores, especialmente se as versões dos pacotes usados em um projeto não forem registradas. Para evitar esses problemas e garantir que as análises sejam reprodutíveis ao longo do tempo, é essencial utilizar ferramentas que ajudem a gerenciar as dependências do projeto. 
+O R e seus pacotes estão em constante evolução, com novas versões sendo lançadas regularmente para corrigir erros, adicionar funcionalidades e melhorar a eficiência. No entanto, essas atualizações podem introduzir mudanças que "quebram" análises anteriores, especialmente se as versões dos pacotes usados em um projeto não forem registradas. Para evitar esses problemas e garantir que as análises sejam reprodutíveis ao longo do tempo, podemos utilizar ferramentas que ajudem a gerenciar as dependências do projeto. 
 
-O pacote [`{renv}`](https://rstudio.github.io/renv/articles/renv.html)  é uma ferramenta que permite gerenciar as dependências de pacotes em projetos R, garantindo que cada projeto tenha seu próprio ambiente isolado. Ele registra quais foram os pacotes utilizados, quais é a versão de cada um deles, e a fonte de instalação (se foram instalados do CRAN, GitHub, R Universe, Bioconductor, etc). Isso possibilita que o ambiente seja reproduzido em qualquer máquina ou momento, mesmo se o R ou os pacotes forem atualizados.
+O pacote [`{renv}`](https://rstudio.github.io/renv/articles/renv.html)  é uma ferramenta que permite gerenciar as dependências de pacotes em projetos R. Ele registra quais foram os pacotes utilizados, quais é a versão de cada um deles, e a fonte de instalação (se foram instalados do CRAN, GitHub, R Universe, Bioconductor, etc). Isso possibilita que o ambiente seja reproduzido em qualquer máquina ou momento, mesmo se o R ou os pacotes forem atualizados.
 
-O `{renv}` é especialmente útil em projetos colaborativos, em que diferentes pessoas podem estar trabalhando no mesmo projeto, ou em projetos que serão retomados após um longo período de tempo. Ele garante que o ambiente de pacotes seja consistente e reprodutível, independentemente de atualizações futuras.
+O `{renv}` é especialmente útil em projetos colaborativos, em que diferentes pessoas podem estar trabalhando no mesmo projeto, ou em projetos que serão retomados após um longo período de tempo. 
+
+
+Um conceito importante do `{renv}` é o **isolamento de ambiente**. Isso significa que o `{renv}` possibilita armazenar as bibliotecas de pacotes do projeto em uma pasta específica, separada das bibliotecas globais do R. Isso evita conflitos entre versões de pacotes e garante que o ambiente de pacotes do projeto seja consistente e reprodutível.
+
 
 Apesar de poderoso, o `{renv}` pode não ser necessário para projetos muito simples ou temporários.
 
@@ -161,24 +165,25 @@ Atenção: o arquivo `renv.lock` **não** deve ser alterado manualmente.
 
 No exemplo abaixo, temos um exemplo do conteúdo do `renv.lock`. Observe que está registrado que estamos usando o R versão 4.4.1 e o pacote `readr` (deixamos apenas um pacote para servir de exemplo, mas o arquivo contém informações sobre todos os pacotes utilizados no projeto): 
 
-````
+```{r}
+#| eval: false
 {
-  "R": {
+  "R": { # <1>
     "Version": "4.4.1",
     "Repositories": [
       {
         "Name": "CRAN",
         "URL": "https://cloud.r-project.org"
-      }
+      } # <1>
     ]
   },
-  "Packages": {
-    "readr": {
+  "Packages": { # <2>
+    "readr": { # <3>
       "Package": "readr",
       "Version": "2.1.5",
       "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
+      "Repository": "CRAN", # <3>
+      "Requirements": [ # <4>
         "R",
         "R6",
         "cli",
@@ -193,13 +198,17 @@ No exemplo abaixo, temos um exemplo do conteúdo do `renv.lock`. Observe que est
         "tzdb",
         "utils",
         "vroom"
-      ],
+      ], # <4>
       "Hash": "9de96463d2117f6ac49980577939dfb3"
     }
-  }
+  } # <2>
 }
+```
+1. Versão do R utilizada, e de qual repositório ele foi instalado.
+2. Lista de pacotes utilizados (essa lista foi cortada para aparecer apenas um pacote, como exemplo).
+3. Informações sobre o pacote instalado: nome, versão, repositório de origem, dependências e hash.
+4. Dependências do pacote instalado: quais pacotes são necessários para que o pacote `readr` funcione corretamente?
 
-````
 :::
 
 ### Principais funções do `{renv}`
@@ -239,6 +248,146 @@ Também é possível utilizar a função `renv::snapshot()` com um projeto que n
 
 Neste caso, ele registrará o estado atual das dependências nos caminhos das bibliotecas atuais. Isso torna possível restaurar os pacotes atuais, fornecendo portabilidade e reprodutibilidade leves sem o isolamento de ambiente.
 ::: 
+
+### Exercício 1
+
+Neste exercício, vamos praticar a utilização do `{renv}` em um projeto, utilizando o isolamento de ambiente.
+
+1. Crie um novo projeto no RStudio, para que possamos trabalhar neste exercício com o `{renv}`.
+
+2. Inicie o `{renv}` no projeto utilizando a função `renv::init()`.
+
+
+::: {.callout-note collapse="true"}
+## Exemplo de output da função `renv::init()`
+
+```{r}
+#| eval: false
+renv::init()
+```
+```
+renv: Project Environments for R
+
+Welcome to renv! It looks like this is your first time using renv.
+This is a one-time message, briefly describing some of renv's functionality.
+
+renv will write to files within the active project folder, including:
+
+  - A folder 'renv' in the project directory, and
+  - A lockfile called 'renv.lock' in the project directory.
+
+In particular, projects using renv will normally use a private, per-project
+R library, in which new packages will be installed. This project library is
+isolated from other R libraries on your system.
+
+In addition, renv will update files within your project directory, including:
+
+  - .gitignore
+  - .Rbuildignore
+  - .Rprofile
+
+Finally, renv maintains a local cache of data on the filesystem, located at:
+
+  - "/cloud/home/r217847/.cache/R/renv"
+
+This path can be customized: please see the documentation in `?renv::paths`.
+
+Please read the introduction vignette with `vignette("renv")` for more information.
+You can browse the package documentation online at https://rstudio.github.io/renv/.
+
+Do you want to proceed? [y/N]: 
+```
+```{r}
+#| eval: false
+y
+```
+
+```
+- "/cloud/home/r217847/.cache/R/renv" has been created.
+The following package(s) will be updated in the lockfile:
+
+# RSPM -----------------------------------------------------------------------
+- renv   [* -> 1.0.11]
+
+The version of R recorded in the lockfile will be updated:
+- R      [* -> 4.4.2]
+
+- Lockfile written to "/cloud/project/renv.lock".
+
+Restarting R session...
+
+- Project '/cloud/project' loaded. [renv 1.0.11]
+```
+:::
+
+3. Observe no seu projeto se o arquivo `renv.lock` foi criado e a pasta `renv/` foi gerada. Abra o arquivo `renv.lock` para verificar as informações registradas.
+
+4. Utilize a função `renv::status()` para verificar o status do ambiente e quais pacotes estão instalados.
+
+::: {.callout-note collapse="true"}
+## Exemplo de output da função `renv::status()`
+```{r}
+#| eval: false
+renv::status()
+#> No issues found -- the project is in a consistent state.
+```
+:::
+
+5. Instale o pacote `palmerpenguins` utilizando a função `install.packages("palmerpenguins")` no console.
+
+6. Crie um RScript, escreva `library(palmerpenguins)` e salve-o (dentro do projeto).
+
+7. Utilize novamente a função `renv::status()` para verificar o status do ambiente e quais pacotes estão instalados.
+
+::: {.callout-note collapse="true"}
+## Exemplo de output da função `renv::status()`
+```{r}
+#| eval: false
+renv::status()
+```
+```
+The following package(s) are in an inconsistent state:
+
+ package        installed recorded used
+ palmerpenguins y         n        y   
+
+See `?renv::status` for advice on resolving these issues.
+```
+:::
+
+
+8. Utilize a função `renv::snapshot()` para registrar as dependências do projeto no arquivo `renv.lock`.
+
+
+::: {.callout-note collapse="true"}
+## Exemplo de output da função `renv::snapshot()`
+```{r}
+#| eval: false
+renv::snapshot()
+```
+```
+The following package(s) will be updated in the lockfile:
+
+# CRAN -----------------------------------------------------------------------
+- palmerpenguins   [* -> 0.1.1]
+Do you want to proceed? [Y/n]:
+```
+```{r}
+#| eval: false
+y
+```
+```
+- Lockfile written to "/cloud/project/renv.lock".
+```
+:::
+
+9. Observe no arquivo `renv.lock` se as informações sobre o pacote `palmerpenguins` foram registradas.
+
+
+### Exercício 2
+
+Neste exercício, o objetivo é praticar a restauração do ambiente de pacotes de um projeto a partir do arquivo `renv.lock`.
+
 
 
 
