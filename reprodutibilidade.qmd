@@ -251,7 +251,7 @@ Neste caso, ele registrará o estado atual das dependências nos caminhos das bi
 
 ### Exercício 1
 
-Neste exercício, vamos praticar a utilização do `{renv}` em um projeto, utilizando o isolamento de ambiente.
+Neste exercício, vamos praticar a utilização do `{renv}` em um projeto, **utilizando o isolamento de ambiente**.
 
 1. Crie um novo projeto no RStudio, para que possamos trabalhar neste exercício com o `{renv}`.
 
@@ -388,8 +388,127 @@ y
 
 Neste exercício, o objetivo é praticar a restauração do ambiente de pacotes de um projeto a partir do arquivo `renv.lock`.
 
+1. Crie um novo projeto no RStudio, para que possamos trabalhar neste exercício com o `{renv}` (não utilize o mesmo do exercício 1).
+
+2. Faça o download [deste arquivo `renv.lock`](https://raw.githubusercontent.com/ipeadata-lab/curso_r_intermediario_202501/refs/heads/main/exercicios/renv-2/renv.lock) que utilizaremos de exemplo, e salve na pasta do projeto. Você pode fazer o download manualmente, ou utilizar o código abaixo para baixar o arquivo diretamente no R:
+
+```{r}
+#| eval: false
+download.file(
+  url = "https://raw.githubusercontent.com/ipeadata-lab/curso_r_intermediario_202501/refs/heads/main/exercicios/renv-2/renv.lock",
+  destfile = "renv.lock",
+  mode = "wb")
+```
+3. Abra o arquivo `renv.lock` para verificar as informações registradas.
+
+4. Utilize a função `renv::restore()` para restaurar o ambiente de pacotes do projeto a partir do arquivo `renv.lock`. Quando solicitado, escolha a opção para não isolar o ambiente de pacotes (`2: Do not activate the project and use the current library paths.`).
 
 
+::: {.callout-note collapse="true"}
+## Exemplo de output da função `renv::restore()`
+```{r}
+#| eval: false
+renv::restore()
+```
+```
+
+renv: Project Environments for R
+
+Welcome to renv! It looks like this is your first time using renv.
+This is a one-time message, briefly describing some of renv's functionality.
+
+renv will write to files within the active project folder, including:
+
+  - A folder 'renv' in the project directory, and
+  - A lockfile called 'renv.lock' in the project directory.
+
+In particular, projects using renv will normally use a private, per-project
+R library, in which new packages will be installed. This project library is
+isolated from other R libraries on your system.
+
+In addition, renv will update files within your project directory, including:
+
+  - .gitignore
+  - .Rbuildignore
+  - .Rprofile
+
+Finally, renv maintains a local cache of data on the filesystem, located at:
+
+  - "/cloud/home/r217847/.cache/R/renv"
+
+This path can be customized: please see the documentation in `?renv::paths`.
+
+Please read the introduction vignette with `vignette("renv")` for more information.
+You can browse the package documentation online at https://rstudio.github.io/renv/.
+Do you want to proceed? [y/N]: 
+```
+```{r}
+#| eval: false
+y
+```
+
+
+```
+- "/cloud/home/r217847/.cache/R/renv" has been created.
+It looks like you've called renv::restore() in a project that hasn't been activated yet.
+How would you like to proceed? 
+
+1: Activate the project and use the project library.
+2: Do not activate the project and use the current library paths.
+3: Cancel and resolve the situation another way.
+
+```
+
+**Atenção neste ponto!**
+
+- A **opção 1** (`Activate the project and use the project library`) é a opção que irá ativar o ambiente de pacotes do projeto, isolando as bibliotecas de pacotes do projeto das bibliotecas globais do R.
+
+- A **opção 2** (`Do not activate the project and use the current library paths`) é a opção que não irá ativar o ambiente de pacotes do projeto, e os pacotes serão instalados nas bibliotecas globais do R.
+
+```{r}
+#| eval: false
+2
+```
+
+```
+Selection: 2
+The following package(s) will be updated:
+
+# CRAN -----------------------------------------------------------------------
+- parzer   [* -> 0.4.1]
+- Rcpp     [* -> 1.0.13-1]
+- withr    [* -> 3.0.2]
+
+Do you want to proceed? [Y/n]: y
+```
+
+```{r}
+#| eval: false
+y
+```
+
+```
+# Downloading packages -------------------------------------------------------
+- Querying repositories for available source packages ... Done!
+- Downloading Rcpp from CRAN ...                OK [3.3 Mb]
+- Downloading parzer from CRAN ...              OK [433.6 Kb]
+- Downloading withr from CRAN ...               OK [100.8 Kb]
+Successfully downloaded 3 packages in 2.1 seconds.
+
+# Installing packages --------------------------------------------------------
+- Installing Rcpp ...                           OK [built from source and cached in 26s]
+- Installing withr ...                          OK [built from source and cached in 3.3s]
+- Installing parzer ...                         OK [built from source and cached in 26s]
+Session restored from your saved work on 2025-Jan-20 10:58:30 UTC (18 minutes ago)
+```
+:::
+
+5. Verifique no seu projeto se o pacote `parzer` está disponível para uso.
+
+```{r}
+#| eval: false
+library(parzer)
+```
 
 
 ## Introdução ao `{targets}`
