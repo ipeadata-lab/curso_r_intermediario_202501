@@ -257,6 +257,7 @@ div.csl-indent {
   <li><a href="#introdução-ao-targets" id="toc-introdução-ao-targets" class="nav-link" data-scroll-target="#introdução-ao-targets"><span class="header-section-number">4.6</span> Introdução ao <code>{targets}</code></a>
   <ul>
   <li><a href="#materiais-de-referência-sobre-targets" id="toc-materiais-de-referência-sobre-targets" class="nav-link" data-scroll-target="#materiais-de-referência-sobre-targets"><span class="header-section-number">4.6.1</span> Materiais de referência sobre targets</a></li>
+  <li><a href="#outros-pacotes-citados-em-aula" id="toc-outros-pacotes-citados-em-aula" class="nav-link" data-scroll-target="#outros-pacotes-citados-em-aula"><span class="header-section-number">4.6.2</span> Outros pacotes citados em aula</a></li>
   </ul></li>
   <li><a href="#materiais" id="toc-materiais" class="nav-link" data-scroll-target="#materiais"><span class="header-section-number">4.7</span> Materiais</a></li>
   <li><a href="#referências-citadas" id="toc-referências-citadas" class="nav-link" data-scroll-target="#referências-citadas"><span class="header-section-number">4.8</span> Referências citadas</a></li>
@@ -297,7 +298,7 @@ div.csl-indent {
 </blockquote>
 <p>Tradução livre:</p>
 <blockquote class="blockquote">
-<p>“Reprodutibilidade é a capacidade de investigadores independentes chegarem às mesmas conclusões de um experimento ao seguir a documentação compartilhada pelos investigadores originais.”</p>
+<p>“Reprodutibilidade é a capacidade de pesquisadores independentes chegarem às mesmas conclusões de um experimento ao seguir a documentação compartilhada pelos pesquisadores originais.”</p>
 </blockquote>
 <p>A definição prática de reprodutibilidade é frequentemente associada à capacidade de reproduzir os resultados de uma pesquisa a partir dos dados brutos e do código utilizado.</p>
 <p>De acordo com Baker <span class="citation" data-cites="Baker2016">(<a href="#ref-Baker2016" role="doc-biblioref">2016</a>)</span>, a partir de um questionário realizado pela revista <em>Nature</em> sobre reprodutibilidade com mais de 1500 pesquisadores, vários fatores contribuem para pesquisas não reprodutíveis, como a não disponibilização de códigos, métodos e dados brutos. A figura abaixo apresenta os fatores mais citados pelos respondentes:</p>
@@ -319,7 +320,7 @@ div.csl-indent {
 <p>Para aumentar a chance de desenvolver um projeto de análise de dados que seja reprodutível, algumas boas práticas podem ser adotadas, como:</p>
 <ul>
 <li><p>não utilizar caminhos absolutos<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p></li>
-<li><p>evitar o uso de caracteres especiais em caminhos, variáveis e nomes de colunas<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p></li>
+<li><p>evitar o uso de caracteres especiais em caminhos, variáveis e nomes de colunas<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Além disso, utilize nomes descritivos (ex: evite utilizar apenas <code>x</code> ou <code>df</code>).</p></li>
 <li><p>armazenar os arquivos de maneira consistente</p></li>
 <li><p>registrar quais são as dependências (versões do R e dos pacotes utilizados)</p></li>
 <li><p>documentar as análises realizadas</p></li>
@@ -821,6 +822,14 @@ Session restored from your saved work on 2025-Jan-20 10:58:30 UTC (18 minutes ag
 <li><p><a href="https://docs.ropensci.org/targets/">Documentação do pacote</a></p></li>
 <li><p><a href="https://books.ropensci.org/targets/">Livro sobre <code>{targets}</code></a></p></li>
 <li><p>Apresentação <a href="https://wlandau.github.io/targets-tutorial/">“Reproducible computation at scale in R”</a> por Will Landau.</p></li>
+</ul>
+</section>
+<section id="outros-pacotes-citados-em-aula" class="level3" data-number="4.6.2">
+<h3 data-number="4.6.2" class="anchored" data-anchor-id="outros-pacotes-citados-em-aula"><span class="header-section-number">4.6.2</span> Outros pacotes citados em aula</h3>
+<ul>
+<li><p><a href="https://reprex.tidyverse.org/"><code>{reprex}</code></a> - este pacote nos auxilia a criar exemplos reprodutíveis. Ele é útil para compartilhar dúvidas em fóruns, reportar bugs e criar tutoriais.</p></li>
+<li><p><a href="https://conflicted.r-lib.org/"><code>{conflicted}</code></a> - este pacote nos ajuda a gerenciar conflitos de funções. Ele é útil quando dois pacotes possuem funções com o mesmo nome, e precisamos escolher qual função utilizar.</p></li>
+<li><p><a href="https://groundhogr.com/"><code>{groundhog}</code></a> - este pacote nos ajuda a utilizar versões específicas de pacotes.</p></li>
 </ul>
 </section>
 </section>
