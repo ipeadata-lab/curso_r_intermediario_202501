@@ -427,59 +427,59 @@ Expanda para ver um exemplo de conteúdo do <code>renv.lock</code>
 <div class="callout-body-container callout-body">
 <p>No exemplo abaixo, temos um exemplo do conteúdo do <code>renv.lock</code>. Observe que está registrado que estamos usando o R versão 4.4.1 e o pacote <code>readr</code> (deixamos apenas um pacote para servir de exemplo, mas o arquivo contém informações sobre todos os pacotes utilizados no projeto):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a>{</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1">1</button><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"R"</span><span class="sc">:</span> {</span>
-<span id="annotated-cell-7-3"><a href="#annotated-cell-7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Version"</span><span class="sc">:</span> <span class="st">"4.4.1"</span>,</span>
-<span id="annotated-cell-7-4"><a href="#annotated-cell-7-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Repositories"</span><span class="sc">:</span> [</span>
-<span id="annotated-cell-7-5"><a href="#annotated-cell-7-5" aria-hidden="true" tabindex="-1"></a>      {</span>
-<span id="annotated-cell-7-6"><a href="#annotated-cell-7-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Name"</span><span class="sc">:</span> <span class="st">"CRAN"</span>,</span>
-<span id="annotated-cell-7-7"><a href="#annotated-cell-7-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"URL"</span><span class="sc">:</span> <span class="st">"https://cloud.r-project.org"</span></span>
-<span id="annotated-cell-7-8"><a href="#annotated-cell-7-8" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="annotated-cell-7-9"><a href="#annotated-cell-7-9" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="annotated-cell-7-10"><a href="#annotated-cell-7-10" aria-hidden="true" tabindex="-1"></a>  },</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2">2</button><span id="annotated-cell-7-11" class="code-annotation-target"><a href="#annotated-cell-7-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Packages"</span><span class="sc">:</span> {</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3">3</button><span id="annotated-cell-7-12" class="code-annotation-target"><a href="#annotated-cell-7-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"readr"</span><span class="sc">:</span> {</span>
-<span id="annotated-cell-7-13"><a href="#annotated-cell-7-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Package"</span><span class="sc">:</span> <span class="st">"readr"</span>,</span>
-<span id="annotated-cell-7-14"><a href="#annotated-cell-7-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Version"</span><span class="sc">:</span> <span class="st">"2.1.5"</span>,</span>
-<span id="annotated-cell-7-15"><a href="#annotated-cell-7-15" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Source"</span><span class="sc">:</span> <span class="st">"Repository"</span>,</span>
-<span id="annotated-cell-7-16"><a href="#annotated-cell-7-16" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Repository"</span><span class="sc">:</span> <span class="st">"CRAN"</span>,</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="4">4</button><span id="annotated-cell-7-17" class="code-annotation-target"><a href="#annotated-cell-7-17" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Requirements"</span><span class="sc">:</span> [</span>
-<span id="annotated-cell-7-18"><a href="#annotated-cell-7-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">"R"</span>,</span>
-<span id="annotated-cell-7-19"><a href="#annotated-cell-7-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"R6"</span>,</span>
-<span id="annotated-cell-7-20"><a href="#annotated-cell-7-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"cli"</span>,</span>
-<span id="annotated-cell-7-21"><a href="#annotated-cell-7-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"clipr"</span>,</span>
-<span id="annotated-cell-7-22"><a href="#annotated-cell-7-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">"cpp11"</span>,</span>
-<span id="annotated-cell-7-23"><a href="#annotated-cell-7-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">"crayon"</span>,</span>
-<span id="annotated-cell-7-24"><a href="#annotated-cell-7-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">"hms"</span>,</span>
-<span id="annotated-cell-7-25"><a href="#annotated-cell-7-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"lifecycle"</span>,</span>
-<span id="annotated-cell-7-26"><a href="#annotated-cell-7-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"methods"</span>,</span>
-<span id="annotated-cell-7-27"><a href="#annotated-cell-7-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">"rlang"</span>,</span>
-<span id="annotated-cell-7-28"><a href="#annotated-cell-7-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">"tibble"</span>,</span>
-<span id="annotated-cell-7-29"><a href="#annotated-cell-7-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">"tzdb"</span>,</span>
-<span id="annotated-cell-7-30"><a href="#annotated-cell-7-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">"utils"</span>,</span>
-<span id="annotated-cell-7-31"><a href="#annotated-cell-7-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">"vroom"</span></span>
-<span id="annotated-cell-7-32"><a href="#annotated-cell-7-32" aria-hidden="true" tabindex="-1"></a>      ],</span>
-<span id="annotated-cell-7-33"><a href="#annotated-cell-7-33" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Hash"</span><span class="sc">:</span> <span class="st">"9de96463d2117f6ac49980577939dfb3"</span></span>
-<span id="annotated-cell-7-34"><a href="#annotated-cell-7-34" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="annotated-cell-7-35"><a href="#annotated-cell-7-35" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="annotated-cell-7-36"><a href="#annotated-cell-7-36" aria-hidden="true" tabindex="-1"></a>}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1" aria-hidden="true" tabindex="-1"></a>{</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1">1</button><span id="annotated-cell-9-2" class="code-annotation-target"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"R"</span><span class="sc">:</span> {</span>
+<span id="annotated-cell-9-3"><a href="#annotated-cell-9-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Version"</span><span class="sc">:</span> <span class="st">"4.4.1"</span>,</span>
+<span id="annotated-cell-9-4"><a href="#annotated-cell-9-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Repositories"</span><span class="sc">:</span> [</span>
+<span id="annotated-cell-9-5"><a href="#annotated-cell-9-5" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="annotated-cell-9-6"><a href="#annotated-cell-9-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Name"</span><span class="sc">:</span> <span class="st">"CRAN"</span>,</span>
+<span id="annotated-cell-9-7"><a href="#annotated-cell-9-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"URL"</span><span class="sc">:</span> <span class="st">"https://cloud.r-project.org"</span></span>
+<span id="annotated-cell-9-8"><a href="#annotated-cell-9-8" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="annotated-cell-9-9"><a href="#annotated-cell-9-9" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="annotated-cell-9-10"><a href="#annotated-cell-9-10" aria-hidden="true" tabindex="-1"></a>  },</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="2">2</button><span id="annotated-cell-9-11" class="code-annotation-target"><a href="#annotated-cell-9-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Packages"</span><span class="sc">:</span> {</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="3">3</button><span id="annotated-cell-9-12" class="code-annotation-target"><a href="#annotated-cell-9-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"readr"</span><span class="sc">:</span> {</span>
+<span id="annotated-cell-9-13"><a href="#annotated-cell-9-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Package"</span><span class="sc">:</span> <span class="st">"readr"</span>,</span>
+<span id="annotated-cell-9-14"><a href="#annotated-cell-9-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Version"</span><span class="sc">:</span> <span class="st">"2.1.5"</span>,</span>
+<span id="annotated-cell-9-15"><a href="#annotated-cell-9-15" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Source"</span><span class="sc">:</span> <span class="st">"Repository"</span>,</span>
+<span id="annotated-cell-9-16"><a href="#annotated-cell-9-16" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Repository"</span><span class="sc">:</span> <span class="st">"CRAN"</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="4">4</button><span id="annotated-cell-9-17" class="code-annotation-target"><a href="#annotated-cell-9-17" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Requirements"</span><span class="sc">:</span> [</span>
+<span id="annotated-cell-9-18"><a href="#annotated-cell-9-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">"R"</span>,</span>
+<span id="annotated-cell-9-19"><a href="#annotated-cell-9-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"R6"</span>,</span>
+<span id="annotated-cell-9-20"><a href="#annotated-cell-9-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"cli"</span>,</span>
+<span id="annotated-cell-9-21"><a href="#annotated-cell-9-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"clipr"</span>,</span>
+<span id="annotated-cell-9-22"><a href="#annotated-cell-9-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">"cpp11"</span>,</span>
+<span id="annotated-cell-9-23"><a href="#annotated-cell-9-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">"crayon"</span>,</span>
+<span id="annotated-cell-9-24"><a href="#annotated-cell-9-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">"hms"</span>,</span>
+<span id="annotated-cell-9-25"><a href="#annotated-cell-9-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"lifecycle"</span>,</span>
+<span id="annotated-cell-9-26"><a href="#annotated-cell-9-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"methods"</span>,</span>
+<span id="annotated-cell-9-27"><a href="#annotated-cell-9-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">"rlang"</span>,</span>
+<span id="annotated-cell-9-28"><a href="#annotated-cell-9-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">"tibble"</span>,</span>
+<span id="annotated-cell-9-29"><a href="#annotated-cell-9-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">"tzdb"</span>,</span>
+<span id="annotated-cell-9-30"><a href="#annotated-cell-9-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">"utils"</span>,</span>
+<span id="annotated-cell-9-31"><a href="#annotated-cell-9-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">"vroom"</span></span>
+<span id="annotated-cell-9-32"><a href="#annotated-cell-9-32" aria-hidden="true" tabindex="-1"></a>      ],</span>
+<span id="annotated-cell-9-33"><a href="#annotated-cell-9-33" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Hash"</span><span class="sc">:</span> <span class="st">"9de96463d2117f6ac49980577939dfb3"</span></span>
+<span id="annotated-cell-9-34"><a href="#annotated-cell-9-34" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="annotated-cell-9-35"><a href="#annotated-cell-9-35" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="annotated-cell-9-36"><a href="#annotated-cell-9-36" aria-hidden="true" tabindex="-1"></a>}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-7" data-code-lines="2,8" data-code-annotation="1">Versão do R utilizada, e de qual repositório ele foi instalado.</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="2,8" data-code-annotation="1">Versão do R utilizada, e de qual repositório ele foi instalado.</span>
 </dd>
-<dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-7" data-code-lines="11,35" data-code-annotation="2">Lista de pacotes utilizados (essa lista foi cortada para aparecer apenas um pacote, como exemplo).</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="11,35" data-code-annotation="2">Lista de pacotes utilizados (essa lista foi cortada para aparecer apenas um pacote, como exemplo).</span>
 </dd>
-<dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-7" data-code-lines="12,16" data-code-annotation="3">Informações sobre o pacote instalado: nome, versão, repositório de origem, dependências e hash.</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="12,16" data-code-annotation="3">Informações sobre o pacote instalado: nome, versão, repositório de origem, dependências e hash.</span>
 </dd>
-<dt data-target-cell="annotated-cell-7" data-target-annotation="4">4</dt>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-7" data-code-lines="17,32" data-code-annotation="4">Dependências do pacote instalado: quais pacotes são necessários para que o pacote <code>readr</code> funcione corretamente?</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="17,32" data-code-annotation="4">Dependências do pacote instalado: quais pacotes são necessários para que o pacote <code>readr</code> funcione corretamente?</span>
 </dd>
 </dl>
 </div>
@@ -526,7 +526,7 @@ Nota
 </section>
 <section id="exercício-1-1" class="level3" data-number="4.5.3">
 <h3 data-number="4.5.3" class="anchored" data-anchor-id="exercício-1-1"><span class="header-section-number">4.5.3</span> Exercício 1</h3>
-<p>Neste exercício, vamos praticar a utilização do <code>{renv}</code> em um projeto, utilizando o isolamento de ambiente.</p>
+<p>Neste exercício, vamos praticar a utilização do <code>{renv}</code> em um projeto, <strong>utilizando o isolamento de ambiente</strong>.</p>
 <ol type="1">
 <li><p>Crie um novo projeto no RStudio, para que possamos trabalhar neste exercício com o <code>{renv}</code>.</p></li>
 <li><p>Inicie o <code>{renv}</code> no projeto utilizando a função <code>renv::init()</code>.</p></li>
@@ -685,6 +685,117 @@ Do you want to proceed? [Y/n]:</code></pre>
 <section id="exercício-2-1" class="level3" data-number="4.5.4">
 <h3 data-number="4.5.4" class="anchored" data-anchor-id="exercício-2-1"><span class="header-section-number">4.5.4</span> Exercício 2</h3>
 <p>Neste exercício, o objetivo é praticar a restauração do ambiente de pacotes de um projeto a partir do arquivo <code>renv.lock</code>.</p>
+<ol type="1">
+<li><p>Crie um novo projeto no RStudio, para que possamos trabalhar neste exercício com o <code>{renv}</code> (não utilize o mesmo do exercício 1).</p></li>
+<li><p>Faça o download <a href="https://raw.githubusercontent.com/ipeadata-lab/curso_r_intermediario_202501/refs/heads/main/exercicios/renv-2/renv.lock">deste arquivo <code>renv.lock</code></a> que utilizaremos de exemplo, e salve na pasta do projeto. Você pode fazer o download manualmente, ou utilizar o código abaixo para baixar o arquivo diretamente no R:</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">url =</span> <span class="st">"https://raw.githubusercontent.com/ipeadata-lab/curso_r_intermediario_202501/refs/heads/main/exercicios/renv-2/renv.lock"</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">destfile =</span> <span class="st">"renv.lock"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mode =</span> <span class="st">"wb"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li><p>Abra o arquivo <code>renv.lock</code> para verificar as informações registradas.</p></li>
+<li><p>Utilize a função <code>renv::restore()</code> para restaurar o ambiente de pacotes do projeto a partir do arquivo <code>renv.lock</code>. Quando solicitado, escolha a opção para não isolar o ambiente de pacotes (<code>2: Do not activate the project and use the current library paths.</code>).</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemplo de output da função <code>renv::restore()</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>
+renv: Project Environments for R
+
+Welcome to renv! It looks like this is your first time using renv.
+This is a one-time message, briefly describing some of renv's functionality.
+
+renv will write to files within the active project folder, including:
+
+  - A folder 'renv' in the project directory, and
+  - A lockfile called 'renv.lock' in the project directory.
+
+In particular, projects using renv will normally use a private, per-project
+R library, in which new packages will be installed. This project library is
+isolated from other R libraries on your system.
+
+In addition, renv will update files within your project directory, including:
+
+  - .gitignore
+  - .Rbuildignore
+  - .Rprofile
+
+Finally, renv maintains a local cache of data on the filesystem, located at:
+
+  - "/cloud/home/r217847/.cache/R/renv"
+
+This path can be customized: please see the documentation in `?renv::paths`.
+
+Please read the introduction vignette with `vignette("renv")` for more information.
+You can browse the package documentation online at https://rstudio.github.io/renv/.
+Do you want to proceed? [y/N]: </code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>y</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>- "/cloud/home/r217847/.cache/R/renv" has been created.
+It looks like you've called renv::restore() in a project that hasn't been activated yet.
+How would you like to proceed? 
+
+1: Activate the project and use the project library.
+2: Do not activate the project and use the current library paths.
+3: Cancel and resolve the situation another way.
+</code></pre>
+<p><strong>Atenção neste ponto!</strong></p>
+<ul>
+<li><p>A <strong>opção 1</strong> (<code>Activate the project and use the project library</code>) é a opção que irá ativar o ambiente de pacotes do projeto, isolando as bibliotecas de pacotes do projeto das bibliotecas globais do R.</p></li>
+<li><p>A <strong>opção 2</strong> (<code>Do not activate the project and use the current library paths</code>) é a opção que não irá ativar o ambiente de pacotes do projeto, e os pacotes serão instalados nas bibliotecas globais do R.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>Selection: 2
+The following package(s) will be updated:
+
+# CRAN -----------------------------------------------------------------------
+- parzer   [* -&gt; 0.4.1]
+- Rcpp     [* -&gt; 1.0.13-1]
+- withr    [* -&gt; 3.0.2]
+
+Do you want to proceed? [Y/n]: y</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>y</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code># Downloading packages -------------------------------------------------------
+- Querying repositories for available source packages ... Done!
+- Downloading Rcpp from CRAN ...                OK [3.3 Mb]
+- Downloading parzer from CRAN ...              OK [433.6 Kb]
+- Downloading withr from CRAN ...               OK [100.8 Kb]
+Successfully downloaded 3 packages in 2.1 seconds.
+
+# Installing packages --------------------------------------------------------
+- Installing Rcpp ...                           OK [built from source and cached in 26s]
+- Installing withr ...                          OK [built from source and cached in 3.3s]
+- Installing parzer ...                         OK [built from source and cached in 26s]
+Session restored from your saved work on 2025-Jan-20 10:58:30 UTC (18 minutes ago)</code></pre>
+</div>
+</div>
+</div>
+<ol start="5" type="1">
+<li>Verifique no seu projeto se o pacote <code>parzer</code> está disponível para uso.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parzer)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 <section id="introdução-ao-targets" class="level2" data-number="4.6">
