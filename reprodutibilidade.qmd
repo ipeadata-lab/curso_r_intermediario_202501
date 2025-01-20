@@ -23,7 +23,7 @@ A reprodutibilidade é um conceito central na ciência, embora não tenha uma de
 
 Tradução livre:
 
-> "Reprodutibilidade é a capacidade de investigadores independentes chegarem às mesmas conclusões de um experimento ao seguir a documentação compartilhada pelos investigadores originais."
+> "Reprodutibilidade é a capacidade de pesquisadores independentes chegarem às mesmas conclusões de um experimento ao seguir a documentação compartilhada pelos pesquisadores originais."
 
 A definição prática de reprodutibilidade é frequentemente associada à capacidade de reproduzir os resultados de uma pesquisa a partir dos dados brutos e do código utilizado.
 
@@ -41,7 +41,7 @@ Para aumentar a chance de desenvolver um projeto de análise de dados que seja r
 
 -   não utilizar caminhos absolutos[^reprodutibilidade-1]
 
--   evitar o uso de caracteres especiais em caminhos, variáveis e nomes de colunas[^reprodutibilidade-2]
+-   evitar o uso de caracteres especiais em caminhos, variáveis e nomes de colunas[^reprodutibilidade-2]. Além disso, utilize nomes descritivos (ex: evite utilizar apenas `x` ou `df`).
 
 -   armazenar os arquivos de maneira consistente
 
@@ -533,6 +533,15 @@ Embora seja uma ferramenta poderosa, o `{targets}` pode ser excessivo para anál
 -   [Livro sobre `{targets}`](https://books.ropensci.org/targets/)
 
 -   Apresentação ["Reproducible computation at scale in R"](https://wlandau.github.io/targets-tutorial/) por Will Landau.
+
+### Outros pacotes citados em aula
+
+- [`{reprex}`](https://reprex.tidyverse.org/) - este pacote nos auxilia a criar exemplos reprodutíveis. Ele é útil para compartilhar dúvidas em fóruns, reportar bugs e criar tutoriais. 
+
+- [`{conflicted}`](https://conflicted.r-lib.org/) - este pacote nos ajuda a gerenciar conflitos de funções. Ele é útil quando dois pacotes possuem funções com o mesmo nome, e precisamos escolher qual função utilizar. 
+
+- [`{groundhog}`](https://groundhogr.com/) - este pacote nos ajuda a utilizar versões específicas de pacotes. 
+
 
 ## Materiais
 
