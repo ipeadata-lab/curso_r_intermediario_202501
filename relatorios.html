@@ -221,11 +221,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#instalação-do-quarto" id="toc-instalação-do-quarto" class="nav-link" data-scroll-target="#instalação-do-quarto"><span class="header-section-number">5.4.1</span> Instalação do Quarto</a></li>
   <li><a href="#criar-um-novo-documento-quarto-.qmd" id="toc-criar-um-novo-documento-quarto-.qmd" class="nav-link" data-scroll-target="#criar-um-novo-documento-quarto-.qmd"><span class="header-section-number">5.4.2</span> Criar um novo documento Quarto (<code>.qmd</code>)</a></li>
-  <li><a href="#estrutura-de-um-arquivo-quarto" id="toc-estrutura-de-um-arquivo-quarto" class="nav-link" data-scroll-target="#estrutura-de-um-arquivo-quarto"><span class="header-section-number">5.4.3</span> Estrutura de um arquivo Quarto</a></li>
-  <li><a href="#editor-source-e-visual" id="toc-editor-source-e-visual" class="nav-link" data-scroll-target="#editor-source-e-visual"><span class="header-section-number">5.4.4</span> Editor Source e Visual</a></li>
-  <li><a href="#adicionar-conteúdos" id="toc-adicionar-conteúdos" class="nav-link" data-scroll-target="#adicionar-conteúdos"><span class="header-section-number">5.4.5</span> Adicionar conteúdos</a></li>
-  <li><a href="#opções-de-campos-de-código-chunk-options" id="toc-opções-de-campos-de-código-chunk-options" class="nav-link" data-scroll-target="#opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.4.6</span> Opções de campos de código (<em>chunk options</em>)</a></li>
-  <li><a href="#tipos-de-output" id="toc-tipos-de-output" class="nav-link" data-scroll-target="#tipos-de-output"><span class="header-section-number">5.4.7</span> Tipos de output</a></li>
+  <li><a href="#renderizar-o-arquivo" id="toc-renderizar-o-arquivo" class="nav-link" data-scroll-target="#renderizar-o-arquivo"><span class="header-section-number">5.4.3</span> Renderizar o arquivo</a></li>
+  <li><a href="#estrutura-de-um-arquivo-quarto" id="toc-estrutura-de-um-arquivo-quarto" class="nav-link" data-scroll-target="#estrutura-de-um-arquivo-quarto"><span class="header-section-number">5.4.4</span> Estrutura de um arquivo Quarto</a></li>
+  <li><a href="#editor-source-e-visual" id="toc-editor-source-e-visual" class="nav-link" data-scroll-target="#editor-source-e-visual"><span class="header-section-number">5.4.5</span> Editor Source e Visual</a></li>
+  <li><a href="#adicionar-conteúdos" id="toc-adicionar-conteúdos" class="nav-link" data-scroll-target="#adicionar-conteúdos"><span class="header-section-number">5.4.6</span> Adicionar conteúdos</a></li>
+  <li><a href="#opções-de-campos-de-código-chunk-options" id="toc-opções-de-campos-de-código-chunk-options" class="nav-link" data-scroll-target="#opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.4.7</span> Opções de campos de código (<em>chunk options</em>)</a></li>
+  <li><a href="#tipos-de-formatos-para-exportar" id="toc-tipos-de-formatos-para-exportar" class="nav-link" data-scroll-target="#tipos-de-formatos-para-exportar"><span class="header-section-number">5.4.8</span> Tipos de formatos para exportar</a></li>
+  <li><a href="#projetos-em-quarto" id="toc-projetos-em-quarto" class="nav-link" data-scroll-target="#projetos-em-quarto"><span class="header-section-number">5.4.9</span> Projetos em Quarto</a></li>
+  <li><a href="#quarto-cli" id="toc-quarto-cli" class="nav-link" data-scroll-target="#quarto-cli"><span class="header-section-number">5.4.10</span> Quarto CLI</a></li>
+  <li><a href="#extensões" id="toc-extensões" class="nav-link" data-scroll-target="#extensões"><span class="header-section-number">5.4.11</span> Extensões</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -307,9 +311,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>Arte por Allison Horst.</figcaption>
 </figure>
 </div>
-<div class="callout-info">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>O Quarto foi lançado em 2022, e apresenta melhorias em relação ao R Markdown.</p>
 <p>Nesta aula, vamos focar no Quarto, mas caso queira utilizar o RMarkdown, os principais conceitos são os mesmos.</p>
+</div>
 </div>
 <section id="instalação-do-quarto" class="level3" data-number="5.4.1">
 <h3 data-number="5.4.1" class="anchored" data-anchor-id="instalação-do-quarto"><span class="header-section-number">5.4.1</span> Instalação do Quarto</h3>
@@ -349,10 +363,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>Arquivo Quarto criado</figcaption>
 </figure>
 </div>
+</section>
+<section id="renderizar-o-arquivo" class="level3" data-number="5.4.3">
+<h3 data-number="5.4.3" class="anchored" data-anchor-id="renderizar-o-arquivo"><span class="header-section-number">5.4.3</span> Renderizar o arquivo</h3>
+<p>Podemos clicar no botão <strong>Render</strong> para que o arquivo seja renderizado (ou seja, o código fonte será transformado em um arquivo final HTML/Word/PDF/etc). É necessário salvar o arquivo antes de renderizar.</p>
+<p>Na imagem a seguir, temos um exemplo de um arquivo em sua versão <code>.qmd</code> e a versão renderizada em HTML. Observe que o botão render foi destacado em vermelho, e que o arquivo renderizado foi aberto no painel Viewer do RStudio.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/exemplo-renderizar.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Exemplo: Arquivo .qmd e a versão renderizada em HTML</figcaption>
+</figure>
+</div>
+<p>Caso você clique em render e não aconteça nada, você pode:</p>
+<ol type="1">
+<li>Verificar se o RStudio está configurado para mostrar a versão preliminar (<em>Preview</em>) do documento no painel Viewer, clicando na engrenagem ao lado do botão <em>Render</em> e selecionando a opção <em>“Preview in Viewer Pane”</em>:</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/opcao-preview-in-viewer-pane.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption>Opção <em>Preview in Viewer Pane</em></figcaption>
+</figure>
+</div>
+<ol start="2" type="1">
+<li>Verificar se o arquivo foi salvo na pasta do projeto.</li>
+</ol>
 <p>Nos próximos tópicos, vamos explorar a estrutura de um arquivo Quarto e como adicionar conteúdos a ele.</p>
 </section>
-<section id="estrutura-de-um-arquivo-quarto" class="level3" data-number="5.4.3">
-<h3 data-number="5.4.3" class="anchored" data-anchor-id="estrutura-de-um-arquivo-quarto"><span class="header-section-number">5.4.3</span> Estrutura de um arquivo Quarto</h3>
+<section id="estrutura-de-um-arquivo-quarto" class="level3" data-number="5.4.4">
+<h3 data-number="5.4.4" class="anchored" data-anchor-id="estrutura-de-um-arquivo-quarto"><span class="header-section-number">5.4.4</span> Estrutura de um arquivo Quarto</h3>
 <p>Os arquivos Quarto tem extensão <code>.qmd</code>, e são divididos em três partes:</p>
 <ul>
 <li><p><strong>Metadados</strong>: Informações sobre o documento, como título, autor, formato, data, editor, entre outros. Essa parte é delimitada por <code>---</code> no início e no final. É escrita em formato <code>yaml</code>, com a estrutura <code>chave: valor</code>. Nos metadados, a indentação (espaços entre o início da linha e o início do texto) é importante para o correto funcionamento do documento.</p></li>
@@ -401,8 +439,8 @@ O que é Markdown?
 </dd>
 </dl>
 </section>
-<section id="editor-source-e-visual" class="level3" data-number="5.4.4">
-<h3 data-number="5.4.4" class="anchored" data-anchor-id="editor-source-e-visual"><span class="header-section-number">5.4.4</span> Editor Source e Visual</h3>
+<section id="editor-source-e-visual" class="level3" data-number="5.4.5">
+<h3 data-number="5.4.5" class="anchored" data-anchor-id="editor-source-e-visual"><span class="header-section-number">5.4.5</span> Editor Source e Visual</h3>
 <p>Ao utilizar documentos Quarto, podemos escolher entre dois modos de edição: <strong>Source</strong> (código fonte) e <strong>Visual</strong>.</p>
 <ul>
 <li><p><strong>Editor Source</strong>: Modo de edição de código, onde podemos ver e editar o código fonte do documento. É o modo padrão.</p></li>
@@ -452,42 +490,73 @@ O que é Markdown?
 <figcaption>Opções do editor Visual. Fonte: documentação do Quarto.</figcaption>
 </figure>
 </div>
+<p>Caso queira que o RStudio sempre abra o documento no editor de preferência, você pode adicionar essa informação nos metadados do documento, utilizando <code>editor:</code> seguido de <code>source</code> ou <code>visual</code>. Por exemplo:</p>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<pre><code>---
+editor: source
+---</code></pre>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<pre><code>---
+editor: visual
+---</code></pre>
+</div>
+</div>
+</div>
 </section>
-<section id="adicionar-conteúdos" class="level3" data-number="5.4.5">
-<h3 data-number="5.4.5" class="anchored" data-anchor-id="adicionar-conteúdos"><span class="header-section-number">5.4.5</span> Adicionar conteúdos</h3>
+<section id="adicionar-conteúdos" class="level3" data-number="5.4.6">
+<h3 data-number="5.4.6" class="anchored" data-anchor-id="adicionar-conteúdos"><span class="header-section-number">5.4.6</span> Adicionar conteúdos</h3>
 <p>Em breve</p>
 </section>
-<section id="opções-de-campos-de-código-chunk-options" class="level3" data-number="5.4.6">
-<h3 data-number="5.4.6" class="anchored" data-anchor-id="opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.4.6</span> Opções de campos de código (<em>chunk options</em>)</h3>
+<section id="opções-de-campos-de-código-chunk-options" class="level3" data-number="5.4.7">
+<h3 data-number="5.4.7" class="anchored" data-anchor-id="opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.4.7</span> Opções de campos de código (<em>chunk options</em>)</h3>
 <p>Em breve</p>
 </section>
-<section id="tipos-de-output" class="level3" data-number="5.4.7">
-<h3 data-number="5.4.7" class="anchored" data-anchor-id="tipos-de-output"><span class="header-section-number">5.4.7</span> Tipos de output</h3>
+<section id="tipos-de-formatos-para-exportar" class="level3" data-number="5.4.8">
+<h3 data-number="5.4.8" class="anchored" data-anchor-id="tipos-de-formatos-para-exportar"><span class="header-section-number">5.4.8</span> Tipos de formatos para exportar</h3>
+<p>O Quarto permite exportar os documentos em diversos formatos, como HTML, PDF, Word, entre outros. Para definir o formato de saída, podemos adicionar um campo <code>format</code> nos metadados do documento. Por exemplo:</p>
+<ul>
+<li>HTML:</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> html</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Word:</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> docx</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>PDF (é necessário ter alguma instalação de LaTeX no computador, veja as <a href="./instalacao.html#instalação-do-tinytex">página de instalações</a>):</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> pdf</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Apresentação em HTML:</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> revealjs</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Essas são as opções de formatos mais utilizadas. Para ver a lista completa, consulte a <a href="https://quarto.org/docs/output-formats/all-formats.html">documentação do Quarto</a>.</p>
+</section>
+<section id="projetos-em-quarto" class="level3" data-number="5.4.9">
+<h3 data-number="5.4.9" class="anchored" data-anchor-id="projetos-em-quarto"><span class="header-section-number">5.4.9</span> Projetos em Quarto</h3>
 <p>Em breve</p>
-<!-- - HTML: -->
-<!-- ``` r -->
-<!-- --- -->
-<!-- title: "Título" -->
-<!-- format: html -->
-<!-- editor: visual -->
-<!-- --- -->
-<!-- ``` -->
-<!-- - Word: -->
-<!-- ``` r -->
-<!-- --- -->
-<!-- title: "Título" -->
-<!-- format: docx -->
-<!-- editor: visual -->
-<!-- --- -->
-<!-- ``` -->
-<!-- - PDF: -->
-<!-- ``` r -->
-<!-- --- -->
-<!-- title: "Título" -->
-<!-- format: pdf -->
-<!-- editor: visual -->
-<!-- --- -->
-<!-- ``` -->
+</section>
+<section id="quarto-cli" class="level3" data-number="5.4.10">
+<h3 data-number="5.4.10" class="anchored" data-anchor-id="quarto-cli"><span class="header-section-number">5.4.10</span> Quarto CLI</h3>
+<p>Em breve</p>
+</section>
+<section id="extensões" class="level3" data-number="5.4.11">
+<h3 data-number="5.4.11" class="anchored" data-anchor-id="extensões"><span class="header-section-number">5.4.11</span> Extensões</h3>
+<p>Em breve</p>
 <!-- ### Quarto CLI -->
 <!-- -   O Quarto é um CLI: Command Line Interface - Interface de linha de comando. -->
 <!-- -   Podemos usar o Quarto no terminal. -->
