@@ -222,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#instalação-do-quarto" id="toc-instalação-do-quarto" class="nav-link" data-scroll-target="#instalação-do-quarto"><span class="header-section-number">5.4.1</span> Instalação do Quarto</a></li>
   <li><a href="#criar-um-novo-documento-quarto-.qmd" id="toc-criar-um-novo-documento-quarto-.qmd" class="nav-link" data-scroll-target="#criar-um-novo-documento-quarto-.qmd"><span class="header-section-number">5.4.2</span> Criar um novo documento Quarto (<code>.qmd</code>)</a></li>
   <li><a href="#estrutura-de-um-arquivo-quarto" id="toc-estrutura-de-um-arquivo-quarto" class="nav-link" data-scroll-target="#estrutura-de-um-arquivo-quarto"><span class="header-section-number">5.4.3</span> Estrutura de um arquivo Quarto</a></li>
-  <li><a href="#editor-visual-x-source" id="toc-editor-visual-x-source" class="nav-link" data-scroll-target="#editor-visual-x-source"><span class="header-section-number">5.4.4</span> Editor Visual x Source</a></li>
+  <li><a href="#editor-source-e-visual" id="toc-editor-source-e-visual" class="nav-link" data-scroll-target="#editor-source-e-visual"><span class="header-section-number">5.4.4</span> Editor Source e Visual</a></li>
   <li><a href="#adicionar-conteúdos" id="toc-adicionar-conteúdos" class="nav-link" data-scroll-target="#adicionar-conteúdos"><span class="header-section-number">5.4.5</span> Adicionar conteúdos</a></li>
   <li><a href="#opções-de-campos-de-código-chunk-options" id="toc-opções-de-campos-de-código-chunk-options" class="nav-link" data-scroll-target="#opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.4.6</span> Opções de campos de código (<em>chunk options</em>)</a></li>
   <li><a href="#tipos-de-output" id="toc-tipos-de-output" class="nav-link" data-scroll-target="#tipos-de-output"><span class="header-section-number">5.4.7</span> Tipos de output</a></li>
@@ -296,8 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/quarto-logo.png" class="img-rstudio" align="right" width="200px"></p>
 <p>Como citado anteriormente, o R Markdown é uma ferramenta muito boa para escrita técnica e científica reprodutível, mas, por ser um pacote em R, <strong>o seu uso acaba ficando limitado às pessoas que usam R</strong>.</p>
 <p>Em 2022, a <a href="https://posit.co/">Posit (anteriormente chamada de RStudio)</a> (mesma empresa responsável pelo RMarkdown) lançou o <a href="https://quarto.org/">Quarto</a>, uma nova ferramenta que permite a criação de documentos dinâmicos e reprodutíveis.</p>
-<p>O Quarto é um sistema de escrita técnica e científica, de código aberto. Ele é uma evolução do R Markdown, <strong>mas não depende do R para funcionar</strong>. Isso significa que você pode usar o Quarto para escrever documentos com códigos em Python, R, Julia, Observable, entre outras linguagens, e exportar para diversos formatos, como PDF, HTML, Word, entre outros.</p>
-<p>Por exemplo: Você pode usar o VSCode como IDE, escrever um documento com código em Python e gerar o documento final. Tudo isso sem precisar ter o R e/ou RStudio instalados.</p>
+<p>O Quarto é um sistema de escrita técnica e científica, de código aberto. Ele é uma evolução do R Markdown, <strong>mas não depende do R para funcionar</strong>. Isso significa que você pode usar o Quarto para escrever documentos com códigos em Python, R, Julia, Observable, entre outras linguagens, e exportar para diversos formatos, como PDF, HTML, Word, entre outros. Por exemplo: Você pode usar o VSCode como IDE, escrever um documento com código em Python e gerar o documento final. Tudo isso sem precisar ter o R e/ou RStudio instalados.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
@@ -307,6 +306,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <figcaption>Arte por Allison Horst.</figcaption>
 </figure>
+</div>
+<div class="callout-info">
+<p>O Quarto foi lançado em 2022, e apresenta melhorias em relação ao R Markdown.</p>
+<p>Nesta aula, vamos focar no Quarto, mas caso queira utilizar o RMarkdown, os principais conceitos são os mesmos.</p>
 </div>
 <section id="instalação-do-quarto" class="level3" data-number="5.4.1">
 <h3 data-number="5.4.1" class="anchored" data-anchor-id="instalação-do-quarto"><span class="header-section-number">5.4.1</span> Instalação do Quarto</h3>
@@ -356,6 +359,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>Campos de código (<em>code chunks</em>)</strong>: Trechos de código (em R ou outra linguagem) que podem ser executados e exibidos no documento.</p></li>
 <li><p><strong>Textos com marcação em Markdown</strong>: Textos explicativos, títulos, listas, tabelas, imagens, links, entre outros. A marcação é feita em Markdown, uma linguagem de marcação simples.</p></li>
 </ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+O que é Markdown?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Markdown é uma <strong>linguagem de marcação simples</strong> que permite escrever textos com formatação básica, como títulos, listas, links, imagens, entre outros. A ideia é que o texto seja legível mesmo sem a formatação, e que a marcação seja simples e intuitiva.</p>
+</div>
+</div>
 <p>O arquivo abaixo é um exemplo de um arquivo Quarto:</p>
 <div class="sourceCode" id="annotated-cell-2"><pre class="sourceCode markdown code-annotation-code code-with-copy code-annotated"><code class="sourceCode markdown"><button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Título do documento"</span></span>
@@ -385,9 +401,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 </dl>
 </section>
-<section id="editor-visual-x-source" class="level3" data-number="5.4.4">
-<h3 data-number="5.4.4" class="anchored" data-anchor-id="editor-visual-x-source"><span class="header-section-number">5.4.4</span> Editor Visual x Source</h3>
-<p>Em breve</p>
+<section id="editor-source-e-visual" class="level3" data-number="5.4.4">
+<h3 data-number="5.4.4" class="anchored" data-anchor-id="editor-source-e-visual"><span class="header-section-number">5.4.4</span> Editor Source e Visual</h3>
+<p>Ao utilizar documentos Quarto, podemos escolher entre dois modos de edição: <strong>Source</strong> (código fonte) e <strong>Visual</strong>.</p>
+<ul>
+<li><p><strong>Editor Source</strong>: Modo de edição de código, onde podemos ver e editar o código fonte do documento. É o modo padrão.</p></li>
+<li><p><strong>Editor Visual</strong>: Modo de edição visual, onde podemos ver uma prévia do documento como um todo, com o texto formatado e uma barra de ferramentas. É importante perceber que quando alteramos o documento no editor visual, o código fonte é atualizado automaticamente. Saiba mais sobre o <a href="https://quarto.org/docs/visual-editor/index.html">Editor Visual</a>.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/visual-barra-de-ferramentas.png" class="img-fluid figure-img"></p>
+<figcaption>Barra de ferramentas do editor visual</figcaption>
+</figure>
+</div>
+<p>A seguir, temos um exemplo de um documento Quarto no modo Source e Visual:</p>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/exemplo-editor-source.png" class="img-fluid figure-img"></p>
+<figcaption>Editor Source</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/exemplo-editor-visual.png" class="img-fluid figure-img"></p>
+<figcaption>Editor Visual</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Para alterar entre os modos de edição, escolha a opção desejada nos botões no canto superior direito do documento:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/mudar-editor.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Alterar entre modo Source e Visual</figcaption>
+</figure>
+</div>
+<p>O editor Visual tem várias opções para facilitar a formação do texto com Markdown e inserir outros tipos de conteúdo (como por exemplo: notas de rodapé, citações, imagens, links, tabelas simples, expressões matemáticas com LaTeX, entre outros):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://quarto.org/docs/visual-editor/index.html"><img src="images/funcionalidades-visual.png" class="img-fluid figure-img" style="width:80.0%" alt="Opções do editor Visual. Fonte: documentação do Quarto."></a></p>
+<figcaption>Opções do editor Visual. Fonte: documentação do Quarto.</figcaption>
+</figure>
+</div>
 </section>
 <section id="adicionar-conteúdos" class="level3" data-number="5.4.5">
 <h3 data-number="5.4.5" class="anchored" data-anchor-id="adicionar-conteúdos"><span class="header-section-number">5.4.5</span> Adicionar conteúdos</h3>
