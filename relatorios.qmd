@@ -7,20 +7,19 @@ code-annotations: hover
 
 No curso [Introdução à análise de dados no R](https://ipeadata-lab.github.io/curso_r_intro_202409/), utilizamos arquivos `.R` para escrever os códigos em R. Em scripts `.R`, todo o conteúdo é interpretado como código em R, exceto o que estava precedido de `#` (utilizado para comentários).
 
-
 Para superar essa limitação, existe um conceito chamado *literate programming*, ou programação literária, criado por [Donald Knuth](https://www-cs-faculty.stanford.edu/~knuth/lp.html). Esse conceito propõe a escrita de códigos intercalados com texto explicativo, de forma que o fluxo de raciocínio do autor fique claro para leitores e colaboradores. A ideia central é que o código seja parte da comunicação, tornando o relatório um documento legível tanto para computadores quanto para humanos.
 
 Com base nesse conceito, surgiram ferramentas que tornam possível criar relatórios reprodutíveis que combinam texto, código e resultados.
 
 ## R Markdown
-<img src="images/hex-rmarkdown.png" class="img-rstudio" align="right" width="120px"/>
 
+<img src="images/hex-rmarkdown.png" class="img-rstudio" align="right" width="120px"/>
 
 O [R Markdown](https://rmarkdown.rstudio.com/) é um pacote em R que possibilita criar arquivos com códigos em R, resultados dos códigos, e textos explicativos. Esses arquivos tem extensão `.Rmd`.
 
-Lançado em 2015[^rmarkdown-curiosidade], ele rapidamente se tornou uma das ferramentas mais populares para a criação de relatórios dinâmicos e reprodutíveis na comunidade R.
+Lançado em 2015[^relatorios-1], ele rapidamente se tornou uma das ferramentas mais populares para a criação de relatórios dinâmicos e reprodutíveis na comunidade R.
 
-[^rmarkdown-curiosidade]: Curiosidade: o criador do pacote R Markdown, Yihui Xie, fez uma [apresentação sobre a história do R Markdown](https://slides.yihui.org/2021-Brazilian-R-Day.html#1) no R-Day Brasil em 2021.
+[^relatorios-1]: Curiosidade: o criador do pacote R Markdown, Yihui Xie, fez uma [apresentação sobre a história do R Markdown](https://slides.yihui.org/2021-Brazilian-R-Day.html#1) no R-Day Brasil em 2021.
 
 ![Exemplo de um arquivo .Rmd](images/exemplo-rmarkdown.png)
 
@@ -28,9 +27,33 @@ O R Markdown possibilita exportar os arquivos em diversos formatos, como HTML, P
 
 ## Quarto
 
-Em breve!
+<img src="images/quarto-logo.png" class="img-rstudio" align="right" width="200px"/>
 
-### Tipos de output
+Como citado anteriormente, o R Markdown é uma ferramenta muito boa para escrita técnica e científica reprodutível, mas, por ser um pacote em R, **o seu uso acaba ficando limitado às pessoas que usam R**.
+
+Em 2022, a [Posit (anteriormente chamada de RStudio)](https://posit.co/) (mesma empresa responsável pelo RMarkdown) lançou o [Quarto](https://quarto.org/), uma nova ferramenta que permite a criação de documentos dinâmicos e reprodutíveis.
+
+O Quarto é um sistema de escrita técnica e científica, de código aberto. Ele é uma evolução do R Markdown, **mas não depende do R para funcionar**. Isso significa que você pode usar o Quarto para escrever documentos com códigos em Python, R, Julia, Observable, entre outras linguagens, e exportar para diversos formatos, como PDF, HTML, Word, entre outros.
+
+Por exemplo: Você pode usar o VSCode como IDE, escrever um documento com código em Python e gerar o documento final. Tudo isso sem precisar ter o R e/ou RStudio instalados.
+
+[![Arte por Allison Horst.](images/quarto_schematic.png){out.width="50%" fig-align="center"}](https://allisonhorst.com/)
+
+### Instalação do Quarto
+
+Como dito anteriormente, o Quarto **não** é um pacote em R como o RMarkdown, e sim um software que podemos instalar em nosso computador.
+
+**Quando instalamos as versões mais recentes do RStudio IDE, o Quarto já vem instalado**. Caso você não tenha o RStudio instalado, você pode instalar o Quarto de forma independente.
+
+Para instalar ou atualizar o Quarto, acesse a [página de instalação](https://quarto.org/docs/get-started/), faça o download do instalador referente ao seu sistema operacional (Windows, Mac OS, Linux) e faça a instalação.
+
+[![](images/quarto-get-started.png)](https://quarto.org/docs/get-started/)
+
+### Criar um novo documento Quarto (`.qmd`)
+
+Em breve
+
+### Estrutura de um arquivo Quarto
 
 Em breve
 
@@ -41,6 +64,47 @@ Em breve
 ### Opções de campos de código (*chunk options*)
 
 Em breve
+
+### Tipos de output
+
+Em breve
+
+<!-- - HTML: -->
+
+<!-- ``` r -->
+<!-- --- -->
+<!-- title: "Título" -->
+<!-- format: html -->
+<!-- editor: visual -->
+<!-- --- -->
+<!-- ``` -->
+
+<!-- - Word: -->
+
+<!-- ``` r -->
+<!-- --- -->
+<!-- title: "Título" -->
+<!-- format: docx -->
+<!-- editor: visual -->
+<!-- --- -->
+<!-- ``` -->
+
+<!-- - PDF: -->
+
+<!-- ``` r -->
+<!-- --- -->
+<!-- title: "Título" -->
+<!-- format: pdf -->
+<!-- editor: visual -->
+<!-- --- -->
+<!-- ``` -->
+
+<!-- ### Quarto CLI -->
+
+<!-- -   O Quarto é um CLI: Command Line Interface - Interface de linha de comando. -->
+
+<!-- -   Podemos usar o Quarto no terminal. -->
+
 
 <!-- Rmarkdown - mais histórico  -->
 
@@ -57,6 +121,3 @@ Em breve
 <!-- em -->
 
 <!-- Apresentações -->
-
-
-
