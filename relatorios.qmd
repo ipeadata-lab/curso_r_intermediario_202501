@@ -79,6 +79,11 @@ Para instalar ou atualizar o Quarto, acesse a [página de instalação](https://
 
 [![](images/quarto-get-started.png)](https://quarto.org/docs/get-started/)
 
+#### Exercício
+
+1) Verifique se o Quarto está instalado no seu computador. Para isso, abra o RStudio e verifique se o botão "New File" apresenta a opção "Quarto Document".
+
+
 ### Criar um novo documento Quarto (`.qmd`)
 
 Os arquivos Quarto tem extensão `.qmd`, e podem ser criados no RStudio clicando no botão "New File" e selecionando "Quarto Document".
@@ -101,6 +106,12 @@ O RStudio criará um arquivo `.qmd` com uma estrutura inicial:
 
 ![Arquivo Quarto criado](images/quarto-criar-arquivo-3.png){width="80%"}
 
+#### Exercício
+
+1) Crie um arquivo com Quarto básico, adicionando o título "Meu primeiro relatório", e no campo de autoria adicionando o seu nome. Mantenha selecionada a opção para exportar um arquivo HTML. Salve o arquivo como `"aula-1.qmd"` na pasta do projeto do curso, em `"relatorios/"`.
+
+
+
 ### Renderizar o arquivo
 
 Podemos clicar no botão **Render** para que o arquivo seja renderizado (ou seja, o código fonte será transformado em um arquivo final HTML/Word/PDF/etc). É necessário salvar o arquivo antes de renderizar.
@@ -122,13 +133,18 @@ Caso você clique em render e não aconteça nada, você pode:
 Nos próximos tópicos, vamos explorar a estrutura de um arquivo Quarto e como adicionar conteúdos a ele.
 
 
+#### Exercício
+
+1) Renderize o arquivo `"aula-1.qmd"` que você criou anteriormente. Verifique se o arquivo foi renderizado corretamente, se você consegue visualizar o conteúdo no painel Viewer do RStudio, e se o arquivo foi salvo na pasta do projeto.
+
+
 ### Estrutura de um arquivo Quarto
 
 Os arquivos Quarto tem extensão `.qmd`, e são divididos em três partes:
 
 -   **Metadados**: Informações sobre o documento, como título, autor, formato, data, editor, entre outros. Essa parte é delimitada por `---` no início e no final. É escrita em formato `yaml`, com a estrutura `chave: valor`. Nos metadados, a indentação (espaços entre o início da linha e o início do texto) é importante para o correto funcionamento do documento.
 
--   **Campos de código (*code chunks*)**: Trechos de código (em R ou outra linguagem) que podem ser executados e exibidos no documento.
+-   **Campos de código (*code chunks*)**: Trechos de código (em R ou outra linguagem) que podem ser executados e exibidos no documento. Os campos de código podem ser criados utilizando a marcação ` ```{r} ` no início e ` ``` ` no final, ou utilizando o botão de criar novo *chunk*: ![](images/botao-novo-chunk.png).
 
 -   **Textos com marcação em Markdown**: Textos explicativos, títulos, listas, tabelas, imagens, links, entre outros. A marcação é feita em Markdown, uma linguagem de marcação simples.
 
@@ -159,6 +175,32 @@ Este é um texto de exemplo. # <2>
 1.  Metadados
 2.  Texto com marcação em Markdown
 3.  Campo de código
+
+
+#### Exercício
+
+1) Vamos começar a adicionar um pouco de conteúdo no arquivo `"aula-1.qmd"` criado anteriormente. Adicione:
+
+  - Um campo de código, onde o pacote tidyverse seja carregado.
+  
+  - Um campo de código, com o código para criar um gráfico simples com o pacote `ggplot2`. Caso você não tenha um código em mente, você pode utilizar o código abaixo:
+  
+```{r}
+#| eval: false
+starwars |> 
+  ggplot() +
+  aes(x = height, y = mass) +
+  geom_point() +
+  theme_minimal()
+```
+
+  - Um parágrafo simples de texto, descrevendo o que foi feito. 
+
+  
+  
+
+2) Salve o arquivo e renderize-o.  Verifique se o conteúdo foi renderizado corretamente.
+
 
 ### Editor Source e Visual
 
@@ -204,6 +246,14 @@ editor: visual
 :::
 
 
+#### Exercício
+
+1. Explore as opções do editor Visual, adicionando um pouco de formatação ao texto do arquivo `"aula-1.qmd"`.
+
+2. Altere entre os modos Source e Visual. Veja a diferença entre o código fonte e a visualização do documento.
+
+3. Entre os modos Source e Visual, qual você prefere para escrever documentos? Por quê?
+
 
 
 ### Adicionar conteúdos
@@ -212,7 +262,34 @@ Em breve
 
 ### Opções de campos de código (*chunk options*)
 
-Em breve
+Os campos de código, ou *code chunks*, são trechos de código que podem ser executados em documentos Quarto. Eles oferecem diversas opções para personalizar a execução e a exibição do código e dos resultados. Essas opções permitem configurar como o código aparece no relatório, como ele é executado e como os resultados são apresentados.
+
+As opções devem ser apresentadas na linha após o início do campo de código, precedido de `#|`, no formato `nome_opcao: valor`. Por exemplo:
+````
+```{{r}}
+#| nome_opcao: valor
+
+# código em R aqui
+1 + 1
+```
+````
+
+
+Existem muitas opções de campos de código, e estão listadas na [documentação do Quarto](https://quarto.org/docs/computations/execution-options.html). Neste momento, vamos explorar algumas das principais opções!
+
+#### Exibir ou ocultar o código
+
+A opção `echo:` define se o código será exibido (ou não) no relatório. Por padrão, o código é exibido. Para ocultar o código, podemos adicionar `echo: false` no campo de código. 
+
+#### Executar ou não o código
+
+A opção `eval:` define se o código será executado (ou não) no relatório. Por padrão, o código é executado. Para não executar o código, podemos adicionar `eval: false` no campo de código.
+
+#### Mensagens (*messages*) e avisos (*warnings*)
+
+Ao executar um campo de código, mensagens e avisos podem ser gerados. Podemos controlar se essas mensagens e avisos serão exibidos no relatório com as opções `messages:` e `warnings:`. Por padrão, ambos são exibidos. Para ocultar as mensagens, podemos adicionar `messages: false` no campo de código. Para ocultar os avisos, podemos adicionar `warnings: false`.
+
+
 
 ### Tipos de formatos para exportar
 
