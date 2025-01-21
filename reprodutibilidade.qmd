@@ -534,7 +534,7 @@ Embora seja uma ferramenta poderosa, o `{targets}` pode ser excessivo para anál
 
 -   Apresentação ["Reproducible computation at scale in R"](https://wlandau.github.io/targets-tutorial/) por Will Landau.
 
-### Outros pacotes citados em aula
+## Outros pacotes citados em aula
 
 - [`{reprex}`](https://reprex.tidyverse.org/) - este pacote nos auxilia a criar exemplos reprodutíveis. Ele é útil para compartilhar dúvidas em fóruns, reportar bugs e criar tutoriais. 
 
