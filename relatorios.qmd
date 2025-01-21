@@ -59,11 +59,15 @@ Como citado anteriormente, o R Markdown é uma ferramenta muito boa para escrita
 
 Em 2022, a [Posit (anteriormente chamada de RStudio)](https://posit.co/) (mesma empresa responsável pelo RMarkdown) lançou o [Quarto](https://quarto.org/), uma nova ferramenta que permite a criação de documentos dinâmicos e reprodutíveis.
 
-O Quarto é um sistema de escrita técnica e científica, de código aberto. Ele é uma evolução do R Markdown, **mas não depende do R para funcionar**. Isso significa que você pode usar o Quarto para escrever documentos com códigos em Python, R, Julia, Observable, entre outras linguagens, e exportar para diversos formatos, como PDF, HTML, Word, entre outros.
-
-Por exemplo: Você pode usar o VSCode como IDE, escrever um documento com código em Python e gerar o documento final. Tudo isso sem precisar ter o R e/ou RStudio instalados.
+O Quarto é um sistema de escrita técnica e científica, de código aberto. Ele é uma evolução do R Markdown, **mas não depende do R para funcionar**. Isso significa que você pode usar o Quarto para escrever documentos com códigos em Python, R, Julia, Observable, entre outras linguagens, e exportar para diversos formatos, como PDF, HTML, Word, entre outros. Por exemplo: Você pode usar o VSCode como IDE, escrever um documento com código em Python e gerar o documento final. Tudo isso sem precisar ter o R e/ou RStudio instalados.
 
 [![Arte por Allison Horst.](images/quarto_schematic.png){out.width="50%" fig-align="center"}](https://allisonhorst.com/)
+
+::: callout-info
+O Quarto foi lançado em 2022, e apresenta melhorias em relação ao R Markdown.
+
+Nesta aula, vamos focar no Quarto, mas caso queira utilizar o RMarkdown, os principais conceitos são os mesmos.
+:::
 
 ### Instalação do Quarto
 
@@ -109,6 +113,12 @@ Os arquivos Quarto tem extensão `.qmd`, e são divididos em três partes:
 
 -   **Textos com marcação em Markdown**: Textos explicativos, títulos, listas, tabelas, imagens, links, entre outros. A marcação é feita em Markdown, uma linguagem de marcação simples.
 
+::: callout-note
+## O que é Markdown?
+
+Markdown é uma **linguagem de marcação simples** que permite escrever textos com formatação básica, como títulos, listas, links, imagens, entre outros. A ideia é que o texto seja legível mesmo sem a formatação, e que a marcação seja simples e intuitiva.
+:::
+
 O arquivo abaixo é um exemplo de um arquivo Quarto:
 
 ````         
@@ -131,9 +141,31 @@ Este é um texto de exemplo. # <2>
 2.  Texto com marcação em Markdown
 3.  Campo de código
 
-### Editor Visual x Source
+### Editor Source e Visual
 
-Em breve
+Ao utilizar documentos Quarto, podemos escolher entre dois modos de edição: **Source** (código fonte) e **Visual**.
+
+-   **Editor Source**: Modo de edição de código, onde podemos ver e editar o código fonte do documento. É o modo padrão.
+
+-   **Editor Visual**: Modo de edição visual, onde podemos ver uma prévia do documento como um todo, com o texto formatado e uma barra de ferramentas. É importante perceber que quando alteramos o documento no editor visual, o código fonte é atualizado automaticamente. Saiba mais sobre o [Editor Visual](https://quarto.org/docs/visual-editor/index.html).
+
+![Barra de ferramentas do editor visual](images/visual-barra-de-ferramentas.png)
+
+A seguir, temos um exemplo de um documento Quarto no modo Source e Visual:
+
+::: {layout-ncol="2"}
+![Editor Source](images/exemplo-editor-source.png)
+
+![Editor Visual](images/exemplo-editor-visual.png)
+:::
+
+Para alterar entre os modos de edição, escolha a opção desejada nos botões no canto superior direito do documento:
+
+![Alterar entre modo Source e Visual](images/mudar-editor.png){width="80%"}
+
+O editor Visual tem várias opções para facilitar a formação do texto com Markdown e inserir outros tipos de conteúdo (como por exemplo: notas de rodapé, citações, imagens, links, tabelas simples, expressões matemáticas com LaTeX, entre outros):
+
+[![Opções do editor Visual. Fonte: documentação do Quarto.](images/funcionalidades-visual.png){width="80%"}](https://quarto.org/docs/visual-editor/index.html)
 
 ### Adicionar conteúdos
 
