@@ -84,7 +84,7 @@
     "href": "instalacao.html#instalação-do-git",
     "title": "3  Instalações e outros preparativos",
     "section": "3.3 Instalação do Git",
-    "text": "3.3 Instalação do Git\nPara a aula de “Introdução controle de versão com Git e GitHub”, é necessário ter o Git instalado.\nO Git não é um pacote, e sim um software que deve ser instalado no seu computador.\nPara instalar o Git, acesse a página oficial do Git e siga as instruções de instalação para o seu sistema operacional.\n\n\n\n\n\nPara verificar se o Git foi instalado corretamente, execute o seguinte comando no painel “Terminal” do RStudio:\n\ngit --version\n\ngit version 2.47.1",
+    "text": "3.3 Instalação do Git\nPara a aula de “Introdução controle de versão com Git e GitHub”, é necessário ter o Git instalado.\nO Git não é um pacote, e sim um software que deve ser instalado no seu computador.\nPara instalar o Git, acesse a página oficial do Git e siga as instruções de instalação para o seu sistema operacional.\n\n\n\n\n\nPara verificar se o Git foi instalado corretamente, execute o seguinte comando no painel “Terminal” do RStudio:\n\ngit --version\n\ngit version 2.48.1",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalações e outros preparativos</span>"
     ]
@@ -224,7 +224,7 @@
     "href": "relatorios.html#quarto",
     "title": "5  Produção de relatórios com Quarto",
     "section": "5.3 Quarto",
-    "text": "5.3 Quarto\nEm breve!\n\n5.3.1 Tipos de output\nEm breve\n\n\n5.3.2 Adicionar conteúdos\nEm breve\n\n\n5.3.3 Opções de campos de código (chunk options)\nEm breve",
+    "text": "5.3 Quarto\n\nComo citado anteriormente, o R Markdown é uma ferramenta muito boa para escrita técnica e científica reprodutível, mas, por ser um pacote em R, o seu uso acaba ficando limitado às pessoas que usam R.\nEm 2022, a Posit (anteriormente chamada de RStudio) (mesma empresa responsável pelo RMarkdown) lançou o Quarto, uma nova ferramenta que permite a criação de documentos dinâmicos e reprodutíveis.\nO Quarto é um sistema de escrita técnica e científica, de código aberto. Ele é uma evolução do R Markdown, mas não depende do R para funcionar. Isso significa que você pode usar o Quarto para escrever documentos com códigos em Python, R, Julia, Observable, entre outras linguagens, e exportar para diversos formatos, como PDF, HTML, Word, entre outros.\nPor exemplo: Você pode usar o VSCode como IDE, escrever um documento com código em Python e gerar o documento final. Tudo isso sem precisar ter o R e/ou RStudio instalados.\n\n\n\n\n\n\n\nArte por Allison Horst.\n\n\n\n5.3.1 Instalação do Quarto\nComo dito anteriormente, o Quarto não é um pacote em R como o RMarkdown, e sim um software que podemos instalar em nosso computador.\nQuando instalamos as versões mais recentes do RStudio IDE, o Quarto já vem instalado. Caso você não tenha o RStudio instalado, você pode instalar o Quarto de forma independente.\nPara instalar ou atualizar o Quarto, acesse a página de instalação, faça o download do instalador referente ao seu sistema operacional (Windows, Mac OS, Linux) e faça a instalação.\n\n\n\n5.3.2 Criar um novo documento Quarto (.qmd)\nEm breve\n\n\n5.3.3 Estrutura de um arquivo Quarto\nEm breve\n\n\n5.3.4 Adicionar conteúdos\nEm breve\n\n\n5.3.5 Opções de campos de código (chunk options)\nEm breve\n\n\n5.3.6 Tipos de output\nEm breve",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Produção de relatórios com Quarto</span>"
     ]

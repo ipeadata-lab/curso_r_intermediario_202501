@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-78faf54a06e50be45dc6d83ab59297a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-72c93205fb41c15e2e398b4f9a505ee2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -184,9 +184,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#r-markdown" id="toc-r-markdown" class="nav-link" data-scroll-target="#r-markdown"><span class="header-section-number">5.2</span> R Markdown</a></li>
   <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto"><span class="header-section-number">5.3</span> Quarto</a>
   <ul>
-  <li><a href="#tipos-de-output" id="toc-tipos-de-output" class="nav-link" data-scroll-target="#tipos-de-output"><span class="header-section-number">5.3.1</span> Tipos de output</a></li>
-  <li><a href="#adicionar-conteúdos" id="toc-adicionar-conteúdos" class="nav-link" data-scroll-target="#adicionar-conteúdos"><span class="header-section-number">5.3.2</span> Adicionar conteúdos</a></li>
-  <li><a href="#opções-de-campos-de-código-chunk-options" id="toc-opções-de-campos-de-código-chunk-options" class="nav-link" data-scroll-target="#opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.3.3</span> Opções de campos de código (<em>chunk options</em>)</a></li>
+  <li><a href="#instalação-do-quarto" id="toc-instalação-do-quarto" class="nav-link" data-scroll-target="#instalação-do-quarto"><span class="header-section-number">5.3.1</span> Instalação do Quarto</a></li>
+  <li><a href="#criar-um-novo-documento-quarto-.qmd" id="toc-criar-um-novo-documento-quarto-.qmd" class="nav-link" data-scroll-target="#criar-um-novo-documento-quarto-.qmd"><span class="header-section-number">5.3.2</span> Criar um novo documento Quarto (<code>.qmd</code>)</a></li>
+  <li><a href="#estrutura-de-um-arquivo-quarto" id="toc-estrutura-de-um-arquivo-quarto" class="nav-link" data-scroll-target="#estrutura-de-um-arquivo-quarto"><span class="header-section-number">5.3.3</span> Estrutura de um arquivo Quarto</a></li>
+  <li><a href="#adicionar-conteúdos" id="toc-adicionar-conteúdos" class="nav-link" data-scroll-target="#adicionar-conteúdos"><span class="header-section-number">5.3.4</span> Adicionar conteúdos</a></li>
+  <li><a href="#opções-de-campos-de-código-chunk-options" id="toc-opções-de-campos-de-código-chunk-options" class="nav-link" data-scroll-target="#opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.3.5</span> Opções de campos de código (<em>chunk options</em>)</a></li>
+  <li><a href="#tipos-de-output" id="toc-tipos-de-output" class="nav-link" data-scroll-target="#tipos-de-output"><span class="header-section-number">5.3.6</span> Tipos de output</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -234,18 +237,74 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="quarto" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="quarto"><span class="header-section-number">5.3</span> Quarto</h2>
-<p>Em breve!</p>
-<section id="tipos-de-output" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="tipos-de-output"><span class="header-section-number">5.3.1</span> Tipos de output</h3>
+<p><img src="images/quarto-logo.png" class="img-rstudio" align="right" width="200px"></p>
+<p>Como citado anteriormente, o R Markdown é uma ferramenta muito boa para escrita técnica e científica reprodutível, mas, por ser um pacote em R, <strong>o seu uso acaba ficando limitado às pessoas que usam R</strong>.</p>
+<p>Em 2022, a <a href="https://posit.co/">Posit (anteriormente chamada de RStudio)</a> (mesma empresa responsável pelo RMarkdown) lançou o <a href="https://quarto.org/">Quarto</a>, uma nova ferramenta que permite a criação de documentos dinâmicos e reprodutíveis.</p>
+<p>O Quarto é um sistema de escrita técnica e científica, de código aberto. Ele é uma evolução do R Markdown, <strong>mas não depende do R para funcionar</strong>. Isso significa que você pode usar o Quarto para escrever documentos com códigos em Python, R, Julia, Observable, entre outras linguagens, e exportar para diversos formatos, como PDF, HTML, Word, entre outros.</p>
+<p>Por exemplo: Você pode usar o VSCode como IDE, escrever um documento com código em Python e gerar o documento final. Tudo isso sem precisar ter o R e/ou RStudio instalados.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://allisonhorst.com/"><img src="images/quarto_schematic.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-out.width="50%" alt="Arte por Allison Horst."></a></p>
+</figure>
+</div>
+<figcaption>Arte por Allison Horst.</figcaption>
+</figure>
+</div>
+<section id="instalação-do-quarto" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="instalação-do-quarto"><span class="header-section-number">5.3.1</span> Instalação do Quarto</h3>
+<p>Como dito anteriormente, o Quarto <strong>não</strong> é um pacote em R como o RMarkdown, e sim um software que podemos instalar em nosso computador.</p>
+<p><strong>Quando instalamos as versões mais recentes do RStudio IDE, o Quarto já vem instalado</strong>. Caso você não tenha o RStudio instalado, você pode instalar o Quarto de forma independente.</p>
+<p>Para instalar ou atualizar o Quarto, acesse a <a href="https://quarto.org/docs/get-started/">página de instalação</a>, faça o download do instalador referente ao seu sistema operacional (Windows, Mac OS, Linux) e faça a instalação.</p>
+<p><a href="https://quarto.org/docs/get-started/"><img src="images/quarto-get-started.png" class="img-fluid"></a></p>
+</section>
+<section id="criar-um-novo-documento-quarto-.qmd" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="criar-um-novo-documento-quarto-.qmd"><span class="header-section-number">5.3.2</span> Criar um novo documento Quarto (<code>.qmd</code>)</h3>
 <p>Em breve</p>
 </section>
-<section id="adicionar-conteúdos" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="adicionar-conteúdos"><span class="header-section-number">5.3.2</span> Adicionar conteúdos</h3>
+<section id="estrutura-de-um-arquivo-quarto" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="estrutura-de-um-arquivo-quarto"><span class="header-section-number">5.3.3</span> Estrutura de um arquivo Quarto</h3>
 <p>Em breve</p>
 </section>
-<section id="opções-de-campos-de-código-chunk-options" class="level3" data-number="5.3.3">
-<h3 data-number="5.3.3" class="anchored" data-anchor-id="opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.3.3</span> Opções de campos de código (<em>chunk options</em>)</h3>
+<section id="adicionar-conteúdos" class="level3" data-number="5.3.4">
+<h3 data-number="5.3.4" class="anchored" data-anchor-id="adicionar-conteúdos"><span class="header-section-number">5.3.4</span> Adicionar conteúdos</h3>
 <p>Em breve</p>
+</section>
+<section id="opções-de-campos-de-código-chunk-options" class="level3" data-number="5.3.5">
+<h3 data-number="5.3.5" class="anchored" data-anchor-id="opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.3.5</span> Opções de campos de código (<em>chunk options</em>)</h3>
+<p>Em breve</p>
+</section>
+<section id="tipos-de-output" class="level3" data-number="5.3.6">
+<h3 data-number="5.3.6" class="anchored" data-anchor-id="tipos-de-output"><span class="header-section-number">5.3.6</span> Tipos de output</h3>
+<p>Em breve</p>
+<!-- - HTML: -->
+<!-- ``` r -->
+<!-- --- -->
+<!-- title: "Título" -->
+<!-- format: html -->
+<!-- editor: visual -->
+<!-- --- -->
+<!-- ``` -->
+<!-- - Word: -->
+<!-- ``` r -->
+<!-- --- -->
+<!-- title: "Título" -->
+<!-- format: docx -->
+<!-- editor: visual -->
+<!-- --- -->
+<!-- ``` -->
+<!-- - PDF: -->
+<!-- ``` r -->
+<!-- --- -->
+<!-- title: "Título" -->
+<!-- format: pdf -->
+<!-- editor: visual -->
+<!-- --- -->
+<!-- ``` -->
+<!-- ### Quarto CLI -->
+<!-- -   O Quarto é um CLI: Command Line Interface - Interface de linha de comando. -->
+<!-- -   Podemos usar o Quarto no terminal. -->
 <!-- Rmarkdown - mais histórico  -->
 <!-- Markdown básico (visual ,mostrar o de-para) -->
 <!-- Introdução ao Quarto -->
