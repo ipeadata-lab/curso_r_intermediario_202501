@@ -63,7 +63,7 @@ O Quarto é um sistema de escrita técnica e científica, de código aberto. Ele
 
 [![Arte por Allison Horst.](images/quarto_schematic.png){out.width="50%" fig-align="center"}](https://allisonhorst.com/)
 
-::: callout-info
+::: {.callout-note}
 O Quarto foi lançado em 2022, e apresenta melhorias em relação ao R Markdown.
 
 Nesta aula, vamos focar no Quarto, mas caso queira utilizar o RMarkdown, os principais conceitos são os mesmos.
@@ -101,7 +101,26 @@ O RStudio criará um arquivo `.qmd` com uma estrutura inicial:
 
 ![Arquivo Quarto criado](images/quarto-criar-arquivo-3.png){width="80%"}
 
+### Renderizar o arquivo
+
+Podemos clicar no botão **Render** para que o arquivo seja renderizado (ou seja, o código fonte será transformado em um arquivo final HTML/Word/PDF/etc). É necessário salvar o arquivo antes de renderizar.
+
+Na imagem a seguir, temos um exemplo de um arquivo em sua versão `.qmd` e a versão renderizada em HTML. Observe que o botão render foi destacado em vermelho, e que o arquivo renderizado foi aberto no painel Viewer do RStudio.
+
+![Exemplo: Arquivo .qmd e a versão renderizada em HTML](images/exemplo-renderizar.png){width="80%"}
+
+Caso você clique em render e não aconteça nada, você pode:  
+
+1) Verificar se o RStudio está configurado para mostrar a versão preliminar (*Preview*) do documento no painel Viewer, clicando na engrenagem ao lado do botão *Render* e selecionando a opção *"Preview in Viewer Pane"*:
+
+![Opção *Preview in Viewer Pane*](images/opcao-preview-in-viewer-pane.png){width="40%"}
+
+2) Verificar se o arquivo foi salvo na pasta do projeto.
+
+
+
 Nos próximos tópicos, vamos explorar a estrutura de um arquivo Quarto e como adicionar conteúdos a ele.
+
 
 ### Estrutura de um arquivo Quarto
 
@@ -167,6 +186,26 @@ O editor Visual tem várias opções para facilitar a formação do texto com Ma
 
 [![Opções do editor Visual. Fonte: documentação do Quarto.](images/funcionalidades-visual.png){width="80%"}](https://quarto.org/docs/visual-editor/index.html)
 
+Caso queira que o RStudio sempre abra o documento no editor de preferência, você pode adicionar essa informação nos metadados do documento, utilizando `editor: ` seguido de `source` ou `visual`. Por exemplo:
+
+::: {layout-ncol="2"}
+````
+---
+editor: source
+---
+````
+
+
+````
+---
+editor: visual
+---
+````
+:::
+
+
+
+
 ### Adicionar conteúdos
 
 Em breve
@@ -175,57 +214,59 @@ Em breve
 
 Em breve
 
-### Tipos de output
+### Tipos de formatos para exportar
+
+O Quarto permite exportar os documentos em diversos formatos, como HTML, PDF, Word, entre outros. Para definir o formato de saída, podemos adicionar um campo `format` nos metadados do documento. Por exemplo:
+
+- HTML:
+
+``` r
+---
+format: html
+---
+```
+
+- Word:
+
+``` r
+---
+format: docx
+---
+```
+
+- PDF (é necessário ter alguma instalação de LaTeX no computador, veja as [página de instalações](instalacao.qmd#instala%C3%A7%C3%A3o-do-tinytex)):
+
+``` r
+---
+format: pdf
+---
+```
+
+- Apresentação em HTML:
+
+``` r
+---
+format: revealjs
+---
+```
+
+Essas são as opções de formatos mais utilizadas. Para ver a lista completa, consulte a [documentação do Quarto](https://quarto.org/docs/output-formats/all-formats.html).
+
+### Projetos em Quarto
 
 Em breve
 
-<!-- - HTML: -->
+### Quarto CLI
 
-<!-- ``` r -->
+Em breve
 
-<!-- --- -->
+### Extensões
 
-<!-- title: "Título" -->
+Em breve
 
-<!-- format: html -->
 
-<!-- editor: visual -->
 
-<!-- --- -->
 
-<!-- ``` -->
-
-<!-- - Word: -->
-
-<!-- ``` r -->
-
-<!-- --- -->
-
-<!-- title: "Título" -->
-
-<!-- format: docx -->
-
-<!-- editor: visual -->
-
-<!-- --- -->
-
-<!-- ``` -->
-
-<!-- - PDF: -->
-
-<!-- ``` r -->
-
-<!-- --- -->
-
-<!-- title: "Título" -->
-
-<!-- format: pdf -->
-
-<!-- editor: visual -->
-
-<!-- --- -->
-
-<!-- ``` -->
 
 <!-- ### Quarto CLI -->
 
