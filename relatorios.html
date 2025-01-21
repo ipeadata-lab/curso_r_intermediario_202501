@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -181,15 +215,17 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">5.1</span> Introdução</a></li>
-  <li><a href="#r-markdown" id="toc-r-markdown" class="nav-link" data-scroll-target="#r-markdown"><span class="header-section-number">5.2</span> R Markdown</a></li>
-  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto"><span class="header-section-number">5.3</span> Quarto</a>
+  <li><a href="#literate-programming" id="toc-literate-programming" class="nav-link" data-scroll-target="#literate-programming"><span class="header-section-number">5.2</span> <em>Literate programming</em></a></li>
+  <li><a href="#r-markdown" id="toc-r-markdown" class="nav-link" data-scroll-target="#r-markdown"><span class="header-section-number">5.3</span> R Markdown</a></li>
+  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto"><span class="header-section-number">5.4</span> Quarto</a>
   <ul>
-  <li><a href="#instalação-do-quarto" id="toc-instalação-do-quarto" class="nav-link" data-scroll-target="#instalação-do-quarto"><span class="header-section-number">5.3.1</span> Instalação do Quarto</a></li>
-  <li><a href="#criar-um-novo-documento-quarto-.qmd" id="toc-criar-um-novo-documento-quarto-.qmd" class="nav-link" data-scroll-target="#criar-um-novo-documento-quarto-.qmd"><span class="header-section-number">5.3.2</span> Criar um novo documento Quarto (<code>.qmd</code>)</a></li>
-  <li><a href="#estrutura-de-um-arquivo-quarto" id="toc-estrutura-de-um-arquivo-quarto" class="nav-link" data-scroll-target="#estrutura-de-um-arquivo-quarto"><span class="header-section-number">5.3.3</span> Estrutura de um arquivo Quarto</a></li>
-  <li><a href="#adicionar-conteúdos" id="toc-adicionar-conteúdos" class="nav-link" data-scroll-target="#adicionar-conteúdos"><span class="header-section-number">5.3.4</span> Adicionar conteúdos</a></li>
-  <li><a href="#opções-de-campos-de-código-chunk-options" id="toc-opções-de-campos-de-código-chunk-options" class="nav-link" data-scroll-target="#opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.3.5</span> Opções de campos de código (<em>chunk options</em>)</a></li>
-  <li><a href="#tipos-de-output" id="toc-tipos-de-output" class="nav-link" data-scroll-target="#tipos-de-output"><span class="header-section-number">5.3.6</span> Tipos de output</a></li>
+  <li><a href="#instalação-do-quarto" id="toc-instalação-do-quarto" class="nav-link" data-scroll-target="#instalação-do-quarto"><span class="header-section-number">5.4.1</span> Instalação do Quarto</a></li>
+  <li><a href="#criar-um-novo-documento-quarto-.qmd" id="toc-criar-um-novo-documento-quarto-.qmd" class="nav-link" data-scroll-target="#criar-um-novo-documento-quarto-.qmd"><span class="header-section-number">5.4.2</span> Criar um novo documento Quarto (<code>.qmd</code>)</a></li>
+  <li><a href="#estrutura-de-um-arquivo-quarto" id="toc-estrutura-de-um-arquivo-quarto" class="nav-link" data-scroll-target="#estrutura-de-um-arquivo-quarto"><span class="header-section-number">5.4.3</span> Estrutura de um arquivo Quarto</a></li>
+  <li><a href="#editor-visual-x-source" id="toc-editor-visual-x-source" class="nav-link" data-scroll-target="#editor-visual-x-source"><span class="header-section-number">5.4.4</span> Editor Visual x Source</a></li>
+  <li><a href="#adicionar-conteúdos" id="toc-adicionar-conteúdos" class="nav-link" data-scroll-target="#adicionar-conteúdos"><span class="header-section-number">5.4.5</span> Adicionar conteúdos</a></li>
+  <li><a href="#opções-de-campos-de-código-chunk-options" id="toc-opções-de-campos-de-código-chunk-options" class="nav-link" data-scroll-target="#opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.4.6</span> Opções de campos de código (<em>chunk options</em>)</a></li>
+  <li><a href="#tipos-de-output" id="toc-tipos-de-output" class="nav-link" data-scroll-target="#tipos-de-output"><span class="header-section-number">5.4.7</span> Tipos de output</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -219,14 +255,34 @@ ul.task-list li input[type="checkbox"] {
 <section id="introdução" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">5.1</span> Introdução</h2>
 <p>No curso <a href="https://ipeadata-lab.github.io/curso_r_intro_202409/">Introdução à análise de dados no R</a>, utilizamos arquivos <code>.R</code> para escrever os códigos em R. Em scripts <code>.R</code>, todo o conteúdo é interpretado como código em R, exceto o que estava precedido de <code>#</code> (utilizado para comentários).</p>
-<p>Para superar essa limitação, existe um conceito chamado <em>literate programming</em>, ou programação literária, criado por <a href="https://www-cs-faculty.stanford.edu/~knuth/lp.html">Donald Knuth</a>. Esse conceito propõe a escrita de códigos intercalados com texto explicativo, de forma que o fluxo de raciocínio do autor fique claro para leitores e colaboradores. A ideia central é que o código seja parte da comunicação, tornando o relatório um documento legível tanto para computadores quanto para humanos.</p>
-<p>Com base nesse conceito, surgiram ferramentas que tornam possível criar relatórios reprodutíveis que combinam texto, código e resultados.</p>
+<p>Por exemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aula sobre ggplot2 -----</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar o ggplot2</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># exemplo de código</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg) <span class="sc">+</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># ....</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Essa forma de trabalhar é ótima para criar scripts de análise de dados, mas não é a melhor forma de criar relatórios que combinam texto, código e resultados.</p>
 </section>
-<section id="r-markdown" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="r-markdown"><span class="header-section-number">5.2</span> R Markdown</h2>
+<section id="literate-programming" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="literate-programming"><span class="header-section-number">5.2</span> <em>Literate programming</em></h2>
+<p><img src="images/literate-programming-book.jpg" class="img-rstudio" align="right" width="200px"></p>
+<p>O conceito de <em>literate programming</em>, ou programação letrada<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, foi criado por <a href="https://www-cs-faculty.stanford.edu/~knuth/lp.html">Donald Knuth</a> na década de 80. Esse conceito propõe a escrita de códigos intercalados com texto explicativo, de forma que o fluxo de raciocínio fique claro para leitores e colaboradores. A ideia central é que o código seja parte da comunicação, tornando o relatório um documento legível tanto para computadores quanto para humanos.</p>
+<p>Com base nesse conceito, surgiram ferramentas que tornam possível criar relatórios reprodutíveis que combinam texto, código e resultados, como o R Markdown e, mais recentemente, o Quarto.</p>
+</section>
+<section id="r-markdown" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="r-markdown"><span class="header-section-number">5.3</span> R Markdown</h2>
 <p><img src="images/hex-rmarkdown.png" class="img-rstudio" align="right" width="120px"></p>
 <p>O <a href="https://rmarkdown.rstudio.com/">R Markdown</a> é um pacote em R que possibilita criar arquivos com códigos em R, resultados dos códigos, e textos explicativos. Esses arquivos tem extensão <code>.Rmd</code>.</p>
-<p>Lançado em 2015<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, ele rapidamente se tornou uma das ferramentas mais populares para a criação de relatórios dinâmicos e reprodutíveis na comunidade R.</p>
+<p>Lançado em 2015<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, ele rapidamente se tornou uma das ferramentas mais populares para a criação de relatórios dinâmicos e reprodutíveis na comunidade R.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/exemplo-rmarkdown.png" class="img-fluid figure-img"></p>
@@ -235,8 +291,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>O R Markdown possibilita exportar os arquivos em diversos formatos, como HTML, PDF, Word, apresentações, entre outros.</p>
 </section>
-<section id="quarto" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="quarto"><span class="header-section-number">5.3</span> Quarto</h2>
+<section id="quarto" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="quarto"><span class="header-section-number">5.4</span> Quarto</h2>
 <p><img src="images/quarto-logo.png" class="img-rstudio" align="right" width="200px"></p>
 <p>Como citado anteriormente, o R Markdown é uma ferramenta muito boa para escrita técnica e científica reprodutível, mas, por ser um pacote em R, <strong>o seu uso acaba ficando limitado às pessoas que usam R</strong>.</p>
 <p>Em 2022, a <a href="https://posit.co/">Posit (anteriormente chamada de RStudio)</a> (mesma empresa responsável pelo RMarkdown) lançou o <a href="https://quarto.org/">Quarto</a>, uma nova ferramenta que permite a criação de documentos dinâmicos e reprodutíveis.</p>
@@ -252,15 +308,15 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>Arte por Allison Horst.</figcaption>
 </figure>
 </div>
-<section id="instalação-do-quarto" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="instalação-do-quarto"><span class="header-section-number">5.3.1</span> Instalação do Quarto</h3>
+<section id="instalação-do-quarto" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="instalação-do-quarto"><span class="header-section-number">5.4.1</span> Instalação do Quarto</h3>
 <p>Como dito anteriormente, o Quarto <strong>não</strong> é um pacote em R como o RMarkdown, e sim um software que podemos instalar em nosso computador.</p>
 <p><strong>Quando instalamos as versões mais recentes do RStudio IDE, o Quarto já vem instalado</strong>. Caso você não tenha o RStudio instalado, você pode instalar o Quarto de forma independente.</p>
 <p>Para instalar ou atualizar o Quarto, acesse a <a href="https://quarto.org/docs/get-started/">página de instalação</a>, faça o download do instalador referente ao seu sistema operacional (Windows, Mac OS, Linux) e faça a instalação.</p>
 <p><a href="https://quarto.org/docs/get-started/"><img src="images/quarto-get-started.png" class="img-fluid"></a></p>
 </section>
-<section id="criar-um-novo-documento-quarto-.qmd" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="criar-um-novo-documento-quarto-.qmd"><span class="header-section-number">5.3.2</span> Criar um novo documento Quarto (<code>.qmd</code>)</h3>
+<section id="criar-um-novo-documento-quarto-.qmd" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="criar-um-novo-documento-quarto-.qmd"><span class="header-section-number">5.4.2</span> Criar um novo documento Quarto (<code>.qmd</code>)</h3>
 <p>Os arquivos Quarto tem extensão <code>.qmd</code>, e podem ser criados no RStudio clicando no botão “New File” e selecionando “Quarto Document”.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -292,20 +348,57 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>Nos próximos tópicos, vamos explorar a estrutura de um arquivo Quarto e como adicionar conteúdos a ele.</p>
 </section>
-<section id="estrutura-de-um-arquivo-quarto" class="level3" data-number="5.3.3">
-<h3 data-number="5.3.3" class="anchored" data-anchor-id="estrutura-de-um-arquivo-quarto"><span class="header-section-number">5.3.3</span> Estrutura de um arquivo Quarto</h3>
+<section id="estrutura-de-um-arquivo-quarto" class="level3" data-number="5.4.3">
+<h3 data-number="5.4.3" class="anchored" data-anchor-id="estrutura-de-um-arquivo-quarto"><span class="header-section-number">5.4.3</span> Estrutura de um arquivo Quarto</h3>
+<p>Os arquivos Quarto tem extensão <code>.qmd</code>, e são divididos em três partes:</p>
+<ul>
+<li><p><strong>Metadados</strong>: Informações sobre o documento, como título, autor, formato, data, editor, entre outros. Essa parte é delimitada por <code>---</code> no início e no final. É escrita em formato <code>yaml</code>, com a estrutura <code>chave: valor</code>. Nos metadados, a indentação (espaços entre o início da linha e o início do texto) é importante para o correto funcionamento do documento.</p></li>
+<li><p><strong>Campos de código (<em>code chunks</em>)</strong>: Trechos de código (em R ou outra linguagem) que podem ser executados e exibidos no documento.</p></li>
+<li><p><strong>Textos com marcação em Markdown</strong>: Textos explicativos, títulos, listas, tabelas, imagens, links, entre outros. A marcação é feita em Markdown, uma linguagem de marcação simples.</p></li>
+</ul>
+<p>O arquivo abaixo é um exemplo de um arquivo Quarto:</p>
+<div class="sourceCode" id="annotated-cell-2"><pre class="sourceCode markdown code-annotation-code code-with-copy code-annotated"><code class="sourceCode markdown"><button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Título do documento"</span></span>
+<span id="annotated-cell-2-3"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5" aria-hidden="true" tabindex="-1"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2">2</button><span id="annotated-cell-2-6" class="code-annotation-target"><a href="#annotated-cell-2-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Título 1</span></span>
+<span id="annotated-cell-2-7"><a href="#annotated-cell-2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-2-8"><a href="#annotated-cell-2-8" aria-hidden="true" tabindex="-1"></a>Este é um texto de exemplo.</span>
+<span id="annotated-cell-2-9"><a href="#annotated-cell-2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-2-10"><a href="#annotated-cell-2-10" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3">3</button><span id="annotated-cell-2-11" class="code-annotation-target"><a href="#annotated-cell-2-11" aria-hidden="true" tabindex="-1"></a><span class="in"># este é um campo de código em R</span></span>
+<span id="annotated-cell-2-12"><a href="#annotated-cell-2-12" aria-hidden="true" tabindex="-1"></a><span class="in">1 + 1</span></span>
+<span id="annotated-cell-2-13"><a href="#annotated-cell-2-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span> </span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="1,4" data-code-annotation="1">Metadados</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="6,8" data-code-annotation="2">Texto com marcação em Markdown</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="11,12" data-code-annotation="3">Campo de código</span>
+</dd>
+</dl>
+</section>
+<section id="editor-visual-x-source" class="level3" data-number="5.4.4">
+<h3 data-number="5.4.4" class="anchored" data-anchor-id="editor-visual-x-source"><span class="header-section-number">5.4.4</span> Editor Visual x Source</h3>
 <p>Em breve</p>
 </section>
-<section id="adicionar-conteúdos" class="level3" data-number="5.3.4">
-<h3 data-number="5.3.4" class="anchored" data-anchor-id="adicionar-conteúdos"><span class="header-section-number">5.3.4</span> Adicionar conteúdos</h3>
+<section id="adicionar-conteúdos" class="level3" data-number="5.4.5">
+<h3 data-number="5.4.5" class="anchored" data-anchor-id="adicionar-conteúdos"><span class="header-section-number">5.4.5</span> Adicionar conteúdos</h3>
 <p>Em breve</p>
 </section>
-<section id="opções-de-campos-de-código-chunk-options" class="level3" data-number="5.3.5">
-<h3 data-number="5.3.5" class="anchored" data-anchor-id="opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.3.5</span> Opções de campos de código (<em>chunk options</em>)</h3>
+<section id="opções-de-campos-de-código-chunk-options" class="level3" data-number="5.4.6">
+<h3 data-number="5.4.6" class="anchored" data-anchor-id="opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.4.6</span> Opções de campos de código (<em>chunk options</em>)</h3>
 <p>Em breve</p>
 </section>
-<section id="tipos-de-output" class="level3" data-number="5.3.6">
-<h3 data-number="5.3.6" class="anchored" data-anchor-id="tipos-de-output"><span class="header-section-number">5.3.6</span> Tipos de output</h3>
+<section id="tipos-de-output" class="level3" data-number="5.4.7">
+<h3 data-number="5.4.7" class="anchored" data-anchor-id="tipos-de-output"><span class="header-section-number">5.4.7</span> Tipos de output</h3>
 <p>Em breve</p>
 <!-- - HTML: -->
 <!-- ``` r -->
@@ -349,7 +442,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>Curiosidade: o criador do pacote R Markdown, Yihui Xie, fez uma <a href="https://slides.yihui.org/2021-Brazilian-R-Day.html#1">apresentação sobre a história do R Markdown</a> no R-Day Brasil em 2021.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p><a href="https://www.ime.usp.br/~pf/CWEB/lit-prog.html" class="uri">https://www.ime.usp.br/~pf/CWEB/lit-prog.html</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Curiosidade: o criador do pacote R Markdown, Yihui Xie, fez uma <a href="https://slides.yihui.org/2021-Brazilian-R-Day.html#1">apresentação sobre a história do R Markdown</a> no R-Day Brasil em 2021.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
