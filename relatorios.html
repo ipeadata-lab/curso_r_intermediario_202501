@@ -219,13 +219,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#r-markdown" id="toc-r-markdown" class="nav-link" data-scroll-target="#r-markdown"><span class="header-section-number">5.3</span> R Markdown</a></li>
   <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto"><span class="header-section-number">5.4</span> Quarto</a>
   <ul>
-  <li><a href="#instalação-do-quarto" id="toc-instalação-do-quarto" class="nav-link" data-scroll-target="#instalação-do-quarto"><span class="header-section-number">5.4.1</span> Instalação do Quarto</a></li>
-  <li><a href="#criar-um-novo-documento-quarto-.qmd" id="toc-criar-um-novo-documento-quarto-.qmd" class="nav-link" data-scroll-target="#criar-um-novo-documento-quarto-.qmd"><span class="header-section-number">5.4.2</span> Criar um novo documento Quarto (<code>.qmd</code>)</a></li>
-  <li><a href="#renderizar-o-arquivo" id="toc-renderizar-o-arquivo" class="nav-link" data-scroll-target="#renderizar-o-arquivo"><span class="header-section-number">5.4.3</span> Renderizar o arquivo</a></li>
-  <li><a href="#estrutura-de-um-arquivo-quarto" id="toc-estrutura-de-um-arquivo-quarto" class="nav-link" data-scroll-target="#estrutura-de-um-arquivo-quarto"><span class="header-section-number">5.4.4</span> Estrutura de um arquivo Quarto</a></li>
-  <li><a href="#editor-source-e-visual" id="toc-editor-source-e-visual" class="nav-link" data-scroll-target="#editor-source-e-visual"><span class="header-section-number">5.4.5</span> Editor Source e Visual</a></li>
+  <li><a href="#instalação-do-quarto" id="toc-instalação-do-quarto" class="nav-link" data-scroll-target="#instalação-do-quarto"><span class="header-section-number">5.4.1</span> Instalação do Quarto</a>
+  <ul>
+  <li><a href="#exercício" id="toc-exercício" class="nav-link" data-scroll-target="#exercício"><span class="header-section-number">5.4.1.1</span> Exercício</a></li>
+  </ul></li>
+  <li><a href="#criar-um-novo-documento-quarto-.qmd" id="toc-criar-um-novo-documento-quarto-.qmd" class="nav-link" data-scroll-target="#criar-um-novo-documento-quarto-.qmd"><span class="header-section-number">5.4.2</span> Criar um novo documento Quarto (<code>.qmd</code>)</a>
+  <ul>
+  <li><a href="#exercício-1" id="toc-exercício-1" class="nav-link" data-scroll-target="#exercício-1"><span class="header-section-number">5.4.2.1</span> Exercício</a></li>
+  </ul></li>
+  <li><a href="#renderizar-o-arquivo" id="toc-renderizar-o-arquivo" class="nav-link" data-scroll-target="#renderizar-o-arquivo"><span class="header-section-number">5.4.3</span> Renderizar o arquivo</a>
+  <ul>
+  <li><a href="#exercício-2" id="toc-exercício-2" class="nav-link" data-scroll-target="#exercício-2"><span class="header-section-number">5.4.3.1</span> Exercício</a></li>
+  </ul></li>
+  <li><a href="#estrutura-de-um-arquivo-quarto" id="toc-estrutura-de-um-arquivo-quarto" class="nav-link" data-scroll-target="#estrutura-de-um-arquivo-quarto"><span class="header-section-number">5.4.4</span> Estrutura de um arquivo Quarto</a>
+  <ul>
+  <li><a href="#exercício-3" id="toc-exercício-3" class="nav-link" data-scroll-target="#exercício-3"><span class="header-section-number">5.4.4.1</span> Exercício</a></li>
+  </ul></li>
+  <li><a href="#editor-source-e-visual" id="toc-editor-source-e-visual" class="nav-link" data-scroll-target="#editor-source-e-visual"><span class="header-section-number">5.4.5</span> Editor Source e Visual</a>
+  <ul>
+  <li><a href="#exercício-4" id="toc-exercício-4" class="nav-link" data-scroll-target="#exercício-4"><span class="header-section-number">5.4.5.1</span> Exercício</a></li>
+  </ul></li>
   <li><a href="#adicionar-conteúdos" id="toc-adicionar-conteúdos" class="nav-link" data-scroll-target="#adicionar-conteúdos"><span class="header-section-number">5.4.6</span> Adicionar conteúdos</a></li>
-  <li><a href="#opções-de-campos-de-código-chunk-options" id="toc-opções-de-campos-de-código-chunk-options" class="nav-link" data-scroll-target="#opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.4.7</span> Opções de campos de código (<em>chunk options</em>)</a></li>
+  <li><a href="#opções-de-campos-de-código-chunk-options" id="toc-opções-de-campos-de-código-chunk-options" class="nav-link" data-scroll-target="#opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.4.7</span> Opções de campos de código (<em>chunk options</em>)</a>
+  <ul>
+  <li><a href="#exibir-ou-ocultar-o-código" id="toc-exibir-ou-ocultar-o-código" class="nav-link" data-scroll-target="#exibir-ou-ocultar-o-código"><span class="header-section-number">5.4.7.1</span> Exibir ou ocultar o código</a></li>
+  <li><a href="#executar-ou-não-o-código" id="toc-executar-ou-não-o-código" class="nav-link" data-scroll-target="#executar-ou-não-o-código"><span class="header-section-number">5.4.7.2</span> Executar ou não o código</a></li>
+  <li><a href="#mensagens-messages-e-avisos-warnings" id="toc-mensagens-messages-e-avisos-warnings" class="nav-link" data-scroll-target="#mensagens-messages-e-avisos-warnings"><span class="header-section-number">5.4.7.3</span> Mensagens (<em>messages</em>) e avisos (<em>warnings</em>)</a></li>
+  </ul></li>
   <li><a href="#tipos-de-formatos-para-exportar" id="toc-tipos-de-formatos-para-exportar" class="nav-link" data-scroll-target="#tipos-de-formatos-para-exportar"><span class="header-section-number">5.4.8</span> Tipos de formatos para exportar</a></li>
   <li><a href="#projetos-em-quarto" id="toc-projetos-em-quarto" class="nav-link" data-scroll-target="#projetos-em-quarto"><span class="header-section-number">5.4.9</span> Projetos em Quarto</a></li>
   <li><a href="#quarto-cli" id="toc-quarto-cli" class="nav-link" data-scroll-target="#quarto-cli"><span class="header-section-number">5.4.10</span> Quarto CLI</a></li>
@@ -331,6 +351,12 @@ Nota
 <p><strong>Quando instalamos as versões mais recentes do RStudio IDE, o Quarto já vem instalado</strong>. Caso você não tenha o RStudio instalado, você pode instalar o Quarto de forma independente.</p>
 <p>Para instalar ou atualizar o Quarto, acesse a <a href="https://quarto.org/docs/get-started/">página de instalação</a>, faça o download do instalador referente ao seu sistema operacional (Windows, Mac OS, Linux) e faça a instalação.</p>
 <p><a href="https://quarto.org/docs/get-started/"><img src="images/quarto-get-started.png" class="img-fluid"></a></p>
+<section id="exercício" class="level4" data-number="5.4.1.1">
+<h4 data-number="5.4.1.1" class="anchored" data-anchor-id="exercício"><span class="header-section-number">5.4.1.1</span> Exercício</h4>
+<ol type="1">
+<li>Verifique se o Quarto está instalado no seu computador. Para isso, abra o RStudio e verifique se o botão “New File” apresenta a opção “Quarto Document”.</li>
+</ol>
+</section>
 </section>
 <section id="criar-um-novo-documento-quarto-.qmd" class="level3" data-number="5.4.2">
 <h3 data-number="5.4.2" class="anchored" data-anchor-id="criar-um-novo-documento-quarto-.qmd"><span class="header-section-number">5.4.2</span> Criar um novo documento Quarto (<code>.qmd</code>)</h3>
@@ -363,6 +389,12 @@ Nota
 <figcaption>Arquivo Quarto criado</figcaption>
 </figure>
 </div>
+<section id="exercício-1" class="level4" data-number="5.4.2.1">
+<h4 data-number="5.4.2.1" class="anchored" data-anchor-id="exercício-1"><span class="header-section-number">5.4.2.1</span> Exercício</h4>
+<ol type="1">
+<li>Crie um arquivo com Quarto básico, adicionando o título “Meu primeiro relatório”, e no campo de autoria adicionando o seu nome. Mantenha selecionada a opção para exportar um arquivo HTML. Salve o arquivo como <code>"aula-1.qmd"</code> na pasta do projeto do curso, em <code>"relatorios/"</code>.</li>
+</ol>
+</section>
 </section>
 <section id="renderizar-o-arquivo" class="level3" data-number="5.4.3">
 <h3 data-number="5.4.3" class="anchored" data-anchor-id="renderizar-o-arquivo"><span class="header-section-number">5.4.3</span> Renderizar o arquivo</h3>
@@ -388,13 +420,19 @@ Nota
 <li>Verificar se o arquivo foi salvo na pasta do projeto.</li>
 </ol>
 <p>Nos próximos tópicos, vamos explorar a estrutura de um arquivo Quarto e como adicionar conteúdos a ele.</p>
+<section id="exercício-2" class="level4" data-number="5.4.3.1">
+<h4 data-number="5.4.3.1" class="anchored" data-anchor-id="exercício-2"><span class="header-section-number">5.4.3.1</span> Exercício</h4>
+<ol type="1">
+<li>Renderize o arquivo <code>"aula-1.qmd"</code> que você criou anteriormente. Verifique se o arquivo foi renderizado corretamente, se você consegue visualizar o conteúdo no painel Viewer do RStudio, e se o arquivo foi salvo na pasta do projeto.</li>
+</ol>
+</section>
 </section>
 <section id="estrutura-de-um-arquivo-quarto" class="level3" data-number="5.4.4">
 <h3 data-number="5.4.4" class="anchored" data-anchor-id="estrutura-de-um-arquivo-quarto"><span class="header-section-number">5.4.4</span> Estrutura de um arquivo Quarto</h3>
 <p>Os arquivos Quarto tem extensão <code>.qmd</code>, e são divididos em três partes:</p>
 <ul>
 <li><p><strong>Metadados</strong>: Informações sobre o documento, como título, autor, formato, data, editor, entre outros. Essa parte é delimitada por <code>---</code> no início e no final. É escrita em formato <code>yaml</code>, com a estrutura <code>chave: valor</code>. Nos metadados, a indentação (espaços entre o início da linha e o início do texto) é importante para o correto funcionamento do documento.</p></li>
-<li><p><strong>Campos de código (<em>code chunks</em>)</strong>: Trechos de código (em R ou outra linguagem) que podem ser executados e exibidos no documento.</p></li>
+<li><p><strong>Campos de código (<em>code chunks</em>)</strong>: Trechos de código (em R ou outra linguagem) que podem ser executados e exibidos no documento. Os campos de código podem ser criados utilizando a marcação <code>```{r}</code> no início e <code>```</code> no final, ou utilizando o botão de criar novo <em>chunk</em>: <img src="images/botao-novo-chunk.png" class="img-fluid">.</p></li>
 <li><p><strong>Textos com marcação em Markdown</strong>: Textos explicativos, títulos, listas, tabelas, imagens, links, entre outros. A marcação é feita em Markdown, uma linguagem de marcação simples.</p></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -438,6 +476,29 @@ O que é Markdown?
 <span data-code-cell="annotated-cell-2" data-code-lines="11,12" data-code-annotation="3">Campo de código</span>
 </dd>
 </dl>
+<section id="exercício-3" class="level4" data-number="5.4.4.1">
+<h4 data-number="5.4.4.1" class="anchored" data-anchor-id="exercício-3"><span class="header-section-number">5.4.4.1</span> Exercício</h4>
+<ol type="1">
+<li>Vamos começar a adicionar um pouco de conteúdo no arquivo <code>"aula-1.qmd"</code> criado anteriormente. Adicione:</li>
+</ol>
+<ul>
+<li><p>Um campo de código, onde o pacote tidyverse seja carregado.</p></li>
+<li><p>Um campo de código, com o código para criar um gráfico simples com o pacote <code>ggplot2</code>. Caso você não tenha um código em mente, você pode utilizar o código abaixo:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Um parágrafo simples de texto, descrevendo o que foi feito.</li>
+</ul>
+<ol start="2" type="1">
+<li>Salve o arquivo e renderize-o. Verifique se o conteúdo foi renderizado corretamente.</li>
+</ol>
+</section>
 </section>
 <section id="editor-source-e-visual" class="level3" data-number="5.4.5">
 <h3 data-number="5.4.5" class="anchored" data-anchor-id="editor-source-e-visual"><span class="header-section-number">5.4.5</span> Editor Source e Visual</h3>
@@ -508,6 +569,14 @@ editor: visual
 </div>
 </div>
 </div>
+<section id="exercício-4" class="level4" data-number="5.4.5.1">
+<h4 data-number="5.4.5.1" class="anchored" data-anchor-id="exercício-4"><span class="header-section-number">5.4.5.1</span> Exercício</h4>
+<ol type="1">
+<li><p>Explore as opções do editor Visual, adicionando um pouco de formatação ao texto do arquivo <code>"aula-1.qmd"</code>.</p></li>
+<li><p>Altere entre os modos Source e Visual. Veja a diferença entre o código fonte e a visualização do documento.</p></li>
+<li><p>Entre os modos Source e Visual, qual você prefere para escrever documentos? Por quê?</p></li>
+</ol>
+</section>
 </section>
 <section id="adicionar-conteúdos" class="level3" data-number="5.4.6">
 <h3 data-number="5.4.6" class="anchored" data-anchor-id="adicionar-conteúdos"><span class="header-section-number">5.4.6</span> Adicionar conteúdos</h3>
@@ -515,7 +584,27 @@ editor: visual
 </section>
 <section id="opções-de-campos-de-código-chunk-options" class="level3" data-number="5.4.7">
 <h3 data-number="5.4.7" class="anchored" data-anchor-id="opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.4.7</span> Opções de campos de código (<em>chunk options</em>)</h3>
-<p>Em breve</p>
+<p>Os campos de código, ou <em>code chunks</em>, são trechos de código que podem ser executados em documentos Quarto. Eles oferecem diversas opções para personalizar a execução e a exibição do código e dos resultados. Essas opções permitem configurar como o código aparece no relatório, como ele é executado e como os resultados são apresentados.</p>
+<p>As opções devem ser apresentadas na linha após o início do campo de código, precedido de <code>#|</code>, no formato <code>nome_opcao: valor</code>. Por exemplo:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| nome_opcao: valor</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="in"># código em R aqui</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="in">1 + 1</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Existem muitas opções de campos de código, e estão listadas na <a href="https://quarto.org/docs/computations/execution-options.html">documentação do Quarto</a>. Neste momento, vamos explorar algumas das principais opções!</p>
+<section id="exibir-ou-ocultar-o-código" class="level4" data-number="5.4.7.1">
+<h4 data-number="5.4.7.1" class="anchored" data-anchor-id="exibir-ou-ocultar-o-código"><span class="header-section-number">5.4.7.1</span> Exibir ou ocultar o código</h4>
+<p>A opção <code>echo:</code> define se o código será exibido (ou não) no relatório. Por padrão, o código é exibido. Para ocultar o código, podemos adicionar <code>echo: false</code> no campo de código.</p>
+</section>
+<section id="executar-ou-não-o-código" class="level4" data-number="5.4.7.2">
+<h4 data-number="5.4.7.2" class="anchored" data-anchor-id="executar-ou-não-o-código"><span class="header-section-number">5.4.7.2</span> Executar ou não o código</h4>
+<p>A opção <code>eval:</code> define se o código será executado (ou não) no relatório. Por padrão, o código é executado. Para não executar o código, podemos adicionar <code>eval: false</code> no campo de código.</p>
+</section>
+<section id="mensagens-messages-e-avisos-warnings" class="level4" data-number="5.4.7.3">
+<h4 data-number="5.4.7.3" class="anchored" data-anchor-id="mensagens-messages-e-avisos-warnings"><span class="header-section-number">5.4.7.3</span> Mensagens (<em>messages</em>) e avisos (<em>warnings</em>)</h4>
+<p>Ao executar um campo de código, mensagens e avisos podem ser gerados. Podemos controlar se essas mensagens e avisos serão exibidos no relatório com as opções <code>messages:</code> e <code>warnings:</code>. Por padrão, ambos são exibidos. Para ocultar as mensagens, podemos adicionar <code>messages: false</code> no campo de código. Para ocultar os avisos, podemos adicionar <code>warnings: false</code>.</p>
+</section>
 </section>
 <section id="tipos-de-formatos-para-exportar" class="level3" data-number="5.4.8">
 <h3 data-number="5.4.8" class="anchored" data-anchor-id="tipos-de-formatos-para-exportar"><span class="header-section-number">5.4.8</span> Tipos de formatos para exportar</h3>
@@ -523,27 +612,27 @@ editor: visual
 <ul>
 <li>HTML:</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> html</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> html</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Word:</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> docx</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> docx</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>PDF (é necessário ter alguma instalação de LaTeX no computador, veja as <a href="./instalacao.html#instalação-do-tinytex">página de instalações</a>):</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> pdf</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> pdf</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Apresentação em HTML:</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> revealjs</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> revealjs</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Essas são as opções de formatos mais utilizadas. Para ver a lista completa, consulte a <a href="https://quarto.org/docs/output-formats/all-formats.html">documentação do Quarto</a>.</p>
 </section>
 <section id="projetos-em-quarto" class="level3" data-number="5.4.9">
