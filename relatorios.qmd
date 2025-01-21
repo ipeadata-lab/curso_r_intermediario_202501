@@ -51,7 +51,28 @@ Para instalar ou atualizar o Quarto, acesse a [página de instalação](https://
 
 ### Criar um novo documento Quarto (`.qmd`)
 
-Em breve
+Os arquivos Quarto tem extensão `.qmd`, e podem ser criados no RStudio clicando no botão "New File" e selecionando "Quarto Document".
+
+![Criar um novo arquivo Quarto](images/quarto-criar-arquivo-1.png){width="30%"}
+
+Em seguida, o RStudio apresentará uma janela chamada "*New Quarto Document*" com algumas opções para criar um novo arquivo. Essas opções são passíveis de alteração posteriormente, então não precisamos nos preocupar muito com elas agora. Em resumo:
+
+  - **Title**: Título do documento
+  - **Author**: Nome de quem está criando o documento
+  - **Format**: Formato do documento (HTML, PDF, Word). Vamos manter em HTML.
+  - **Engine**: Knitr ou Jupyter. Vamos manter em Knitr.
+  - **Editor**: Caixa para selecionar o editor visual. Por enquanto, vamos deixar desmarcado.
+  
+Para criar o documento, clique em "Create":
+  
+
+![New Quarto Document](images/quarto-criar-arquivo-2.png){width="80%"}
+
+O RStudio criará um arquivo `.qmd` com uma estrutura inicial:
+
+![Arquivo Quarto criado](images/quarto-criar-arquivo-3.png){width="80%"}
+
+Nos próximos tópicos, vamos explorar a estrutura de um arquivo Quarto e como adicionar conteúdos a ele.
 
 ### Estrutura de um arquivo Quarto
 
@@ -72,31 +93,49 @@ Em breve
 <!-- - HTML: -->
 
 <!-- ``` r -->
+
 <!-- --- -->
+
 <!-- title: "Título" -->
+
 <!-- format: html -->
+
 <!-- editor: visual -->
+
 <!-- --- -->
+
 <!-- ``` -->
 
 <!-- - Word: -->
 
 <!-- ``` r -->
+
 <!-- --- -->
+
 <!-- title: "Título" -->
+
 <!-- format: docx -->
+
 <!-- editor: visual -->
+
 <!-- --- -->
+
 <!-- ``` -->
 
 <!-- - PDF: -->
 
 <!-- ``` r -->
+
 <!-- --- -->
+
 <!-- title: "Título" -->
+
 <!-- format: pdf -->
+
 <!-- editor: visual -->
+
 <!-- --- -->
+
 <!-- ``` -->
 
 <!-- ### Quarto CLI -->
@@ -104,7 +143,6 @@ Em breve
 <!-- -   O Quarto é um CLI: Command Line Interface - Interface de linha de comando. -->
 
 <!-- -   Podemos usar o Quarto no terminal. -->
-
 
 <!-- Rmarkdown - mais histórico  -->
 
