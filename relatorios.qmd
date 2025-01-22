@@ -111,7 +111,7 @@ O RStudio criará um arquivo `.qmd` com uma estrutura inicial:
 
 #### Exercício
 
-1) Crie um arquivo com Quarto básico, adicionando o título "Meu primeiro relatório", e no campo de autoria adicionando o seu nome. Mantenha selecionada a opção para exportar um arquivo HTML. Salve o arquivo como `"aula-1.qmd"` na pasta do projeto do curso, em `"relatorios/"`.
+1) Crie um arquivo com Quarto básico, adicionando o título "Meu primeiro relatório", e no campo de autoria adicionando o seu nome. Mantenha selecionada a opção para exportar um arquivo HTML. Salve o arquivo como `"aula-2.qmd"` na pasta do projeto do curso, em `"relatorios/"`.
 
 
 
@@ -138,7 +138,7 @@ Nos próximos tópicos, vamos explorar a estrutura de um arquivo Quarto e como a
 
 #### Exercício
 
-1) Renderize o arquivo `"aula-1.qmd"` que você criou anteriormente. Verifique se o arquivo foi renderizado corretamente, se você consegue visualizar o conteúdo no painel Viewer do RStudio, e se o arquivo foi salvo na pasta do projeto.
+1) Renderize o arquivo `"aula-2.qmd"` que você criou anteriormente. Verifique se o arquivo foi renderizado corretamente, se você consegue visualizar o conteúdo no painel Viewer do RStudio, e se o arquivo foi salvo na pasta do projeto.
 
 
 ### Estrutura de um arquivo Quarto
@@ -182,7 +182,7 @@ Este é um texto de exemplo. # <2>
 
 #### Exercício
 
-1) Vamos começar a adicionar um pouco de conteúdo no arquivo `"aula-1.qmd"` criado anteriormente. Adicione:
+1) Vamos começar a adicionar um pouco de conteúdo no arquivo `"aula-2.qmd"` criado anteriormente. Adicione:
 
   - Um campo de código, onde o pacote tidyverse seja carregado.
   
@@ -190,6 +190,7 @@ Este é um texto de exemplo. # <2>
   
 ```{r}
 #| eval: false
+library(palmerpenguins)
 penguins |>
   ggplot() +
   aes(x = flipper_length_mm, y = body_mass_g) +
@@ -252,23 +253,24 @@ editor: visual
 
 #### Exercício
 
-1. Explore as opções do editor Visual, adicionando um pouco de formatação ao texto do arquivo `"aula-1.qmd"`.
+1. Explore as opções do editor Visual, adicionando um pouco de formatação ao texto do arquivo `"aula-2.qmd"`.
 
 2. Altere entre os modos Source e Visual. Veja a diferença entre o código fonte e a visualização do documento.
 
 3. Entre os modos Source e Visual, qual você prefere para escrever documentos? Por quê?
 
+### Adicionando conteúdos com código
 
-
-### Adicionar conteúdos
-
+::: {.callout-note}
 Existem vários tipos de conteúdo que podem ser adicionados a um documento Quarto, como texto, código, gráficos, tabelas, imagens, links, entre outros. 
 
 O melhor lugar para aprender sobre esses conteúdos é a [documentação do Quarto](https://quarto.org/docs/), que é muito completa e bem organizada.
 
-Neste momento, vamos explorar alguns tipos de conteúdos que podem ser adicionados a um documento Quarto.
+:::
 
-#### Adicionando conteúdos com código
+
+Vamos explorar alguns tipos de conteúdos que podem ser adicionados a um documento Quarto **que sejam resultados de códigos em R**.
+
 
 Como citado anteriormente, podemos adicionar código em R em campos de código, ou *code chunks*. Dentro de um campo de código, podemos adicionar comentários, códigos em R, e os resultados dos códigos serão exibidos logo em seguida no documento.
 
@@ -288,7 +290,7 @@ A partir de agora, vamos omitir a marcação de iniciar e finalizar os campos de
 ```
 
 
-##### Adicionando gráficos
+#### Adicionando gráficos
 
 Para adicionar um gráfico, podemos criar um campo de código e adicionar o código que gera o gráfico (igual ao utilizando em scripts `.R`).
 
@@ -298,48 +300,57 @@ Por exemplo:
 
 ```{r}
 #| warning: false
-# Carregar o ggplot2
-library(ggplot2)
-library(dplyr)
+# Carregar os pacotes
+library(tidyverse)
+library(palmerpenguins)
 
 # exemplo de código
-starwars |> 
+penguins |>
   ggplot() +
-  aes(x = height, y = mass) +
-  geom_point() +
+  aes(x = flipper_length_mm, y = body_mass_g) +
+  geom_point(aes(color = species, shape = species)) +
+  scale_color_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  labs(
+    x = "Comprimento da nadadeira (mm)",
+    y = "Massa corporal (g)",
+    color = "Espécie",
+    shape = "Espécie",
+    title = "Relação entre comprimento da nadadeira e massa corporal",
+    subtitle = "Pinguins das espécies Adelie, Chinstrap e Gentoo",
+    caption = "Fonte: Pacote palmerpenguins."
+  ) +
   theme_minimal()
 ```
 
 
 
-##### Adicionando tabelas
+#### Adicionando tabelas
 
 Para adicionar tabelas (que sejam geradas com código), não basta apenas adicionar o código que gera a tabela. Veja o que acontece se tentarmos adicionar uma tabela com o código abaixo:
 
 ```{r}
-personagens_maior_massa <- starwars |> 
-  slice_max(mass, n = 5) |> 
-  select(name, mass, species)
+pinguins_frequencia <- penguins |> 
+  count(species, island, sort = TRUE)
 
-personagens_maior_massa
+pinguins_frequencia
 ```
 
 Observe que o resultado que apareceu no relatório é igual ao que apareceria no console do R. 
 
 Para que a tabela seja exibida de forma mais amigável, podemos utilizar alguma função de tabela para gerar tabelas. Existem diversas funções (de diferentes pacotes em R) que possibilitam a criação de tabelas. A função `knitr::kable()` é muito utilizada, e permite criar tabelas simples a partir de um data frame.
 
-Por exemplo, podemos utilizar o `knitr::kable()` para exibir a tabela de personagens com maior massa:
+Por exemplo, podemos utilizar o `knitr::kable()` para exibir a tabela criada:
 
 ```{r}
-personagens_maior_massa |> 
+pinguins_frequencia |> 
   knitr::kable()
 ```
 
 Podemos explorar os argumentos da função para personalizar a tabela, como adicionar nomes de colunas, entre outros. Por exemplo:
 
 ```{r}
-personagens_maior_massa |> 
-  knitr::kable(col.names = c("Nome", "Massa", "Espécie"))
+pinguins_frequencia |> 
+  knitr::kable(col.names = c("Espécie", "Ilha", "Quantidade"))
 ```
 ::: {.callout-tip}
 Além da função `knitr::kable()`, existem outras funções que podem ser utilizadas para criar tabelas. Abaixo listamos alguns pacotes que possuem funções para criar tabelas, e podem ser explorados posteriormente:
@@ -354,9 +365,52 @@ Além da função `knitr::kable()`, existem outras funções que podem ser utili
 
 :::
 
-##### Adicionar código em linha (*inline code*)
+#### Adicionar código em linha (*inline code*)
 
-Em breve!
+
+Até agora, exploramos como adicionar conteúdos com código dentro de um campo de código. Mas e se quisermos adicionar um resultado de um código em um texto?
+
+Não é interessante adicionar manualmente conteúdos que podem ser gerados com código, pois isso pode tornar o documento menos reprodutível. Principalmente se os dados podem ser atualizados com o tempo!
+
+Para adicionar um resultado de um código em um texto, podemos utilizar o que chamamos de código em linha, ou *inline code*. Para isso, utilizamos a seguinte sintaxe:
+
+![](images/sintaxe-inline-code.png)
+
+Por exemplo, o texto abaixo apresenta conteúdos feitos com campos de código:
+
+> A base de dados `penguins` apresenta pinguins de três espécies: `r unique(penguins$species)`. A base possui `r nrow(penguins)` observações e `r ncol(penguins)` (sendo que cada observação corresponde a um pinguim) variáveis: `r names(penguins)`. A coleta de dados foi feita em três ilhas: `r unique(penguins$island)`, entre os anos de `r min(penguins$year)` e `r max(penguins$year)`.
+
+
+
+
+
+Você consegue identificar onde foram utilizados os códigos em linha?
+
+::: {.callout-tip collapse="true"}
+## Clique para ver a resposta!
+
+Os conteúdos em destaque foram feitos com códigos em linha:
+
+> A base de dados `penguins` apresenta pinguins de três espécies: **`r unique(penguins$species)`**. A base possui **`r nrow(penguins)`** observações e **`r ncol(penguins)`** (sendo que cada observação corresponde a um pinguim) variáveis: **`r names(penguins)`**. A coleta de dados foi feita em três ilhas: **`r unique(penguins$island)`**, entre os anos de **`r min(penguins$year)`** e **`r max(penguins$year)`**.
+:::
+
+::: {.callout-tip collapse="true"}
+## Clique para ver o código!
+
+
+![](images/inline-code-exemplo.png)
+
+:::
+
+Dicas para adicionar conteúdos com código em linha:
+
+- Se você vai escrever algo no texto que pode ser gerado com código, experimente utilizar o código em linha.
+
+- A base de dados que você está utilizando pode ser atualizada futuramente? Se sim, busque adicionar conteúdos com códigos em linha.
+
+- Caso algum conteúdo que você quer adicionar com código de linha dependa de um código "grande" (mais de uma linha), é interessante criar um campo de código, salvar o resultado em um objeto, e utilizar o código em linha para chamar o objeto.
+
+
 
 
 ### Opções de campos de código (*chunk options*)
