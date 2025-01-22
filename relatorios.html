@@ -239,7 +239,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#exercício-4" id="toc-exercício-4" class="nav-link" data-scroll-target="#exercício-4"><span class="header-section-number">5.4.5.1</span> Exercício</a></li>
   </ul></li>
-  <li><a href="#adicionar-conteúdos" id="toc-adicionar-conteúdos" class="nav-link" data-scroll-target="#adicionar-conteúdos"><span class="header-section-number">5.4.6</span> Adicionar conteúdos</a></li>
+  <li><a href="#adicionar-conteúdos" id="toc-adicionar-conteúdos" class="nav-link" data-scroll-target="#adicionar-conteúdos"><span class="header-section-number">5.4.6</span> Adicionar conteúdos</a>
+  <ul>
+  <li><a href="#adicionando-conteúdos-com-código" id="toc-adicionando-conteúdos-com-código" class="nav-link" data-scroll-target="#adicionando-conteúdos-com-código"><span class="header-section-number">5.4.6.1</span> Adicionando conteúdos com código</a>
+  <ul class="collapse">
+  <li><a href="#adicionando-gráficos" id="toc-adicionando-gráficos" class="nav-link" data-scroll-target="#adicionando-gráficos"><span class="header-section-number">5.4.6.1.1</span> Adicionando gráficos</a></li>
+  <li><a href="#adicionando-tabelas" id="toc-adicionando-tabelas" class="nav-link" data-scroll-target="#adicionando-tabelas"><span class="header-section-number">5.4.6.1.2</span> Adicionando tabelas</a></li>
+  <li><a href="#adicionar-código-em-linha-inline-code" id="toc-adicionar-código-em-linha-inline-code" class="nav-link" data-scroll-target="#adicionar-código-em-linha-inline-code"><span class="header-section-number">5.4.6.1.3</span> Adicionar código em linha (<em>inline code</em>)</a></li>
+  </ul></li>
+  </ul></li>
   <li><a href="#opções-de-campos-de-código-chunk-options" id="toc-opções-de-campos-de-código-chunk-options" class="nav-link" data-scroll-target="#opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.4.7</span> Opções de campos de código (<em>chunk options</em>)</a>
   <ul>
   <li><a href="#exibir-ou-ocultar-o-código" id="toc-exibir-ou-ocultar-o-código" class="nav-link" data-scroll-target="#exibir-ou-ocultar-o-código"><span class="header-section-number">5.4.7.1</span> Exibir ou ocultar o código</a></li>
@@ -283,16 +291,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aula sobre ggplot2 -----</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar o ggplot2</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar pacotes</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># exemplo de código</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg) <span class="sc">+</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># ....</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Código que gera o gráfico</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g) <span class="sc">+</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"darkorchid"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ....</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Essa forma de trabalhar é ótima para criar scripts de análise de dados, mas não é a melhor forma de criar relatórios que combinam texto, código e resultados.</p>
 </section>
@@ -486,11 +497,12 @@ O que é Markdown?
 <li><p>Um campo de código, com o código para criar um gráfico simples com o pacote <code>ggplot2</code>. Caso você não tenha um código em mente, você pode utilizar o código abaixo:</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass) <span class="sc">+</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"darkorchid"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Um parágrafo simples de texto, descrevendo o que foi feito.</li>
@@ -580,18 +592,199 @@ editor: visual
 </section>
 <section id="adicionar-conteúdos" class="level3" data-number="5.4.6">
 <h3 data-number="5.4.6" class="anchored" data-anchor-id="adicionar-conteúdos"><span class="header-section-number">5.4.6</span> Adicionar conteúdos</h3>
-<p>Em breve</p>
+<p>Existem vários tipos de conteúdo que podem ser adicionados a um documento Quarto, como texto, código, gráficos, tabelas, imagens, links, entre outros.</p>
+<p>O melhor lugar para aprender sobre esses conteúdos é a <a href="https://quarto.org/docs/">documentação do Quarto</a>, que é muito completa e bem organizada.</p>
+<p>Neste momento, vamos explorar alguns tipos de conteúdos que podem ser adicionados a um documento Quarto.</p>
+<section id="adicionando-conteúdos-com-código" class="level4" data-number="5.4.6.1">
+<h4 data-number="5.4.6.1" class="anchored" data-anchor-id="adicionando-conteúdos-com-código"><span class="header-section-number">5.4.6.1</span> Adicionando conteúdos com código</h4>
+<p>Como citado anteriormente, podemos adicionar código em R em campos de código, ou <em>code chunks</em>. Dentro de um campo de código, podemos adicionar comentários, códigos em R, e os resultados dos códigos serão exibidos logo em seguida no documento.</p>
+<p>Para adicionar um campo de código, utilizamos a marcação <code>```{r}</code> no início e <code>```</code> no final. Por exemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="in"># Exemplo: somando 1 + 1</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="in">1 + 1</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<p>A partir de agora, vamos omitir a marcação de iniciar e finalizar os campos de código, porém saiba que é necessário adicionar essas marcações para que o código seja executado. Por exemplo, o código acima seria apresentado desta forma:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo: somando 1 + 1</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<section id="adicionando-gráficos" class="level5" data-number="5.4.6.1.1">
+<h5 data-number="5.4.6.1.1" class="anchored" data-anchor-id="adicionando-gráficos"><span class="header-section-number">5.4.6.1.1</span> Adicionando gráficos</h5>
+<p>Para adicionar um gráfico, podemos criar um campo de código e adicionar o código que gera o gráfico (igual ao utilizando em scripts <code>.R</code>).</p>
+<p>Os gráficos gerados a partir de um campo de código são exibidos logo após o código.</p>
+<p>Por exemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar o ggplot2</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># exemplo de código</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="relatorios_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="adicionando-tabelas" class="level5" data-number="5.4.6.1.2">
+<h5 data-number="5.4.6.1.2" class="anchored" data-anchor-id="adicionando-tabelas"><span class="header-section-number">5.4.6.1.2</span> Adicionando tabelas</h5>
+<p>Para adicionar tabelas (que sejam geradas com código), não basta apenas adicionar o código que gera a tabela. Veja o que acontece se tentarmos adicionar uma tabela com o código abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>personagens_maior_massa <span class="ot">&lt;-</span> starwars <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(mass, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, mass, species)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>personagens_maior_massa</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  name                   mass species
+  &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;  
+1 Jabba Desilijic Tiure  1358 Hutt   
+2 Grievous                159 Kaleesh
+3 IG-88                   140 Droid  
+4 Darth Vader             136 Human  
+5 Tarfful                 136 Wookiee</code></pre>
+</div>
+</div>
+<p>Observe que o resultado que apareceu no relatório é igual ao que apareceria no console do R.</p>
+<p>Para que a tabela seja exibida de forma mais amigável, podemos utilizar alguma função de tabela para gerar tabelas. Existem diversas funções (de diferentes pacotes em R) que possibilitam a criação de tabelas. A função <code>knitr::kable()</code> é muito utilizada, e permite criar tabelas simples a partir de um data frame.</p>
+<p>Por exemplo, podemos utilizar o <code>knitr::kable()</code> para exibir a tabela de personagens com maior massa:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>personagens_maior_massa <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: right;">mass</th>
+<th style="text-align: left;">species</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Jabba Desilijic Tiure</td>
+<td style="text-align: right;">1358</td>
+<td style="text-align: left;">Hutt</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Grievous</td>
+<td style="text-align: right;">159</td>
+<td style="text-align: left;">Kaleesh</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IG-88</td>
+<td style="text-align: right;">140</td>
+<td style="text-align: left;">Droid</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Darth Vader</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Tarfful</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">Wookiee</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Podemos explorar os argumentos da função para personalizar a tabela, como adicionar nomes de colunas, entre outros. Por exemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>personagens_maior_massa <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Nome"</span>, <span class="st">"Massa"</span>, <span class="st">"Espécie"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Nome</th>
+<th style="text-align: right;">Massa</th>
+<th style="text-align: left;">Espécie</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Jabba Desilijic Tiure</td>
+<td style="text-align: right;">1358</td>
+<td style="text-align: left;">Hutt</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Grievous</td>
+<td style="text-align: right;">159</td>
+<td style="text-align: left;">Kaleesh</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IG-88</td>
+<td style="text-align: right;">140</td>
+<td style="text-align: left;">Droid</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Darth Vader</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Tarfful</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">Wookiee</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Além da função <code>knitr::kable()</code>, existem outras funções que podem ser utilizadas para criar tabelas. Abaixo listamos alguns pacotes que possuem funções para criar tabelas, e podem ser explorados posteriormente:</p>
+<ul>
+<li><p><code>kableExtra</code>: este pacote apresenta funções para personalizar tabelas criadas com <code>knitr::kable()</code>, porém o seu funcionamento é focado em <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html">tabelas em HTML</a> e <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf">PDF (com LaTeX)</a>. Se o seu objetivo é gerar documentos em word, não utilize o <code>kableExtra</code>.</p></li>
+<li><p><code>flextable</code>: este pacote é focado em criar tabelas para documentos <strong>em Word</strong>, e permite maior personalização. Para aprender a utilizar o <code>flextable</code>, consulte a <a href="https://davidgohel.github.io/flextable/">documentação do pacote</a> e o <a href="https://ardata-fr.github.io/flextable-book/">guia de usuário (flextable book)</a>.</p></li>
+<li><p><code>reactable</code>: este pacote é focado em criar tabelas interativas <strong>em HTML</strong>, e permite adicionar filtros, ordenação, entre outros. Para aprender a utilizar o <code>reactable</code>, consulte a <a href="https://glin.github.io/reactable/articles/examples.html">documentação do pacote</a>.</p></li>
+<li><p><code>gt</code>: este pacote foi criado pela equipe da RStudio/Posit, e tenta utilizar uma filosofia similar ao <code>ggplot2</code> (a gramática dos gráficos), porém com tabelas (<code>gt</code> sendo gramática de tabelas). O <code>gt</code> tem funções para as <a href="https://gt.rstudio.com/reference/figures/gt_parts_of_a_table.svg">diferentes partes da tabela</a>: cabeçalho, corpo, rodapé, entre outros. Para aprender a utilizar o <code>gt</code>, consulte a <a href="https://gt.rstudio.com/">documentação do pacote</a>. Curiosidade: em 2023 a mesma equipe lançou a <a href="https://posit-dev.github.io/great-tables/articles/intro.html">biblioteca <code>gt</code> para Python</a>.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="adicionar-código-em-linha-inline-code" class="level5" data-number="5.4.6.1.3">
+<h5 data-number="5.4.6.1.3" class="anchored" data-anchor-id="adicionar-código-em-linha-inline-code"><span class="header-section-number">5.4.6.1.3</span> Adicionar código em linha (<em>inline code</em>)</h5>
+<p>Em breve!</p>
+</section>
+</section>
 </section>
 <section id="opções-de-campos-de-código-chunk-options" class="level3" data-number="5.4.7">
 <h3 data-number="5.4.7" class="anchored" data-anchor-id="opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.4.7</span> Opções de campos de código (<em>chunk options</em>)</h3>
 <p>Os campos de código, ou <em>code chunks</em>, são trechos de código que podem ser executados em documentos Quarto. Eles oferecem diversas opções para personalizar a execução e a exibição do código e dos resultados. Essas opções permitem configurar como o código aparece no relatório, como ele é executado e como os resultados são apresentados.</p>
 <p>As opções devem ser apresentadas na linha após o início do campo de código, precedido de <code>#|</code>, no formato <code>nome_opcao: valor</code>. Por exemplo:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| nome_opcao: valor</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="in"># código em R aqui</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="in">1 + 1</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| nome_opcao: valor</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="in"># código em R aqui</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="in">1 + 1</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Existem muitas opções de campos de código, e estão listadas na <a href="https://quarto.org/docs/computations/execution-options.html">documentação do Quarto</a>. Neste momento, vamos explorar algumas das principais opções!</p>
 <section id="exibir-ou-ocultar-o-código" class="level4" data-number="5.4.7.1">
 <h4 data-number="5.4.7.1" class="anchored" data-anchor-id="exibir-ou-ocultar-o-código"><span class="header-section-number">5.4.7.1</span> Exibir ou ocultar o código</h4>
@@ -612,27 +805,27 @@ editor: visual
 <ul>
 <li>HTML:</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> html</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> html</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Word:</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> docx</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> docx</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>PDF (é necessário ter alguma instalação de LaTeX no computador, veja as <a href="./instalacao.html#instalação-do-tinytex">página de instalações</a>):</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> pdf</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> pdf</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Apresentação em HTML:</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> revealjs</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> revealjs</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Essas são as opções de formatos mais utilizadas. Para ver a lista completa, consulte a <a href="https://quarto.org/docs/output-formats/all-formats.html">documentação do Quarto</a>.</p>
 </section>
 <section id="projetos-em-quarto" class="level3" data-number="5.4.9">
