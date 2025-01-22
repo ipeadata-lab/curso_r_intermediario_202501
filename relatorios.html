@@ -239,14 +239,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#exercício-4" id="toc-exercício-4" class="nav-link" data-scroll-target="#exercício-4"><span class="header-section-number">5.4.5.1</span> Exercício</a></li>
   </ul></li>
-  <li><a href="#adicionar-conteúdos" id="toc-adicionar-conteúdos" class="nav-link" data-scroll-target="#adicionar-conteúdos"><span class="header-section-number">5.4.6</span> Adicionar conteúdos</a>
+  <li><a href="#adicionando-conteúdos-com-código" id="toc-adicionando-conteúdos-com-código" class="nav-link" data-scroll-target="#adicionando-conteúdos-com-código"><span class="header-section-number">5.4.6</span> Adicionando conteúdos com código</a>
   <ul>
-  <li><a href="#adicionando-conteúdos-com-código" id="toc-adicionando-conteúdos-com-código" class="nav-link" data-scroll-target="#adicionando-conteúdos-com-código"><span class="header-section-number">5.4.6.1</span> Adicionando conteúdos com código</a>
-  <ul class="collapse">
-  <li><a href="#adicionando-gráficos" id="toc-adicionando-gráficos" class="nav-link" data-scroll-target="#adicionando-gráficos"><span class="header-section-number">5.4.6.1.1</span> Adicionando gráficos</a></li>
-  <li><a href="#adicionando-tabelas" id="toc-adicionando-tabelas" class="nav-link" data-scroll-target="#adicionando-tabelas"><span class="header-section-number">5.4.6.1.2</span> Adicionando tabelas</a></li>
-  <li><a href="#adicionar-código-em-linha-inline-code" id="toc-adicionar-código-em-linha-inline-code" class="nav-link" data-scroll-target="#adicionar-código-em-linha-inline-code"><span class="header-section-number">5.4.6.1.3</span> Adicionar código em linha (<em>inline code</em>)</a></li>
-  </ul></li>
+  <li><a href="#adicionando-gráficos" id="toc-adicionando-gráficos" class="nav-link" data-scroll-target="#adicionando-gráficos"><span class="header-section-number">5.4.6.1</span> Adicionando gráficos</a></li>
+  <li><a href="#adicionando-tabelas" id="toc-adicionando-tabelas" class="nav-link" data-scroll-target="#adicionando-tabelas"><span class="header-section-number">5.4.6.2</span> Adicionando tabelas</a></li>
+  <li><a href="#adicionar-código-em-linha-inline-code" id="toc-adicionar-código-em-linha-inline-code" class="nav-link" data-scroll-target="#adicionar-código-em-linha-inline-code"><span class="header-section-number">5.4.6.3</span> Adicionar código em linha (<em>inline code</em>)</a></li>
   </ul></li>
   <li><a href="#opções-de-campos-de-código-chunk-options" id="toc-opções-de-campos-de-código-chunk-options" class="nav-link" data-scroll-target="#opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.4.7</span> Opções de campos de código (<em>chunk options</em>)</a>
   <ul>
@@ -403,7 +400,7 @@ Nota
 <section id="exercício-1" class="level4" data-number="5.4.2.1">
 <h4 data-number="5.4.2.1" class="anchored" data-anchor-id="exercício-1"><span class="header-section-number">5.4.2.1</span> Exercício</h4>
 <ol type="1">
-<li>Crie um arquivo com Quarto básico, adicionando o título “Meu primeiro relatório”, e no campo de autoria adicionando o seu nome. Mantenha selecionada a opção para exportar um arquivo HTML. Salve o arquivo como <code>"aula-1.qmd"</code> na pasta do projeto do curso, em <code>"relatorios/"</code>.</li>
+<li>Crie um arquivo com Quarto básico, adicionando o título “Meu primeiro relatório”, e no campo de autoria adicionando o seu nome. Mantenha selecionada a opção para exportar um arquivo HTML. Salve o arquivo como <code>"aula-2.qmd"</code> na pasta do projeto do curso, em <code>"relatorios/"</code>.</li>
 </ol>
 </section>
 </section>
@@ -434,7 +431,7 @@ Nota
 <section id="exercício-2" class="level4" data-number="5.4.3.1">
 <h4 data-number="5.4.3.1" class="anchored" data-anchor-id="exercício-2"><span class="header-section-number">5.4.3.1</span> Exercício</h4>
 <ol type="1">
-<li>Renderize o arquivo <code>"aula-1.qmd"</code> que você criou anteriormente. Verifique se o arquivo foi renderizado corretamente, se você consegue visualizar o conteúdo no painel Viewer do RStudio, e se o arquivo foi salvo na pasta do projeto.</li>
+<li>Renderize o arquivo <code>"aula-2.qmd"</code> que você criou anteriormente. Verifique se o arquivo foi renderizado corretamente, se você consegue visualizar o conteúdo no painel Viewer do RStudio, e se o arquivo foi salvo na pasta do projeto.</li>
 </ol>
 </section>
 </section>
@@ -490,19 +487,20 @@ O que é Markdown?
 <section id="exercício-3" class="level4" data-number="5.4.4.1">
 <h4 data-number="5.4.4.1" class="anchored" data-anchor-id="exercício-3"><span class="header-section-number">5.4.4.1</span> Exercício</h4>
 <ol type="1">
-<li>Vamos começar a adicionar um pouco de conteúdo no arquivo <code>"aula-1.qmd"</code> criado anteriormente. Adicione:</li>
+<li>Vamos começar a adicionar um pouco de conteúdo no arquivo <code>"aula-2.qmd"</code> criado anteriormente. Adicione:</li>
 </ol>
 <ul>
 <li><p>Um campo de código, onde o pacote tidyverse seja carregado.</p></li>
 <li><p>Um campo de código, com o código para criar um gráfico simples com o pacote <code>ggplot2</code>. Caso você não tenha um código em mente, você pode utilizar o código abaixo:</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g) <span class="sc">+</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"darkorchid"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g) <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"darkorchid"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Um parágrafo simples de texto, descrevendo o que foi feito.</li>
@@ -584,19 +582,29 @@ editor: visual
 <section id="exercício-4" class="level4" data-number="5.4.5.1">
 <h4 data-number="5.4.5.1" class="anchored" data-anchor-id="exercício-4"><span class="header-section-number">5.4.5.1</span> Exercício</h4>
 <ol type="1">
-<li><p>Explore as opções do editor Visual, adicionando um pouco de formatação ao texto do arquivo <code>"aula-1.qmd"</code>.</p></li>
+<li><p>Explore as opções do editor Visual, adicionando um pouco de formatação ao texto do arquivo <code>"aula-2.qmd"</code>.</p></li>
 <li><p>Altere entre os modos Source e Visual. Veja a diferença entre o código fonte e a visualização do documento.</p></li>
 <li><p>Entre os modos Source e Visual, qual você prefere para escrever documentos? Por quê?</p></li>
 </ol>
 </section>
 </section>
-<section id="adicionar-conteúdos" class="level3" data-number="5.4.6">
-<h3 data-number="5.4.6" class="anchored" data-anchor-id="adicionar-conteúdos"><span class="header-section-number">5.4.6</span> Adicionar conteúdos</h3>
+<section id="adicionando-conteúdos-com-código" class="level3" data-number="5.4.6">
+<h3 data-number="5.4.6" class="anchored" data-anchor-id="adicionando-conteúdos-com-código"><span class="header-section-number">5.4.6</span> Adicionando conteúdos com código</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Existem vários tipos de conteúdo que podem ser adicionados a um documento Quarto, como texto, código, gráficos, tabelas, imagens, links, entre outros.</p>
 <p>O melhor lugar para aprender sobre esses conteúdos é a <a href="https://quarto.org/docs/">documentação do Quarto</a>, que é muito completa e bem organizada.</p>
-<p>Neste momento, vamos explorar alguns tipos de conteúdos que podem ser adicionados a um documento Quarto.</p>
-<section id="adicionando-conteúdos-com-código" class="level4" data-number="5.4.6.1">
-<h4 data-number="5.4.6.1" class="anchored" data-anchor-id="adicionando-conteúdos-com-código"><span class="header-section-number">5.4.6.1</span> Adicionando conteúdos com código</h4>
+</div>
+</div>
+<p>Vamos explorar alguns tipos de conteúdos que podem ser adicionados a um documento Quarto <strong>que sejam resultados de códigos em R</strong>.</p>
 <p>Como citado anteriormente, podemos adicionar código em R em campos de código, ou <em>code chunks</em>. Dentro de um campo de código, podemos adicionar comentários, códigos em R, e os resultados dos códigos serão exibidos logo em seguida no documento.</p>
 <p>Para adicionar um campo de código, utilizamos a marcação <code>```{r}</code> no início e <code>```</code> no final. Por exemplo:</p>
 <div class="cell">
@@ -616,22 +624,32 @@ editor: visual
 <pre><code>[1] 2</code></pre>
 </div>
 </div>
-<section id="adicionando-gráficos" class="level5" data-number="5.4.6.1.1">
-<h5 data-number="5.4.6.1.1" class="anchored" data-anchor-id="adicionando-gráficos"><span class="header-section-number">5.4.6.1.1</span> Adicionando gráficos</h5>
+<section id="adicionando-gráficos" class="level4" data-number="5.4.6.1">
+<h4 data-number="5.4.6.1" class="anchored" data-anchor-id="adicionando-gráficos"><span class="header-section-number">5.4.6.1</span> Adicionando gráficos</h4>
 <p>Para adicionar um gráfico, podemos criar um campo de código e adicionar o código que gera o gráfico (igual ao utilizando em scripts <code>.R</code>).</p>
 <p>Os gráficos gerados a partir de um campo de código são exibidos logo após o código.</p>
 <p>Por exemplo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar o ggplot2</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar os pacotes</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># exemplo de código</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass) <span class="sc">+</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"darkorchid"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Comprimento da nadadeira (mm)"</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Massa corporal (g)"</span>,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Espécie"</span>,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="st">"Espécie"</span>,</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Relação entre comprimento da nadadeira e massa corporal"</span>,</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Pinguins das espécies Adelie, Chinstrap e Gentoo"</span>,</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: Pacote palmerpenguins."</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -641,66 +659,65 @@ editor: visual
 </div>
 </div>
 </section>
-<section id="adicionando-tabelas" class="level5" data-number="5.4.6.1.2">
-<h5 data-number="5.4.6.1.2" class="anchored" data-anchor-id="adicionando-tabelas"><span class="header-section-number">5.4.6.1.2</span> Adicionando tabelas</h5>
+<section id="adicionando-tabelas" class="level4" data-number="5.4.6.2">
+<h4 data-number="5.4.6.2" class="anchored" data-anchor-id="adicionando-tabelas"><span class="header-section-number">5.4.6.2</span> Adicionando tabelas</h4>
 <p>Para adicionar tabelas (que sejam geradas com código), não basta apenas adicionar o código que gera a tabela. Veja o que acontece se tentarmos adicionar uma tabela com o código abaixo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>personagens_maior_massa <span class="ot">&lt;-</span> starwars <span class="sc">|&gt;</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(mass, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, mass, species)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>personagens_maior_massa</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species, island, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
-  name                   mass species
-  &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;  
-1 Jabba Desilijic Tiure  1358 Hutt   
-2 Grievous                159 Kaleesh
-3 IG-88                   140 Droid  
-4 Darth Vader             136 Human  
-5 Tarfful                 136 Wookiee</code></pre>
+  species   island        n
+  &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;
+1 Gentoo    Biscoe      124
+2 Chinstrap Dream        68
+3 Adelie    Dream        56
+4 Adelie    Torgersen    52
+5 Adelie    Biscoe       44</code></pre>
 </div>
 </div>
 <p>Observe que o resultado que apareceu no relatório é igual ao que apareceria no console do R.</p>
 <p>Para que a tabela seja exibida de forma mais amigável, podemos utilizar alguma função de tabela para gerar tabelas. Existem diversas funções (de diferentes pacotes em R) que possibilitam a criação de tabelas. A função <code>knitr::kable()</code> é muito utilizada, e permite criar tabelas simples a partir de um data frame.</p>
-<p>Por exemplo, podemos utilizar o <code>knitr::kable()</code> para exibir a tabela de personagens com maior massa:</p>
+<p>Por exemplo, podemos utilizar o <code>knitr::kable()</code> para exibir a tabela criada:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>personagens_maior_massa <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia <span class="sc">|&gt;</span> </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;">name</th>
-<th style="text-align: right;">mass</th>
 <th style="text-align: left;">species</th>
+<th style="text-align: left;">island</th>
+<th style="text-align: right;">n</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Jabba Desilijic Tiure</td>
-<td style="text-align: right;">1358</td>
-<td style="text-align: left;">Hutt</td>
+<td style="text-align: left;">Gentoo</td>
+<td style="text-align: left;">Biscoe</td>
+<td style="text-align: right;">124</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Grievous</td>
-<td style="text-align: right;">159</td>
-<td style="text-align: left;">Kaleesh</td>
+<td style="text-align: left;">Chinstrap</td>
+<td style="text-align: left;">Dream</td>
+<td style="text-align: right;">68</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">IG-88</td>
-<td style="text-align: right;">140</td>
-<td style="text-align: left;">Droid</td>
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Dream</td>
+<td style="text-align: right;">56</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Darth Vader</td>
-<td style="text-align: right;">136</td>
-<td style="text-align: left;">Human</td>
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Torgersen</td>
+<td style="text-align: right;">52</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Tarfful</td>
-<td style="text-align: right;">136</td>
-<td style="text-align: left;">Wookiee</td>
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Biscoe</td>
+<td style="text-align: right;">44</td>
 </tr>
 </tbody>
 </table>
@@ -708,42 +725,42 @@ editor: visual
 </div>
 <p>Podemos explorar os argumentos da função para personalizar a tabela, como adicionar nomes de colunas, entre outros. Por exemplo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>personagens_maior_massa <span class="sc">|&gt;</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Nome"</span>, <span class="st">"Massa"</span>, <span class="st">"Espécie"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Espécie"</span>, <span class="st">"Ilha"</span>, <span class="st">"Quantidade"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;">Nome</th>
-<th style="text-align: right;">Massa</th>
 <th style="text-align: left;">Espécie</th>
+<th style="text-align: left;">Ilha</th>
+<th style="text-align: right;">Quantidade</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Jabba Desilijic Tiure</td>
-<td style="text-align: right;">1358</td>
-<td style="text-align: left;">Hutt</td>
+<td style="text-align: left;">Gentoo</td>
+<td style="text-align: left;">Biscoe</td>
+<td style="text-align: right;">124</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Grievous</td>
-<td style="text-align: right;">159</td>
-<td style="text-align: left;">Kaleesh</td>
+<td style="text-align: left;">Chinstrap</td>
+<td style="text-align: left;">Dream</td>
+<td style="text-align: right;">68</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">IG-88</td>
-<td style="text-align: right;">140</td>
-<td style="text-align: left;">Droid</td>
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Dream</td>
+<td style="text-align: right;">56</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Darth Vader</td>
-<td style="text-align: right;">136</td>
-<td style="text-align: left;">Human</td>
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Torgersen</td>
+<td style="text-align: right;">52</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Tarfful</td>
-<td style="text-align: right;">136</td>
-<td style="text-align: left;">Wookiee</td>
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Biscoe</td>
+<td style="text-align: right;">44</td>
 </tr>
 </tbody>
 </table>
@@ -769,10 +786,58 @@ Dica
 </div>
 </div>
 </section>
-<section id="adicionar-código-em-linha-inline-code" class="level5" data-number="5.4.6.1.3">
-<h5 data-number="5.4.6.1.3" class="anchored" data-anchor-id="adicionar-código-em-linha-inline-code"><span class="header-section-number">5.4.6.1.3</span> Adicionar código em linha (<em>inline code</em>)</h5>
-<p>Em breve!</p>
-</section>
+<section id="adicionar-código-em-linha-inline-code" class="level4" data-number="5.4.6.3">
+<h4 data-number="5.4.6.3" class="anchored" data-anchor-id="adicionar-código-em-linha-inline-code"><span class="header-section-number">5.4.6.3</span> Adicionar código em linha (<em>inline code</em>)</h4>
+<p>Até agora, exploramos como adicionar conteúdos com código dentro de um campo de código. Mas e se quisermos adicionar um resultado de um código em um texto?</p>
+<p>Não é interessante adicionar manualmente conteúdos que podem ser gerados com código, pois isso pode tornar o documento menos reprodutível. Principalmente se os dados podem ser atualizados com o tempo!</p>
+<p>Para adicionar um resultado de um código em um texto, podemos utilizar o que chamamos de código em linha, ou <em>inline code</em>. Para isso, utilizamos a seguinte sintaxe:</p>
+<p><img src="images/sintaxe-inline-code.png" class="img-fluid"></p>
+<p>Por exemplo, o texto abaixo apresenta conteúdos feitos com campos de código:</p>
+<blockquote class="blockquote">
+<p>A base de dados <code>penguins</code> apresenta pinguins de três espécies: Adelie, Gentoo, Chinstrap. A base possui 344 observações e 8 (sendo que cada observação corresponde a um pinguim) variáveis: species, island, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, sex, year. A coleta de dados foi feita em três ilhas: Torgersen, Biscoe, Dream, entre os anos de 2007 e 2009.</p>
+</blockquote>
+<p>Você consegue identificar onde foram utilizados os códigos em linha?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Clique para ver a resposta!
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Os conteúdos em destaque foram feitos com códigos em linha:</p>
+<blockquote class="blockquote">
+<p>A base de dados <code>penguins</code> apresenta pinguins de três espécies: <strong>Adelie, Gentoo, Chinstrap</strong>. A base possui <strong>344</strong> observações e <strong>8</strong> (sendo que cada observação corresponde a um pinguim) variáveis: <strong>species, island, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, sex, year</strong>. A coleta de dados foi feita em três ilhas: <strong>Torgersen, Biscoe, Dream</strong>, entre os anos de <strong>2007</strong> e <strong>2009</strong>.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Clique para ver o código!
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="images/inline-code-exemplo.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<p>Dicas para adicionar conteúdos com código em linha:</p>
+<ul>
+<li><p>Se você vai escrever algo no texto que pode ser gerado com código, experimente utilizar o código em linha.</p></li>
+<li><p>A base de dados que você está utilizando pode ser atualizada futuramente? Se sim, busque adicionar conteúdos com códigos em linha.</p></li>
+<li><p>Caso algum conteúdo que você quer adicionar com código de linha dependa de um código “grande” (mais de uma linha), é interessante criar um campo de código, salvar o resultado em um objeto, e utilizar o código em linha para chamar o objeto.</p></li>
+</ul>
 </section>
 </section>
 <section id="opções-de-campos-de-código-chunk-options" class="level3" data-number="5.4.7">
