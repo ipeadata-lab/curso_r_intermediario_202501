@@ -72,6 +72,16 @@
       ],
       "Hash": "45f0398006e83a5b10b72a90663d8d8c"
     },
+    "abjData": {
+      "Package": "abjData",
+      "Version": "1.1.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "1183aee471afd60c4889fcf58e6bfaa9"
+    },
     "askpass": {
       "Package": "askpass",
       "Version": "1.2.1",
