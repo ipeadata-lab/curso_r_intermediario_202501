@@ -242,8 +242,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#adicionando-conteúdos-com-código" id="toc-adicionando-conteúdos-com-código" class="nav-link" data-scroll-target="#adicionando-conteúdos-com-código"><span class="header-section-number">5.4.6</span> Adicionando conteúdos com código</a>
   <ul>
   <li><a href="#adicionando-gráficos" id="toc-adicionando-gráficos" class="nav-link" data-scroll-target="#adicionando-gráficos"><span class="header-section-number">5.4.6.1</span> Adicionando gráficos</a></li>
-  <li><a href="#adicionando-tabelas" id="toc-adicionando-tabelas" class="nav-link" data-scroll-target="#adicionando-tabelas"><span class="header-section-number">5.4.6.2</span> Adicionando tabelas</a></li>
-  <li><a href="#adicionar-código-em-linha-inline-code" id="toc-adicionar-código-em-linha-inline-code" class="nav-link" data-scroll-target="#adicionar-código-em-linha-inline-code"><span class="header-section-number">5.4.6.3</span> Adicionar código em linha (<em>inline code</em>)</a></li>
+  <li><a href="#adicionando-tabelas" id="toc-adicionando-tabelas" class="nav-link" data-scroll-target="#adicionando-tabelas"><span class="header-section-number">5.4.6.2</span> Adicionando tabelas</a>
+  <ul class="collapse">
+  <li><a href="#exercício-5" id="toc-exercício-5" class="nav-link" data-scroll-target="#exercício-5"><span class="header-section-number">5.4.6.2.1</span> Exercício</a></li>
+  </ul></li>
+  <li><a href="#adicionar-código-em-linha-inline-code" id="toc-adicionar-código-em-linha-inline-code" class="nav-link" data-scroll-target="#adicionar-código-em-linha-inline-code"><span class="header-section-number">5.4.6.3</span> Adicionar código em linha (<em>inline code</em>)</a>
+  <ul class="collapse">
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">5.4.6.3.1</span> Exercícios</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#opções-de-campos-de-código-chunk-options" id="toc-opções-de-campos-de-código-chunk-options" class="nav-link" data-scroll-target="#opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.4.7</span> Opções de campos de código (<em>chunk options</em>)</a>
   <ul>
@@ -582,7 +588,7 @@ editor: visual
 <section id="exercício-4" class="level4" data-number="5.4.5.1">
 <h4 data-number="5.4.5.1" class="anchored" data-anchor-id="exercício-4"><span class="header-section-number">5.4.5.1</span> Exercício</h4>
 <ol type="1">
-<li><p>Explore as opções do editor Visual, adicionando um pouco de formatação ao texto do arquivo <code>"aula-2.qmd"</code>.</p></li>
+<li><p>Explore as opções do editor Visual, adicionando um pouco de formatação ao texto do arquivo <code>"aula-2.qmd"</code>. Tente adicionar pelo menos um título, uma lista, e um link.</p></li>
 <li><p>Altere entre os modos Source e Visual. Veja a diferença entre o código fonte e a visualização do documento.</p></li>
 <li><p>Entre os modos Source e Visual, qual você prefere para escrever documentos? Por quê?</p></li>
 </ol>
@@ -785,6 +791,14 @@ Dica
 </ul>
 </div>
 </div>
+<section id="exercício-5" class="level5" data-number="5.4.6.2.1">
+<h5 data-number="5.4.6.2.1" class="anchored" data-anchor-id="exercício-5"><span class="header-section-number">5.4.6.2.1</span> Exercício</h5>
+<ol type="1">
+<li><p>No arquivo <code>"aula-2.qmd"</code>, crie um campo de código com uma tabela de frequência de pinguins por espécie e sexo, utilizando a base de dados <code>penguins</code>. Salve essa tabela de frequência em um objeto chamado <code>pinguins_freq_especie_sexo</code>.</p></li>
+<li><p>Utilizando o objeto criado, apresente essa tabela formatada com a função <code>knitr::kable()</code>.</p></li>
+<li><p>Experimente adicionar outra tabela utilizando alguma função de tabela de outro pacote citado como extra, como <code>flextable::flextable()</code>, <code>reactable::reactable()</code>, ou <code>gt::gt()</code>.</p></li>
+</ol>
+</section>
 </section>
 <section id="adicionar-código-em-linha-inline-code" class="level4" data-number="5.4.6.3">
 <h4 data-number="5.4.6.3" class="anchored" data-anchor-id="adicionar-código-em-linha-inline-code"><span class="header-section-number">5.4.6.3</span> Adicionar código em linha (<em>inline code</em>)</h4>
@@ -838,6 +852,10 @@ Clique para ver o código!
 <li><p>A base de dados que você está utilizando pode ser atualizada futuramente? Se sim, busque adicionar conteúdos com códigos em linha.</p></li>
 <li><p>Caso algum conteúdo que você quer adicionar com código de linha dependa de um código “grande” (mais de uma linha), é interessante criar um campo de código, salvar o resultado em um objeto, e utilizar o código em linha para chamar o objeto.</p></li>
 </ul>
+<section id="exercícios" class="level5" data-number="5.4.6.3.1">
+<h5 data-number="5.4.6.3.1" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">5.4.6.3.1</span> Exercícios</h5>
+<p>Em breve!</p>
+</section>
 </section>
 </section>
 <section id="opções-de-campos-de-código-chunk-options" class="level3" data-number="5.4.7">
