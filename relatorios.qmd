@@ -253,7 +253,7 @@ editor: visual
 
 #### Exercício
 
-1. Explore as opções do editor Visual, adicionando um pouco de formatação ao texto do arquivo `"aula-2.qmd"`.
+1. Explore as opções do editor Visual, adicionando um pouco de formatação ao texto do arquivo `"aula-2.qmd"`. Tente adicionar pelo menos um título, uma lista, e um link.
 
 2. Altere entre os modos Source e Visual. Veja a diferença entre o código fonte e a visualização do documento.
 
@@ -365,6 +365,16 @@ Além da função `knitr::kable()`, existem outras funções que podem ser utili
 
 :::
 
+##### Exercício
+
+1) No arquivo `"aula-2.qmd"`, crie um campo de código com uma tabela de frequência de pinguins por espécie e sexo, utilizando a base de dados `penguins`. Salve essa tabela de frequência em um objeto chamado `pinguins_freq_especie_sexo`.
+
+2) Utilizando o objeto criado, apresente essa tabela formatada com a função `knitr::kable()`.
+
+3) Experimente adicionar outra tabela utilizando alguma função de tabela de outro pacote citado como extra, como `flextable::flextable()`, `reactable::reactable()`, ou `gt::gt()`. 
+
+
+
 #### Adicionar código em linha (*inline code*)
 
 
@@ -410,7 +420,9 @@ Dicas para adicionar conteúdos com código em linha:
 
 - Caso algum conteúdo que você quer adicionar com código de linha dependa de um código "grande" (mais de uma linha), é interessante criar um campo de código, salvar o resultado em um objeto, e utilizar o código em linha para chamar o objeto.
 
+##### Exercícios
 
+Em breve!
 
 
 ### Opções de campos de código (*chunk options*)
