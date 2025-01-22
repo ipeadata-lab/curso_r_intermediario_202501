@@ -258,7 +258,102 @@ editor: visual
 
 ### Adicionar conteúdos
 
-Em breve
+Existem vários tipos de conteúdo que podem ser adicionados a um documento Quarto, como texto, código, gráficos, tabelas, imagens, links, entre outros. 
+
+O melhor lugar para aprender sobre esses conteúdos é a [documentação do Quarto](https://quarto.org/docs/), que é muito completa e bem organizada.
+
+Neste momento, vamos explorar alguns tipos de conteúdos que podem ser adicionados a um documento Quarto.
+
+#### Adicionando conteúdos com código
+
+Como citado anteriormente, podemos adicionar código em R em campos de código, ou *code chunks*. Dentro de um campo de código, podemos adicionar comentários, códigos em R, e os resultados dos códigos serão exibidos logo em seguida no documento.
+
+Para adicionar um campo de código, utilizamos a marcação ` ```{r} ` no início e ` ``` ` no final. Por exemplo:
+
+```{r}
+#| echo: fenced
+# Exemplo: somando 1 + 1
+1 + 1
+```
+
+A partir de agora, vamos omitir a marcação de iniciar e finalizar os campos de código, porém saiba que é necessário adicionar essas marcações para que o código seja executado. Por exemplo, o código acima seria apresentado desta forma:
+ 
+```{r}
+# Exemplo: somando 1 + 1
+1 + 1
+```
+
+
+##### Adicionando gráficos
+
+Para adicionar um gráfico, podemos criar um campo de código e adicionar o código que gera o gráfico (igual ao utilizando em scripts `.R`).
+
+Os gráficos gerados a partir de um campo de código são exibidos logo após o código. 
+
+Por exemplo:
+
+```{r}
+#| warning: false
+# Carregar o ggplot2
+library(ggplot2)
+library(dplyr)
+
+# exemplo de código
+starwars |> 
+  ggplot() +
+  aes(x = height, y = mass) +
+  geom_point() +
+  theme_minimal()
+```
+
+
+
+##### Adicionando tabelas
+
+Para adicionar tabelas (que sejam geradas com código), não basta apenas adicionar o código que gera a tabela. Veja o que acontece se tentarmos adicionar uma tabela com o código abaixo:
+
+```{r}
+personagens_maior_massa <- starwars |> 
+  slice_max(mass, n = 5) |> 
+  select(name, mass, species)
+
+personagens_maior_massa
+```
+
+Observe que o resultado que apareceu no relatório é igual ao que apareceria no console do R. 
+
+Para que a tabela seja exibida de forma mais amigável, podemos utilizar alguma função de tabela para gerar tabelas. Existem diversas funções (de diferentes pacotes em R) que possibilitam a criação de tabelas. A função `knitr::kable()` é muito utilizada, e permite criar tabelas simples a partir de um data frame.
+
+Por exemplo, podemos utilizar o `knitr::kable()` para exibir a tabela de personagens com maior massa:
+
+```{r}
+personagens_maior_massa |> 
+  knitr::kable()
+```
+
+Podemos explorar os argumentos da função para personalizar a tabela, como adicionar nomes de colunas, entre outros. Por exemplo:
+
+```{r}
+personagens_maior_massa |> 
+  knitr::kable(col.names = c("Nome", "Massa", "Espécie"))
+```
+::: {.callout-tip}
+Além da função `knitr::kable()`, existem outras funções que podem ser utilizadas para criar tabelas. Abaixo listamos alguns pacotes que possuem funções para criar tabelas, e podem ser explorados posteriormente:
+
+- `kableExtra`: este pacote apresenta funções para personalizar tabelas criadas com `knitr::kable()`, porém o seu funcionamento é focado em [tabelas em HTML](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html) e [PDF (com LaTeX)](https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf). Se o seu objetivo é gerar documentos em word, não utilize o `kableExtra`.
+
+- `flextable`: este pacote é focado em criar tabelas para documentos **em Word**, e permite maior personalização. Para aprender a utilizar o `flextable`, consulte a [documentação do pacote](https://davidgohel.github.io/flextable/) e o [guia de usuário (flextable book)](https://ardata-fr.github.io/flextable-book/).
+
+- `reactable`: este pacote é focado em criar tabelas interativas **em HTML**, e permite adicionar filtros, ordenação, entre outros. Para aprender a utilizar o `reactable`, consulte a [documentação do pacote](https://glin.github.io/reactable/articles/examples.html).
+
+-  `gt`: este pacote foi criado pela equipe da RStudio/Posit, e tenta utilizar uma filosofia similar ao `ggplot2` (a gramática dos gráficos), porém com tabelas (`gt` sendo gramática de tabelas). O `gt` tem funções para as [diferentes partes da tabela](https://gt.rstudio.com/reference/figures/gt_parts_of_a_table.svg): cabeçalho, corpo, rodapé, entre outros. Para aprender a utilizar o `gt`, consulte a [documentação do pacote](https://gt.rstudio.com/). Curiosidade: em 2023 a mesma equipe lançou a [biblioteca `gt` para Python](https://posit-dev.github.io/great-tables/articles/intro.html).
+
+:::
+
+##### Adicionar código em linha (*inline code*)
+
+Em breve!
+
 
 ### Opções de campos de código (*chunk options*)
 
