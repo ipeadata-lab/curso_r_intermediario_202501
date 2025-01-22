@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-78faf54a06e50be45dc6d83ab59297a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-72c93205fb41c15e2e398b4f9a505ee2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -854,7 +854,32 @@ Clique para ver o código!
 </ul>
 <section id="exercícios" class="level5" data-number="5.4.6.3.1">
 <h5 data-number="5.4.6.3.1" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">5.4.6.3.1</span> Exercícios</h5>
-<p>Em breve!</p>
+<ol type="1">
+<li>Ainda no arquivo <code>"aula-2.qmd"</code>: utilizando a base de dados <code>pnud_min</code> do pacote <code>abjData</code>, escreva uma breve descrição da base de dados, utilizando códigos em linha. Ideias de conteúdos: número de observações, número de variáveis, variáveis presentes na base, quais são os anos presentes na base, quais são os municípios com o menor e maior indicador de IDH municipal para o ano mais recente, entre outros.</li>
+</ol>
+<p>Caso não conheça o pacote <code>abjData</code>, você pode carregar a base de dados com o código abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("abjData") # executar caso não tenha o abjData instalado</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(abjData)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>pnud_min</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 16,686 × 15
+   ano   muni_id muni_nm   uf_sigla regiao_nm  idhm idhm_e idhm_l idhm_r espvida
+   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+ 1 1991  1100015 ALTA FLO… RO       Norte     0.329  0.112  0.617  0.516    62.0
+ 2 1991  1100023 ARIQUEMES RO       Norte     0.432  0.199  0.684  0.593    66.0
+ 3 1991  1100031 CABIXI    RO       Norte     0.309  0.108  0.636  0.43     63.2
+ 4 1991  1100049 CACOAL    RO       Norte     0.407  0.171  0.667  0.593    65.0
+ 5 1991  1100056 CEREJEIR… RO       Norte     0.386  0.167  0.629  0.547    62.7
+ 6 1991  1100064 COLORADO… RO       Norte     0.376  0.151  0.658  0.536    64.5
+ 7 1991  1100072 CORUMBIA… RO       Norte     0.203  0.039  0.572  0.373    59.3
+ 8 1991  1100080 COSTA MA… RO       Norte     0.425  0.22   0.629  0.553    62.8
+ 9 1991  1100098 ESPIGÃO … RO       Norte     0.388  0.159  0.653  0.561    64.2
+10 1991  1100106 GUAJARÁ-… RO       Norte     0.468  0.247  0.662  0.625    64.7
+# ℹ 16,676 more rows
+# ℹ 5 more variables: rdpc &lt;dbl&gt;, gini &lt;dbl&gt;, pop &lt;int&gt;, lat &lt;dbl&gt;, lon &lt;dbl&gt;</code></pre>
+</div>
+</div>
 </section>
 </section>
 </section>
@@ -862,12 +887,12 @@ Clique para ver o código!
 <h3 data-number="5.4.7" class="anchored" data-anchor-id="opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.4.7</span> Opções de campos de código (<em>chunk options</em>)</h3>
 <p>Os campos de código, ou <em>code chunks</em>, são trechos de código que podem ser executados em documentos Quarto. Eles oferecem diversas opções para personalizar a execução e a exibição do código e dos resultados. Essas opções permitem configurar como o código aparece no relatório, como ele é executado e como os resultados são apresentados.</p>
 <p>As opções devem ser apresentadas na linha após o início do campo de código, precedido de <code>#|</code>, no formato <code>nome_opcao: valor</code>. Por exemplo:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| nome_opcao: valor</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="in"># código em R aqui</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="in">1 + 1</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| nome_opcao: valor</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="in"># código em R aqui</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="in">1 + 1</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Existem muitas opções de campos de código, e estão listadas na <a href="https://quarto.org/docs/computations/execution-options.html">documentação do Quarto</a>. Neste momento, vamos explorar algumas das principais opções!</p>
 <section id="exibir-ou-ocultar-o-código" class="level4" data-number="5.4.7.1">
 <h4 data-number="5.4.7.1" class="anchored" data-anchor-id="exibir-ou-ocultar-o-código"><span class="header-section-number">5.4.7.1</span> Exibir ou ocultar o código</h4>
@@ -888,27 +913,27 @@ Clique para ver o código!
 <ul>
 <li>HTML:</li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> html</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> html</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Word:</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> docx</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> docx</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>PDF (é necessário ter alguma instalação de LaTeX no computador, veja as <a href="./instalacao.html#instalação-do-tinytex">página de instalações</a>):</li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> pdf</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> pdf</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Apresentação em HTML:</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> revealjs</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> revealjs</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Essas são as opções de formatos mais utilizadas. Para ver a lista completa, consulte a <a href="https://quarto.org/docs/output-formats/all-formats.html">documentação do Quarto</a>.</p>
 </section>
 <section id="projetos-em-quarto" class="level3" data-number="5.4.9">
