@@ -13,14 +13,17 @@ Por exemplo:
 #| eval: false
 # Aula sobre ggplot2 -----
 
-# Carregar o ggplot2
+# Carregar pacotes
 library(ggplot2)
+library(palmerpenguins)
 
-# exemplo de código
-mtcars |>
+# Código que gera o gráfico
+penguins |>
   ggplot() +
-  aes(x = wt, y = mpg) +
-  geom_point()
+  aes(x = flipper_length_mm, y = body_mass_g) +
+  geom_point(aes(color = species, shape = species)) +
+  scale_color_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  theme_minimal()
 
 # ....
 ```
@@ -187,10 +190,11 @@ Este é um texto de exemplo. # <2>
   
 ```{r}
 #| eval: false
-starwars |> 
+penguins |>
   ggplot() +
-  aes(x = height, y = mass) +
-  geom_point() +
+  aes(x = flipper_length_mm, y = body_mass_g) +
+  geom_point(aes(color = species, shape = species)) +
+  scale_color_manual(values = c("darkorange", "darkorchid", "cyan4")) +
   theme_minimal()
 ```
 
