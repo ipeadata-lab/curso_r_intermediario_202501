@@ -1,6 +1,5 @@
 ---
 title: "Produção de relatórios com Quarto"
-code-annotations: hover
 ---
 
 ## Introdução
@@ -573,7 +572,7 @@ Em breve
 Em breve
 
 
-## Dúvidas da aula
+### Dúvidas da aula
 
 ::: {.callout-note}
 
@@ -588,6 +587,8 @@ Podemos usar a seguinte configuração nos metadados:
 lang: pt
 ---
 ```
+
+Caso tenha dúvidas, consulte a [página de documentação](https://quarto.org/docs/authoring/language.html#lang-option).
 :::
 
 ::: {.callout-note}
@@ -612,8 +613,51 @@ Existem outras opções disponíveis para personalizar a forma como o sumário a
 
 :::
 
+::: {.callout-note}
 
+## Arquivo autocontido
 
+3. Ao gerar um arquivo HTML, o Quarto exporta um arquivo `.html` e junto à ele, algumas pastas com arquivos `.css`, `.js`, entre outros. É possível exportar um arquivo HTML que seja autocontido, ou seja, que não dependa de pastas adicionais?
+
+Podemos usar a seguinte configuração nos metadados:
+
+``` r
+---
+format:
+  html:
+    embed-resources: true # <1>
+---
+```
+1. `embed-resources: true` faz com que o arquivo HTML seja autocontido, ou seja, que não dependa de pastas adicionais.
+
+**Atenção:** o arquivo autocontido costuma ser maior (ocupar mais espaço do computador) do que um arquivo "padrão" (que depende de arquivos em pastas adicionais).
+
+Caso necessário, consulte a [página de documentação](https://quarto.org/docs/output-formats/html-publishing.html#standalone-html).
+:::
+
+### Links úteis na documentação do Quarto
+
+- [Como instalar](https://quarto.org/docs/get-started/)
+
+- [Exemplos básicos de markdown](https://quarto.org/docs/authoring/markdown-basics.html)
+
+- [Editor Visual](https://quarto.org/docs/visual-editor/index.html)
+
+- [Opções de campo de código](https://quarto.org/docs/reference/cells/cells-knitr.html)
+
+- [Como configurar o campo de autores: nome, email, afiliação, ORCID, etc](https://quarto.org/docs/journals/authors.html)
+
+- [Como configurar o sumário](https://quarto.org/docs/output-formats/html-basics.html#table-of-contents)
+
+- [Configurações de metadados para gerar arquivos HTML](https://quarto.org/docs/reference/formats/html.html#metadata)
+
+- [É possivel adicionar citações com o Quarto?](https://quarto.org/docs/visual-editor/technical.html#citations)
+
+- [Sobre a referência cruzada](https://quarto.org/docs/authoring/cross-reference-options.html)
+
+- [Formatos disponíveis para exportar documentos](https://quarto.org/docs/output-formats/all-formats.html)
+
+- [Lista de extensões do Quarto](https://quarto.org/docs/extensions/)
 
 
 <!-- ### Quarto CLI -->
