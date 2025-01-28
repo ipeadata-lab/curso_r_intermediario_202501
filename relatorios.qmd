@@ -206,6 +206,23 @@ penguins |>
 
 2) Salve o arquivo e renderize-o.  Verifique se o conteúdo foi renderizado corretamente.
 
+::: {.callout-warning}
+
+## Atenção: Dicas importantes sobre os campos de código
+
+-   Os campos de código são executados na ordem em que aparecem no documento. Se você tentar executar um campo de código que depende de um objeto que ainda não foi criado, um erro será gerado.
+
+- O documento Quarto deve ser independente dos objetos que estão carregados no painel *Environment* do RStudio, e dos pacotes que você carregou na sua sessão do R. Todos os pacotes e objetos que você precisa devem ser carregados no próprio documento.
+
+- Por padrão, o conteúdo do campo de código é executado toda vez que o documento é renderizado. Se você não quer que o código seja executado, você pode adicionar a opção `eval: false` no campo de código (falaremos mais sobre as opções de campos de código posteriormente).
+
+- Cuidado com o que você adiciona no campo de código! Por exemplo: não adicione o comando `install.packages()` no campo de código, pois isso pode instalar pacotes toda vez que o documento for renderizado. Se você precisa instalar pacotes, faça isso no console do RStudio. Caso queira deixar isso registrado no campo de código, você pode: 1) adicionar como comentário (`# install.packages("nome-do-pacote")`), ou 2) adicionar a opção `eval: false` no campo de código.
+
+
+
+
+:::
+
 
 ### Editor Source e Visual
 
@@ -536,6 +553,46 @@ Em breve
 ### Extensões
 
 Em breve
+
+
+## Dúvidas da aula
+
+::: {.callout-note}
+
+## Idioma do documento
+
+1. Ao renderizar um documento em HTML, temos alguns elementos em inglês (como `author`, `date`, `table of contents`, entre outros). É possível esse conteúdo em português?
+
+Podemos usar a seguinte configuração nos metadados:
+
+``` r
+---
+lang: pt
+---
+```
+:::
+
+::: {.callout-note}
+
+## Sumário
+
+2. É possível adicionar um sumário no documento Quarto?
+
+Podemos usar a seguinte configuração nos metadados:
+
+``` r
+---
+format:
+  html:
+    toc: true # <1> 
+---
+```
+1. TOC é a sigla para *T*able *O*f *C*ontents, ou seja, sumário. Ao utilizar `toc: true`, o sumário será adicionado ao documento.
+
+
+Existem outras opções disponíveis para personalizar a forma como o sumário aparece. Essas opções estão listadas na [página de documentação](https://quarto.org/docs/output-formats/html-basics.html#table-of-contents).
+
+:::
 
 
 
