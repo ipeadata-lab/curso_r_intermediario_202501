@@ -307,6 +307,24 @@ A opção `eval:` define se o código será executado (ou não) no relatório. P
 
 Ao executar um campo de código, mensagens e avisos podem ser gerados. Podemos controlar se essas mensagens e avisos serão exibidos no relatório com as opções `message:` e `warning:`. Por padrão, ambos são exibidos. Para ocultar as mensagens, podemos adicionar `message: false` no campo de código. Para ocultar os avisos, podemos adicionar `warning: false`.
 
+#### Nome do campo de código (*label*)
+
+Podemos adicionar um nome ao campo de código, utilizando a opção `label: nome-do-campo`. Atencão:
+
+  - É importante que cada campo de código nomeado tenha um nome único! Não podemos repetir os nomes.
+  
+  - Deixe o nome do campo de código sem caracteres especiais, sem espaços, e sem `_`. Caso queira separar palavras, utilize o `-`.
+
+
+É interessante nomear os campos de código, pois:
+
+- É necessário para fazer [referências cruzadas](https://quarto.org/docs/authoring/cross-reference-options.html) (neste caso, precisamos utilizar os prefixos, como `fig-` para figuras, e `tbl-` para tabelas). 
+
+- Facilita a identificação dos campos de código, principalmente em documentos maiores (ao abrir o arquivo `.qmd`, existe um meno no canto inferior esquerdo do RStudio onde podemos navegar pelo documento utilizando os nomes dos campos de código e os títulos e subtítulos).
+
+- Caso ocorram erros, é mais fácil identificar o campo de código que gerou o erro, pois a mensagem apresentada indicará o nome do campo de código.
+
+- As imagens geradas a partir de campos de código nomeados são salvas com o nome do campo de código. Isso facilita a identificação das imagens geradas na pasta do projeto.
 
 #### Alterando a configuração global dos campos de código
 
