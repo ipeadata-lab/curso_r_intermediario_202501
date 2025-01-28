@@ -259,6 +259,57 @@ editor: visual
 
 3. Entre os modos Source e Visual, qual você prefere para escrever documentos? Por quê?
 
+
+
+### Opções de campos de código (*chunk options*)
+
+Os campos de código, ou *code chunks*, são trechos de código que podem ser executados em documentos Quarto. Eles oferecem diversas opções para personalizar a execução e a exibição do código e dos resultados. Essas opções permitem configurar como o código aparece no relatório, como ele é executado e como os resultados são apresentados.
+
+As opções devem ser apresentadas na linha após o início do campo de código, precedido de `#|`, no formato `nome_opcao: valor`. Por exemplo:
+````
+```{{r}}
+#| nome_opcao: valor
+
+# código em R aqui
+1 + 1
+```
+````
+
+
+Existem muitas opções de campos de código, e estão listadas na [documentação do Quarto](https://quarto.org/docs/computations/execution-options.html). Neste momento, vamos explorar algumas das principais opções!
+
+#### Exibir ou ocultar o código
+
+A opção `echo:` define se o código será exibido (ou não) no relatório. Por padrão, o código é exibido. Para ocultar o código, podemos adicionar `echo: false` no campo de código. 
+
+#### Executar ou não o código
+
+A opção `eval:` define se o código será executado (ou não) no relatório. Por padrão, o código é executado. Para não executar o código, podemos adicionar `eval: false` no campo de código.
+
+#### Mensagens (*message*) e avisos (*warning*)
+
+Ao executar um campo de código, mensagens e avisos podem ser gerados. Podemos controlar se essas mensagens e avisos serão exibidos no relatório com as opções `message:` e `warning:`. Por padrão, ambos são exibidos. Para ocultar as mensagens, podemos adicionar `message: false` no campo de código. Para ocultar os avisos, podemos adicionar `warning: false`.
+
+
+#### Alterando a configuração global dos campos de código
+
+Podemos alterar a configuração global dos campos de código no documento, adicionando as opções no início do documento, nos metadados. Por exemplo:
+
+``` r
+---
+execute: 
+  message: false # <1>
+  warning: false # <2>
+  echo: false # <3>
+---
+```
+1. A opção `message: false` oculta as mensagens.
+2. A opção `warning: false` oculta os avisos.
+3. A opção `echo: false` oculta o código.
+
+
+Isso fará com que todos os campos de código do documento tenham essas opções por padrão. Caso você queira alterar as opções de um campo de código específico, você pode adicionar as opções no campo de código específico. 
+
 ### Adicionando conteúdos com código
 
 ::: {.callout-note}
@@ -433,37 +484,6 @@ library(abjData)
 pnud_min
 ```
 
-
-
-
-### Opções de campos de código (*chunk options*)
-
-Os campos de código, ou *code chunks*, são trechos de código que podem ser executados em documentos Quarto. Eles oferecem diversas opções para personalizar a execução e a exibição do código e dos resultados. Essas opções permitem configurar como o código aparece no relatório, como ele é executado e como os resultados são apresentados.
-
-As opções devem ser apresentadas na linha após o início do campo de código, precedido de `#|`, no formato `nome_opcao: valor`. Por exemplo:
-````
-```{{r}}
-#| nome_opcao: valor
-
-# código em R aqui
-1 + 1
-```
-````
-
-
-Existem muitas opções de campos de código, e estão listadas na [documentação do Quarto](https://quarto.org/docs/computations/execution-options.html). Neste momento, vamos explorar algumas das principais opções!
-
-#### Exibir ou ocultar o código
-
-A opção `echo:` define se o código será exibido (ou não) no relatório. Por padrão, o código é exibido. Para ocultar o código, podemos adicionar `echo: false` no campo de código. 
-
-#### Executar ou não o código
-
-A opção `eval:` define se o código será executado (ou não) no relatório. Por padrão, o código é executado. Para não executar o código, podemos adicionar `eval: false` no campo de código.
-
-#### Mensagens (*message*) e avisos (*warning*)
-
-Ao executar um campo de código, mensagens e avisos podem ser gerados. Podemos controlar se essas mensagens e avisos serão exibidos no relatório com as opções `message:` e `warning:`. Por padrão, ambos são exibidos. Para ocultar as mensagens, podemos adicionar `message: false` no campo de código. Para ocultar os avisos, podemos adicionar `warning: false`.
 
 
 
