@@ -6,6 +6,8 @@ execute:
   freeze: auto
 
 lang: pt 
+language:
+  title-block-author-single: "Autoria"
 
 book:
   title: "R intermediário e pesquisa reprodutível"
@@ -46,3 +48,9 @@ format:
 bibliography: references.bib
 
 editor: source
+code-annotations: hover
+
+author:
+  - name: "Beatriz Milz"
+    url: "https://www.beamilz.com/"
+    email: "milz.bea@gmail.com"
