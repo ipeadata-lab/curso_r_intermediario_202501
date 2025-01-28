@@ -461,9 +461,9 @@ A opção `echo:` define se o código será exibido (ou não) no relatório. Por
 
 A opção `eval:` define se o código será executado (ou não) no relatório. Por padrão, o código é executado. Para não executar o código, podemos adicionar `eval: false` no campo de código.
 
-#### Mensagens (*messages*) e avisos (*warnings*)
+#### Mensagens (*message*) e avisos (*warning*)
 
-Ao executar um campo de código, mensagens e avisos podem ser gerados. Podemos controlar se essas mensagens e avisos serão exibidos no relatório com as opções `messages:` e `warnings:`. Por padrão, ambos são exibidos. Para ocultar as mensagens, podemos adicionar `messages: false` no campo de código. Para ocultar os avisos, podemos adicionar `warnings: false`.
+Ao executar um campo de código, mensagens e avisos podem ser gerados. Podemos controlar se essas mensagens e avisos serão exibidos no relatório com as opções `message:` e `warning:`. Por padrão, ambos são exibidos. Para ocultar as mensagens, podemos adicionar `message: false` no campo de código. Para ocultar os avisos, podemos adicionar `warning: false`.
 
 
 
