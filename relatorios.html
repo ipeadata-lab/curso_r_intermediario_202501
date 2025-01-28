@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Beatriz Milz">
 
 <title>5&nbsp; Produção de relatórios com Quarto – R intermediário e pesquisa reprodutível</title>
 <style>
@@ -239,28 +240,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#exercício-4" id="toc-exercício-4" class="nav-link" data-scroll-target="#exercício-4"><span class="header-section-number">5.4.5.1</span> Exercício</a></li>
   </ul></li>
-  <li><a href="#adicionando-conteúdos-com-código" id="toc-adicionando-conteúdos-com-código" class="nav-link" data-scroll-target="#adicionando-conteúdos-com-código"><span class="header-section-number">5.4.6</span> Adicionando conteúdos com código</a>
+  <li><a href="#opções-de-campos-de-código-chunk-options" id="toc-opções-de-campos-de-código-chunk-options" class="nav-link" data-scroll-target="#opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.4.6</span> Opções de campos de código (<em>chunk options</em>)</a>
   <ul>
-  <li><a href="#adicionando-gráficos" id="toc-adicionando-gráficos" class="nav-link" data-scroll-target="#adicionando-gráficos"><span class="header-section-number">5.4.6.1</span> Adicionando gráficos</a></li>
-  <li><a href="#adicionando-tabelas" id="toc-adicionando-tabelas" class="nav-link" data-scroll-target="#adicionando-tabelas"><span class="header-section-number">5.4.6.2</span> Adicionando tabelas</a>
-  <ul class="collapse">
-  <li><a href="#exercício-5" id="toc-exercício-5" class="nav-link" data-scroll-target="#exercício-5"><span class="header-section-number">5.4.6.2.1</span> Exercício</a></li>
+  <li><a href="#exibir-ou-ocultar-o-código" id="toc-exibir-ou-ocultar-o-código" class="nav-link" data-scroll-target="#exibir-ou-ocultar-o-código"><span class="header-section-number">5.4.6.1</span> Exibir ou ocultar o código</a></li>
+  <li><a href="#executar-ou-não-o-código" id="toc-executar-ou-não-o-código" class="nav-link" data-scroll-target="#executar-ou-não-o-código"><span class="header-section-number">5.4.6.2</span> Executar ou não o código</a></li>
+  <li><a href="#mensagens-message-e-avisos-warning" id="toc-mensagens-message-e-avisos-warning" class="nav-link" data-scroll-target="#mensagens-message-e-avisos-warning"><span class="header-section-number">5.4.6.3</span> Mensagens (<em>message</em>) e avisos (<em>warning</em>)</a></li>
+  <li><a href="#nome-do-campo-de-código-label" id="toc-nome-do-campo-de-código-label" class="nav-link" data-scroll-target="#nome-do-campo-de-código-label"><span class="header-section-number">5.4.6.4</span> Nome do campo de código (<em>label</em>)</a></li>
+  <li><a href="#alterando-a-configuração-global-dos-campos-de-código" id="toc-alterando-a-configuração-global-dos-campos-de-código" class="nav-link" data-scroll-target="#alterando-a-configuração-global-dos-campos-de-código"><span class="header-section-number">5.4.6.5</span> Alterando a configuração global dos campos de código</a></li>
   </ul></li>
-  <li><a href="#adicionar-código-em-linha-inline-code" id="toc-adicionar-código-em-linha-inline-code" class="nav-link" data-scroll-target="#adicionar-código-em-linha-inline-code"><span class="header-section-number">5.4.6.3</span> Adicionar código em linha (<em>inline code</em>)</a>
-  <ul class="collapse">
-  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">5.4.6.3.1</span> Exercícios</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#opções-de-campos-de-código-chunk-options" id="toc-opções-de-campos-de-código-chunk-options" class="nav-link" data-scroll-target="#opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.4.7</span> Opções de campos de código (<em>chunk options</em>)</a>
+  <li><a href="#adicionando-conteúdos-com-código" id="toc-adicionando-conteúdos-com-código" class="nav-link" data-scroll-target="#adicionando-conteúdos-com-código"><span class="header-section-number">5.4.7</span> Adicionando conteúdos com código</a>
   <ul>
-  <li><a href="#exibir-ou-ocultar-o-código" id="toc-exibir-ou-ocultar-o-código" class="nav-link" data-scroll-target="#exibir-ou-ocultar-o-código"><span class="header-section-number">5.4.7.1</span> Exibir ou ocultar o código</a></li>
-  <li><a href="#executar-ou-não-o-código" id="toc-executar-ou-não-o-código" class="nav-link" data-scroll-target="#executar-ou-não-o-código"><span class="header-section-number">5.4.7.2</span> Executar ou não o código</a></li>
-  <li><a href="#mensagens-message-e-avisos-warning" id="toc-mensagens-message-e-avisos-warning" class="nav-link" data-scroll-target="#mensagens-message-e-avisos-warning"><span class="header-section-number">5.4.7.3</span> Mensagens (<em>message</em>) e avisos (<em>warning</em>)</a></li>
+  <li><a href="#adicionando-gráficos" id="toc-adicionando-gráficos" class="nav-link" data-scroll-target="#adicionando-gráficos"><span class="header-section-number">5.4.7.1</span> Adicionando gráficos</a></li>
+  <li><a href="#adicionando-tabelas" id="toc-adicionando-tabelas" class="nav-link" data-scroll-target="#adicionando-tabelas"><span class="header-section-number">5.4.7.2</span> Adicionando tabelas</a>
+  <ul class="collapse">
+  <li><a href="#exercício-5" id="toc-exercício-5" class="nav-link" data-scroll-target="#exercício-5"><span class="header-section-number">5.4.7.2.1</span> Exercício</a></li>
+  </ul></li>
+  <li><a href="#adicionar-código-em-linha-inline-code" id="toc-adicionar-código-em-linha-inline-code" class="nav-link" data-scroll-target="#adicionar-código-em-linha-inline-code"><span class="header-section-number">5.4.7.3</span> Adicionar código em linha (<em>inline code</em>)</a>
+  <ul class="collapse">
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">5.4.7.3.1</span> Exercícios</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#tipos-de-formatos-para-exportar" id="toc-tipos-de-formatos-para-exportar" class="nav-link" data-scroll-target="#tipos-de-formatos-para-exportar"><span class="header-section-number">5.4.8</span> Tipos de formatos para exportar</a></li>
   <li><a href="#projetos-em-quarto" id="toc-projetos-em-quarto" class="nav-link" data-scroll-target="#projetos-em-quarto"><span class="header-section-number">5.4.9</span> Projetos em Quarto</a></li>
   <li><a href="#quarto-cli" id="toc-quarto-cli" class="nav-link" data-scroll-target="#quarto-cli"><span class="header-section-number">5.4.10</span> Quarto CLI</a></li>
   <li><a href="#extensões" id="toc-extensões" class="nav-link" data-scroll-target="#extensões"><span class="header-section-number">5.4.11</span> Extensões</a></li>
+  <li><a href="#dúvidas-da-aula" id="toc-dúvidas-da-aula" class="nav-link" data-scroll-target="#dúvidas-da-aula"><span class="header-section-number">5.4.12</span> Dúvidas da aula</a></li>
+  <li><a href="#links-úteis-na-documentação-do-quarto" id="toc-links-úteis-na-documentação-do-quarto" class="nav-link" data-scroll-target="#links-úteis-na-documentação-do-quarto"><span class="header-section-number">5.4.13</span> Links úteis na documentação do Quarto</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -277,6 +282,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Autoria</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="https://www.beamilz.com/">Beatriz Milz</a> <a href="mailto:milz.bea@gmail.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+          </div>
+  </div>
     
   
     
@@ -514,6 +525,24 @@ O que é Markdown?
 <ol start="2" type="1">
 <li>Salve o arquivo e renderize-o. Verifique se o conteúdo foi renderizado corretamente.</li>
 </ol>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Atenção: Dicas importantes sobre os campos de código
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Os campos de código são executados na ordem em que aparecem no documento. Se você tentar executar um campo de código que depende de um objeto que ainda não foi criado, um erro será gerado.</p></li>
+<li><p>O documento Quarto deve ser independente dos objetos que estão carregados no painel <em>Environment</em> do RStudio, e dos pacotes que você carregou na sua sessão do R. Todos os pacotes e objetos que você precisa devem ser carregados no próprio documento.</p></li>
+<li><p>Por padrão, o conteúdo do campo de código é executado toda vez que o documento é renderizado. Se você não quer que o código seja executado, você pode adicionar a opção <code>eval: false</code> no campo de código (falaremos mais sobre as opções de campos de código posteriormente).</p></li>
+<li><p>Cuidado com o que você adiciona no campo de código! Por exemplo: não adicione o comando <code>install.packages()</code> no campo de código, pois isso pode instalar pacotes toda vez que o documento for renderizado. Se você precisa instalar pacotes, faça isso no console do RStudio. Caso queira deixar isso registrado no campo de código, você pode: 1) adicionar como comentário (<code># install.packages("nome-do-pacote")</code>), ou 2) adicionar a opção <code>eval: false</code> no campo de código.</p></li>
+</ul>
+</div>
+</div>
 </section>
 </section>
 <section id="editor-source-e-visual" class="level3" data-number="5.4.5">
@@ -594,8 +623,72 @@ editor: visual
 </ol>
 </section>
 </section>
-<section id="adicionando-conteúdos-com-código" class="level3" data-number="5.4.6">
-<h3 data-number="5.4.6" class="anchored" data-anchor-id="adicionando-conteúdos-com-código"><span class="header-section-number">5.4.6</span> Adicionando conteúdos com código</h3>
+<section id="opções-de-campos-de-código-chunk-options" class="level3" data-number="5.4.6">
+<h3 data-number="5.4.6" class="anchored" data-anchor-id="opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.4.6</span> Opções de campos de código (<em>chunk options</em>)</h3>
+<p>Os campos de código, ou <em>code chunks</em>, são trechos de código que podem ser executados em documentos Quarto. Eles oferecem diversas opções para personalizar a execução e a exibição do código e dos resultados. Essas opções permitem configurar como o código aparece no relatório, como ele é executado e como os resultados são apresentados.</p>
+<p>As opções devem ser apresentadas na linha após o início do campo de código, precedido de <code>#|</code>, no formato <code>nome_opcao: valor</code>. Por exemplo:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| nome_opcao: valor</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="in"># código em R aqui</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="in">1 + 1</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Existem muitas opções de campos de código, e estão listadas na <a href="https://quarto.org/docs/computations/execution-options.html">documentação do Quarto</a>. Neste momento, vamos explorar algumas das principais opções!</p>
+<section id="exibir-ou-ocultar-o-código" class="level4" data-number="5.4.6.1">
+<h4 data-number="5.4.6.1" class="anchored" data-anchor-id="exibir-ou-ocultar-o-código"><span class="header-section-number">5.4.6.1</span> Exibir ou ocultar o código</h4>
+<p>A opção <code>echo:</code> define se o código será exibido (ou não) no relatório. Por padrão, o código é exibido. Para ocultar o código, podemos adicionar <code>echo: false</code> no campo de código.</p>
+</section>
+<section id="executar-ou-não-o-código" class="level4" data-number="5.4.6.2">
+<h4 data-number="5.4.6.2" class="anchored" data-anchor-id="executar-ou-não-o-código"><span class="header-section-number">5.4.6.2</span> Executar ou não o código</h4>
+<p>A opção <code>eval:</code> define se o código será executado (ou não) no relatório. Por padrão, o código é executado. Para não executar o código, podemos adicionar <code>eval: false</code> no campo de código.</p>
+</section>
+<section id="mensagens-message-e-avisos-warning" class="level4" data-number="5.4.6.3">
+<h4 data-number="5.4.6.3" class="anchored" data-anchor-id="mensagens-message-e-avisos-warning"><span class="header-section-number">5.4.6.3</span> Mensagens (<em>message</em>) e avisos (<em>warning</em>)</h4>
+<p>Ao executar um campo de código, mensagens e avisos podem ser gerados. Podemos controlar se essas mensagens e avisos serão exibidos no relatório com as opções <code>message:</code> e <code>warning:</code>. Por padrão, ambos são exibidos. Para ocultar as mensagens, podemos adicionar <code>message: false</code> no campo de código. Para ocultar os avisos, podemos adicionar <code>warning: false</code>.</p>
+</section>
+<section id="nome-do-campo-de-código-label" class="level4" data-number="5.4.6.4">
+<h4 data-number="5.4.6.4" class="anchored" data-anchor-id="nome-do-campo-de-código-label"><span class="header-section-number">5.4.6.4</span> Nome do campo de código (<em>label</em>)</h4>
+<p>Podemos adicionar um nome ao campo de código, utilizando a opção <code>label: nome-do-campo</code>. Atencão:</p>
+<ul>
+<li><p>É importante que cada campo de código nomeado tenha um nome único! Não podemos repetir os nomes.</p></li>
+<li><p>Deixe o nome do campo de código sem caracteres especiais, sem espaços, e sem <code>_</code>. Caso queira separar palavras, utilize o <code>-</code>.</p></li>
+</ul>
+<p>É interessante nomear os campos de código, pois:</p>
+<ul>
+<li><p>É necessário para fazer <a href="https://quarto.org/docs/authoring/cross-reference-options.html">referências cruzadas</a> (neste caso, precisamos utilizar os prefixos, como <code>fig-</code> para figuras, e <code>tbl-</code> para tabelas).</p></li>
+<li><p>Facilita a identificação dos campos de código, principalmente em documentos maiores (ao abrir o arquivo <code>.qmd</code>, existe um meno no canto inferior esquerdo do RStudio onde podemos navegar pelo documento utilizando os nomes dos campos de código e os títulos e subtítulos).</p></li>
+<li><p>Caso ocorram erros, é mais fácil identificar o campo de código que gerou o erro, pois a mensagem apresentada indicará o nome do campo de código.</p></li>
+<li><p>As imagens geradas a partir de campos de código nomeados são salvas com o nome do campo de código. Isso facilita a identificação das imagens geradas na pasta do projeto.</p></li>
+</ul>
+</section>
+<section id="alterando-a-configuração-global-dos-campos-de-código" class="level4" data-number="5.4.6.5">
+<h4 data-number="5.4.6.5" class="anchored" data-anchor-id="alterando-a-configuração-global-dos-campos-de-código"><span class="header-section-number">5.4.6.5</span> Alterando a configuração global dos campos de código</h4>
+<p>Podemos alterar a configuração global dos campos de código no documento, adicionando as opções no início do documento, nos metadados. Por exemplo:</p>
+<div class="sourceCode" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="annotated-cell-5-2"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>execute<span class="sc">:</span> </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1">1</button><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>  message<span class="sc">:</span> false</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2">2</button><span id="annotated-cell-5-4" class="code-annotation-target"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a>  warning<span class="sc">:</span> false</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3">3</button><span id="annotated-cell-5-5" class="code-annotation-target"><a href="#annotated-cell-5-5" aria-hidden="true" tabindex="-1"></a>  echo<span class="sc">:</span> false</span>
+<span id="annotated-cell-5-6"><a href="#annotated-cell-5-6" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="3" data-code-annotation="1">A opção <code>message: false</code> oculta as mensagens.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="4" data-code-annotation="2">A opção <code>warning: false</code> oculta os avisos.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="5" data-code-annotation="3">A opção <code>echo: false</code> oculta o código.</span>
+</dd>
+</dl>
+<p>Isso fará com que todos os campos de código do documento tenham essas opções por padrão. Caso você queira alterar as opções de um campo de código específico, você pode adicionar as opções no campo de código específico.</p>
+</section>
+</section>
+<section id="adicionando-conteúdos-com-código" class="level3" data-number="5.4.7">
+<h3 data-number="5.4.7" class="anchored" data-anchor-id="adicionando-conteúdos-com-código"><span class="header-section-number">5.4.7</span> Adicionando conteúdos com código</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -614,48 +707,48 @@ Nota
 <p>Como citado anteriormente, podemos adicionar código em R em campos de código, ou <em>code chunks</em>. Dentro de um campo de código, podemos adicionar comentários, códigos em R, e os resultados dos códigos serão exibidos logo em seguida no documento.</p>
 <p>Para adicionar um campo de código, utilizamos a marcação <code>```{r}</code> no início e <code>```</code> no final. Por exemplo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="in"># Exemplo: somando 1 + 1</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="in">1 + 1</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="in"># Exemplo: somando 1 + 1</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="in">1 + 1</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
 </div>
 <p>A partir de agora, vamos omitir a marcação de iniciar e finalizar os campos de código, porém saiba que é necessário adicionar essas marcações para que o código seja executado. Por exemplo, o código acima seria apresentado desta forma:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo: somando 1 + 1</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo: somando 1 + 1</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
 </div>
-<section id="adicionando-gráficos" class="level4" data-number="5.4.6.1">
-<h4 data-number="5.4.6.1" class="anchored" data-anchor-id="adicionando-gráficos"><span class="header-section-number">5.4.6.1</span> Adicionando gráficos</h4>
+<section id="adicionando-gráficos" class="level4" data-number="5.4.7.1">
+<h4 data-number="5.4.7.1" class="anchored" data-anchor-id="adicionando-gráficos"><span class="header-section-number">5.4.7.1</span> Adicionando gráficos</h4>
 <p>Para adicionar um gráfico, podemos criar um campo de código e adicionar o código que gera o gráfico (igual ao utilizando em scripts <code>.R</code>).</p>
 <p>Os gráficos gerados a partir de um campo de código são exibidos logo após o código.</p>
 <p>Por exemplo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar os pacotes</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># exemplo de código</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g) <span class="sc">+</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"darkorchid"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Comprimento da nadadeira (mm)"</span>,</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Massa corporal (g)"</span>,</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Espécie"</span>,</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="st">"Espécie"</span>,</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Relação entre comprimento da nadadeira e massa corporal"</span>,</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Pinguins das espécies Adelie, Chinstrap e Gentoo"</span>,</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: Pacote palmerpenguins."</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar os pacotes</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># exemplo de código</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"darkorchid"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Comprimento da nadadeira (mm)"</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Massa corporal (g)"</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Espécie"</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="st">"Espécie"</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Relação entre comprimento da nadadeira e massa corporal"</span>,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Pinguins das espécies Adelie, Chinstrap e Gentoo"</span>,</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: Pacote palmerpenguins."</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -665,14 +758,14 @@ Nota
 </div>
 </div>
 </section>
-<section id="adicionando-tabelas" class="level4" data-number="5.4.6.2">
-<h4 data-number="5.4.6.2" class="anchored" data-anchor-id="adicionando-tabelas"><span class="header-section-number">5.4.6.2</span> Adicionando tabelas</h4>
+<section id="adicionando-tabelas" class="level4" data-number="5.4.7.2">
+<h4 data-number="5.4.7.2" class="anchored" data-anchor-id="adicionando-tabelas"><span class="header-section-number">5.4.7.2</span> Adicionando tabelas</h4>
 <p>Para adicionar tabelas (que sejam geradas com código), não basta apenas adicionar o código que gera a tabela. Veja o que acontece se tentarmos adicionar uma tabela com o código abaixo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species, island, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species, island, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
   species   island        n
@@ -688,8 +781,8 @@ Nota
 <p>Para que a tabela seja exibida de forma mais amigável, podemos utilizar alguma função de tabela para gerar tabelas. Existem diversas funções (de diferentes pacotes em R) que possibilitam a criação de tabelas. A função <code>knitr::kable()</code> é muito utilizada, e permite criar tabelas simples a partir de um data frame.</p>
 <p>Por exemplo, podemos utilizar o <code>knitr::kable()</code> para exibir a tabela criada:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia <span class="sc">|&gt;</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
@@ -731,8 +824,8 @@ Nota
 </div>
 <p>Podemos explorar os argumentos da função para personalizar a tabela, como adicionar nomes de colunas, entre outros. Por exemplo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia <span class="sc">|&gt;</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Espécie"</span>, <span class="st">"Ilha"</span>, <span class="st">"Quantidade"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Espécie"</span>, <span class="st">"Ilha"</span>, <span class="st">"Quantidade"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
@@ -791,8 +884,8 @@ Dica
 </ul>
 </div>
 </div>
-<section id="exercício-5" class="level5" data-number="5.4.6.2.1">
-<h5 data-number="5.4.6.2.1" class="anchored" data-anchor-id="exercício-5"><span class="header-section-number">5.4.6.2.1</span> Exercício</h5>
+<section id="exercício-5" class="level5" data-number="5.4.7.2.1">
+<h5 data-number="5.4.7.2.1" class="anchored" data-anchor-id="exercício-5"><span class="header-section-number">5.4.7.2.1</span> Exercício</h5>
 <ol type="1">
 <li><p>No arquivo <code>"aula-2.qmd"</code>, crie um campo de código com uma tabela de frequência de pinguins por espécie e sexo, utilizando a base de dados <code>penguins</code>. Salve essa tabela de frequência em um objeto chamado <code>pinguins_freq_especie_sexo</code>.</p></li>
 <li><p>Utilizando o objeto criado, apresente essa tabela formatada com a função <code>knitr::kable()</code>.</p></li>
@@ -800,8 +893,8 @@ Dica
 </ol>
 </section>
 </section>
-<section id="adicionar-código-em-linha-inline-code" class="level4" data-number="5.4.6.3">
-<h4 data-number="5.4.6.3" class="anchored" data-anchor-id="adicionar-código-em-linha-inline-code"><span class="header-section-number">5.4.6.3</span> Adicionar código em linha (<em>inline code</em>)</h4>
+<section id="adicionar-código-em-linha-inline-code" class="level4" data-number="5.4.7.3">
+<h4 data-number="5.4.7.3" class="anchored" data-anchor-id="adicionar-código-em-linha-inline-code"><span class="header-section-number">5.4.7.3</span> Adicionar código em linha (<em>inline code</em>)</h4>
 <p>Até agora, exploramos como adicionar conteúdos com código dentro de um campo de código. Mas e se quisermos adicionar um resultado de um código em um texto?</p>
 <p>Não é interessante adicionar manualmente conteúdos que podem ser gerados com código, pois isso pode tornar o documento menos reprodutível. Principalmente se os dados podem ser atualizados com o tempo!</p>
 <p>Para adicionar um resultado de um código em um texto, podemos utilizar o que chamamos de código em linha, ou <em>inline code</em>. Para isso, utilizamos a seguinte sintaxe:</p>
@@ -812,7 +905,7 @@ Dica
 </blockquote>
 <p>Você consegue identificar onde foram utilizados os códigos em linha?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -821,7 +914,7 @@ Clique para ver a resposta!
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Os conteúdos em destaque foram feitos com códigos em linha:</p>
 <blockquote class="blockquote">
@@ -831,7 +924,7 @@ Clique para ver a resposta!
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -840,7 +933,7 @@ Clique para ver o código!
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><img src="images/inline-code-exemplo.png" class="img-fluid"></p>
 </div>
@@ -852,16 +945,16 @@ Clique para ver o código!
 <li><p>A base de dados que você está utilizando pode ser atualizada futuramente? Se sim, busque adicionar conteúdos com códigos em linha.</p></li>
 <li><p>Caso algum conteúdo que você quer adicionar com código de linha dependa de um código “grande” (mais de uma linha), é interessante criar um campo de código, salvar o resultado em um objeto, e utilizar o código em linha para chamar o objeto.</p></li>
 </ul>
-<section id="exercícios" class="level5" data-number="5.4.6.3.1">
-<h5 data-number="5.4.6.3.1" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">5.4.6.3.1</span> Exercícios</h5>
+<section id="exercícios" class="level5" data-number="5.4.7.3.1">
+<h5 data-number="5.4.7.3.1" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">5.4.7.3.1</span> Exercícios</h5>
 <ol type="1">
 <li>Ainda no arquivo <code>"aula-2.qmd"</code>: utilizando a base de dados <code>pnud_min</code> do pacote <code>abjData</code>, escreva uma breve descrição da base de dados, utilizando códigos em linha. Ideias de conteúdos: número de observações, número de variáveis, variáveis presentes na base, quais são os anos presentes na base, quais são os municípios com o menor e maior indicador de IDH municipal para o ano mais recente, entre outros.</li>
 </ol>
 <p>Caso não conheça o pacote <code>abjData</code>, você pode carregar a base de dados com o código abaixo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("abjData") # executar caso não tenha o abjData instalado</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(abjData)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>pnud_min</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("abjData") # executar caso não tenha o abjData instalado</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(abjData)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>pnud_min</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 16,686 × 15
    ano   muni_id muni_nm   uf_sigla regiao_nm  idhm idhm_e idhm_l idhm_r espvida
@@ -881,30 +974,6 @@ Clique para ver o código!
 </div>
 </div>
 </section>
-</section>
-</section>
-<section id="opções-de-campos-de-código-chunk-options" class="level3" data-number="5.4.7">
-<h3 data-number="5.4.7" class="anchored" data-anchor-id="opções-de-campos-de-código-chunk-options"><span class="header-section-number">5.4.7</span> Opções de campos de código (<em>chunk options</em>)</h3>
-<p>Os campos de código, ou <em>code chunks</em>, são trechos de código que podem ser executados em documentos Quarto. Eles oferecem diversas opções para personalizar a execução e a exibição do código e dos resultados. Essas opções permitem configurar como o código aparece no relatório, como ele é executado e como os resultados são apresentados.</p>
-<p>As opções devem ser apresentadas na linha após o início do campo de código, precedido de <code>#|</code>, no formato <code>nome_opcao: valor</code>. Por exemplo:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| nome_opcao: valor</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="in"># código em R aqui</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="in">1 + 1</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Existem muitas opções de campos de código, e estão listadas na <a href="https://quarto.org/docs/computations/execution-options.html">documentação do Quarto</a>. Neste momento, vamos explorar algumas das principais opções!</p>
-<section id="exibir-ou-ocultar-o-código" class="level4" data-number="5.4.7.1">
-<h4 data-number="5.4.7.1" class="anchored" data-anchor-id="exibir-ou-ocultar-o-código"><span class="header-section-number">5.4.7.1</span> Exibir ou ocultar o código</h4>
-<p>A opção <code>echo:</code> define se o código será exibido (ou não) no relatório. Por padrão, o código é exibido. Para ocultar o código, podemos adicionar <code>echo: false</code> no campo de código.</p>
-</section>
-<section id="executar-ou-não-o-código" class="level4" data-number="5.4.7.2">
-<h4 data-number="5.4.7.2" class="anchored" data-anchor-id="executar-ou-não-o-código"><span class="header-section-number">5.4.7.2</span> Executar ou não o código</h4>
-<p>A opção <code>eval:</code> define se o código será executado (ou não) no relatório. Por padrão, o código é executado. Para não executar o código, podemos adicionar <code>eval: false</code> no campo de código.</p>
-</section>
-<section id="mensagens-message-e-avisos-warning" class="level4" data-number="5.4.7.3">
-<h4 data-number="5.4.7.3" class="anchored" data-anchor-id="mensagens-message-e-avisos-warning"><span class="header-section-number">5.4.7.3</span> Mensagens (<em>message</em>) e avisos (<em>warning</em>)</h4>
-<p>Ao executar um campo de código, mensagens e avisos podem ser gerados. Podemos controlar se essas mensagens e avisos serão exibidos no relatório com as opções <code>message:</code> e <code>warning:</code>. Por padrão, ambos são exibidos. Para ocultar as mensagens, podemos adicionar <code>message: false</code> no campo de código. Para ocultar os avisos, podemos adicionar <code>warning: false</code>.</p>
 </section>
 </section>
 <section id="tipos-de-formatos-para-exportar" class="level3" data-number="5.4.8">
@@ -947,6 +1016,102 @@ Clique para ver o código!
 <section id="extensões" class="level3" data-number="5.4.11">
 <h3 data-number="5.4.11" class="anchored" data-anchor-id="extensões"><span class="header-section-number">5.4.11</span> Extensões</h3>
 <p>Em breve</p>
+</section>
+<section id="dúvidas-da-aula" class="level3" data-number="5.4.12">
+<h3 data-number="5.4.12" class="anchored" data-anchor-id="dúvidas-da-aula"><span class="header-section-number">5.4.12</span> Dúvidas da aula</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Idioma do documento
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Ao renderizar um documento em HTML, temos alguns elementos em inglês (como <code>author</code>, <code>date</code>, <code>table of contents</code>, entre outros). É possível esse conteúdo em português?</li>
+</ol>
+<p>Podemos usar a seguinte configuração nos metadados:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>lang<span class="sc">:</span> pt</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Caso tenha dúvidas, consulte a <a href="https://quarto.org/docs/authoring/language.html#lang-option">página de documentação</a>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sumário
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol start="2" type="1">
+<li>É possível adicionar um sumário no documento Quarto?</li>
+</ol>
+<p>Podemos usar a seguinte configuração nos metadados:</p>
+<div class="sourceCode" id="annotated-cell-24"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-24-1"><a href="#annotated-cell-24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="annotated-cell-24-2"><a href="#annotated-cell-24-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span></span>
+<span id="annotated-cell-24-3"><a href="#annotated-cell-24-3" aria-hidden="true" tabindex="-1"></a>  html<span class="sc">:</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-24" data-target-annotation="1">1</button><span id="annotated-cell-24-4" class="code-annotation-target"><a href="#annotated-cell-24-4" aria-hidden="true" tabindex="-1"></a>    toc<span class="sc">:</span> true</span>
+<span id="annotated-cell-24-5"><a href="#annotated-cell-24-5" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-24" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-24" data-code-lines="4" data-code-annotation="1">TOC é a sigla para <em>T</em>able <em>O</em>f <em>C</em>ontents, ou seja, sumário. Ao utilizar <code>toc: true</code>, o sumário será adicionado ao documento.</span>
+</dd>
+</dl>
+<p>Existem outras opções disponíveis para personalizar a forma como o sumário aparece. Essas opções estão listadas na <a href="https://quarto.org/docs/output-formats/html-basics.html#table-of-contents">página de documentação</a>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Arquivo autocontido
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol start="3" type="1">
+<li>Ao gerar um arquivo HTML, o Quarto exporta um arquivo <code>.html</code> e junto à ele, algumas pastas com arquivos <code>.css</code>, <code>.js</code>, entre outros. É possível exportar um arquivo HTML que seja autocontido, ou seja, que não dependa de pastas adicionais?</li>
+</ol>
+<p>Podemos usar a seguinte configuração nos metadados:</p>
+<div class="sourceCode" id="annotated-cell-25"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-25-1"><a href="#annotated-cell-25-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="annotated-cell-25-2"><a href="#annotated-cell-25-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span></span>
+<span id="annotated-cell-25-3"><a href="#annotated-cell-25-3" aria-hidden="true" tabindex="-1"></a>  html<span class="sc">:</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-25" data-target-annotation="1">1</button><span id="annotated-cell-25-4" class="code-annotation-target"><a href="#annotated-cell-25-4" aria-hidden="true" tabindex="-1"></a>    embed<span class="sc">-</span>resources<span class="sc">:</span> true</span>
+<span id="annotated-cell-25-5"><a href="#annotated-cell-25-5" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-25" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-25" data-code-lines="4" data-code-annotation="1"><code>embed-resources: true</code> faz com que o arquivo HTML seja autocontido, ou seja, que não dependa de pastas adicionais.</span>
+</dd>
+</dl>
+<p><strong>Atenção:</strong> o arquivo autocontido costuma ser maior (ocupar mais espaço do computador) do que um arquivo “padrão” (que depende de arquivos em pastas adicionais).</p>
+<p>Caso necessário, consulte a <a href="https://quarto.org/docs/output-formats/html-publishing.html#standalone-html">página de documentação</a>.</p>
+</div>
+</div>
+</section>
+<section id="links-úteis-na-documentação-do-quarto" class="level3" data-number="5.4.13">
+<h3 data-number="5.4.13" class="anchored" data-anchor-id="links-úteis-na-documentação-do-quarto"><span class="header-section-number">5.4.13</span> Links úteis na documentação do Quarto</h3>
+<ul>
+<li><p><a href="https://quarto.org/docs/get-started/">Como instalar</a></p></li>
+<li><p><a href="https://quarto.org/docs/authoring/markdown-basics.html">Exemplos básicos de markdown</a></p></li>
+<li><p><a href="https://quarto.org/docs/visual-editor/index.html">Editor Visual</a></p></li>
+<li><p><a href="https://quarto.org/docs/reference/cells/cells-knitr.html">Opções de campo de código</a></p></li>
+<li><p><a href="https://quarto.org/docs/journals/authors.html">Como configurar o campo de autores: nome, email, afiliação, ORCID, etc</a></p></li>
+<li><p><a href="https://quarto.org/docs/output-formats/html-basics.html#table-of-contents">Como configurar o sumário</a></p></li>
+<li><p><a href="https://quarto.org/docs/reference/formats/html.html#metadata">Configurações de metadados para gerar arquivos HTML</a></p></li>
+<li><p><a href="https://quarto.org/docs/visual-editor/technical.html#citations">É possivel adicionar citações com o Quarto?</a></p></li>
+<li><p><a href="https://quarto.org/docs/authoring/cross-reference-options.html">Sobre a referência cruzada</a></p></li>
+<li><p><a href="https://quarto.org/docs/output-formats/all-formats.html">Formatos disponíveis para exportar documentos</a></p></li>
+<li><p><a href="https://quarto.org/docs/extensions/">Lista de extensões do Quarto</a></p></li>
+</ul>
 <!-- ### Quarto CLI -->
 <!-- -   O Quarto é um CLI: Command Line Interface - Interface de linha de comando. -->
 <!-- -   Podemos usar o Quarto no terminal. -->
