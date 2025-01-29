@@ -20,3 +20,7 @@ pre code .cell-output .cell-output-stdout{
   background-color: #EFF1F3 !important;
   border-radius: 3px !important;
 }
+
+.borda-imagem{
+  border-color: gray; border-style: solid;
+}

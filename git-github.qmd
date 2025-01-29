@@ -27,29 +27,115 @@ Existe uma forma mais robusta de trabalhar com as versões dos arquivos. Os sist
 
 Uma ferramenta similar ao controle de versão é o **histórico de revisões do Google Docs**, mas de uma forma muito mais controlada.
 
-### O que é Git?
+## O que é Git?
 
 [Git](https://git-scm.com/) é um sistema de controle de versão distribuído que permite a colaboração entre várias pessoas em um projeto ao mesmo tempo, sem sobrescrever o trabalho dos outros. Com o Git, cada alteração é salva em um histórico, o que permite voltar a versões anteriores se necessário. Além disso, facilita a colaboração e a integração de mudanças de diferentes colaboradores.
 
-Para utilizar o Git, precisamos primeiramente instalar o software no nosso computador (indicado na [página de instalações](instalacao.qmd#instalar-git)). 
+Para utilizar o Git, precisamos primeiramente instalar o software no nosso computador (indicado na [página de instalações](instalacao.qmd#instalar-git)).
 
 ![](images/git-homepage.png)
 
-### O que é GitHub?
+## O que é GitHub?
 
 [GitHub](https://github.com/) é uma plataforma web que utiliza o Git para o controle de versões e a colaboração. Permite que as pessoasarmazenem seus repositórios Git na nuvem, facilitando o acesso e a colaboração de qualquer lugar. O GitHub também oferece ferramentas adicionais, como gerenciamento de projetos, e revisão de código.
 
-Para começar a utilizar o GitHub, precisamos primeiramente criar uma conta gratuita no site (indicado na [página de instalações e outros preparativos](instalacao.qmd#conta-github)). 
+Para começar a utilizar o GitHub, precisamos primeiramente criar uma conta gratuita no site (indicado na [página de instalações e outros preparativos](instalacao.qmd#conta-github)).
 
 ![Logo da empresa GitHub](images/GitHub-logo.png){fig-align="center" width="50%"}
 
 ::: callout-warning
 **Atenção!** Git e GitHub são coisas diferentes. O Git é o sistema de controle de versão (um softare que instalamos no computador), enquanto o GitHub é uma plataforma web que utiliza o Git.
 
-
 O GitHub não é a única plataforma que utiliza o Git. Outras plataformas populares são o [GitLab](https://gitlab.com/) e o [Bitbucket](https://bitbucket.org/). Entretanto, o GitHub é a plataforma mais popular e amplamente utilizada.
 :::
-    
+
+## Perfil no GitHub
+
+Ao criar nossa conta no GitHub, teremos um perfil público na internet. A página do perfil conta a história do nosso trabalho através dos repositórios em que estamos interessados, das colaborações que realizamos e das conversas que tivemos.
+
+Podemos atualizar nosso perfil com informações sobre nós, como nossa localização, empresa, site pessoal, ORCID, pronome que preferimos utilizar, redes sociais, etc.
+
+![Exemplo de perfil do GitHub](images/ex-github-profile.png){fig-align="center" width="80%"}
+
+## Repositórios
+
+Um repositório é um espaço onde armazenamos nossos arquivos e pastas. Criamos um repositório para cada projeto, e podemos adicionar arquivos de código, imagens, dados, documentação, etc.
+
+A imagem a seguir apresenta a página inicial do repositório no GitHub do material do curso:
+
+[![Exemplo de repositório no GitHub](images/ex-github-repo.png){fig-align="center" width="100%"}](https://github.com/ipeadata-lab/curso_r_intermediario_202501/)
+
+### Criar um novo repositório
+
+Podemos criar um repositório diretamente no GitHub, clicando no botão "*New*" no canto superior esquerdo da página inicial:
+
+![Criar um novo repositório no GitHub](images/github-new-repo.png){class="borda-imagem" fig-align="center" width="60%"}
+
+O GitHub direcionará para a página de criar novo repositório (*Create a new repository*). Nesta página, podemos fazer algumas configurações:
+
+-   Adicionar um **nome para o repositório**: lembrando que o nome do repositório deve ser "limpo", ou seja, sem caracteres especiais, espaços, etc.
+
+![](images/new-repo-nome.png){class="borda-imagem" fig-align="center" width="100%"}
+
+-   Adicionar uma **descrição**: uma breve descrição do que o repositório contém. Isso pode ser alterado posteriormente, então não precisamos nos preocupar muito com isso inicialmente. A descrição é importante para que outras pessoas entendam o que o repositório contém, e consigam encontrá-lo mais facilmente nas buscas.
+
+![](images/new-repo-description.png){class="borda-imagem" fig-align="center" width="100%"}
+
+-   Escolher se o repositório será **público ou privado**: Os repositórios podem ser públicos ou privados. Os **repositórios públicos** são visíveis para qualquer pessoa, enquanto os **repositórios privados** são visíveis apenas para as pessoas que têm permissão para acessá-los. Essa etapa é muito importante: não queremos expor informações sensíveis ou dados privados em repositórios públicos.
+
+![](images/new-repo-visibility.png){class="borda-imagem" fig-align="center" width="100%"}
+
+-   Adicionar um arquivo **README.md**: O arquivo README.md é um arquivo de texto onde podemos adicionar informações sobre o repositório. Ele é exibido na página inicial do repositório no GitHub, e é uma forma de apresentar o repositório para outras pessoas. O README.md é escrito em Markdown. Recomendo selecionar essa opção sempre.
+
+![](images/new-repo-add-readme-file.png){class="borda-imagem" fig-align="center" width="100%"}
+
+-   Adicionar um arquivo **.gitignore**: O arquivo .gitignore é um arquivo de texto onde podemos listar os arquivos e pastas que não queremos que sejam versionados pelo Git. Por exemplo, arquivos temporários, arquivos de dados grandes, etc. Nesta opção, o GitHub está nos oferecendo uma lista de arquivos .gitignore pré-definidos para diferentes linguagens de programação, e podemos escolher a opção para a linguagem R.
+
+![](images/new-repo-add-git-ignore.png){class="borda-imagem" fig-align="center" width="100%"}
+
+-   Adicionar um arquivo de **licença**: A licença é um documento que define as regras de uso do código. Existem várias licenças disponíveis, e a escolha da licença depende do que queremos permitir que outras pessoas façam com o nosso código. Caso não tenhamos certeza sobre a licença, podemos deixar essa opção em branco e adicionar a licença posteriormente.
+
+![](images/new-repo-choose-a-license.png){class="borda-imagem" fig-align="center" width="100%"}
+
+Após preencher as informações, podemos clicar no botão "*Create repository*" para criar o repositório.
+
+![Criar um novo repositório no GitHub](images/options-new-repo.png){class="borda-imagem" fig-align="center" width="60%"}
+
+## Conectar com o RStudio
+
+Até agora, a nossa interação com o GitHub foi feita diretamente no site.Entretanto, podemos utilizar o Git e o GitHub diretamente no RStudio, o que facilita o trabalho com o controle de versão. Para isso, precisamos conectar o RStudio com o GitHub.
+
+
+### Pacote `{usethis}`
+O pacote `{usethis}` oferece diversas funções que facilitam o trabalho de configuração do Git e do GitHub no RStudio. Portanto,  precisamos verificar se o pacote `{usethis}` está instalado no R. Caso não esteja, podemos instalar com o comando `install.packages("usethis")`.
+
+```{r}
+# install.packages("usethis")
+library(usethis)
+```
+
+O `{usethis}` tem uma função chamada `git_sitrep()` que nos ajuda a ter uma série de informações úteis para saber se o Git e GitHub estão conectados corretamente com o RStudio (*situation report*). 
+
+```{r}
+#| eval: false
+usethis::git_sitrep()
+```
+
+
+### Criar um token de acesso pessoal (PAT)
+
+Em breve
+
+
+### Salvar o token de acesso pessoal no RStudio
+
+Em breve
+
+### Verificar se o RStudio está conectado ao GitHub
+
+Em breve
+
+
 ## Materiais
 
-O material do workshop ["Introducción a GitHub para Investigador(a|e)s"](https://git4researchers-latinr2024.netlify.app/), ministrado por Beatriz Milz e Yanina Belllini Saibene, foi utilizado como base para a elaboração de parte do material desta aula.
+O material do workshop ["Introducción a GitHub para Investigador(a\|e)s"](https://git4researchers-latinr2024.netlify.app/), ministrado por Beatriz Milz e Yanina Belllini Saibene, foi utilizado como base para a elaboração de parte do material desta aula.
