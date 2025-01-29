@@ -37,7 +37,7 @@ E então instalar o TinyTeX:
 tinytex::install_tinytex()
 ```
 
-## Instalação do Git
+## Instalação do Git {#instalar-git}
 
 Para a aula de ["Introdução controle de versão com Git e GitHub"](git-github.qmd), é necessário ter o Git instalado. 
 
@@ -53,7 +53,7 @@ Para verificar se o Git foi instalado corretamente, execute o seguinte comando n
 git --version
 ```
 
-## Conta no GitHub
+## Conta no GitHub {#conta-github}
 
 Para a aula de ["Introdução controle de versão com Git e GitHub"](git-github.qmd), é necessário ter uma conta no GitHub.
 
