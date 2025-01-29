@@ -62,3 +62,13 @@ Caso ainda não tenha uma conta, acesse a página oficial do [GitHub](https://gi
 ![Página inicial do GitHub](images/github-home.png){fig-align="center" width="100%"}
 
 ![Página para criar a conta gratuitamente](images/github-signup.png){fig-align="center" width="100%"}
+
+
+## Instalar o GitHub Desktop
+
+Para a aula de ["Introdução controle de versão com Git e GitHub"](git-github.qmd), é recomendado instalar o GitHub Desktop, que é uma interface gráfica para o Git.
+
+Para instalar o GitHub Desktop, acesse a página oficial do [GitHub Desktop](https://desktop.github.com/download/) e siga as instruções de instalação para o seu sistema operacional.
+
+[![](images/install-github-desktop.png){fig-align="center" width="100%"}](https://desktop.github.com/)
+
