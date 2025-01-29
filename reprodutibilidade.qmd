@@ -116,7 +116,7 @@ Um exemplo de estrutura básica de projeto pode incluir as seguintes subpastas:
 
 -   **`relatorios/`**: Para guardar relatórios gerados.
 
-### Exercício
+### Exercício: preparando o projeto do curso
 
 1.  No RStudio, crie um novo projeto para ser utilizado ao longo do curso. Lembre-se de criar o projeto em uma pasta que você possa acessar facilmente.
 
@@ -136,6 +136,20 @@ dir.create("dados_output")
 dir.create("scripts")
 dir.create("relatorios")
 ```
+
+
+3) Vamos também fazer download do arquivo `sidrar_4092_bruto_2.csv`, para usar em exemplos de aulas posteriores:
+
+```{r}
+#| eval: false
+# Arquivo .csv (texto separado por ponto e vírgula)
+download.file(
+  url = "https://github.com/ipeadata-lab/curso_r_intro_202409/raw/refs/heads/main/dados/sidrar_4092_bruto_2.csv",
+  destfile = "dados/sidrar_4092_bruto_2.csv",
+  mode = "wb")
+```
+
+
 
 ## `{renv}`: gerenciando dependências
 
