@@ -324,14 +324,13 @@ Isso fará com que todos os campos de código do documento tenham essas opções
 
 Quando trabalhamos em scripts `.R` e utilizando projetos do RStudio, os caminhos relativos são compostos partindo da pasta raíz do projeto. 
 
-
-Por exemplo: `dados/sidrar_4092_bruto.xlsx` significa que o arquivo `sidrar_4092_bruto.xlsx` está na pasta `dados`, que está na raíz do projeto.
+Considerando a [estrutura de pastas preparadas na primeira aula](reprodutibilidade.qmd#sec-prep-rproj): `dados/sidrar_4092_bruto.csv` significa que o arquivo `sidrar_4092_bruto.csv` está na pasta `dados`, que está na raíz do projeto.
 
 
 ```
 .
 ├── dados/
-│   └── sidrar_4092_bruto.xlsx
+│   └── sidrar_4092_bruto.csv
 ├── projeto.Rproj
 ├── relatorios/
 │   └── exemplo.qmd
@@ -339,12 +338,16 @@ Por exemplo: `dados/sidrar_4092_bruto.xlsx` significa que o arquivo `sidrar_4092
 ```
 
 
-Nos documentos Quarto, os caminhos relativos são compostos partindo da pasta onde o arquivo `.qmd` está salvo. Por exemplo: se o arquivo `.qmd` está salvo na pasta `relatorios`, e queremos adicionar a base de dados que está na pasta `dados`, o caminho relativo seria `../dados/sidrar_4092_bruto.xlsx`. Os dois pontos `../` significam "subir um nível" na estrutura de pastas.
+Nos documentos Quarto, os caminhos relativos são compostos partindo da pasta onde o arquivo `.qmd` está salvo. Por exemplo: se o arquivo `.qmd` está salvo na pasta `relatorios`, e queremos adicionar a base de dados que está na pasta `dados`, o caminho relativo seria `../dados/sidrar_4092_bruto.csv`. Os dois pontos `../` significam "subir um nível" na estrutura de pastas.
 
-Uma forma mais robusta de trabalhar com os caminhos é utilizando a função `here::here()`, que compõe o caminho absoluto, partindo da pasta inicial do projeto. Por exemplo: `here::here("dados/sidrar_4092_bruto.xlsx")` significa que o arquivo `sidrar_4092_bruto.xlsx` está na pasta `dados`, que está na raíz do projeto.
+::: callout-note
+`./` significa "a pasta atual" (neste caso, a pasta onde o arquivo `.qmd` está salvo), e `../` significa "subir um nível" na estrutura de pastas.
+:::
+
+Uma forma mais robusta de trabalhar com os caminhos é utilizando a função `here::here()`, que compõe o caminho absoluto, partindo da pasta inicial do projeto. Por exemplo: `here::here("dados/sidrar_4092_bruto.csv")` significa que o arquivo `sidrar_4092_bruto.csv` está na pasta `dados`, que está na raíz do projeto.
 
 ```{r}
-here::here("dados/sidrar_4092_bruto.xlsx")
+here::here("dados/sidrar_4092_bruto.csv")
 ```
 
 Em resumo, podemos "envelopar" os caminhos relativos com a função `here::here()`, para garantir que o caminho seja composto corretamente, independente de onde o arquivo `.qmd` está salvo.
@@ -535,13 +538,15 @@ format: pdf
 ---
 ```
 
-Existe um novo formato chamado `typst`, que também possibilita gerar arquivos PDF:
+- PDF com Typst - Existe um novo formato chamado `typst`, que também possibilita gerar arquivos PDF, porém é mais rápido que a versão tradicional (que utiliza o LaTeX). A documentação do Quarto [apresenta exemplos de arquivos no formato typst e como configurá-lo](https://quarto.org/docs/output-formats/typst.html).
 
 ``` r
 ---
 format: typst
 ---
 ```
+
+
 
 -   Apresentação em HTML:
 

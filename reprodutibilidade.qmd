@@ -116,7 +116,7 @@ Um exemplo de estrutura básica de projeto pode incluir as seguintes subpastas:
 
 -   **`relatorios/`**: Para guardar relatórios gerados.
 
-### Exercício: preparando o projeto do curso
+### Exercício: preparando o projeto do curso {#sec-prep-rproj}
 
 1.  No RStudio, crie um novo projeto para ser utilizado ao longo do curso. Lembre-se de criar o projeto em uma pasta que você possa acessar facilmente.
 
