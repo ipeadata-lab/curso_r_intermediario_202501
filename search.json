@@ -80,8 +80,8 @@
     ]
   },
   {
-    "objectID": "instalacao.html#instalação-do-git",
-    "href": "instalacao.html#instalação-do-git",
+    "objectID": "instalacao.html#instalar-git",
+    "href": "instalacao.html#instalar-git",
     "title": "3  Instalações e outros preparativos",
     "section": "3.3 Instalação do Git",
     "text": "3.3 Instalação do Git\nPara a aula de “Introdução controle de versão com Git e GitHub”, é necessário ter o Git instalado.\nO Git não é um pacote, e sim um software que deve ser instalado no seu computador.\nPara instalar o Git, acesse a página oficial do Git e siga as instruções de instalação para o seu sistema operacional.\n\n\n\n\n\nPara verificar se o Git foi instalado corretamente, execute o seguinte comando no painel “Terminal” do RStudio:\n\ngit --version\n\ngit version 2.48.1",
@@ -90,8 +90,8 @@
     ]
   },
   {
-    "objectID": "instalacao.html#conta-no-github",
-    "href": "instalacao.html#conta-no-github",
+    "objectID": "instalacao.html#conta-github",
+    "href": "instalacao.html#conta-github",
     "title": "3  Instalações e outros preparativos",
     "section": "3.4 Conta no GitHub",
     "text": "3.4 Conta no GitHub\nPara a aula de “Introdução controle de versão com Git e GitHub”, é necessário ter uma conta no GitHub.\nCaso ainda não tenha uma conta, acesse a página oficial do GitHub, clique em “Sign up” e crie uma conta gratuitamente.\n\n\n\nPágina inicial do GitHub\n\n\n\n\n\nPágina para criar a conta gratuitamente",
@@ -294,7 +294,7 @@
     "href": "git-github.html#introdução",
     "title": "6  Introdução ao controle de versão com Git e GitHub",
     "section": "",
-    "text": "6.1.1 O que é Git?\nGit é um sistema de controle de versão distribuído que permite a colaboração entre várias pessoas em um projeto ao mesmo tempo, sem sobrescrever o trabalho dos outros. Com o Git, cada alteração é salva em um histórico, o que permite voltar a versões anteriores se necessário. Além disso, facilita a colaboração e a integração de mudanças de diferentes colaboradores.\n\n\n\n6.1.2 O que é GitHub?\nGitHub é uma plataforma web que utiliza o Git para o controle de versões e a colaboração. Permite que as pessoasarmazenem seus repositórios Git na nuvem, facilitando o acesso e a colaboração de qualquer lugar. O GitHub também oferece ferramentas adicionais, como gerenciamento de projetos, e revisão de código.\n\n\n\nLogo da empresa GitHub",
+    "text": "6.1.1 O que é Git?\nGit é um sistema de controle de versão distribuído que permite a colaboração entre várias pessoas em um projeto ao mesmo tempo, sem sobrescrever o trabalho dos outros. Com o Git, cada alteração é salva em um histórico, o que permite voltar a versões anteriores se necessário. Além disso, facilita a colaboração e a integração de mudanças de diferentes colaboradores.\nPara utilizar o Git, precisamos primeiramente instalar o software no nosso computador (indicado na página de instalações).\n\n\n\n6.1.2 O que é GitHub?\nGitHub é uma plataforma web que utiliza o Git para o controle de versões e a colaboração. Permite que as pessoasarmazenem seus repositórios Git na nuvem, facilitando o acesso e a colaboração de qualquer lugar. O GitHub também oferece ferramentas adicionais, como gerenciamento de projetos, e revisão de código.\nPara começar a utilizar o GitHub, precisamos primeiramente criar uma conta gratuita no site (indicado na página de instalações e outros preparativos).\n\n\n\nLogo da empresa GitHub\n\n\n\n\n\n\n\n\nAviso\n\n\n\nAtenção! Git e GitHub são coisas diferentes. O Git é o sistema de controle de versão (um softare que instalamos no computador), enquanto o GitHub é uma plataforma web que utiliza o Git.\nO GitHub não é a única plataforma que utiliza o Git. Outras plataformas populares são o GitLab e o Bitbucket. Entretanto, o GitHub é a plataforma mais popular e amplamente utilizada.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introdução ao controle de versão com Git e GitHub</span>"
     ]
