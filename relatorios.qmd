@@ -559,11 +559,24 @@ format: revealjs
 
 Essas são as opções de formatos mais utilizadas. Para ver a lista completa, consulte a [documentação do Quarto](https://quarto.org/docs/output-formats/all-formats.html).
 
-### Projetos em Quarto
+### Quarto CLI
 
 Em breve
 
-### Quarto CLI
+### Projetos do Quarto
+
+Até então, exploramos como criar arquivos simples em Quarto. Mas e se quisermos criar um projeto com múltiplos arquivos `.qmd`?
+
+Uma opção é explorar os projetos do Quarto. Ao criar um projeto no RStudio (`File -> New Project` -\> `New Project`), podemos escolher uma das opções de projetos com Quarto:
+
+![](images/new-project-quarto.png){fig-align="center" width="70%"}
+
+Ao criar um projeto do RStudio escolhendo um `Project type` com Quarto (como [website](https://quarto.org/docs/websites/), [blog](https://quarto.org/docs/websites/website-blog.html), [book](https://quarto.org/docs/books/), [manuscript](https://quarto.org/docs/manuscripts/)), o RStudio irá disponibilizar uma estrutura de arquivos para que possamos começar a escrever o seu projeto.
+
+Nos projetos tipo Quarto, existe um arquivo chamado `_quarto.qml` que irá receber as informações básicas de metadados comuns aos arquivos `.qmd` do projeto.
+
+Para renderizar os arquivos do projeto, podemos utilizar a função `quarto::quarto_render()`, ou executar no terminal `quarto render`.
+
 
 Em breve
 
