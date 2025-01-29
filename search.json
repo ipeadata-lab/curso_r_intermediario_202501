@@ -100,6 +100,16 @@
     ]
   },
   {
+    "objectID": "instalacao.html#instalar-o-github-desktop",
+    "href": "instalacao.html#instalar-o-github-desktop",
+    "title": "3  Instalações e outros preparativos",
+    "section": "3.5 Instalar o GitHub Desktop",
+    "text": "3.5 Instalar o GitHub Desktop\nPara a aula de “Introdução controle de versão com Git e GitHub”, é recomendado instalar o GitHub Desktop, que é uma interface gráfica para o Git.\nPara instalar o GitHub Desktop, acesse a página oficial do GitHub Desktop e siga as instruções de instalação para o seu sistema operacional.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalações e outros preparativos</span>"
+    ]
+  },
+  {
     "objectID": "reprodutibilidade.html",
     "href": "reprodutibilidade.html",
     "title": "4  Reprodutibilidade e estruturação de projeto",
