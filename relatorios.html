@@ -694,20 +694,33 @@ editor: visual
 <section id="caminhos-em-documentos-quarto" class="level3" data-number="5.4.7">
 <h3 data-number="5.4.7" class="anchored" data-anchor-id="caminhos-em-documentos-quarto"><span class="header-section-number">5.4.7</span> Caminhos em documentos Quarto</h3>
 <p>Quando trabalhamos em scripts <code>.R</code> e utilizando projetos do RStudio, os caminhos relativos são compostos partindo da pasta raíz do projeto.</p>
-<p>Por exemplo: <code>dados/sidrar_4092_bruto.xlsx</code> significa que o arquivo <code>sidrar_4092_bruto.xlsx</code> está na pasta <code>dados</code>, que está na raíz do projeto.</p>
+<p>Considerando a <a href="./reprodutibilidade.html#sec-prep-rproj">estrutura de pastas preparadas na primeira aula</a>: <code>dados/sidrar_4092_bruto.csv</code> significa que o arquivo <code>sidrar_4092_bruto.csv</code> está na pasta <code>dados</code>, que está na raíz do projeto.</p>
 <pre><code>.
 ├── dados/
-│   └── sidrar_4092_bruto.xlsx
+│   └── sidrar_4092_bruto.csv
 ├── projeto.Rproj
 ├── relatorios/
 │   └── exemplo.qmd
 </code></pre>
-<p>Nos documentos Quarto, os caminhos relativos são compostos partindo da pasta onde o arquivo <code>.qmd</code> está salvo. Por exemplo: se o arquivo <code>.qmd</code> está salvo na pasta <code>relatorios</code>, e queremos adicionar a base de dados que está na pasta <code>dados</code>, o caminho relativo seria <code>../dados/sidrar_4092_bruto.xlsx</code>. Os dois pontos <code>../</code> significam “subir um nível” na estrutura de pastas.</p>
-<p>Uma forma mais robusta de trabalhar com os caminhos é utilizando a função <code>here::here()</code>, que compõe o caminho absoluto, partindo da pasta inicial do projeto. Por exemplo: <code>here::here("dados/sidrar_4092_bruto.xlsx")</code> significa que o arquivo <code>sidrar_4092_bruto.xlsx</code> está na pasta <code>dados</code>, que está na raíz do projeto.</p>
+<p>Nos documentos Quarto, os caminhos relativos são compostos partindo da pasta onde o arquivo <code>.qmd</code> está salvo. Por exemplo: se o arquivo <code>.qmd</code> está salvo na pasta <code>relatorios</code>, e queremos adicionar a base de dados que está na pasta <code>dados</code>, o caminho relativo seria <code>../dados/sidrar_4092_bruto.csv</code>. Os dois pontos <code>../</code> significam “subir um nível” na estrutura de pastas.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>./</code> significa “a pasta atual” (neste caso, a pasta onde o arquivo <code>.qmd</code> está salvo), e <code>../</code> significa “subir um nível” na estrutura de pastas.</p>
+</div>
+</div>
+<p>Uma forma mais robusta de trabalhar com os caminhos é utilizando a função <code>here::here()</code>, que compõe o caminho absoluto, partindo da pasta inicial do projeto. Por exemplo: <code>here::here("dados/sidrar_4092_bruto.csv")</code> significa que o arquivo <code>sidrar_4092_bruto.csv</code> está na pasta <code>dados</code>, que está na raíz do projeto.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dados/sidrar_4092_bruto.xlsx"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dados/sidrar_4092_bruto.csv"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/home/runner/work/curso_r_intermediario_202501/curso_r_intermediario_202501/dados/sidrar_4092_bruto.xlsx"</code></pre>
+<pre><code>[1] "/home/runner/work/curso_r_intermediario_202501/curso_r_intermediario_202501/dados/sidrar_4092_bruto.csv"</code></pre>
 </div>
 </div>
 <p>Em resumo, podemos “envelopar” os caminhos relativos com a função <code>here::here()</code>, para garantir que o caminho seja composto corretamente, independente de onde o arquivo <code>.qmd</code> está salvo.</p>
@@ -930,7 +943,7 @@ Dica
 </blockquote>
 <p>Você consegue identificar onde foram utilizados os códigos em linha?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -939,7 +952,7 @@ Clique para ver a resposta!
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Os conteúdos em destaque foram feitos com códigos em linha:</p>
 <blockquote class="blockquote">
@@ -949,7 +962,7 @@ Clique para ver a resposta!
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -958,7 +971,7 @@ Clique para ver o código!
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><img src="images/inline-code-exemplo.png" class="img-fluid"></p>
 </div>
@@ -1022,7 +1035,9 @@ Clique para ver o código!
 <div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> pdf</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Existe um novo formato chamado <code>typst</code>, que também possibilita gerar arquivos PDF:</p>
+<ul>
+<li>PDF com Typst - Existe um novo formato chamado <code>typst</code>, que também possibilita gerar arquivos PDF, porém é mais rápido que a versão tradicional (que utiliza o LaTeX). A documentação do Quarto <a href="https://quarto.org/docs/output-formats/typst.html">apresenta exemplos de arquivos no formato typst e como configurá-lo</a>.</li>
+</ul>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> typst</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
