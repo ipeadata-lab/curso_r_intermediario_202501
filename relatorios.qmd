@@ -322,7 +322,32 @@ Isso fará com que todos os campos de código do documento tenham essas opções
 
 ### Caminhos em documentos Quarto
 
-Em breve
+Quando trabalhamos em scripts `.R` e utilizando projetos do RStudio, os caminhos relativos são compostos partindo da pasta raíz do projeto. 
+
+
+Por exemplo: `dados/sidrar_4092_bruto.xlsx` significa que o arquivo `sidrar_4092_bruto.xlsx` está na pasta `dados`, que está na raíz do projeto.
+
+
+```
+.
+├── dados/
+│   └── sidrar_4092_bruto.xlsx
+├── projeto.Rproj
+├── relatorios/
+│   └── exemplo.qmd
+
+```
+
+
+Nos documentos Quarto, os caminhos relativos são compostos partindo da pasta onde o arquivo `.qmd` está salvo. Por exemplo: se o arquivo `.qmd` está salvo na pasta `relatorios`, e queremos adicionar a base de dados que está na pasta `dados`, o caminho relativo seria `../dados/sidrar_4092_bruto.xlsx`. Os dois pontos `../` significam "subir um nível" na estrutura de pastas.
+
+Uma forma mais robusta de trabalhar com os caminhos é utilizando a função `here::here()`, que compõe o caminho absoluto, partindo da pasta inicial do projeto. Por exemplo: `here::here("dados/sidrar_4092_bruto.xlsx")` significa que o arquivo `sidrar_4092_bruto.xlsx` está na pasta `dados`, que está na raíz do projeto.
+
+```{r}
+here::here("dados/sidrar_4092_bruto.xlsx")
+```
+
+Em resumo, podemos "envelopar" os caminhos relativos com a função `here::here()`, para garantir que o caminho seja composto corretamente, independente de onde o arquivo `.qmd` está salvo.
 
 ### Adicionando conteúdos com código
 
