@@ -38,3 +38,7 @@ Uma ferramenta similar ao controle de versão é o **histórico de revisões do 
 [GitHub](https://github.com/) é uma plataforma web que utiliza o Git para o controle de versões e a colaboração. Permite que as pessoasarmazenem seus repositórios Git na nuvem, facilitando o acesso e a colaboração de qualquer lugar. O GitHub também oferece ferramentas adicionais, como gerenciamento de projetos, e revisão de código.
 
 ![Logo da empresa GitHub](images/GitHub-logo.png){fig-align="center" width="50%"}
+    
+## Materiais
+
+O material do workshop ["Introducción a GitHub para Investigador(a|e)s"](https://git4researchers-latinr2024.netlify.app/), ministrado por Beatriz Milz e Yanina Belllini Saibene, foi utilizado como base para a elaboração de parte do material desta aula.
