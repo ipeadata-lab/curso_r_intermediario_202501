@@ -510,6 +510,14 @@ format: pdf
 ---
 ```
 
+Existe um novo formato chamado `typst`, que também possibilita gerar arquivos PDF:
+
+``` r
+---
+format: typst
+---
+```
+
 -   Apresentação em HTML:
 
 ``` r
@@ -587,7 +595,21 @@ Para renderizar os arquivos do projeto, podemos utilizar a função `quarto::qua
 
 ### Extensões
 
-Em breve
+O Quarto possui várias extensões que podem ser utilizadas para adicionar funcionalidades ao documento. Muitas dessas extensões foram desenvolvidas por pessoas da comunidade (e não necessariamente a equipe desenvolvedora do Quarto).
+
+
+Podemos consultar a lista de extensões disponíveis na [página de extensões do Quarto](https://quarto.org/docs/extensions/).
+
+![Tipos de extensão do Quarto](images/quarto-extensions.png)
+
+Para instalar e utilizar uma extensão, precisamos utilizar o Quarto CLI (linha de comando) (com o comando `quarto install extension`), ou a função `quarto::quarto_add_extension()`.
+
+Na página da documentação de cada extensão, é possível encontrar informações sobre como instalar e utilizar a extensão.
+
+::: callout-note
+No RMarkdown, era comum que a comunidade de R criasse novos pacotes para expandir as funcionalidades da ferramenta. No Quarto, as extensões funcionam de forma similar: é a forma com que a comunidade pode contribuir com novas funcionalidades.
+:::
+
 
 ### Dúvidas da aula
 
