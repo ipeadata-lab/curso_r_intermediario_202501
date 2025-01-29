@@ -262,7 +262,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   </ul></li>
   <li><a href="#tipos-de-formatos-para-exportar" id="toc-tipos-de-formatos-para-exportar" class="nav-link" data-scroll-target="#tipos-de-formatos-para-exportar"><span class="header-section-number">5.4.9</span> Tipos de formatos para exportar</a></li>
-  <li><a href="#quarto-cli" id="toc-quarto-cli" class="nav-link" data-scroll-target="#quarto-cli"><span class="header-section-number">5.4.10</span> Quarto CLI</a></li>
+  <li><a href="#quarto-cli" id="toc-quarto-cli" class="nav-link" data-scroll-target="#quarto-cli"><span class="header-section-number">5.4.10</span> Quarto CLI</a>
+  <ul>
+  <li><a href="#pacote-quarto-no-r" id="toc-pacote-quarto-no-r" class="nav-link" data-scroll-target="#pacote-quarto-no-r"><span class="header-section-number">5.4.10.1</span> Pacote <code>{quarto}</code> no R</a></li>
+  </ul></li>
   <li><a href="#projetos-do-quarto" id="toc-projetos-do-quarto" class="nav-link" data-scroll-target="#projetos-do-quarto"><span class="header-section-number">5.4.11</span> Projetos do Quarto</a></li>
   <li><a href="#extensões" id="toc-extensões" class="nav-link" data-scroll-target="#extensões"><span class="header-section-number">5.4.12</span> Extensões</a></li>
   <li><a href="#dúvidas-da-aula" id="toc-dúvidas-da-aula" class="nav-link" data-scroll-target="#dúvidas-da-aula"><span class="header-section-number">5.4.13</span> Dúvidas da aula</a></li>
@@ -690,7 +693,24 @@ editor: visual
 </section>
 <section id="caminhos-em-documentos-quarto" class="level3" data-number="5.4.7">
 <h3 data-number="5.4.7" class="anchored" data-anchor-id="caminhos-em-documentos-quarto"><span class="header-section-number">5.4.7</span> Caminhos em documentos Quarto</h3>
-<p>Em breve</p>
+<p>Quando trabalhamos em scripts <code>.R</code> e utilizando projetos do RStudio, os caminhos relativos são compostos partindo da pasta raíz do projeto.</p>
+<p>Por exemplo: <code>dados/sidrar_4092_bruto.xlsx</code> significa que o arquivo <code>sidrar_4092_bruto.xlsx</code> está na pasta <code>dados</code>, que está na raíz do projeto.</p>
+<pre><code>.
+├── dados/
+│   └── sidrar_4092_bruto.xlsx
+├── projeto.Rproj
+├── relatorios/
+│   └── exemplo.qmd
+</code></pre>
+<p>Nos documentos Quarto, os caminhos relativos são compostos partindo da pasta onde o arquivo <code>.qmd</code> está salvo. Por exemplo: se o arquivo <code>.qmd</code> está salvo na pasta <code>relatorios</code>, e queremos adicionar a base de dados que está na pasta <code>dados</code>, o caminho relativo seria <code>../dados/sidrar_4092_bruto.xlsx</code>. Os dois pontos <code>../</code> significam “subir um nível” na estrutura de pastas.</p>
+<p>Uma forma mais robusta de trabalhar com os caminhos é utilizando a função <code>here::here()</code>, que compõe o caminho absoluto, partindo da pasta inicial do projeto. Por exemplo: <code>here::here("dados/sidrar_4092_bruto.xlsx")</code> significa que o arquivo <code>sidrar_4092_bruto.xlsx</code> está na pasta <code>dados</code>, que está na raíz do projeto.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dados/sidrar_4092_bruto.xlsx"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "/home/runner/work/curso_r_intermediario_202501/curso_r_intermediario_202501/dados/sidrar_4092_bruto.xlsx"</code></pre>
+</div>
+</div>
+<p>Em resumo, podemos “envelopar” os caminhos relativos com a função <code>here::here()</code>, para garantir que o caminho seja composto corretamente, independente de onde o arquivo <code>.qmd</code> está salvo.</p>
 </section>
 <section id="adicionando-conteúdos-com-código" class="level3" data-number="5.4.8">
 <h3 data-number="5.4.8" class="anchored" data-anchor-id="adicionando-conteúdos-com-código"><span class="header-section-number">5.4.8</span> Adicionando conteúdos com código</h3>
@@ -712,18 +732,18 @@ Nota
 <p>Como citado anteriormente, podemos adicionar código em R em campos de código, ou <em>code chunks</em>. Dentro de um campo de código, podemos adicionar comentários, códigos em R, e os resultados dos códigos serão exibidos logo em seguida no documento.</p>
 <p>Para adicionar um campo de código, utilizamos a marcação <code>```{r}</code> no início e <code>```</code> no final. Por exemplo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="in"># Exemplo: somando 1 + 1</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="in">1 + 1</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="in"># Exemplo: somando 1 + 1</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="in">1 + 1</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
 </div>
 <p>A partir de agora, vamos omitir a marcação de iniciar e finalizar os campos de código, porém saiba que é necessário adicionar essas marcações para que o código seja executado. Por exemplo, o código acima seria apresentado desta forma:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo: somando 1 + 1</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo: somando 1 + 1</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
@@ -734,30 +754,30 @@ Nota
 <p>Os gráficos gerados a partir de um campo de código são exibidos logo após o código.</p>
 <p>Por exemplo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar os pacotes</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># exemplo de código</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g) <span class="sc">+</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"darkorchid"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Comprimento da nadadeira (mm)"</span>,</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Massa corporal (g)"</span>,</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Espécie"</span>,</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="st">"Espécie"</span>,</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Relação entre comprimento da nadadeira e massa corporal"</span>,</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Pinguins das espécies Adelie, Chinstrap e Gentoo"</span>,</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: Pacote palmerpenguins."</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar os pacotes</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># exemplo de código</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g) <span class="sc">+</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"darkorchid"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Comprimento da nadadeira (mm)"</span>,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Massa corporal (g)"</span>,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Espécie"</span>,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="st">"Espécie"</span>,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Relação entre comprimento da nadadeira e massa corporal"</span>,</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Pinguins das espécies Adelie, Chinstrap e Gentoo"</span>,</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: Pacote palmerpenguins."</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="relatorios_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="relatorios_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -767,10 +787,10 @@ Nota
 <h4 data-number="5.4.8.2" class="anchored" data-anchor-id="adicionando-tabelas"><span class="header-section-number">5.4.8.2</span> Adicionando tabelas</h4>
 <p>Para adicionar tabelas (que sejam geradas com código), não basta apenas adicionar o código que gera a tabela. Veja o que acontece se tentarmos adicionar uma tabela com o código abaixo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species, island, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species, island, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
   species   island        n
@@ -786,8 +806,8 @@ Nota
 <p>Para que a tabela seja exibida de forma mais amigável, podemos utilizar alguma função de tabela para gerar tabelas. Existem diversas funções (de diferentes pacotes em R) que possibilitam a criação de tabelas. A função <code>knitr::kable()</code> é muito utilizada, e permite criar tabelas simples a partir de um data frame.</p>
 <p>Por exemplo, podemos utilizar o <code>knitr::kable()</code> para exibir a tabela criada:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia <span class="sc">|&gt;</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia <span class="sc">|&gt;</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
@@ -829,8 +849,8 @@ Nota
 </div>
 <p>Podemos explorar os argumentos da função para personalizar a tabela, como adicionar nomes de colunas, entre outros. Por exemplo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia <span class="sc">|&gt;</span> </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Espécie"</span>, <span class="st">"Ilha"</span>, <span class="st">"Quantidade"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pinguins_frequencia <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Espécie"</span>, <span class="st">"Ilha"</span>, <span class="st">"Quantidade"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
@@ -957,9 +977,9 @@ Clique para ver o código!
 </ol>
 <p>Caso não conheça o pacote <code>abjData</code>, você pode carregar a base de dados com o código abaixo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("abjData") # executar caso não tenha o abjData instalado</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(abjData)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>pnud_min</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("abjData") # executar caso não tenha o abjData instalado</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(abjData)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>pnud_min</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 16,686 × 15
    ano   muni_id muni_nm   uf_sigla regiao_nm  idhm idhm_e idhm_l idhm_r espvida
@@ -987,32 +1007,110 @@ Clique para ver o código!
 <ul>
 <li>HTML:</li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> html</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> html</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Word:</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> docx</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> docx</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>PDF (é necessário ter alguma instalação de LaTeX no computador, veja as <a href="./instalacao.html#instalação-do-tinytex">página de instalações</a>):</li>
 </ul>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> pdf</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> pdf</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Existe um novo formato chamado <code>typst</code>, que também possibilita gerar arquivos PDF:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> typst</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Apresentação em HTML:</li>
 </ul>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> revealjs</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> revealjs</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Essas são as opções de formatos mais utilizadas. Para ver a lista completa, consulte a <a href="https://quarto.org/docs/output-formats/all-formats.html">documentação do Quarto</a>.</p>
 </section>
 <section id="quarto-cli" class="level3" data-number="5.4.10">
 <h3 data-number="5.4.10" class="anchored" data-anchor-id="quarto-cli"><span class="header-section-number">5.4.10</span> Quarto CLI</h3>
-<p>Em breve</p>
+<p>O Quarto <em>Command Line Interface</em> (CLI - Interface de linha de comando). Ou seja, podemos utilizar o Quarto no terminal, utilizando comandos. Isso é útil para automatizar tarefas, ou para utilizar o Quarto em ambientes que não possuem uma interface gráfica (como o RStudio).</p>
+<p>Podemos acessar o terminal no RStudio acessando o painel <em>Terminal</em> (geralmente este painel fica no canto inferior esquerdo do RStudio, como uma aba ao lado do painel <em>Console</em>).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/rstudio-terminal.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Terminal no RStudio</figcaption>
+</figure>
+</div>
+<p>Também podemos acessar o terminal diretamente no computador, utilizando o terminal do sistema operacional (como o terminal do Windows, ou o terminal do Mac OS). Porém, para isso, é necessário acessar o diretório do projeto que estamos trabalhando (utilizando o comando <code>cd</code>- <em>change directory</em>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Documents/IPEA-DATALAB/curso_r_intermediario_202501 </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Um comando útil para saber quais são as opções disponíveis é o <code>quarto help</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> help</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Usage:   quarto
+Version: 1.6.40
+
+Description:
+
+  Quarto CLI
+
+Options:
+
+  -h, --help     - Show this help.                            
+  -V, --version  - Show the version number for this program.  
+
+Commands:
+
+  render     [input] [args...]     - Render files or projects to various document types.
+  preview    [file] [args...]      - Render and preview a document or website project.  
+  serve      [input]               - Serve a Shiny interactive document.                
+  create     [type] [commands...]  - Create a Quarto project or extension               
+  use        &lt;type&gt; [target]       - Automate document or project setup tasks.          
+  add        &lt;extension&gt;           - Add an extension to this folder or project         
+  update     [target...]           - Updates an extension or global dependency.         
+  remove     [target...]           - Removes an extension.                              
+  convert    &lt;input&gt;               - Convert documents to alternate representations.    
+  pandoc     [args...]             - Run the version of Pandoc embedded within Quarto.  
+  typst      [args...]             - Run the version of Typst embedded within Quarto.   
+  run        [script] [args...]    - Run a TypeScript, R, Python, or Lua script.        
+  install    [target...]           - Installs a global dependency (TinyTex or Chromium).
+  uninstall  [tool]                - Removes an extension.                              
+  tools                            - Display the status of Quarto installed dependencies
+  publish    [provider] [path]     - Publish a document or project to a provider.       
+  check      [target]              - Verify correct functioning of Quarto installation. 
+  help       [command]             - Show this help or the help of a sub-command.       </code></pre>
+</div>
+</div>
+<p>Também podemos consultar a versão do Quarto com o comando <code>quarto --version</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> <span class="at">--version</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.6.40</code></pre>
+</div>
+</div>
+<p>Outro comando útil é o <code>quarto render</code>, que renderiza um arquivo <code>.qmd</code> específico:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render arquivo.qmd</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="pacote-quarto-no-r" class="level4" data-number="5.4.10.1">
+<h4 data-number="5.4.10.1" class="anchored" data-anchor-id="pacote-quarto-no-r"><span class="header-section-number">5.4.10.1</span> Pacote <code>{quarto}</code> no R</h4>
+<p>Existe um pacote em R chamado <code>{quarto}</code> que permite utilizar o Quarto no R. Esse pacote possui funções similares às funções do Quarto CLI, e internamente faz chamadas ao Quarto CLI.</p>
+<p>Para instalar o pacote <code>{quarto}</code>, podemos utilizar o comando <code>install.packages("quarto")</code>.</p>
+<p>Para verificar a versão do pacote <code>{quarto}</code>, podemos utilizar a função <code>quarto::quarto_version()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>quarto<span class="sc">::</span><span class="fu">quarto_version</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] '1.6.40'</code></pre>
+</div>
+</div>
+<p>Para renderizar um arquivo <code>.qmd</code> com o pacote <code>{quarto}</code>, podemos utilizar a função <code>quarto::quarto_render("caminho_do_arquivo.qmd")</code>. Isso é similar à clicar no botão <em>Render</em> no RStudio.</p>
+</section>
 </section>
 <section id="projetos-do-quarto" class="level3" data-number="5.4.11">
 <h3 data-number="5.4.11" class="anchored" data-anchor-id="projetos-do-quarto"><span class="header-section-number">5.4.11</span> Projetos do Quarto</h3>
@@ -1029,7 +1127,29 @@ Clique para ver o código!
 </section>
 <section id="extensões" class="level3" data-number="5.4.12">
 <h3 data-number="5.4.12" class="anchored" data-anchor-id="extensões"><span class="header-section-number">5.4.12</span> Extensões</h3>
-<p>Em breve</p>
+<p>O Quarto possui várias extensões que podem ser utilizadas para adicionar funcionalidades ao documento. Muitas dessas extensões foram desenvolvidas por pessoas da comunidade (e não necessariamente a equipe desenvolvedora do Quarto).</p>
+<p>Podemos consultar a lista de extensões disponíveis na <a href="https://quarto.org/docs/extensions/">página de extensões do Quarto</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/quarto-extensions.png" class="img-fluid figure-img"></p>
+<figcaption>Tipos de extensão do Quarto</figcaption>
+</figure>
+</div>
+<p>Para instalar e utilizar uma extensão, precisamos utilizar o Quarto CLI (linha de comando) (com o comando <code>quarto install extension</code>), ou a função <code>quarto::quarto_add_extension()</code>.</p>
+<p>Na página da documentação de cada extensão, é possível encontrar informações sobre como instalar e utilizar a extensão.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No RMarkdown, era comum que a comunidade de R criasse novos pacotes para expandir as funcionalidades da ferramenta. No Quarto, as extensões funcionam de forma similar: é a forma com que a comunidade pode contribuir com novas funcionalidades.</p>
+</div>
+</div>
 </section>
 <section id="dúvidas-da-aula" class="level3" data-number="5.4.13">
 <h3 data-number="5.4.13" class="anchored" data-anchor-id="dúvidas-da-aula"><span class="header-section-number">5.4.13</span> Dúvidas da aula</h3>
@@ -1047,9 +1167,9 @@ Idioma do documento
 <li>Ao renderizar um documento em HTML, temos alguns elementos em inglês (como <code>author</code>, <code>date</code>, <code>table of contents</code>, entre outros). É possível esse conteúdo em português?</li>
 </ol>
 <p>Podemos usar a seguinte configuração nos metadados:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>lang<span class="sc">:</span> pt</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>lang<span class="sc">:</span> pt</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Caso tenha dúvidas, consulte a <a href="https://quarto.org/docs/authoring/language.html#lang-option">página de documentação</a>.</p>
 </div>
 </div>
@@ -1067,15 +1187,15 @@ Sumário
 <li>É possível adicionar um sumário no documento Quarto?</li>
 </ol>
 <p>Podemos usar a seguinte configuração nos metadados:</p>
-<div class="sourceCode" id="annotated-cell-24"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-24-1"><a href="#annotated-cell-24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="annotated-cell-24-2"><a href="#annotated-cell-24-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span></span>
-<span id="annotated-cell-24-3"><a href="#annotated-cell-24-3" aria-hidden="true" tabindex="-1"></a>  html<span class="sc">:</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-24" data-target-annotation="1">1</button><span id="annotated-cell-24-4" class="code-annotation-target"><a href="#annotated-cell-24-4" aria-hidden="true" tabindex="-1"></a>    toc<span class="sc">:</span> true</span>
-<span id="annotated-cell-24-5"><a href="#annotated-cell-24-5" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="annotated-cell-36"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-36-1"><a href="#annotated-cell-36-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="annotated-cell-36-2"><a href="#annotated-cell-36-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span></span>
+<span id="annotated-cell-36-3"><a href="#annotated-cell-36-3" aria-hidden="true" tabindex="-1"></a>  html<span class="sc">:</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-36" data-target-annotation="1">1</button><span id="annotated-cell-36-4" class="code-annotation-target"><a href="#annotated-cell-36-4" aria-hidden="true" tabindex="-1"></a>    toc<span class="sc">:</span> true</span>
+<span id="annotated-cell-36-5"><a href="#annotated-cell-36-5" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-24" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-36" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-24" data-code-lines="4" data-code-annotation="1">TOC é a sigla para <em>T</em>able <em>O</em>f <em>C</em>ontents, ou seja, sumário. Ao utilizar <code>toc: true</code>, o sumário será adicionado ao documento.</span>
+<span data-code-cell="annotated-cell-36" data-code-lines="4" data-code-annotation="1">TOC é a sigla para <em>T</em>able <em>O</em>f <em>C</em>ontents, ou seja, sumário. Ao utilizar <code>toc: true</code>, o sumário será adicionado ao documento.</span>
 </dd>
 </dl>
 <p>Existem outras opções disponíveis para personalizar a forma como o sumário aparece. Essas opções estão listadas na <a href="https://quarto.org/docs/output-formats/html-basics.html#table-of-contents">página de documentação</a>.</p>
@@ -1095,15 +1215,15 @@ Arquivo autocontido
 <li>Ao gerar um arquivo HTML, o Quarto exporta um arquivo <code>.html</code> e junto à ele, algumas pastas com arquivos <code>.css</code>, <code>.js</code>, entre outros. É possível exportar um arquivo HTML que seja autocontido, ou seja, que não dependa de pastas adicionais?</li>
 </ol>
 <p>Podemos usar a seguinte configuração nos metadados:</p>
-<div class="sourceCode" id="annotated-cell-25"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-25-1"><a href="#annotated-cell-25-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="annotated-cell-25-2"><a href="#annotated-cell-25-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span></span>
-<span id="annotated-cell-25-3"><a href="#annotated-cell-25-3" aria-hidden="true" tabindex="-1"></a>  html<span class="sc">:</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-25" data-target-annotation="1">1</button><span id="annotated-cell-25-4" class="code-annotation-target"><a href="#annotated-cell-25-4" aria-hidden="true" tabindex="-1"></a>    embed<span class="sc">-</span>resources<span class="sc">:</span> true</span>
-<span id="annotated-cell-25-5"><a href="#annotated-cell-25-5" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="annotated-cell-37"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-37-1"><a href="#annotated-cell-37-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="annotated-cell-37-2"><a href="#annotated-cell-37-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span></span>
+<span id="annotated-cell-37-3"><a href="#annotated-cell-37-3" aria-hidden="true" tabindex="-1"></a>  html<span class="sc">:</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-37" data-target-annotation="1">1</button><span id="annotated-cell-37-4" class="code-annotation-target"><a href="#annotated-cell-37-4" aria-hidden="true" tabindex="-1"></a>    embed<span class="sc">-</span>resources<span class="sc">:</span> true</span>
+<span id="annotated-cell-37-5"><a href="#annotated-cell-37-5" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-25" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-37" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-25" data-code-lines="4" data-code-annotation="1"><code>embed-resources: true</code> faz com que o arquivo HTML seja autocontido, ou seja, que não dependa de pastas adicionais.</span>
+<span data-code-cell="annotated-cell-37" data-code-lines="4" data-code-annotation="1"><code>embed-resources: true</code> faz com que o arquivo HTML seja autocontido, ou seja, que não dependa de pastas adicionais.</span>
 </dd>
 </dl>
 <p><strong>Atenção:</strong> o arquivo autocontido costuma ser maior (ocupar mais espaço do computador) do que um arquivo “padrão” (que depende de arquivos em pastas adicionais).</p>
