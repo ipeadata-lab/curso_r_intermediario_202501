@@ -3,5 +3,38 @@ title: "Introdução ao controle de versão com Git e GitHub"
 code-annotations: hover
 ---
 
+## Introdução
 
-Em breve!
+Quando estamos trabalhando em um projeto, é comum que façamos várias alterações em nossos arquivos ao longo do tempo. Você já se deparou com uma situação em que você tinha várias versões de um arquivo, como este exemplo?
+
+```{r}
+#| eval: false
+/Documentos/projeto-tcc/
+├── script.R
+├── tcc.qmd
+├── tcc_corrigido.qmd
+├── tcc_corrigido2.qmd
+├── tcc_final.qmd
+├── tcc_finalfinal.qmd
+├── tcc_final_ultimo.qmd
+├── juro_que_eh_a_ultima_versao.qmd
+└── FINAL.qmd
+```
+
+Provavelmente todos nós temos ou tivemos algo assim em algum momento, porque precisamos salvar nosso trabalho, mas ainda precisamos ter acesso a versões anteriores.
+
+Existe uma forma mais robusta de trabalhar com as versões dos arquivos. Os sistemas de controle de versão são ferramentas que nos ajudam a gerenciar a evolução e as mudanças de um conjunto de arquivos que chamaremos de **repositório**.
+
+Uma ferramenta similar ao controle de versão é o **histórico de revisões do Google Docs**, mas de uma forma muito mais controlada.
+
+### O que é Git?
+
+[Git](https://git-scm.com/) é um sistema de controle de versão distribuído que permite a colaboração entre várias pessoas em um projeto ao mesmo tempo, sem sobrescrever o trabalho dos outros. Com o Git, cada alteração é salva em um histórico, o que permite voltar a versões anteriores se necessário. Além disso, facilita a colaboração e a integração de mudanças de diferentes colaboradores.
+
+![](images/git-homepage.png)
+
+### O que é GitHub?
+
+[GitHub](https://github.com/) é uma plataforma web que utiliza o Git para o controle de versões e a colaboração. Permite que as pessoasarmazenem seus repositórios Git na nuvem, facilitando o acesso e a colaboração de qualquer lugar. O GitHub também oferece ferramentas adicionais, como gerenciamento de projetos, e revisão de código.
+
+![Logo da empresa GitHub](images/GitHub-logo.png){fig-align="center" width="50%"}
