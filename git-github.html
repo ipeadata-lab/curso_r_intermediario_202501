@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -176,8 +210,19 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">6.1</span> Introdução</a>
+  <ul>
+  <li><a href="#o-que-é-git" id="toc-o-que-é-git" class="nav-link" data-scroll-target="#o-que-é-git"><span class="header-section-number">6.1.1</span> O que é Git?</a></li>
+  <li><a href="#o-que-é-github" id="toc-o-que-é-github" class="nav-link" data-scroll-target="#o-que-é-github"><span class="header-section-number">6.1.2</span> O que é GitHub?</a></li>
+  </ul></li>
+  <li><a href="#materiais" id="toc-materiais" class="nav-link" data-scroll-target="#materiais"><span class="header-section-number">6.2</span> Materiais</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -207,9 +252,46 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Em breve!</p>
+<section id="introdução" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">6.1</span> Introdução</h2>
+<p>Quando estamos trabalhando em um projeto, é comum que façamos várias alterações em nossos arquivos ao longo do tempo. Você já se deparou com uma situação em que você tinha várias versões de um arquivo, como este exemplo?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>Documentos<span class="sc">/</span>projeto<span class="sc">-</span>tcc<span class="sc">/</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>├── script.R</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>├── tcc.qmd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>├── tcc_corrigido.qmd</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>├── tcc_corrigido2.qmd</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>├── tcc_final.qmd</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>├── tcc_finalfinal.qmd</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>├── tcc_final_ultimo.qmd</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>├── juro_que_eh_a_ultima_versao.qmd</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>└── FINAL.qmd</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Provavelmente todos nós temos ou tivemos algo assim em algum momento, porque precisamos salvar nosso trabalho, mas ainda precisamos ter acesso a versões anteriores.</p>
+<p>Existe uma forma mais robusta de trabalhar com as versões dos arquivos. Os sistemas de controle de versão são ferramentas que nos ajudam a gerenciar a evolução e as mudanças de um conjunto de arquivos que chamaremos de <strong>repositório</strong>.</p>
+<p>Uma ferramenta similar ao controle de versão é o <strong>histórico de revisões do Google Docs</strong>, mas de uma forma muito mais controlada.</p>
+<section id="o-que-é-git" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="o-que-é-git"><span class="header-section-number">6.1.1</span> O que é Git?</h3>
+<p><a href="https://git-scm.com/">Git</a> é um sistema de controle de versão distribuído que permite a colaboração entre várias pessoas em um projeto ao mesmo tempo, sem sobrescrever o trabalho dos outros. Com o Git, cada alteração é salva em um histórico, o que permite voltar a versões anteriores se necessário. Além disso, facilita a colaboração e a integração de mudanças de diferentes colaboradores.</p>
+<p><img src="images/git-homepage.png" class="img-fluid"></p>
+</section>
+<section id="o-que-é-github" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="o-que-é-github"><span class="header-section-number">6.1.2</span> O que é GitHub?</h3>
+<p><a href="https://github.com/">GitHub</a> é uma plataforma web que utiliza o Git para o controle de versões e a colaboração. Permite que as pessoasarmazenem seus repositórios Git na nuvem, facilitando o acesso e a colaboração de qualquer lugar. O GitHub também oferece ferramentas adicionais, como gerenciamento de projetos, e revisão de código.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/GitHub-logo.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Logo da empresa GitHub</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="materiais" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="materiais"><span class="header-section-number">6.2</span> Materiais</h2>
+<p>O material do workshop <a href="https://git4researchers-latinr2024.netlify.app/">“Introducción a GitHub para Investigador(a|e)s”</a>, ministrado por Beatriz Milz e Yanina Belllini Saibene, foi utilizado como base para a elaboração de parte do material desta aula.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

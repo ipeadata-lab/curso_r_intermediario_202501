@@ -194,7 +194,7 @@
     "href": "reprodutibilidade.html#materiais",
     "title": "4  Reprodutibilidade e estruturação de projeto",
     "section": "4.8 Materiais",
-    "text": "4.8 Materiais\nEste material foi inicialmente desenvolvido com base na aula Introdução ao conceito de reprodutibilidade do curso Relatórios reprodutíveis com R, ministrado por Beatriz Milz no programa de Verão do IME-USP.",
+    "text": "4.8 Materiais\nO material do curso “Relatórios reprodutíveis com R”, ministrado por Beatriz Milz no programa de Verão do IME-USP, foi utilizado como base para a elaboração de parte do material desta aula.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reprodutibilidade e estruturação de projeto</span>"
     ]
@@ -260,6 +260,16 @@
     ]
   },
   {
+    "objectID": "relatorios.html#materiais",
+    "href": "relatorios.html#materiais",
+    "title": "5  Produção de relatórios com Quarto",
+    "section": "5.5 Materiais",
+    "text": "5.5 Materiais\nO material do curso “Relatórios reprodutíveis com R”, ministrado por Beatriz Milz no programa de Verão do IME-USP, foi utilizado como base para a elaboração de parte do material desta aula.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Produção de relatórios com Quarto</span>"
+    ]
+  },
+  {
     "objectID": "relatorios.html#footnotes",
     "href": "relatorios.html#footnotes",
     "title": "5  Produção de relatórios com Quarto",
@@ -274,7 +284,27 @@
     "href": "git-github.html",
     "title": "6  Introdução ao controle de versão com Git e GitHub",
     "section": "",
-    "text": "Em breve!",
+    "text": "6.1 Introdução\nQuando estamos trabalhando em um projeto, é comum que façamos várias alterações em nossos arquivos ao longo do tempo. Você já se deparou com uma situação em que você tinha várias versões de um arquivo, como este exemplo?\n/Documentos/projeto-tcc/\n├── script.R\n├── tcc.qmd\n├── tcc_corrigido.qmd\n├── tcc_corrigido2.qmd\n├── tcc_final.qmd\n├── tcc_finalfinal.qmd\n├── tcc_final_ultimo.qmd\n├── juro_que_eh_a_ultima_versao.qmd\n└── FINAL.qmd\nProvavelmente todos nós temos ou tivemos algo assim em algum momento, porque precisamos salvar nosso trabalho, mas ainda precisamos ter acesso a versões anteriores.\nExiste uma forma mais robusta de trabalhar com as versões dos arquivos. Os sistemas de controle de versão são ferramentas que nos ajudam a gerenciar a evolução e as mudanças de um conjunto de arquivos que chamaremos de repositório.\nUma ferramenta similar ao controle de versão é o histórico de revisões do Google Docs, mas de uma forma muito mais controlada.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introdução ao controle de versão com Git e GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git-github.html#introdução",
+    "href": "git-github.html#introdução",
+    "title": "6  Introdução ao controle de versão com Git e GitHub",
+    "section": "",
+    "text": "6.1.1 O que é Git?\nGit é um sistema de controle de versão distribuído que permite a colaboração entre várias pessoas em um projeto ao mesmo tempo, sem sobrescrever o trabalho dos outros. Com o Git, cada alteração é salva em um histórico, o que permite voltar a versões anteriores se necessário. Além disso, facilita a colaboração e a integração de mudanças de diferentes colaboradores.\n\n\n\n6.1.2 O que é GitHub?\nGitHub é uma plataforma web que utiliza o Git para o controle de versões e a colaboração. Permite que as pessoasarmazenem seus repositórios Git na nuvem, facilitando o acesso e a colaboração de qualquer lugar. O GitHub também oferece ferramentas adicionais, como gerenciamento de projetos, e revisão de código.\n\n\n\nLogo da empresa GitHub",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introdução ao controle de versão com Git e GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git-github.html#materiais",
+    "href": "git-github.html#materiais",
+    "title": "6  Introdução ao controle de versão com Git e GitHub",
+    "section": "6.2 Materiais",
+    "text": "6.2 Materiais\nO material do workshop “Introducción a GitHub para Investigador(a|e)s”, ministrado por Beatriz Milz e Yanina Belllini Saibene, foi utilizado como base para a elaboração de parte do material desta aula.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introdução ao controle de versão com Git e GitHub</span>"
     ]
