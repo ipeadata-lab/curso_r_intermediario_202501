@@ -1,0 +1,49 @@
+---
+title: "Exemplo Quarto com Python"
+jupyter: python3
+---
+
+```{python}
+# Executei esses códigos na linha de comando, para instalar as dependências:
+# python -m pip install pyyaml
+# python -m pip install nbformat
+# python -m pip install nbclient
+# python -m pip install pandas
+# python -m pip install seaborn
+```
+# Importando bibliotecas
+
+```{python}
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+```
+
+```{python}
+# Criando um DataFrame fictício
+data = {
+    "Categoria": ["A", "B", "C", "D", "E"],
+    "Valor": [10, 20, 15, 25, 30]
+}
+
+df = pd.DataFrame(data)
+```
+
+
+# Plotando um gráfico
+
+```{python}
+#| message: false
+#| warning: false
+
+# Criando o gráfico de barras com Seaborn
+plt.figure(figsize=(8, 5))
+sns.barplot(x="Categoria", y="Valor", data=df, palette="viridis")
+
+# Adicionando título
+plt.title("Gráfico de Barras com Seaborn")
+
+# Exibindo o gráfico
+plt.show()
+```
+

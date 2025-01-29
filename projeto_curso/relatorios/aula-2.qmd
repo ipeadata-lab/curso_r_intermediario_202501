@@ -1,0 +1,104 @@
+---
+title: "Meu primeiro relatório"
+date: "2024-01-22"
+author: 
+  - "Beatriz"
+  - "Pedro"
+  - "Rafael"
+# https://quarto.org/docs/output-formats/html-basics.html#table-of-contents
+format:
+  html:
+    toc: true
+    toc-location: body
+    number-sections: true
+    number-depth: 6
+lang: pt
+editor: source
+execute: 
+  message: false
+  warning: false
+  echo: false
+# https://quarto.org/docs/reference/formats/html.html#metadata
+# https://quarto.org/docs/authoring/markdown-basics.html
+# https://quarto.org/docs/reference/cells/cells-knitr.html#include
+---
+
+## O que é o quarto?
+
+Este é o nossa primeira tentativa de relatório feito com [**Quarto**](https://quarto.org/docs/authoring/markdown-basics.html)[^1].
+
+[^1]: O Quarto é a nova geração do RMarkdown.
+
+[![Logo do pacote Quarto](https://quarto.org/quarto.png){fig-align="center"}](https://quarto.org/docs/authoring/markdown-basics.html)
+
+$$
+y = ax + b
+$$
+
+| Col1 | Col2 | Col3 |
+|------|------|------|
+| x    | 1    | a    |
+| y    | 2    | b    |
+| z    | 3    | c    |
+| 1    | 2    | 3    |
+
+: exemplo de tabela
+
+### Pacotes utilizados
+
+Neste projeto, usamos os pacotes:
+
+-   tidyverse
+
+-   palmer penguins
+
+-   renv
+
+
+```{r}
+#| label: instalacao-tidyverse
+#| eval: false
+# install.packages("tidyverse")
+```
+
+```{r}
+#| label: carregar-pacotes
+#| message: false
+library(tidyverse)
+library(palmerpenguins)
+```
+
+
+```{r}
+#| label: campo-escondido
+#| echo: false
+#| results: hide
+head(penguins)
+```
+
+
+Na @fig-ggplot-penguins-1, vemos o gráfico
+
+```{r}
+#| label: fig-ggplot-penguins-1
+#| fig-cap: "Gráfico dos pinguinss"
+#| echo: true
+penguins |>
+  ggplot() +
+  aes(x = flipper_length_mm, y = body_mass_g) +
+  geom_point(aes(color = species, shape = species)) +
+  scale_color_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  theme_minimal()
+```
+
+
+
+
+```{r}
+#| label: codigo-escondido-starwars
+#| echo: false
+# starwars |> 
+#   ggplot() +
+#   aes(x = height, y = mass) +
+#   geom_point()
+```

@@ -1,0 +1,241 @@
+---
+title: "Meu primeiro relatório"
+date: "2024-01-22"
+author: 
+  - "Beatriz"
+  - "Pedro"
+  - "Rafael"
+# https://quarto.org/docs/output-formats/html-basics.html#table-of-contents
+format: #revealjs
+  # docx: 
+  #   reference-doc: template.docx
+  html:
+    toc: true
+    toc-location: body
+    number-sections: true
+    number-depth: 6
+lang: pt
+editor: source
+execute: 
+  message: false
+  warning: false
+  echo: false
+# https://quarto.org/docs/reference/formats/html.html#metadata
+# https://quarto.org/docs/authoring/markdown-basics.html
+# https://quarto.org/docs/reference/cells/cells-knitr.html#include
+---
+
+## O que é o quarto?
+
+Este é o nossa primeira tentativa de relatório feito com [**Quarto**](https://quarto.org/docs/authoring/markdown-basics.html)[^1].
+
+[^1]: O Quarto é a nova geração do RMarkdown.
+
+[![Logo do pacote Quarto](https://quarto.org/quarto.png){fig-align="center"}](https://quarto.org/docs/authoring/markdown-basics.html)
+
+$$
+y = ax + b
+$$
+
+| Col1 | Col2 | Col3 |
+|------|------|------|
+| x    | 1    | a    |
+| y    | 2    | b    |
+| z    | 3    | c    |
+| 1    | 2    | 3    |
+
+: exemplo de tabela
+
+### Pacotes utilizados
+
+Neste projeto, usamos os pacotes:
+
+-   tidyverse
+
+-   palmer penguins
+
+-   renv
+
+
+```{r}
+#| label: instalacao-tidyverse
+#| eval: false
+# install.packages("tidyverse")
+```
+
+```{r}
+#| label: carregar-pacotes
+#| message: false
+library(tidyverse)
+library(palmerpenguins)
+```
+
+
+```{r}
+#| label: campo-escondido
+#| echo: false
+#| results: hide
+head(penguins)
+```
+
+
+Na @fig-ggplot-penguins-1, vemos o gráfico
+
+```{r}
+#| label: fig-ggplot-penguins-1
+#| fig-cap: "Gráfico dos pinguinss"
+#| echo: true
+penguins |>
+  ggplot() +
+  aes(x = flipper_length_mm, y = body_mass_g) +
+  geom_point(aes(color = species, shape = species)) +
+  scale_color_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  theme_minimal()
+```
+
+
+
+
+```{r}
+#| label: codigo-escondido-starwars
+#| echo: false
+# starwars |> 
+#   ggplot() +
+#   aes(x = height, y = mass) +
+#   geom_point()
+```
+
+
+## Caminhos
+
+```{r}
+#| echo: true
+# library(tidyverse)
+
+# Uma forma de encontrar o caminho
+# arquivo_para_ler <- "../dados/sidrar_4092_bruto_2.csv"
+# pasta atual - pasta onde o arquivo quarto (.qmd) está salvo
+# "./"
+
+# pasta superior
+# "../"
+
+
+arquivo_para_ler <- here::here("dados/sidrar_4092_bruto_2.csv")
+```
+
+```{r}
+here::here()
+
+here::here("dados/sidrar_4092_bruto_2.csv")
+```
+
+```{r}
+getwd()
+```
+
+
+```{r}
+dados_pasta <- read_csv2(arquivo_para_ler)
+```
+
+
+```{r}
+glimpse(dados_pasta)
+```
+
+
+## Adicionando conteúdos
+
+### Gráfico
+
+```{r}
+#| label: fig-grafico-dos-pinguins
+#| fig-cap: "Gráfico da relação ...."
+#| fig-align: "center"
+#| out-width: "80%"
+# Carregar os pacotes
+library(tidyverse)
+library(palmerpenguins)
+
+# exemplo de código
+penguins |>
+  ggplot() +
+  aes(x = flipper_length_mm, y = body_mass_g) +
+  geom_point(aes(color = species, shape = species)) +
+  scale_color_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  labs(
+    x = "Comprimento da nadadeira (mm)",
+    y = "Massa corporal (g)",
+    color = "Espécie",
+    shape = "Espécie",
+    title = "Relação entre comprimento da nadadeira e massa corporal",
+    subtitle = "Pinguins das espécies Adelie, Chinstrap e Gentoo",
+    caption = "Fonte: Pacote palmerpenguins."
+  ) +
+  theme_minimal()
+```
+
+
+### Tabela
+
+```{r}
+pinguins_frequencia <- penguins |> 
+  count(species, island, sort = TRUE)
+
+pinguins_frequencia
+```
+
+`knitr::kable()`: 
+
+```{r}
+knitr::kable(pinguins_frequencia, col.names = c("Espécie", "Ilha", "Quantidade"))
+```
+
+```{r}
+# reactable::reactable(penguins, searchable = TRUE)
+```
+
+
+## inline code
+
+```{r}
+#| echo: false # não aparece o código
+especies_penguins <- unique(penguins$species)
+frase_especies <- knitr::combine_words(especies_penguins, and = " e ", oxford_comma = FALSE)
+```
+
+
+A base de dados penguins apresenta pinguins de `r length(especies_penguins)` espécies: `r frase_especies`. A base possui `r nrow(penguins)` observações (sendo que cada observação corresponde a um pinguim)  e `r ncol(penguins)` variáveis: `r colnames(penguins)`. A coleta de dados foi feita em três ilhas: `r unique(penguins$island)`, entre os anos de `r min(penguins$year)` e `r max(penguins$year)`.
+
+
+### Exercício
+<!-- Ainda no arquivo "aula-2.qmd": utilizando a base de dados pnud_min do pacote abjData, escreva uma breve descrição da base de dados, utilizando códigos em linha. Ideias de conteúdos: número de observações, número de variáveis, variáveis presentes na base, quais são os anos presentes na base, quais são os municípios com o menor e maior indicador de IDH municipal para o ano mais recente, entre outros. -->
+
+```{r}
+library(abjData)
+# pnud_min
+
+pnud_mais_recente <- pnud_min |> 
+  filter(ano == max(ano))
+
+
+idh_maior <- slice_max(pnud_mais_recente, order_by = idhm, n = 1)
+
+idh_menor <- slice_min(pnud_mais_recente, order_by = idhm, n = 1)
+```
+
+O município com maior IDHm no ano de `r idh_maior$ano` é `r idh_maior$muni_nm` (`r idh_maior$uf_sigla`) com um IDHm de `r idh_maior$idhm`. Por outro lado, o município com menor IDHm é `r idh_menor$muni_nm` (`r idh_menor$uf_sigla`) com um IDHm de `r idh_menor$idhm`.
+
+
+
+
+Versão Luiz:
+
+A base pnud_min possui `r nrow(pnud_min)` linhas referentes ao número de municípios. As colunas tem os seguintes nomes: `r colnames(pnud_min)`. Por exemplo, idhm é o idh municipal, o maior deles é `r max(pnud_min$idhm)` do município `r pnud_min$muni_nm[which.max(pnud_min$idhm)]`, localizado no estado de/do `r pnud_min$uf_sigla[which.max(pnud_min$idhm)]`
+
+
+
+
+
+
