@@ -522,7 +522,52 @@ Essas são as opções de formatos mais utilizadas. Para ver a lista completa, c
 
 ### Quarto CLI
 
-Em breve
+O Quarto *Command Line Interface* (CLI - Interface de linha de comando). Ou seja, podemos utilizar o Quarto no terminal, utilizando comandos. Isso é útil para automatizar tarefas, ou para utilizar o Quarto em ambientes que não possuem uma interface gráfica (como o RStudio).
+
+Podemos acessar o terminal no RStudio acessando o painel *Terminal* (geralmente este painel fica no canto inferior esquerdo do RStudio, como uma aba ao lado do painel *Console*).
+
+![Terminal no RStudio](images/rstudio-terminal.png){width="80%"}
+
+Também podemos acessar o terminal diretamente no computador, utilizando o terminal do sistema operacional (como o terminal do Windows, ou o terminal do Mac OS). Porém, para isso, é necessário acessar o diretório do projeto que estamos trabalhando (utilizando o comando `cd`- *change directory*):
+
+```{bash}
+#| eval: false
+cd Documents/IPEA-DATALAB/curso_r_intermediario_202501 
+```
+
+
+Um comando útil para saber quais são as opções disponíveis é o `quarto help`:
+
+```{bash}
+quarto help
+```
+
+Também podemos consultar a versão do Quarto com o comando `quarto --version`:
+
+```{bash}
+quarto --version
+```
+
+
+Outro comando útil é o `quarto render`, que renderiza um arquivo `.qmd` específico:
+
+```{bash}
+#| eval: false
+quarto render arquivo.qmd
+```
+
+#### Pacote `{quarto}` no R
+Existe um pacote em R chamado `{quarto}` que permite utilizar o Quarto no R. Esse pacote possui funções similares às funções do Quarto CLI, e internamente faz chamadas ao Quarto CLI.
+
+Para instalar o pacote `{quarto}`, podemos utilizar o comando `install.packages("quarto")`.
+
+Para verificar a versão do pacote `{quarto}`, podemos utilizar a função `quarto::quarto_version()`:
+
+```{r}
+quarto::quarto_version()
+```
+
+Para renderizar um arquivo `.qmd` com o pacote `{quarto}`, podemos utilizar a função `quarto::quarto_render("caminho_do_arquivo.qmd")`. Isso é similar à clicar no botão *Render* no RStudio.
 
 ### Projetos do Quarto
 
