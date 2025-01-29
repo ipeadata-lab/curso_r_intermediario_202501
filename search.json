@@ -290,11 +290,51 @@
     ]
   },
   {
-    "objectID": "git-github.html#introdução",
-    "href": "git-github.html#introdução",
+    "objectID": "git-github.html#o-que-é-git",
+    "href": "git-github.html#o-que-é-git",
     "title": "6  Introdução ao controle de versão com Git e GitHub",
-    "section": "",
-    "text": "6.1.1 O que é Git?\nGit é um sistema de controle de versão distribuído que permite a colaboração entre várias pessoas em um projeto ao mesmo tempo, sem sobrescrever o trabalho dos outros. Com o Git, cada alteração é salva em um histórico, o que permite voltar a versões anteriores se necessário. Além disso, facilita a colaboração e a integração de mudanças de diferentes colaboradores.\nPara utilizar o Git, precisamos primeiramente instalar o software no nosso computador (indicado na página de instalações).\n\n\n\n6.1.2 O que é GitHub?\nGitHub é uma plataforma web que utiliza o Git para o controle de versões e a colaboração. Permite que as pessoasarmazenem seus repositórios Git na nuvem, facilitando o acesso e a colaboração de qualquer lugar. O GitHub também oferece ferramentas adicionais, como gerenciamento de projetos, e revisão de código.\nPara começar a utilizar o GitHub, precisamos primeiramente criar uma conta gratuita no site (indicado na página de instalações e outros preparativos).\n\n\n\nLogo da empresa GitHub\n\n\n\n\n\n\n\n\nAviso\n\n\n\nAtenção! Git e GitHub são coisas diferentes. O Git é o sistema de controle de versão (um softare que instalamos no computador), enquanto o GitHub é uma plataforma web que utiliza o Git.\nO GitHub não é a única plataforma que utiliza o Git. Outras plataformas populares são o GitLab e o Bitbucket. Entretanto, o GitHub é a plataforma mais popular e amplamente utilizada.",
+    "section": "6.2 O que é Git?",
+    "text": "6.2 O que é Git?\nGit é um sistema de controle de versão distribuído que permite a colaboração entre várias pessoas em um projeto ao mesmo tempo, sem sobrescrever o trabalho dos outros. Com o Git, cada alteração é salva em um histórico, o que permite voltar a versões anteriores se necessário. Além disso, facilita a colaboração e a integração de mudanças de diferentes colaboradores.\nPara utilizar o Git, precisamos primeiramente instalar o software no nosso computador (indicado na página de instalações).",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introdução ao controle de versão com Git e GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git-github.html#o-que-é-github",
+    "href": "git-github.html#o-que-é-github",
+    "title": "6  Introdução ao controle de versão com Git e GitHub",
+    "section": "6.3 O que é GitHub?",
+    "text": "6.3 O que é GitHub?\nGitHub é uma plataforma web que utiliza o Git para o controle de versões e a colaboração. Permite que as pessoasarmazenem seus repositórios Git na nuvem, facilitando o acesso e a colaboração de qualquer lugar. O GitHub também oferece ferramentas adicionais, como gerenciamento de projetos, e revisão de código.\nPara começar a utilizar o GitHub, precisamos primeiramente criar uma conta gratuita no site (indicado na página de instalações e outros preparativos).\n\n\n\nLogo da empresa GitHub\n\n\n\n\n\n\n\n\nAviso\n\n\n\nAtenção! Git e GitHub são coisas diferentes. O Git é o sistema de controle de versão (um softare que instalamos no computador), enquanto o GitHub é uma plataforma web que utiliza o Git.\nO GitHub não é a única plataforma que utiliza o Git. Outras plataformas populares são o GitLab e o Bitbucket. Entretanto, o GitHub é a plataforma mais popular e amplamente utilizada.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introdução ao controle de versão com Git e GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git-github.html#perfil-no-github",
+    "href": "git-github.html#perfil-no-github",
+    "title": "6  Introdução ao controle de versão com Git e GitHub",
+    "section": "6.4 Perfil no GitHub",
+    "text": "6.4 Perfil no GitHub\nAo criar nossa conta no GitHub, teremos um perfil público na internet. A página do perfil conta a história do nosso trabalho através dos repositórios em que estamos interessados, das colaborações que realizamos e das conversas que tivemos.\nPodemos atualizar nosso perfil com informações sobre nós, como nossa localização, empresa, site pessoal, ORCID, pronome que preferimos utilizar, redes sociais, etc.\n\n\n\nExemplo de perfil do GitHub",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introdução ao controle de versão com Git e GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git-github.html#repositórios",
+    "href": "git-github.html#repositórios",
+    "title": "6  Introdução ao controle de versão com Git e GitHub",
+    "section": "6.5 Repositórios",
+    "text": "6.5 Repositórios\nUm repositório é um espaço onde armazenamos nossos arquivos e pastas. Criamos um repositório para cada projeto, e podemos adicionar arquivos de código, imagens, dados, documentação, etc.\nA imagem a seguir apresenta a página inicial do repositório no GitHub do material do curso:\n\n\n\n\n\n\n\nExemplo de repositório no GitHub\n\n\n\n6.5.1 Criar um novo repositório\nPodemos criar um repositório diretamente no GitHub, clicando no botão “New” no canto superior esquerdo da página inicial:\n\n\n\nCriar um novo repositório no GitHub\n\n\nO GitHub direcionará para a página de criar novo repositório (Create a new repository). Nesta página, podemos fazer algumas configurações:\n\nAdicionar um nome para o repositório: lembrando que o nome do repositório deve ser “limpo”, ou seja, sem caracteres especiais, espaços, etc.\n\n\n\n\n\n\n\nAdicionar uma descrição: uma breve descrição do que o repositório contém. Isso pode ser alterado posteriormente, então não precisamos nos preocupar muito com isso inicialmente. A descrição é importante para que outras pessoas entendam o que o repositório contém, e consigam encontrá-lo mais facilmente nas buscas.\n\n\n\n\n\n\n\nEscolher se o repositório será público ou privado: Os repositórios podem ser públicos ou privados. Os repositórios públicos são visíveis para qualquer pessoa, enquanto os repositórios privados são visíveis apenas para as pessoas que têm permissão para acessá-los. Essa etapa é muito importante: não queremos expor informações sensíveis ou dados privados em repositórios públicos.\n\n\n\n\n\n\n\nAdicionar um arquivo README.md: O arquivo README.md é um arquivo de texto onde podemos adicionar informações sobre o repositório. Ele é exibido na página inicial do repositório no GitHub, e é uma forma de apresentar o repositório para outras pessoas. O README.md é escrito em Markdown. Recomendo selecionar essa opção sempre.\n\n\n\n\n\n\n\nAdicionar um arquivo .gitignore: O arquivo .gitignore é um arquivo de texto onde podemos listar os arquivos e pastas que não queremos que sejam versionados pelo Git. Por exemplo, arquivos temporários, arquivos de dados grandes, etc. Nesta opção, o GitHub está nos oferecendo uma lista de arquivos .gitignore pré-definidos para diferentes linguagens de programação, e podemos escolher a opção para a linguagem R.\n\n\n\n\n\n\n\nAdicionar um arquivo de licença: A licença é um documento que define as regras de uso do código. Existem várias licenças disponíveis, e a escolha da licença depende do que queremos permitir que outras pessoas façam com o nosso código. Caso não tenhamos certeza sobre a licença, podemos deixar essa opção em branco e adicionar a licença posteriormente.\n\n\n\n\n\n\nApós preencher as informações, podemos clicar no botão “Create repository” para criar o repositório.\n\n\n\nCriar um novo repositório no GitHub",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introdução ao controle de versão com Git e GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git-github.html#conectar-com-o-rstudio",
+    "href": "git-github.html#conectar-com-o-rstudio",
+    "title": "6  Introdução ao controle de versão com Git e GitHub",
+    "section": "6.6 Conectar com o RStudio",
+    "text": "6.6 Conectar com o RStudio\nAté agora, a nossa interação com o GitHub foi feita diretamente no site.Entretanto, podemos utilizar o Git e o GitHub diretamente no RStudio, o que facilita o trabalho com o controle de versão. Para isso, precisamos conectar o RStudio com o GitHub.\n\n6.6.1 Pacote {usethis}\nO pacote {usethis} oferece diversas funções que facilitam o trabalho de configuração do Git e do GitHub no RStudio. Portanto, precisamos verificar se o pacote {usethis} está instalado no R. Caso não esteja, podemos instalar com o comando install.packages(\"usethis\").\n\n# install.packages(\"usethis\")\nlibrary(usethis)\n\nO {usethis} tem uma função chamada git_sitrep() que nos ajuda a ter uma série de informações úteis para saber se o Git e GitHub estão conectados corretamente com o RStudio (situation report).\n\nusethis::git_sitrep()\n\n\n\n6.6.2 Criar um token de acesso pessoal (PAT)\nEm breve\n\n\n6.6.3 Salvar o token de acesso pessoal no RStudio\nEm breve\n\n\n6.6.4 Verificar se o RStudio está conectado ao GitHub\nEm breve",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introdução ao controle de versão com Git e GitHub</span>"
     ]
@@ -303,8 +343,8 @@
     "objectID": "git-github.html#materiais",
     "href": "git-github.html#materiais",
     "title": "6  Introdução ao controle de versão com Git e GitHub",
-    "section": "6.2 Materiais",
-    "text": "6.2 Materiais\nO material do workshop “Introducción a GitHub para Investigador(a|e)s”, ministrado por Beatriz Milz e Yanina Belllini Saibene, foi utilizado como base para a elaboração de parte do material desta aula.",
+    "section": "6.7 Materiais",
+    "text": "6.7 Materiais\nO material do workshop “Introducción a GitHub para Investigador(a|e)s”, ministrado por Beatriz Milz e Yanina Belllini Saibene, foi utilizado como base para a elaboração de parte do material desta aula.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introdução ao controle de versão com Git e GitHub</span>"
     ]

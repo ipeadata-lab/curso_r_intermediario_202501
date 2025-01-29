@@ -215,12 +215,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">6.1</span> Introdução</a>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">6.1</span> Introdução</a></li>
+  <li><a href="#o-que-é-git" id="toc-o-que-é-git" class="nav-link" data-scroll-target="#o-que-é-git"><span class="header-section-number">6.2</span> O que é Git?</a></li>
+  <li><a href="#o-que-é-github" id="toc-o-que-é-github" class="nav-link" data-scroll-target="#o-que-é-github"><span class="header-section-number">6.3</span> O que é GitHub?</a></li>
+  <li><a href="#perfil-no-github" id="toc-perfil-no-github" class="nav-link" data-scroll-target="#perfil-no-github"><span class="header-section-number">6.4</span> Perfil no GitHub</a></li>
+  <li><a href="#repositórios" id="toc-repositórios" class="nav-link" data-scroll-target="#repositórios"><span class="header-section-number">6.5</span> Repositórios</a>
   <ul>
-  <li><a href="#o-que-é-git" id="toc-o-que-é-git" class="nav-link" data-scroll-target="#o-que-é-git"><span class="header-section-number">6.1.1</span> O que é Git?</a></li>
-  <li><a href="#o-que-é-github" id="toc-o-que-é-github" class="nav-link" data-scroll-target="#o-que-é-github"><span class="header-section-number">6.1.2</span> O que é GitHub?</a></li>
+  <li><a href="#criar-um-novo-repositório" id="toc-criar-um-novo-repositório" class="nav-link" data-scroll-target="#criar-um-novo-repositório"><span class="header-section-number">6.5.1</span> Criar um novo repositório</a></li>
   </ul></li>
-  <li><a href="#materiais" id="toc-materiais" class="nav-link" data-scroll-target="#materiais"><span class="header-section-number">6.2</span> Materiais</a></li>
+  <li><a href="#conectar-com-o-rstudio" id="toc-conectar-com-o-rstudio" class="nav-link" data-scroll-target="#conectar-com-o-rstudio"><span class="header-section-number">6.6</span> Conectar com o RStudio</a>
+  <ul>
+  <li><a href="#pacote-usethis" id="toc-pacote-usethis" class="nav-link" data-scroll-target="#pacote-usethis"><span class="header-section-number">6.6.1</span> Pacote <code>{usethis}</code></a></li>
+  <li><a href="#criar-um-token-de-acesso-pessoal-pat" id="toc-criar-um-token-de-acesso-pessoal-pat" class="nav-link" data-scroll-target="#criar-um-token-de-acesso-pessoal-pat"><span class="header-section-number">6.6.2</span> Criar um token de acesso pessoal (PAT)</a></li>
+  <li><a href="#salvar-o-token-de-acesso-pessoal-no-rstudio" id="toc-salvar-o-token-de-acesso-pessoal-no-rstudio" class="nav-link" data-scroll-target="#salvar-o-token-de-acesso-pessoal-no-rstudio"><span class="header-section-number">6.6.3</span> Salvar o token de acesso pessoal no RStudio</a></li>
+  <li><a href="#verificar-se-o-rstudio-está-conectado-ao-github" id="toc-verificar-se-o-rstudio-está-conectado-ao-github" class="nav-link" data-scroll-target="#verificar-se-o-rstudio-está-conectado-ao-github"><span class="header-section-number">6.6.4</span> Verificar se o RStudio está conectado ao GitHub</a></li>
+  </ul></li>
+  <li><a href="#materiais" id="toc-materiais" class="nav-link" data-scroll-target="#materiais"><span class="header-section-number">6.7</span> Materiais</a></li>
   </ul>
 </nav>
     </div>
@@ -270,14 +280,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Provavelmente todos nós temos ou tivemos algo assim em algum momento, porque precisamos salvar nosso trabalho, mas ainda precisamos ter acesso a versões anteriores.</p>
 <p>Existe uma forma mais robusta de trabalhar com as versões dos arquivos. Os sistemas de controle de versão são ferramentas que nos ajudam a gerenciar a evolução e as mudanças de um conjunto de arquivos que chamaremos de <strong>repositório</strong>.</p>
 <p>Uma ferramenta similar ao controle de versão é o <strong>histórico de revisões do Google Docs</strong>, mas de uma forma muito mais controlada.</p>
-<section id="o-que-é-git" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="o-que-é-git"><span class="header-section-number">6.1.1</span> O que é Git?</h3>
+</section>
+<section id="o-que-é-git" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="o-que-é-git"><span class="header-section-number">6.2</span> O que é Git?</h2>
 <p><a href="https://git-scm.com/">Git</a> é um sistema de controle de versão distribuído que permite a colaboração entre várias pessoas em um projeto ao mesmo tempo, sem sobrescrever o trabalho dos outros. Com o Git, cada alteração é salva em um histórico, o que permite voltar a versões anteriores se necessário. Além disso, facilita a colaboração e a integração de mudanças de diferentes colaboradores.</p>
 <p>Para utilizar o Git, precisamos primeiramente instalar o software no nosso computador (indicado na <a href="./instalacao.html#instalar-git">página de instalações</a>).</p>
 <p><img src="images/git-homepage.png" class="img-fluid"></p>
 </section>
-<section id="o-que-é-github" class="level3" data-number="6.1.2">
-<h3 data-number="6.1.2" class="anchored" data-anchor-id="o-que-é-github"><span class="header-section-number">6.1.2</span> O que é GitHub?</h3>
+<section id="o-que-é-github" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="o-que-é-github"><span class="header-section-number">6.3</span> O que é GitHub?</h2>
 <p><a href="https://github.com/">GitHub</a> é uma plataforma web que utiliza o Git para o controle de versões e a colaboração. Permite que as pessoasarmazenem seus repositórios Git na nuvem, facilitando o acesso e a colaboração de qualquer lugar. O GitHub também oferece ferramentas adicionais, como gerenciamento de projetos, e revisão de código.</p>
 <p>Para começar a utilizar o GitHub, precisamos primeiramente criar uma conta gratuita no site (indicado na <a href="./instalacao.html#conta-github">página de instalações e outros preparativos</a>).</p>
 <div class="quarto-figure quarto-figure-center">
@@ -301,9 +312,128 @@ Aviso
 </div>
 </div>
 </section>
+<section id="perfil-no-github" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="perfil-no-github"><span class="header-section-number">6.4</span> Perfil no GitHub</h2>
+<p>Ao criar nossa conta no GitHub, teremos um perfil público na internet. A página do perfil conta a história do nosso trabalho através dos repositórios em que estamos interessados, das colaborações que realizamos e das conversas que tivemos.</p>
+<p>Podemos atualizar nosso perfil com informações sobre nós, como nossa localização, empresa, site pessoal, ORCID, pronome que preferimos utilizar, redes sociais, etc.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/ex-github-profile.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Exemplo de perfil do GitHub</figcaption>
+</figure>
+</div>
 </section>
-<section id="materiais" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="materiais"><span class="header-section-number">6.2</span> Materiais</h2>
+<section id="repositórios" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="repositórios"><span class="header-section-number">6.5</span> Repositórios</h2>
+<p>Um repositório é um espaço onde armazenamos nossos arquivos e pastas. Criamos um repositório para cada projeto, e podemos adicionar arquivos de código, imagens, dados, documentação, etc.</p>
+<p>A imagem a seguir apresenta a página inicial do repositório no GitHub do material do curso:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://github.com/ipeadata-lab/curso_r_intermediario_202501/"><img src="images/ex-github-repo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Exemplo de repositório no GitHub"></a></p>
+</figure>
+</div>
+<figcaption>Exemplo de repositório no GitHub</figcaption>
+</figure>
+</div>
+<section id="criar-um-novo-repositório" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="criar-um-novo-repositório"><span class="header-section-number">6.5.1</span> Criar um novo repositório</h3>
+<p>Podemos criar um repositório diretamente no GitHub, clicando no botão “<em>New</em>” no canto superior esquerdo da página inicial:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/github-new-repo.png" class="borda-imagem img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Criar um novo repositório no GitHub</figcaption>
+</figure>
+</div>
+<p>O GitHub direcionará para a página de criar novo repositório (<em>Create a new repository</em>). Nesta página, podemos fazer algumas configurações:</p>
+<ul>
+<li>Adicionar um <strong>nome para o repositório</strong>: lembrando que o nome do repositório deve ser “limpo”, ou seja, sem caracteres especiais, espaços, etc.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/new-repo-nome.png" class="borda-imagem img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Adicionar uma <strong>descrição</strong>: uma breve descrição do que o repositório contém. Isso pode ser alterado posteriormente, então não precisamos nos preocupar muito com isso inicialmente. A descrição é importante para que outras pessoas entendam o que o repositório contém, e consigam encontrá-lo mais facilmente nas buscas.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/new-repo-description.png" class="borda-imagem img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Escolher se o repositório será <strong>público ou privado</strong>: Os repositórios podem ser públicos ou privados. Os <strong>repositórios públicos</strong> são visíveis para qualquer pessoa, enquanto os <strong>repositórios privados</strong> são visíveis apenas para as pessoas que têm permissão para acessá-los. Essa etapa é muito importante: não queremos expor informações sensíveis ou dados privados em repositórios públicos.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/new-repo-visibility.png" class="borda-imagem img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Adicionar um arquivo <strong>README.md</strong>: O arquivo README.md é um arquivo de texto onde podemos adicionar informações sobre o repositório. Ele é exibido na página inicial do repositório no GitHub, e é uma forma de apresentar o repositório para outras pessoas. O README.md é escrito em Markdown. Recomendo selecionar essa opção sempre.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/new-repo-add-readme-file.png" class="borda-imagem img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Adicionar um arquivo <strong>.gitignore</strong>: O arquivo .gitignore é um arquivo de texto onde podemos listar os arquivos e pastas que não queremos que sejam versionados pelo Git. Por exemplo, arquivos temporários, arquivos de dados grandes, etc. Nesta opção, o GitHub está nos oferecendo uma lista de arquivos .gitignore pré-definidos para diferentes linguagens de programação, e podemos escolher a opção para a linguagem R.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/new-repo-add-git-ignore.png" class="borda-imagem img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Adicionar um arquivo de <strong>licença</strong>: A licença é um documento que define as regras de uso do código. Existem várias licenças disponíveis, e a escolha da licença depende do que queremos permitir que outras pessoas façam com o nosso código. Caso não tenhamos certeza sobre a licença, podemos deixar essa opção em branco e adicionar a licença posteriormente.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/new-repo-choose-a-license.png" class="borda-imagem img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<p>Após preencher as informações, podemos clicar no botão “<em>Create repository</em>” para criar o repositório.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/options-new-repo.png" class="borda-imagem img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Criar um novo repositório no GitHub</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="conectar-com-o-rstudio" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="conectar-com-o-rstudio"><span class="header-section-number">6.6</span> Conectar com o RStudio</h2>
+<p>Até agora, a nossa interação com o GitHub foi feita diretamente no site.Entretanto, podemos utilizar o Git e o GitHub diretamente no RStudio, o que facilita o trabalho com o controle de versão. Para isso, precisamos conectar o RStudio com o GitHub.</p>
+<section id="pacote-usethis" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="pacote-usethis"><span class="header-section-number">6.6.1</span> Pacote <code>{usethis}</code></h3>
+<p>O pacote <code>{usethis}</code> oferece diversas funções que facilitam o trabalho de configuração do Git e do GitHub no RStudio. Portanto, precisamos verificar se o pacote <code>{usethis}</code> está instalado no R. Caso não esteja, podemos instalar com o comando <code>install.packages("usethis")</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("usethis")</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(usethis)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O <code>{usethis}</code> tem uma função chamada <code>git_sitrep()</code> que nos ajuda a ter uma série de informações úteis para saber se o Git e GitHub estão conectados corretamente com o RStudio (<em>situation report</em>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">git_sitrep</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="criar-um-token-de-acesso-pessoal-pat" class="level3" data-number="6.6.2">
+<h3 data-number="6.6.2" class="anchored" data-anchor-id="criar-um-token-de-acesso-pessoal-pat"><span class="header-section-number">6.6.2</span> Criar um token de acesso pessoal (PAT)</h3>
+<p>Em breve</p>
+</section>
+<section id="salvar-o-token-de-acesso-pessoal-no-rstudio" class="level3" data-number="6.6.3">
+<h3 data-number="6.6.3" class="anchored" data-anchor-id="salvar-o-token-de-acesso-pessoal-no-rstudio"><span class="header-section-number">6.6.3</span> Salvar o token de acesso pessoal no RStudio</h3>
+<p>Em breve</p>
+</section>
+<section id="verificar-se-o-rstudio-está-conectado-ao-github" class="level3" data-number="6.6.4">
+<h3 data-number="6.6.4" class="anchored" data-anchor-id="verificar-se-o-rstudio-está-conectado-ao-github"><span class="header-section-number">6.6.4</span> Verificar se o RStudio está conectado ao GitHub</h3>
+<p>Em breve</p>
+</section>
+</section>
+<section id="materiais" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="materiais"><span class="header-section-number">6.7</span> Materiais</h2>
 <p>O material do workshop <a href="https://git4researchers-latinr2024.netlify.app/">“Introducción a GitHub para Investigador(a|e)s”</a>, ministrado por Beatriz Milz e Yanina Belllini Saibene, foi utilizado como base para a elaboração de parte do material desta aula.</p>
 
 
