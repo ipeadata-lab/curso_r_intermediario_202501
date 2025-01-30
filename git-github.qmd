@@ -49,13 +49,41 @@ Para começar a utilizar o GitHub, precisamos primeiramente criar uma conta grat
 O GitHub não é a única plataforma que utiliza o Git. Outras plataformas populares são o [GitLab](https://gitlab.com/) e o [Bitbucket](https://bitbucket.org/). Entretanto, o GitHub é a plataforma mais popular e amplamente utilizada.
 :::
 
+### Exercícios
+
+1) Verifique se o Git está instalado no seu computador. Caso não esteja, instale o Git conforme indicado na [página de instalações](instalacao.qmd#instalar-git).
+
+Você pode verificar se o Git está instalado no seu computador executando o seguinte comando no terminal:
+
+```{bash}
+git --version # <1>
+```
+1. Verificar a versão do Git instalada no computador.
+
+
+2) Faça login no GitHub. Caso não tenha uma conta, crie uma conta gratuita, conforme indicado na [página de instalações e preparações](instalacao.qmd#conta-github).
+
+
 ## Perfil no GitHub
 
 Ao criar nossa conta no GitHub, teremos um perfil público na internet. A página do perfil conta a história do nosso trabalho através dos repositórios em que estamos interessados, das colaborações que realizamos e das conversas que tivemos.
 
+Podemos acessar o nosso perfil clicando na nossa foto no canto superior direito da página inicial do GitHub. Podemos adicionar no nosso perfil informações sobre nós, como nossa localização, empresa, site pessoal, ORCID, pronome que preferimos utilizar, redes sociais, etc.
+
+![Como acessar nosso perfil](images/github-acessar-perfil.png){class="borda-imagem" fig-align="center" width="100%"}
+
+
 Podemos atualizar nosso perfil com informações sobre nós, como nossa localização, empresa, site pessoal, ORCID, pronome que preferimos utilizar, redes sociais, etc.
 
-![Exemplo de perfil do GitHub](images/ex-github-profile.png){fig-align="center" width="80%"}
+![Exemplo de perfil do GitHub](images/ex-github-profile.png){class="borda-imagem" fig-align="center" width="80%"}
+
+Para atualizar o perfil, podemos clicar no botão "*Edit profile*" na página do perfil, na barra lateral esquerda.
+
+### Exercício
+
+1) Acesse o seu perfil no GitHub e atualize informações básicas sobre você. Sugestões: adicione pelo menos uma foto e o nome.
+
+2) Compartilhe o link do seu perfil no GitHub no chat do curso.
 
 ## Repositórios
 
@@ -63,7 +91,9 @@ Um repositório é um espaço onde armazenamos nossos arquivos e pastas. Criamos
 
 A imagem a seguir apresenta a página inicial do repositório no GitHub do material do curso:
 
-[![Exemplo de repositório no GitHub](images/ex-github-repo.png){fig-align="center" width="100%"}](https://github.com/ipeadata-lab/curso_r_intermediario_202501/)
+[![Exemplo de repositório no GitHub](images/ex-github-repo.png){class="borda-imagem" fig-align="center" width="100%"}](https://github.com/ipeadata-lab/curso_r_intermediario_202501/)
+
+
 
 ### Criar um novo repositório
 
@@ -101,12 +131,78 @@ Após preencher as informações, podemos clicar no botão "*Create repository*"
 
 ![Criar um novo repositório no GitHub](images/options-new-repo.png){class="borda-imagem" fig-align="center" width="60%"}
 
+### Exercícios
+
+1. Vamos criar um repositório no GitHub com o nome "`meu-primeiro-repositorio`". O repositório deve ser público, e escolha a opção para criar um arquivo README.md. Não é necessário adicionar um arquivo `.gitignore` ou uma licença.
+
+## Interagindo com o repositório através do site do GitHub
+
+Podemos interagir com um repositório de várias formas: utilizando a linha de comando no nosso computador, utilizando alguma interface gráfica, ou através do site do GitHub. A forma mais simples de interagir com um repositório é através do site do GitHub, porém é importante saber que nem todas as funcionalidades estão disponíveis no site.
+
+Ao clicar no botão `Add file`, podemos criar um novo arquivo (ou também outras pastas) (com a opção `Create new file`), e também podemos fazer o upload de um arquivo (com a opção `Upload files`). 
+
+
+![](images/github-add-file.png){class="borda-imagem" fig-align="center" width="100%"}
+Para **criar um novo arquivo**, precisamos adicionar o nome do arquivo (o caminho completo: o diretório - caso seja necessário, o nome do arquivo, e a extensão), e o conteúdo do arquivo. 
+
+Por exemplo, se queremos criar um arquivo chamado `dados.R`, e queremos que ele seja salvo na pasta `scripts/`, precisamos adicionar o caminho completo: `scripts/dados.R` (caso a pasta `scripts/` ainda não exista, o GitHub irá criar).
+
+Após escrever o conteúdo, podemos escrever uma mensagem de commit e clicar no botão `Commit new file` para adicionar o arquivo ao repositório.
+
+![](images/github-create-new-file.png){class="borda-imagem" fig-align="center" width="100%"}
+
+
+
+Para fazer o **upload de um arquivo**, podemos arrastar o arquivo para a área demarcada (onde está escrito *Drag files here to add them to your repository*) ou clicar no botão `Choose your files`. Após selecionar os arquivos, podemos escrever uma mensagem de commit e clicar no botão `Commit changes` para enviar os arquivos para o repositório.
+
+![](images/github-upload-file.png){class="borda-imagem" fig-align="center" width="100%"}
+
+::: callout-note
+## O que é uma mensagem de commit?
+
+Uma mensagem de commit é uma mensagem que descreve as alterações que foram feitas em um commit. A mensagem de commit é importante para que outras pessoas entendam o que foi feito em um commit, e para que possamos entender o histórico de alterações do repositório. 
+
+:::
+
+Também podemos **fazer alterações nos arquivos existentes** no repositório. Para isso, precisamos abrir o arquivo que queremos editar, e clicar no botão do lápis (`Edit this file`). Faça as modificações necessárias, escreva uma mensagem de commit e clique no botão `Commit changes` para salvar as alterações.
+
+![](images/github-edit-this-file.png){class="borda-imagem" fig-align="center" width="100%"}
+
+
+Também podemos consultar as alterações feitas no repositório através da opção `xx Commits` (sendo `x` o número de *commits* realizados no repositório). Clicando nessa opção, podemos ver o histórico de alterações do repositório, e clicar em um dos commits para ver as alterações feitas naquele commit.
+
+![Botão para acessar o histórico de *commits* ](images/github-x-commits.png){class="borda-imagem" fig-align="center" width="100%"}
+
+![Página com o histórico de *commits*](images/github-history.png){class="borda-imagem" fig-align="center" width="100%"}
+
+![Página com informações de um *commit* específico](images/github-commit-especifico.png){class="borda-imagem" fig-align="center" width="100%"}
+
+### Exercícios
+
+1. No repositório criado anteriormente:
+
+  a) Edite o arquivo `README.md` e adicione uma breve descrição sobre o repositório.
+  
+  b) Crie um arquivo chamado `script.R`, dentro de uma pasta chamada dados, com o seguinte conteúdo:
+  
+```{r}
+#| eval: false
+write.csv(mtcars, "dados/mtcars.csv")
+```
+
+  c) Execute o código acima no seu RStudio e faça o upload do arquivo `mtcars.csv` para o repositório, dentro da pasta `dados/`. Como esse arquivo aparece no repositório?
+  
+  d) Na página inicial do repositório, clique em `X Commits` e veja o histórico de alterações do repositório. Clique em um dos commits para ver as alterações feitas naquele commit.
+
 ## Conectar com o RStudio
 
-Até agora, a nossa interação com o GitHub foi feita diretamente no site.Entretanto, podemos utilizar o Git e o GitHub diretamente no RStudio, o que facilita o trabalho com o controle de versão. Para isso, precisamos conectar o RStudio com o GitHub.
+Até agora, a nossa interação com o GitHub foi feita diretamente no site. Entretanto, podemos utilizar o Git e o GitHub diretamente no RStudio, o que facilita o trabalho com o controle de versão. 
+
+Para isso, precisamos conectar o RStudio com o GitHub.
 
 
 ### Pacote `{usethis}`
+
 O pacote `{usethis}` oferece diversas funções que facilitam o trabalho de configuração do Git e do GitHub no RStudio. Portanto,  precisamos verificar se o pacote `{usethis}` está instalado no R. Caso não esteja, podemos instalar com o comando `install.packages("usethis")`.
 
 ```{r}
@@ -134,6 +230,96 @@ Em breve
 ### Verificar se o RStudio está conectado ao GitHub
 
 Em breve
+
+## Glossário
+
+::: callout-note
+## Git
+
+"O Git é um programa de código aberto para acompanhamento de alterações em arquivos de texto. Ele foi escrito pelo autor do sistema operacional Linux e é a principal tecnologia na qual o GitHub, a interface social e do usuário, se baseia."
+
+Fonte: [Glossário do GitHub](https://docs.github.com/pt/get-started/learning-about-github/github-glossary)
+
+::: 
+
+
+::: callout-note
+## GitHub
+
+"Uma plataforma baseada em nuvem construída em torno do Git que permite salvar versões do seu projeto online e colaborar com outras pessoas usuárias do Git."
+
+Fonte: [Glossário da Carpentries](https://glosario.carpentries.org/pt/)
+
+::: 
+
+
+
+::: callout-note
+## Repositório
+
+"Um repositório é o elemento mais básico do GitHub. É mais fácil imaginá-lo como uma pasta de projetos. Um repositório contém todos os arquivos de projeto (incluindo a documentação) e armazena o histórico de revisão de cada arquivo. Os repositórios podem ter vários colaboradores e podem ser públicos ou privados."
+
+Fonte: [Glossário do GitHub](https://docs.github.com/pt/get-started/learning-about-github/github-glossary)
+
+::: 
+
+
+::: callout-note
+## Arquivo `README`
+
+"Um arquivo de texto que contém informações sobre os arquivos de um repositório que, normalmente, é o primeiro arquivo que um visitante do repositório verá. Um arquivo README, acompanhado de uma licença de repositório, diretrizes de contribuição e um código de conduta, ajuda você a compartilhar as expectativas e gerenciar as contribuições do seu projeto."
+
+Fonte: [Glossário do GitHub](https://docs.github.com/pt/get-started/learning-about-github/github-glossary)
+
+::: 
+
+::: callout-note
+## *Commit*
+
+"Commit, ou "revisão", é uma alteração individual em um arquivo (ou conjunto de arquivos). Quando você faz um commit para salvar seu trabalho, o Git cria uma ID exclusiva (também conhecida como o "SHA" ou "hash") que permite que você mantenha o registro das alterações específicas confirmadas com quem as fez e quando. Os commits normalmente contêm uma mensagem do commit, que é uma breve descrição de quais alterações foram feitas."
+
+Fonte: [Glossário do GitHub](https://docs.github.com/pt/get-started/learning-about-github/github-glossary)
+
+::: 
+
+
+::: callout-note
+## Mensagem de *Commit*
+
+"Texto breve e descritivo que acompanha um commit e comunica a alteração que o commit apresenta."
+
+Fonte: [Glossário do GitHub](https://docs.github.com/pt/get-started/learning-about-github/github-glossary)
+
+::: 
+
+
+::: callout-note
+## *Pull*
+
+"Pull refere-se a quando você busca alterações e as mescla. Por exemplo, se alguém editou o arquivo remoto no qual vocês dois estão trabalhando, o ideal é fazer pull dessas alterações na cópia local para que ele fique atualizado. Confira também fetch."
+
+Fonte: [Glossário do GitHub](https://docs.github.com/pt/get-started/learning-about-github/github-glossary)
+
+::: 
+
+
+
+::: callout-note
+## *Push*
+
+"Enviar por push significa enviar as alterações confirmadas para um repositório remoto no GitHub.com. Por exemplo, se você alterar algo localmente, poderá enviar por push essas alterações para que outras pessoas possam acessá-las."
+
+Fonte: [Glossário do GitHub](https://docs.github.com/pt/get-started/learning-about-github/github-glossary)
+
+::: 
+
+
+
+<!-- - Branch: ramificação do repositório. -->
+
+<!-- - Merge: integração de um branch em outro branch. -->
+
+<!-- - Pull request: solicitação para integrar as alterações de um branch em outro branch. -->
 
 
 ## Materiais
