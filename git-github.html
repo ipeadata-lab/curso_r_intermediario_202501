@@ -237,12 +237,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#conectar-com-o-rstudio" id="toc-conectar-com-o-rstudio" class="nav-link" data-scroll-target="#conectar-com-o-rstudio"><span class="header-section-number">6.7</span> Conectar com o RStudio</a>
   <ul>
   <li><a href="#pacote-usethis" id="toc-pacote-usethis" class="nav-link" data-scroll-target="#pacote-usethis"><span class="header-section-number">6.7.1</span> Pacote <code>{usethis}</code></a></li>
-  <li><a href="#criar-um-token-de-acesso-pessoal-pat" id="toc-criar-um-token-de-acesso-pessoal-pat" class="nav-link" data-scroll-target="#criar-um-token-de-acesso-pessoal-pat"><span class="header-section-number">6.7.2</span> Criar um token de acesso pessoal (PAT)</a></li>
-  <li><a href="#salvar-o-token-de-acesso-pessoal-no-rstudio" id="toc-salvar-o-token-de-acesso-pessoal-no-rstudio" class="nav-link" data-scroll-target="#salvar-o-token-de-acesso-pessoal-no-rstudio"><span class="header-section-number">6.7.3</span> Salvar o token de acesso pessoal no RStudio</a></li>
-  <li><a href="#verificar-se-o-rstudio-está-conectado-ao-github" id="toc-verificar-se-o-rstudio-está-conectado-ao-github" class="nav-link" data-scroll-target="#verificar-se-o-rstudio-está-conectado-ao-github"><span class="header-section-number">6.7.4</span> Verificar se o RStudio está conectado ao GitHub</a></li>
+  <li><a href="#falar-para-o-git-qual-é-o-nosso-nome-e-email" id="toc-falar-para-o-git-qual-é-o-nosso-nome-e-email" class="nav-link" data-scroll-target="#falar-para-o-git-qual-é-o-nosso-nome-e-email"><span class="header-section-number">6.7.2</span> Falar para o Git qual é o nosso nome e email</a></li>
+  <li><a href="#criar-um-token-de-acesso-pessoal-pat" id="toc-criar-um-token-de-acesso-pessoal-pat" class="nav-link" data-scroll-target="#criar-um-token-de-acesso-pessoal-pat"><span class="header-section-number">6.7.3</span> Criar um token de acesso pessoal (PAT)</a></li>
+  <li><a href="#salvar-o-token-de-acesso-pessoal-no-rstudio" id="toc-salvar-o-token-de-acesso-pessoal-no-rstudio" class="nav-link" data-scroll-target="#salvar-o-token-de-acesso-pessoal-no-rstudio"><span class="header-section-number">6.7.4</span> Salvar o token de acesso pessoal no RStudio</a></li>
+  <li><a href="#verificar-se-o-rstudio-está-conectado-ao-github" id="toc-verificar-se-o-rstudio-está-conectado-ao-github" class="nav-link" data-scroll-target="#verificar-se-o-rstudio-está-conectado-ao-github"><span class="header-section-number">6.7.5</span> Verificar se o RStudio está conectado ao GitHub</a></li>
   </ul></li>
-  <li><a href="#glossário" id="toc-glossário" class="nav-link" data-scroll-target="#glossário"><span class="header-section-number">6.8</span> Glossário</a></li>
-  <li><a href="#materiais" id="toc-materiais" class="nav-link" data-scroll-target="#materiais"><span class="header-section-number">6.9</span> Materiais</a></li>
+  <li><a href="#utilizando-o-git-no-rstudio" id="toc-utilizando-o-git-no-rstudio" class="nav-link" data-scroll-target="#utilizando-o-git-no-rstudio"><span class="header-section-number">6.8</span> Utilizando o Git no RStudio</a>
+  <ul>
+  <li><a href="#criar-um-novo-repositório-no-github-a-partir-do-r" id="toc-criar-um-novo-repositório-no-github-a-partir-do-r" class="nav-link" data-scroll-target="#criar-um-novo-repositório-no-github-a-partir-do-r"><span class="header-section-number">6.8.1</span> Criar um novo repositório no GitHub a partir do R</a></li>
+  <li><a href="#fazer-uma-cópia-de-um-repositório-que-está-no-github-para-o-computador-clone" id="toc-fazer-uma-cópia-de-um-repositório-que-está-no-github-para-o-computador-clone" class="nav-link" data-scroll-target="#fazer-uma-cópia-de-um-repositório-que-está-no-github-para-o-computador-clone"><span class="header-section-number">6.8.2</span> Fazer uma cópia de um repositório que está no GitHub para o computador (clone)</a></li>
+  <li><a href="#fluxo-de-trabalho-com-git-e-github-no-rstudio" id="toc-fluxo-de-trabalho-com-git-e-github-no-rstudio" class="nav-link" data-scroll-target="#fluxo-de-trabalho-com-git-e-github-no-rstudio"><span class="header-section-number">6.8.3</span> Fluxo de trabalho com Git e GitHub no RStudio</a></li>
+  </ul></li>
+  <li><a href="#glossário" id="toc-glossário" class="nav-link" data-scroll-target="#glossário"><span class="header-section-number">6.9</span> Glossário</a></li>
+  <li><a href="#materiais" id="toc-materiais" class="nav-link" data-scroll-target="#materiais"><span class="header-section-number">6.10</span> Materiais</a></li>
   </ul>
 </nav>
     </div>
@@ -551,21 +558,96 @@ O que é uma mensagem de commit?
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">git_sitrep</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="criar-um-token-de-acesso-pessoal-pat" class="level3" data-number="6.7.2">
-<h3 data-number="6.7.2" class="anchored" data-anchor-id="criar-um-token-de-acesso-pessoal-pat"><span class="header-section-number">6.7.2</span> Criar um token de acesso pessoal (PAT)</h3>
-<p>Em breve</p>
+<section id="falar-para-o-git-qual-é-o-nosso-nome-e-email" class="level3" data-number="6.7.2">
+<h3 data-number="6.7.2" class="anchored" data-anchor-id="falar-para-o-git-qual-é-o-nosso-nome-e-email"><span class="header-section-number">6.7.2</span> Falar para o Git qual é o nosso nome e email</h3>
+<p>Antes de conectar o RStudio com o GitHub, precisamos nos apresentar ao Git. Para isso, precisamos configurar o Git com o nosso nome e e-mail (de preferência, utilize o mesmo email vinculado com a conta do GitHub). Podemos utilizar a função <code>use_git_config()</code> do pacote <code>{usethis}</code> para configurar o Git:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_git_config</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">user.name =</span> <span class="st">"Seu Nome"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">user.email =</span> <span class="st">"seu_email@gmail.com"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para saber se o Git está configurado corretamente, podemos utilizar a função <code>git_sitrep()</code> do pacote <code>{usethis}</code>, e verificar no output se o nome e email estão configurados corretamente (em <em>Git global</em>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">git_sitrep</span>()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Git global (user) </span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># • Name: "...."</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># • Email: "....."</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="salvar-o-token-de-acesso-pessoal-no-rstudio" class="level3" data-number="6.7.3">
-<h3 data-number="6.7.3" class="anchored" data-anchor-id="salvar-o-token-de-acesso-pessoal-no-rstudio"><span class="header-section-number">6.7.3</span> Salvar o token de acesso pessoal no RStudio</h3>
-<p>Em breve</p>
+<section id="criar-um-token-de-acesso-pessoal-pat" class="level3" data-number="6.7.3">
+<h3 data-number="6.7.3" class="anchored" data-anchor-id="criar-um-token-de-acesso-pessoal-pat"><span class="header-section-number">6.7.3</span> Criar um token de acesso pessoal (PAT)</h3>
+<p>O próximo passo é criar um token de acesso pessoal (<em>Personal Access Token - PAT</em>) no GitHub. O PAT é uma forma segura de acessar o GitHub sem precisar digitar a senha toda vez que fizermos uma operação.</p>
+<p>Para criar um PAT, podemos utilizar a função <code>create_github_token()</code> do pacote <code>{usethis}</code>. Essa função irá abrir uma página no navegador para que possamos criar o PAT.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">create_github_token</span>()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ☐ Call gitcreds::gitcreds_set() to register this token</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   in the local Git credential store.</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ℹ It is also a great idea to store this token in any</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   password-management software that you use.</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ✔ Opening URL</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   &lt;https://github.com/settings/tokens/new?scopes=repo,user,gist,workflow&amp;description=DESCRIBE</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#   THE TOKEN'S USE CASE&gt;.</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="images/create-github-token.png" class="borda-imagem img-fluid quarto-figure quarto-figure-center" style="width:100.0%"> A página aberta no navegador é a página de criação de um novo token de acesso pessoal. Nessa página, precisamos adicionar um nome para o token, selecionar o tempo de expiração e as permissões que queremos dar para o token.</p>
+<ul>
+<li><p>Sobre o <strong>nome do token</strong>: é importante adicionar um nome que descreva o uso do token. Como é possível utilizar o GitHub em diferentes computadores, eu costumo nomear o token com o nome do computador onde estou criando o token e a data de criação (por exemplo, <code>Macbook - Janeiro/2025</code>).</p></li>
+<li><p>Sobre o <strong>tempo de expiração</strong>: podemos escolher entre um tempo de expiração de 30 dias, 90 dias, sem expiração ou personalizado. Eu costumo escolher a opção de 90 dias, para que eu não precise criar um novo token a cada mês. O GitHub não recomenda criar tokens sem expiração, por questões de segurança. Mas atenção: sempre que o seu token expirar, será necessário criar um novo token, e fazer o processo de atualizar o token no RStudio (que abordaremos a seguir).</p></li>
+<li><p>Sobre os <strong>escopos selecionados</strong>: os escopos são as permissões que estamos dando para o token. O GitHub oferece uma série de escopos, e é importante selecionar apenas os escopos necessários para o uso do token. Recomendo manter apenas as opções pré-selecionadas pelo <code>{usethis}</code>: <code>repo</code>, <code>user</code>, <code>gist</code> e <code>workflow</code>.</p></li>
+</ul>
+<p>Ao final da página, podemos clicar no botão <code>Generate token</code> para gerar o token. O GitHub irá gerar o token e exibir na tela. É importante copiar o token e salvar em um local seguro, pois não será possível acessar o token novamente.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/github-token-gerado.png" class="borda-imagem img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
 </section>
-<section id="verificar-se-o-rstudio-está-conectado-ao-github" class="level3" data-number="6.7.4">
-<h3 data-number="6.7.4" class="anchored" data-anchor-id="verificar-se-o-rstudio-está-conectado-ao-github"><span class="header-section-number">6.7.4</span> Verificar se o RStudio está conectado ao GitHub</h3>
-<p>Em breve</p>
+<section id="salvar-o-token-de-acesso-pessoal-no-rstudio" class="level3" data-number="6.7.4">
+<h3 data-number="6.7.4" class="anchored" data-anchor-id="salvar-o-token-de-acesso-pessoal-no-rstudio"><span class="header-section-number">6.7.4</span> Salvar o token de acesso pessoal no RStudio</h3>
+<p>Para salvar o token gerado, precisamos utilizar a função <code>gitcreds::gitcreds_set()</code> do pacote <code>{usethis}</code>. Essa função irá abrir uma janela no RStudio para que possamos colar o token gerado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_set</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Siga as instruções que aparecem no <em>Console</em> do R, e informe o token gerado quando solicitado.</p>
+<p>Atenção: após informar o token, reinicie a sessão do RStudio para que as alterações sejam aplicadas: no menu superior do RStudio, clique em <code>Session</code> -&gt; <code>Restart R</code>.</p>
+</section>
+<section id="verificar-se-o-rstudio-está-conectado-ao-github" class="level3" data-number="6.7.5">
+<h3 data-number="6.7.5" class="anchored" data-anchor-id="verificar-se-o-rstudio-está-conectado-ao-github"><span class="header-section-number">6.7.5</span> Verificar se o RStudio está conectado ao GitHub</h3>
+<p>Para verificar se o RStudio está conectado ao GitHub, podemos utilizar novamente a função <code>git_sitrep()</code> do pacote <code>{usethis}</code>. No output, é importante que a opção <code>Personal access token for ...</code> esteja como <code>&lt;discovered&gt;</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">git_sitrep</span>()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ── GitHub user </span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Personal access token for "https://github.com": &lt;discovered&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
-<section id="glossário" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="glossário"><span class="header-section-number">6.8</span> Glossário</h2>
+<section id="utilizando-o-git-no-rstudio" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="utilizando-o-git-no-rstudio"><span class="header-section-number">6.8</span> Utilizando o Git no RStudio</h2>
+<p>O RStudio possui uma interface gráfica para o Git, que facilita o trabalho com o controle de versão: o painel Git (ou <em>Git Pane</em>. Porém, este painel apenas aparece quando estamos em um projeto que está versionado com Git (ou seja, é um repositório do Git).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/git-pane.PNG" class="borda-imagem img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<p>A seguir, vamos explorar como: 1) criar um novo repositório do Git a partir de um projeto existente no RStudio, e 2) como fazer uma cópia de um repositório que está no GitHub para o RStudio.</p>
+<section id="criar-um-novo-repositório-no-github-a-partir-do-r" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="criar-um-novo-repositório-no-github-a-partir-do-r"><span class="header-section-number">6.8.1</span> Criar um novo repositório no GitHub a partir do R</h3>
+<p>Em breve!</p>
+</section>
+<section id="fazer-uma-cópia-de-um-repositório-que-está-no-github-para-o-computador-clone" class="level3" data-number="6.8.2">
+<h3 data-number="6.8.2" class="anchored" data-anchor-id="fazer-uma-cópia-de-um-repositório-que-está-no-github-para-o-computador-clone"><span class="header-section-number">6.8.2</span> Fazer uma cópia de um repositório que está no GitHub para o computador (clone)</h3>
+<p>Em breve!</p>
+</section>
+<section id="fluxo-de-trabalho-com-git-e-github-no-rstudio" class="level3" data-number="6.8.3">
+<h3 data-number="6.8.3" class="anchored" data-anchor-id="fluxo-de-trabalho-com-git-e-github-no-rstudio"><span class="header-section-number">6.8.3</span> Fluxo de trabalho com Git e GitHub no RStudio</h3>
+<p>Em breve!</p>
+</section>
+</section>
+<section id="glossário" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="glossário"><span class="header-section-number">6.9</span> Glossário</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -682,8 +764,8 @@ Mensagem de <em>Commit</em>
 <!-- - Merge: integração de um branch em outro branch. -->
 <!-- - Pull request: solicitação para integrar as alterações de um branch em outro branch. -->
 </section>
-<section id="materiais" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="materiais"><span class="header-section-number">6.9</span> Materiais</h2>
+<section id="materiais" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="materiais"><span class="header-section-number">6.10</span> Materiais</h2>
 <p>O material do workshop <a href="https://git4researchers-latinr2024.netlify.app/">“Introducción a GitHub para Investigador(a|e)s”</a>, ministrado por Beatriz Milz e Yanina Belllini Saibene, foi utilizado como base para a elaboração de parte do material desta aula.</p>
 
 
