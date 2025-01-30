@@ -217,19 +217,113 @@ O `{usethis}` tem uma função chamada `git_sitrep()` que nos ajuda a ter uma s�
 usethis::git_sitrep()
 ```
 
+### Falar para o Git qual é o nosso nome e email
+
+Antes de conectar o RStudio com o GitHub, precisamos nos apresentar ao Git. Para isso, precisamos configurar o Git com o nosso nome e e-mail (de preferência, utilize o mesmo email vinculado com a conta do GitHub). Podemos utilizar a função `use_git_config()` do pacote `{usethis}` para configurar o Git:
+
+```{r}
+#| eval: false
+usethis::use_git_config(
+  user.name = "Seu Nome",
+  user.email = "seu_email@gmail.com"
+)
+```
+
+Para saber se o Git está configurado corretamente, podemos utilizar a função `git_sitrep()` do pacote `{usethis}`, e verificar no output se o nome e email estão configurados corretamente (em *Git global*).
+
+```{r}
+#| eval: false
+usethis::git_sitrep()
+
+# ── Git global (user) 
+# • Name: "...."
+# • Email: "....."
+```
+
 
 ### Criar um token de acesso pessoal (PAT)
 
-Em breve
+O próximo passo é criar um token de acesso pessoal (*Personal Access Token - PAT*) no GitHub. O PAT é uma forma segura de acessar o GitHub sem precisar digitar a senha toda vez que fizermos uma operação.
 
+Para criar um PAT, podemos utilizar a função `create_github_token()` do pacote `{usethis}`. Essa função irá abrir uma página no navegador para que possamos criar o PAT.
 
+```{r}
+#| eval: false
+usethis::create_github_token()
+
+# ☐ Call gitcreds::gitcreds_set() to register this token
+#   in the local Git credential store.
+# ℹ It is also a great idea to store this token in any
+#   password-management software that you use.
+# ✔ Opening URL
+#   <https://github.com/settings/tokens/new?scopes=repo,user,gist,workflow&description=DESCRIBE
+#   THE TOKEN'S USE CASE>.
+```
+![](images/create-github-token.png){class="borda-imagem" fig-align="center" width="100%"}
+A página aberta no navegador é a página de criação de um novo token de acesso pessoal. Nessa página, precisamos adicionar um nome para o token, selecionar o tempo de expiração e as permissões que queremos dar para o token.
+
+  - Sobre o **nome do token**: é importante adicionar um nome que descreva o uso do token. Como é possível utilizar o GitHub em diferentes computadores, eu costumo nomear o token com o nome do computador onde estou criando o token e a data de criação (por exemplo, `Macbook - Janeiro/2025`).
+  
+  - Sobre o **tempo de expiração**: podemos escolher entre um tempo de expiração de 30 dias, 90 dias, sem expiração ou personalizado. Eu costumo escolher a opção de 90 dias, para que eu não precise criar um novo token a cada mês. O GitHub não recomenda criar tokens sem expiração, por questões de segurança. Mas atenção: sempre que o seu token expirar, será necessário criar um novo token, e fazer o processo de atualizar o token no RStudio (que abordaremos a seguir).
+  
+  - Sobre os **escopos selecionados**: os escopos são as permissões que estamos dando para o token. O GitHub oferece uma série de escopos, e é importante selecionar apenas os escopos necessários para o uso do token. Recomendo manter apenas as opções pré-selecionadas pelo `{usethis}`: `repo`, `user`, `gist` e `workflow`.
+  
+Ao final da página, podemos clicar no botão `Generate token` para gerar o token. O GitHub irá gerar o token e exibir na tela. É importante copiar o token e salvar em um local seguro, pois não será possível acessar o token novamente.
+
+![](images/github-token-gerado.png){class="borda-imagem" fig-align="center" width="100%"}
+  
+  
 ### Salvar o token de acesso pessoal no RStudio
 
-Em breve
+Para salvar o token gerado, precisamos utilizar a função `gitcreds::gitcreds_set()` do pacote `{usethis}`. Essa função irá abrir uma janela no RStudio para que possamos colar o token gerado.
+
+```{r}
+#| eval: false
+gitcreds::gitcreds_set()
+```
+
+Siga as instruções que aparecem no *Console* do R, e informe o token gerado quando solicitado.
+
+Atenção: após informar o token, reinicie a sessão do RStudio para que as alterações sejam aplicadas: no menu superior do RStudio, clique em `Session` -> `Restart R`.
+
 
 ### Verificar se o RStudio está conectado ao GitHub
 
-Em breve
+Para verificar se o RStudio está conectado ao GitHub, podemos utilizar novamente a função `git_sitrep()` do pacote `{usethis}`. No output, é importante que a opção `Personal access token for ...` esteja como `<discovered>`:
+
+```{r}
+#| eval: false
+usethis::git_sitrep()
+
+# ── GitHub user 
+# Personal access token for "https://github.com": <discovered>
+```
+
+## Utilizando o Git no RStudio
+
+O RStudio possui uma interface gráfica para o Git, que facilita o trabalho com o controle de versão: o painel Git (ou *Git Pane*. Porém, este painel apenas aparece quando estamos em um projeto que está versionado com Git (ou seja, é um repositório do Git).
+
+
+![](images/git-pane.PNG){class="borda-imagem" fig-align="center" width="100%"}
+
+
+
+A seguir, vamos explorar como: 1) criar um novo repositório do Git a partir de um projeto existente no RStudio, e 2) como fazer uma cópia de um repositório que está no GitHub para o RStudio. 
+
+### Criar um novo repositório no GitHub a partir do R
+
+Em breve!
+
+
+
+### Fazer uma cópia de um repositório que está no GitHub para o computador (clone)
+
+Em breve!
+
+### Fluxo de trabalho com Git e GitHub no RStudio
+
+Em breve!
+
 
 ## Glossário
 
