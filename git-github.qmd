@@ -299,7 +299,12 @@ usethis::git_sitrep()
 # Personal access token for "https://github.com": <discovered>
 ```
 
-## Utilizando o Git no RStudio
+### Exercícios
+
+1. Na explicação anterior, apresentamos como fazer a conexão do Git e do GitHub com RStudio. Execute os passos apresentados e verifique se o RStudio está conectado ao GitHub. Caso dê algum erro e precise de ajuda, solicite no chat com o resultado da função `git_sitrep()`.
+
+
+## Utilizando o Git e GitHub no RStudio
 
 O RStudio possui uma interface gráfica para o Git, que facilita o trabalho com o controle de versão: o painel Git (ou *Git Pane*. Porém, este painel apenas aparece quando estamos em um projeto que está versionado com Git (ou seja, é um repositório do Git).
 
@@ -308,22 +313,128 @@ O RStudio possui uma interface gráfica para o Git, que facilita o trabalho com 
 
 
 
-A seguir, vamos explorar como: 1) criar um novo repositório do Git a partir de um projeto existente no RStudio, e 2) como fazer uma cópia de um repositório que está no GitHub para o RStudio. 
-
-### Criar um novo repositório no GitHub a partir do R
-
-Em breve!
+A seguir, vamos explorar como: 1) como fazer uma cópia de um repositório que está no GitHub para o RStudio, e 2) criar um novo repositório do Git a partir de um projeto existente no RStudio.
 
 
+### Fazer uma cópia de um repositório no GitHub para o computador (clone) com o RStudio
 
-### Fazer uma cópia de um repositório que está no GitHub para o computador (clone)
+Para fazer uma cópia de um repositório que existe no GitHub para o computador, precisamos "clonar" o repositório.
 
-Em breve!
+Primeiramente, precisamos copiar a URL do repositório que queremos clonar. A URL do repositório é composto por `https://github.com/SEU-NOME-DE-USUARIO/NOME-DO-REPOSITORIO`.
+
+Por exemplo, a URL do repositório do material curso é <https://github.com/ipeadata-lab/curso_r_intermediario_202501>, pois o nome de usuário (no caso, a organização) é `ipeadata-lab` e o nome do repositório é `curso_r_intermediario_202501`.
+
+Com a URL do repositório copiada, no RStudo precisamos selecionar a opção "`New Project`" no menu superior, e depois selecionar a opção "`Version Control`" e "`Git`":
+
+![](images/proj-version-control-1.PNG){class="borda-imagem" fig-align="center" width="80%"}
+
+![](images/proj-version-control-2.png){class="borda-imagem" fig-align="center" width="80%"}
+
+Na próxima tela, precisamos colar a URL do repositório que queremos clonar no campo `Repository URL`, e escolher o diretório onde queremos salvar o repositório no campo `Create project as subdirectory of`. O campo `Project directory name` é preenchido automaticamente com o nome do repositório. Após preencher as informações, clicamos no botão "`Create Project`":
+
+![](images/proj-version-control-3.png){class="borda-imagem" fig-align="center" width="80%"}
+
+O RStudio irá fazer o clone do repositório, e abrirá um projeto para ele (caso não exista um ainda, será criado).
+
+### Exercícios
+
+1. Faça os passos descritos anteriormente com o repositório "`meu-primeiro-repositorio`" (criado anteriormente), para fazer o clone do GitHub para o RStudio. 
+
+2. Verifique se o painel `Git` aparece no RStudio.
+
 
 ### Fluxo de trabalho com Git e GitHub no RStudio
 
-Em breve!
+Como citado anteriormente, o RStudio possui uma interface gráfica para o Git (o painel Git), que facilita o trabalho com o controle de versão.
 
+Primeiro, vamos revisar alguns conceitos. Quando criamos um projeto no RStudio, o RStudio cria uma pasta para o projeto, (diretório). Na imagem abaixo, essa etapa é representada pela pasta amarela. 
+
+Quando iniciamos a versionar o projeto com o Git (um passo chamado `git init`), chamamos de "Repositório" a pasta do projeto que está sendo versionada. O repositório local é a pasta do projeto no computador, e o repositório remoto é a cópia do repositório que está no GitHub:
+
+[![Imagem por Marília Fava](images/dir-git-github.png){class="borda-imagem" fig-align="center" width="100%"}](https://www.mmfava.com/talk/2021-08-14-git-github-rstudio/)
+
+
+As alterações entre o repositório local e o repositório remoto não são enviadas automaticamente, então é importante entender o fluxo de trabalho com o Git e GitHub. O fluxo de trabalho básico é:
+
+- Iniciamos o repositório (`git init`) ou clonamos um repositório existente (`git clone`).
+
+- Fazemos alterações nos arquivos do repositório.
+
+- Selecionamos as alterações que queremos adicionar em um *commit* (adicionamos as alterações ao *stage* - `git add`).
+
+- Confirmamos as alterações (`git commit`).
+
+- Enviamos as alterações para o repositório remoto (`git push`).
+
+- Atualizamos o repositório local com as alterações do repositório remoto (`git pull`).
+
+[![Imagem por Curso-R](images/fluxo_github_rstudio.png){class="borda-imagem" fig-align="center" width="80%"}](https://curso-r.github.io/main-pacotes/slides/index.html#57)
+
+
+
+
+
+Nas imagens abaixo, é possível ver como o painel Git do RStudio facilita o trabalho com o controle de versão, pois apresenta botões para os comandos descritos acima:
+ 
+ 
+![](images/git-pane-stage.png){class="borda-imagem" fig-align="center" width="80%"}
+
+![](images/git-pane-commit.PNG){class="borda-imagem" fig-align="center" width="80%"}
+
+### Exercícios
+
+1. No repositório "`meu-primeiro-repositorio`" (clonado anteriormente no RStudio), faça as seguintes alterações:
+
+  a) Faça uma alteração no arquivo `README.md` (ex. adicione uma nova linha com a data de hoje).
+  
+  b) Observe o painel Git: a alteração feita no arquivo `README.md` aparece no painel Git? Se sim, adicione a alteração ao *stage* e faça um *commit*.
+  
+  c) Veja o seu repositório no GitHub: a alteração feita no arquivo `README.md` aparece no repositório? O esperado é que não, pois ainda não enviamos as alterações para o repositório remoto.
+  
+  d) Clique no botão *push* para enviar as alterações para o repositório remoto.
+  
+  e) Observe novamente o seu repositório no GitHub: as alterações feitas no RStudio aparecem no repositório?
+  
+2) Na interface do GitHub, abra o repositório "`meu-primeiro-repositorio`" e:
+
+  a) faça outra alteração no arquivo `README.md`.
+  
+  b) Após fazer a alteração, volte para o RStudio e veja se a alteração feita no GitHub aparece no RStudio. O esperado é que não, pois ainda não atualizamos o repositório local com as alterações do repositório remoto.
+  
+  c) No RStudio, clique no botão *pull* para atualizar o repositório local com as alterações do repositório remoto.
+  
+  d) Observe novamente o arquivo `README.md` no RStudio: a alteração feita no GitHub aparece no RStudio?
+
+### Criar um novo repositório no GitHub a partir do R
+
+Podemos criar um novo repositório no GitHub a partir de um projeto existente no RStudio.
+
+
+Para isso, precisamos seguir os seguintes passos:
+
+1. Inicializar o repositório local com o Git (caso ainda não tenha sido feito). Para isso, podemos utilizar a função `use_git()` do pacote `{usethis}`. Atenção: essa função apresenta algumas mensagens e opções no console, então é importante ler as mensagens e responder conforme necessário.
+
+```{r}
+#| eval: false
+usethis::use_git()
+```
+
+O RStudio solicitará que você o reinicie para que o painel Git apareça.
+
+2. Utilize a função `usethis::use_github()` para criar um novo repositório no GitHub a partir do projeto no RStudio. Essa função irá abrir uma janela no navegador quando o repositório for criado. Atenção: essa função apresenta algumas mensagens e opções no console, então é importante ler as mensagens e responder conforme necessário.
+
+
+```{r}
+#| eval: false
+usethis::use_github()
+```
+
+### Exercícios
+
+1. Abra o projeto que estamos utilizando ao longo do curso (criado na aula 1), e:
+  a) Inicialize o repositório local com o Git: `usethis::use_git()`.
+  b) Crie um novo repositório no GitHub a partir do projeto no RStudio: `usethis::use_github()`.
+  c) Crie um arquivo `README.md` na pasta raíz do projeto, e adicione um breve conteúdo. Faça o *commit* desta alteração, e faça o *push*. Verifique se o arquivo `README.md` aparece no repositório no GitHub.
 
 ## Glossário
 
@@ -419,3 +530,5 @@ Fonte: [Glossário do GitHub](https://docs.github.com/pt/get-started/learning-ab
 ## Materiais
 
 O material do workshop ["Introducción a GitHub para Investigador(a\|e)s"](https://git4researchers-latinr2024.netlify.app/), ministrado por Beatriz Milz e Yanina Belllini Saibene, foi utilizado como base para a elaboração de parte do material desta aula.
+
+
