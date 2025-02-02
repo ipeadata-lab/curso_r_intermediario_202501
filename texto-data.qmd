@@ -3,4 +3,11 @@ title: "Manipulação de textos e datas"
 code-annotations: hover
 ---
 
-Em breve!
+Em breve!## Material complementar
+## Material complementar
+
+- Capítulos do livro ["R para Ciência de Dados" (2 ed)](https://pt.r4ds.hadley.nz/) por  Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund:
+  - [Datas e horários](https://pt.r4ds.hadley.nz/datetimes.html)
+  - [Strings](https://pt.r4ds.hadley.nz/strings.html)
+  - [Expressões regulares](https://pt.r4ds.hadley.nz/regexps.html)
+

@@ -4,3 +4,11 @@ code-annotations: hover
 ---
 
 Em breve!
+
+
+## Material complementar
+
+- Capítulos do livro ["R para Ciência de Dados" (2 ed)](https://pt.r4ds.hadley.nz/) por  Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund:
+  - [Um guia para o R Base](https://pt.r4ds.hadley.nz/base-R.html)
+  - [Funções](https://pt.r4ds.hadley.nz/functions.html)
+  - [Iteração](https://pt.r4ds.hadley.nz/iteration.html)

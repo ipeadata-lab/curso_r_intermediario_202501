@@ -730,3 +730,11 @@ Caso necessário, consulte a [página de documentação](https://quarto.org/docs
 ## Materiais
 
 O material do curso ["Relatórios reprodutíveis com R"](https://beatrizmilz.github.io/2025-curso-de-verao-ime-usp-relatorios/), ministrado por Beatriz Milz no [programa de Verão do IME-USP](https://www.ime.usp.br/verao/), foi utilizado como base para a elaboração de parte do material desta aula.
+
+## Material complementar
+
+- Capítulos do livro ["R para Ciência de Dados" (2 ed)](https://pt.r4ds.hadley.nz/) por  Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund:
+  - [Comunicar: Quarto](https://pt.r4ds.hadley.nz/quarto.html)
+  - [Comunicar: Formatos para Quarto](https://pt.r4ds.hadley.nz/quarto-formats.html)  
+
+
