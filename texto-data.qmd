@@ -1,13 +1,143 @@
 ---
-title: "Manipulação de textos e datas"
+title: "Manipulação de datas e textos"
 code-annotations: hover
+# Manipulação de datas com lubridate - mostrar também no ggplot com scale_x_date()
+# Expressões regulares: noções básicas (visão geral)
+# Manipulação de strings com stringr
+# Pareamento (probabilístico e fonético)  - pensar se vamos discutir
+# left join window **/ intervalo**; fuzzy join**
 ---
 
-Em breve!## Material complementar
+No curso [Introdução à análise de dados com R](https://ipeadata-lab.github.io/curso_r_intro_202409/05_transformacao.html) exploramos algumas funções de transformação de dados. Nesta aula, vamos explorar funções específicas para manipulação de datas e textos.
+
+Caso você tenha dúvidas sobre o tema, recomendamos revisar as seguintes aulas:
+
+- [Como importar bases de dados](https://ipeadata-lab.github.io/curso_r_intro_202409/03_importacao.html)
+
+-   [Função `dplyr::mutate()` para criar novas variáveis (colunas), ou alterar variáveis existentes](https://ipeadata-lab.github.io/curso_r_intro_202409/05_transformacao.html#criando-e-transformando-colunas-mutate)
+
+## Manipulação de datas
+
+### Tipo `Date`
+
+Quando escrevemos datas em português, é comum utilizarmos o formato `dia/mês/ano` (por exemplo: 20/01/2025). Ao criar uma variável com esta no R, teremos um objeto do tipo `character` (texto):
+
+```{r}
+class("20/01/2025")
+```
+
+Porém no R existe um tipo específico para datas, o `Date`. O tipo `Date` é útil em vários contextos: permite realizar operações específicas para datas, como calcular a diferença entre duas datas, extrair o dia da semana, alterar a formatação de datas em gráficos, entre outros.
+
+Para que o R reconheça um objeto com o tipo `Date`, precisamos salvar as datas no formato `ano-mês-dia` (por exemplo: 2025-01-20), e utilizar a função `as.Date()` para transformar a variável do tipo `character` em `Date`.
+
+Exemplo:
+
+```{r}
+data_inicio_curso <- as.Date("2025-01-20")
+data_inicio_curso
+class(data_inicio_curso)
+```
+
+Porém, tome cuidado! Se você tentar transformar uma data no formato `dia/mês/ano` diretamente para `Date`, o R não irá reconhecer a data corretamente (e também não irá retornar um erro):
+
+```{r}
+as.Date("20/01/2025")
+```
+
+A função `Sys.Date()` retorna a data atual do sistema, com o tipo `Date`:
+
+```{r}
+Sys.Date()
+class(Sys.Date())
+```
+
+#### Exercício
+
+1.  Crie uma variável chamada `data_nascimento` com sua data de nascimento e transforme-a para o tipo `Date`.
+
+2.  Crie uma variável chamada `data_atual` com a data atual do sistema.
+
+3.  Calcule a diferença entre a data atual e a sua data de nascimento. O que é retornado?
+
+```{r}
+#| eval: false
+#| echo: false
+data_nascimento <- as.Date("1993-02-15")
+data_atual <- Sys.Date()
+diferenca <- data_atual - data_nascimento
+diferenca / 365.25
+```
+
+4.  Utilize a função `Sys.time()` e guarde o resultado em uma variável.
+    a.  O que essa função retorna?
+    b.  Qual é o tipo da variável?
+
+::: callout-note
+## Curiosidade:
+
+O tipo `Date` armazena o **quantidade de dias** desde 1 de janeiro de 1970. Podemos verificar isso utilizando a função `as.numeric()` para obter o número armazenado em uma variável do tipo `Date`. Por exemplo, a data 1 de janeiro de 1970:
+
+```{r}
+data_1970 <- as.Date("1970-01-01")
+data_1970
+as.numeric(data_1970)
+```
+
+Um número negativo indica uma data anterior a 1 de janeiro de 1970, e um número positivo indica uma data posterior a essa data. Por exemplo, considerando a data de nascimento de [Julia Lopes de Almeida](https://jornal.usp.br/ciencias/ciencias-humanas/escritora-mais-publicada-da-primeira-republica-foi-vetada-na-abl/) (24 de setembro de 1862):
+
+```{r}
+nascimento_julia_lopes <- as.Date("1862-09-24")
+
+as.numeric(nascimento_julia_lopes)
+```
+
+:::
+
+### Tipo `POSIXct` e `POSIXt`
+
+O tipo `POSIXct` é uma extensão do tipo `Date`, que inclui informações de data, hora e fuso horário (em UTC: [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordinated_Universal_Time)). O formato padrão para datas e horas é `ano-mês-dia hora:minuto:segundo fuso_horario` (por exemplo: 2025-01-20 15:30:00 -03).
+
+```{r}
+Sys.time()
+class(Sys.time())
+```
+
+Esse tipo armazena o número de segundos desde 1 de janeiro de 1970, no fuso horário UTC +0 (que é igual ao GMT).
+
+**Nesta aula, vamos focar no tipo `Date`**, mas é importante saber que o R possui funções específicas para manipulação de datas e horas (caso você precise trabalhar com isso).
+
+### Pacote `lubridate`
+
+O pacote `lubridate` é faz parte do pacote `{tidyverse}` do R, e tem funções que facilitam a manipulação de datas. Ele possui funções específicas para extrair informações de datas, como dia, mês, ano, semana, entre outras.
+
+```{r}
+library(lubridate)
+```
+
+
+
+
+
+### Tipo `Date` e bases de dados
+
+Até agora, exploramos como criar variáveis do tipo `Date` a partir de valores que digitamos diretamente no código. Porém, em muitos casos, as datas estão armazenadas em bases de dados.
+
+A rotina mais comum é importar a base de dados, e caso a variável de data esteja no formato `character` (texto), utilizamos alguma função para transformá-la em `Date`.
+
+
+Vamos ver alguns exemplos!
+
+### Datas em gráficos
+
+Em breve!
+
+## Manipulação de textos
+
+Em breve!
+
 ## Material complementar
 
-- Capítulos do livro ["R para Ciência de Dados" (2 ed)](https://pt.r4ds.hadley.nz/) por  Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund:
-  - [Datas e horários](https://pt.r4ds.hadley.nz/datetimes.html)
-  - [Strings](https://pt.r4ds.hadley.nz/strings.html)
-  - [Expressões regulares](https://pt.r4ds.hadley.nz/regexps.html)
-
+-   Capítulos do livro ["R para Ciência de Dados" (2 ed)](https://pt.r4ds.hadley.nz/) por Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund:
+    -   [Datas e horários](https://pt.r4ds.hadley.nz/datetimes.html)
+    -   [Strings](https://pt.r4ds.hadley.nz/strings.html)
+    -   [Expressões regulares](https://pt.r4ds.hadley.nz/regexps.html)
