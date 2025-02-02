@@ -22,10 +22,10 @@ book:
     - href: relatorios.qmd
     - href: git-github.qmd    
     - href: texto-data.qmd
-    - href: big-data.qmd    
     - href: programacao-funcional.qmd
     - href: dados-espaciais.qmd    
-
+    - href: big-data.qmd    
+    
 page-navigation: true
 
 page-footer: 
