@@ -54,7 +54,7 @@
     "href": "calendario.html",
     "title": "2  Calendário do curso",
     "section": "",
-    "text": "A maioria das aulas acontecerão às segundas e quartas-feiras, exceto a aula do dia 30/01/2025, que acontecerá numa quinta-feira.\nAs aulas acontecerão das 09h às 12h, com intervalo de 15 minutos.\nSegue o calendário do curso:\n\n\n\nSemana\nData\nHorário\nDia da semana\nConteúdo previsto\n\n\n\n\n1\n20/01/2025\n09h-12h\nSegunda-feira\nApresentação do curso, Reprodutibilidade e estruturação de projeto\n\n\n1\n22/01/2025\n09h-12h\nQuarta-feira\nProdução de relatórios com Quarto (Parte 1)\n\n\n2\n29/01/2025\n09h-12h\nQuarta-feira\nProdução de relatórios com Quarto (Parte 2)\n\n\n2\n30/01/2025\n09h-12h\nQuinta-feira (*)\nIntrodução ao controle de versão com Git e GitHub\n\n\n3\n03/02/2025\n09h-12h\nSegunda-feira\nManipulação de textos e datas\n\n\n4\n10/02/2025\n09h-12h\nSegunda-feira\nIntrodução à Big Data\n\n\n4\n12/02/2025\n09h-12h\nQuarta-feira\nProgramação funcional e paralelização (Parte 1)\n\n\n5\n17/02/2025\n09h-12h\nSegunda-feira\nProgramação funcional e paralelização (Parte 2)\n\n\n5\n19/02/2025\n09h-12h\nQuarta-feira\nDados espaciais (Parte 1)\n\n\n6\n24/02/2025\n09h-12h\nSegunda-feira\nDados espaciais (Parte 2)\n\n\n7\n26/02/2025\n09h-11h (*)\nQuarta-feira\nDúvidas e encerramento\n\n\n\n\n(*): Atenção para as datas e horários diferentes.",
+    "text": "A maioria das aulas acontecerão às segundas e quartas-feiras, exceto a aula do dia 30/01/2025, que acontecerá numa quinta-feira.\nAs aulas acontecerão das 09h às 12h, com intervalo de 15 minutos.\nSegue o calendário do curso:\n\n\n\nSemana\nData\nHorário\nDia da semana\nConteúdo previsto\n\n\n\n\n1\n20/01/2025\n09h-12h\nSegunda-feira\nApresentação do curso, Reprodutibilidade e estruturação de projeto\n\n\n1\n22/01/2025\n09h-12h\nQuarta-feira\nProdução de relatórios com Quarto\n\n\n2\n29/01/2025\n09h-12h\nQuarta-feira\nProdução de relatórios com Quarto (continuação)\n\n\n2\n30/01/2025\n09h-12h\nQuinta-feira (*)\nProdução de relatórios com Quarto (continuação) e Introdução ao controle de versão com Git e GitHub\n\n\n3\n03/02/2025\n09h-12h\nSegunda-feira\nIntrodução ao controle de versão com Git e GitHub (continuação) e Manipulação de textos e datas\n\n\n4\n10/02/2025\n09h-12h\nSegunda-feira\nManipulação de textos e datas (continuação) e Programação funcional e paralelização\n\n\n4\n12/02/2025\n09h-12h\nQuarta-feira\nProgramação funcional e paralelização (continuação)\n\n\n5\n17/02/2025\n09h-12h\nSegunda-feira\nDados espaciais\n\n\n5\n19/02/2025\n09h-12h\nQuarta-feira\nDados espaciais (continuação)\n\n\n6\n24/02/2025\n09h-12h\nSegunda-feira\nIntrodução à Big Data\n\n\n7\n26/02/2025\n09h-11h (*)\nQuarta-feira\nDúvidas e encerramento\n\n\n\n\n(*): Atenção para as datas e horários diferentes.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Calendário do curso</span>"
     ]
@@ -200,11 +200,21 @@
     ]
   },
   {
+    "objectID": "reprodutibilidade.html#material-complementar",
+    "href": "reprodutibilidade.html#material-complementar",
+    "title": "4  Reprodutibilidade e estruturação de projeto",
+    "section": "4.9 Material complementar",
+    "text": "4.9 Material complementar\n\nCapítulos do livro “R para Ciência de Dados” (2 ed) por Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund:\n\nScripts e projetos",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reprodutibilidade e estruturação de projeto</span>"
+    ]
+  },
+  {
     "objectID": "reprodutibilidade.html#referências-citadas",
     "href": "reprodutibilidade.html#referências-citadas",
     "title": "4  Reprodutibilidade e estruturação de projeto",
-    "section": "4.9 Referências citadas",
-    "text": "4.9 Referências citadas\n\n\n\n\nBaker, Monya. 2016. «1, 500 scientists lift the lid on reproducibility». Nature 533 (7604): 452–54. https://doi.org/10.1038/533452a.\n\n\nGundersen, Odd Erik. 2021. «The fundamental principles of reproducibility». Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 379 (2197): 20200210. https://doi.org/10.1098/rsta.2020.0210.\n\n\nMarkowetz, Florian. 2015. «Five selfish reasons to work reproducibly». Genome Biology 16 (1). https://doi.org/10.1186/s13059-015-0850-7.",
+    "section": "4.10 Referências citadas",
+    "text": "4.10 Referências citadas\n\n\n\n\nBaker, Monya. 2016. «1, 500 scientists lift the lid on reproducibility». Nature 533 (7604): 452–54. https://doi.org/10.1038/533452a.\n\n\nGundersen, Odd Erik. 2021. «The fundamental principles of reproducibility». Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 379 (2197): 20200210. https://doi.org/10.1098/rsta.2020.0210.\n\n\nMarkowetz, Florian. 2015. «Five selfish reasons to work reproducibly». Genome Biology 16 (1). https://doi.org/10.1186/s13059-015-0850-7.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reprodutibilidade e estruturação de projeto</span>"
     ]
@@ -265,6 +275,16 @@
     "title": "5  Produção de relatórios com Quarto",
     "section": "5.5 Materiais",
     "text": "5.5 Materiais\nO material do curso “Relatórios reprodutíveis com R”, ministrado por Beatriz Milz no programa de Verão do IME-USP, foi utilizado como base para a elaboração de parte do material desta aula.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Produção de relatórios com Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "relatorios.html#material-complementar",
+    "href": "relatorios.html#material-complementar",
+    "title": "5  Produção de relatórios com Quarto",
+    "section": "5.6 Material complementar",
+    "text": "5.6 Material complementar\n\nCapítulos do livro “R para Ciência de Dados” (2 ed) por Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund:\n\nComunicar: Quarto\nComunicar: Formatos para Quarto",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Produção de relatórios com Quarto</span>"
     ]
@@ -384,39 +404,59 @@
     "href": "texto-data.html",
     "title": "7  Manipulação de textos e datas",
     "section": "",
-    "text": "Em breve!",
+    "text": "Em breve!## Material complementar ## Material complementar\n\nCapítulos do livro “R para Ciência de Dados” (2 ed) por Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund:\n\nDatas e horários\nStrings\nExpressões regulares",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Manipulação de textos e datas</span>"
     ]
   },
   {
-    "objectID": "big-data.html",
-    "href": "big-data.html",
-    "title": "8  Introdução à Big Data",
+    "objectID": "programacao-funcional.html",
+    "href": "programacao-funcional.html",
+    "title": "8  Programação funcional",
     "section": "",
-    "text": "Em breve!",
+    "text": "8.1 Material complementar\nEm breve!",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Introdução à *Big Data*</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Programação funcional</span>"
     ]
   },
   {
-    "objectID": "programacao-funcional.html",
-    "href": "programacao-funcional.html",
-    "title": "9  Programação funcional",
+    "objectID": "programacao-funcional.html#material-complementar",
+    "href": "programacao-funcional.html#material-complementar",
+    "title": "8  Programação funcional",
     "section": "",
-    "text": "Em breve!",
+    "text": "Capítulos do livro “R para Ciência de Dados” (2 ed) por Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund:\n\nUm guia para o R Base\nFunções\nIteração",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Programação funcional</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Programação funcional</span>"
     ]
   },
   {
     "objectID": "dados-espaciais.html",
     "href": "dados-espaciais.html",
-    "title": "10  Dados espaciais",
+    "title": "9  Dados espaciais",
     "section": "",
     "text": "Em breve!",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Dados espaciais</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Dados espaciais</span>"
+    ]
+  },
+  {
+    "objectID": "big-data.html",
+    "href": "big-data.html",
+    "title": "10  Introdução à Big Data",
+    "section": "",
+    "text": "10.1 Material complementar\nEm breve!",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introdução à *Big Data*</span>"
+    ]
+  },
+  {
+    "objectID": "big-data.html#material-complementar",
+    "href": "big-data.html#material-complementar",
+    "title": "10  Introdução à Big Data",
+    "section": "",
+    "text": "Capítulos do livro “R para Ciência de Dados” (2 ed) por Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund:\n\nBancos de dados\nArrow",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introdução à *Big Data*</span>"
     ]
   }
 ]
