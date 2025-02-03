@@ -1,0 +1,28 @@
+uf_sigla,uf_codigo,regiao
+RO,11,Norte
+AC,12,Norte
+AM,13,Norte
+RR,14,Norte
+PA,15,Norte
+AP,16,Norte
+TO,17,Norte
+MA,21,Nordeste
+PI,22,Nordeste
+CE,23,Nordeste
+RN,24,Nordeste
+PB,25,Nordeste
+PE,26,Nordeste
+AL,27,Nordeste
+SE,28,Nordeste
+BA,29,Nordeste
+MG,31,Sudeste
+ES,32,Sudeste
+RJ,33,Sudeste
+SP,35,Sudeste
+PR,41,Sul
+SC,42,Sul
+RS,43,Sul
+MS,50,Centro Oeste
+MT,51,Centro Oeste
+GO,52,Centro Oeste
+DF,53,Centro Oeste

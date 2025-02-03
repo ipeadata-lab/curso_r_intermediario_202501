@@ -16,7 +16,39 @@ Caso você tenha dúvidas sobre o tema, recomendamos revisar as seguintes aulas:
 
 -   [Função `dplyr::mutate()` para criar novas variáveis (colunas), ou alterar variáveis existentes](https://ipeadata-lab.github.io/curso_r_intro_202409/05_transformacao.html#criando-e-transformando-colunas-mutate)
 
+## Dados
+
+Antes de iniciar o conteúdo, vamos baixar a base de dados que utilizaremos nesta aula. A base de dados `voos_dez-2024-alterado.csv` apresenta informações sobre voos realizados em dezembro de 2024 realizados no Brasil. Esses dados foram obtidos com o pacote [`{flightsbr}`](https://ipeagit.github.io/flightsbr/), e foram alterados para fins didáticos.
+
+```{r}
+#| eval: false
+download.file(
+  url = "https://github.com/ipeadata-lab/curso_r_intermediario_202501/raw/refs/heads/main/dados/voos_dez-2024-alterado.csv", # <1>
+  destfile = "dados/voos_dez-2024-alterado.csv", # <2>
+  mode = "wb")
+```
+1. URL do arquivo a ser baixado.
+2. Caminho onde o arquivo que será salvo.
+
+Vamos carregar o pacote `{tidyverse}`:
+
+```{r}
+#| message: false
+library(tidyverse)
+```
+
+
+Vamos importar a base de dados `voos_dez-2024-alterado.csv` e ver o resultado da função `glimpse()`:
+
+```{r}
+#| message: false
+#| warning: false
+voos <- read_csv2("dados/voos_dez-2024-alterado.csv") 
+glimpse(voos)
+```
+
 ## Manipulação de datas
+
 
 ### Tipo `Date`
 
@@ -51,26 +83,6 @@ Sys.Date()
 class(Sys.Date())
 ```
 
-#### Exercício
-
-1.  Crie uma variável chamada `data_nascimento` com sua data de nascimento e transforme-a para o tipo `Date`.
-
-2.  Crie uma variável chamada `data_atual` com a data atual do sistema.
-
-3.  Calcule a diferença entre a data atual e a sua data de nascimento. O que é retornado?
-
-```{r}
-#| eval: false
-#| echo: false
-data_nascimento <- as.Date("1993-02-15")
-data_atual <- Sys.Date()
-diferenca <- data_atual - data_nascimento
-diferenca / 365.25
-```
-
-4.  Utilize a função `Sys.time()` e guarde o resultado em uma variável.
-    a.  O que essa função retorna?
-    b.  Qual é o tipo da variável?
 
 ::: callout-note
 ## Curiosidade:
@@ -93,6 +105,28 @@ as.numeric(nascimento_julia_lopes)
 
 :::
 
+
+#### Exercício
+
+1.  Crie uma variável chamada `data_nascimento` com sua data de nascimento e transforme-a para o tipo `Date`.
+
+2.  Crie uma variável chamada `data_atual` com a data atual do sistema.
+
+3.  Calcule a diferença entre a data atual e a sua data de nascimento. O que é retornado?
+
+```{r}
+#| eval: false
+#| echo: false
+data_nascimento <- as.Date("1993-02-15")
+data_atual <- Sys.Date()
+diferenca <- data_atual - data_nascimento
+diferenca / 365.25
+```
+
+4.  Utilize a função `Sys.time()` e guarde o resultado em uma variável.
+    a.  O que essa função retorna?
+    b.  Qual é o tipo da variável?
+
 ### Tipo `POSIXct` e `POSIXt`
 
 O tipo `POSIXct` é uma extensão do tipo `Date`, que inclui informações de data, hora e fuso horário (em UTC: [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordinated_Universal_Time)). O formato padrão para datas e horas é `ano-mês-dia hora:minuto:segundo fuso_horario` (por exemplo: 2025-01-20 15:30:00 -03).
@@ -106,17 +140,13 @@ Esse tipo armazena o número de segundos desde 1 de janeiro de 1970, no fuso hor
 
 **Nesta aula, vamos focar no tipo `Date`**, mas é importante saber que o R possui funções específicas para manipulação de datas e horas (caso você precise trabalhar com isso).
 
-### Pacote `lubridate`
+#### Exercício
 
-O pacote `lubridate` é faz parte do pacote `{tidyverse}` do R, e tem funções que facilitam a manipulação de datas. Ele possui funções específicas para extrair informações de datas, como dia, mês, ano, semana, entre outras.
-
-```{r}
-library(lubridate)
-```
-
-
-
-
+1. Utilizando a base de dados `voos` (importada no início da aula), explore:
+    a) Quais são as colunas que armazenam alguma data?
+    b) Qual é o tipo de cada uma dessas colunas?
+    c) Quais dessas precisariam ser transformadas para o tipo `Date`? Como você faria isso?
+  
 
 ### Tipo `Date` e bases de dados
 
@@ -125,11 +155,276 @@ Até agora, exploramos como criar variáveis do tipo `Date` a partir de valores 
 A rotina mais comum é importar a base de dados, e caso a variável de data esteja no formato `character` (texto), utilizamos alguma função para transformá-la em `Date`.
 
 
-Vamos ver alguns exemplos!
+Vamos explorar trabalhar com as datas da base de dados `voos`. As colunas que armazenam datas iniciam com o prefixo `dt_`. Vamos selecionar essas colunas e observar as primeiras linhas:
+
+```{r}
+voos_datas <- voos |> 
+  select(starts_with("dt_")) # <1>
+
+voos_datas |> 
+  head() # <2>
+```
+1. Selecionamos apenas as colunas que iniciam com o prefixo `dt_`.
+2. Exibimos as primeiras linhas da tabela.
+
+- Exercício: identifique as colunas que armazenam datas na base de dados `voos`.
+
+Com o resultado, vamos observar quais colunas são datas e quais não são:
+
+- `dt_referencia`: O `readr` identificou que a coluna é uma data e já importou como `<date>`.
+
+- `dt_partida_prevista`: está como tipo `<character>`. O formato é `dia/mês/ano`. Precisamos transformar para `<date>`.
+
+- `dt_chegada_real`: está como `<double>`, em um formato numérico. Precisamos transformar para `<date>`.
+
+- `dt_sistema`: está como `<dttm>`, ou seja, do tipo `POSIXct`. Vamos manter como está.
+
+#### Transformando variáveis de texto em datas
+
+Como vimos anteriormente, existem funções para transformar variáveis de texto em datas.
+Vamos transformar a coluna `dt_partida_real` para o tipo `Date`.
+
+
+Se a gente tentar transformar a coluna `dt_partida_real` diretamente para `Date`, o R não irá reconhecer a data corretamente (e também não irá retornar um erro):
+
+```{r}
+voos_datas |> 
+  select(dt_partida_real) |> 
+  mutate(
+    dt_partida_real_date = as.Date(dt_partida_real) # <1>
+  )
+```
+
+Então é importante lembrar que o R espera que a data esteja no formato `ano-mês-dia` para transformar em `Date`. Para isso, vamos utilizar a função `as.Date()` e especificar o formato da data, usando o argumento `format`: 
+
+```{r}
+voos_datas |> 
+  select(dt_partida_real) |> 
+  mutate(
+    dt_partida_real_date = as.Date(dt_partida_real, format = "%d/%m/%Y")
+  )
+```
+
+No argumento `format`, precisamos apresentar como a data está formatada. Ou seja: em `"%d/%m/%Y"`, `%d` representa o dia, `%m` representa o mês e `%Y` representa o ano.
+
+A função `readr::parse_date()` tem o mesmo propósito. A [documentação dessa função é muito útil para entender como formatar datas](https://readr.tidyverse.org/reference/parse_datetime.html#format-specification).
+
+```{r}
+voos_datas |> 
+  select(dt_partida_real) |> 
+  mutate(
+    dt_partida_real_date = parse_date(dt_partida_real, format = "%d/%m/%Y")
+  )
+```
+
+Existe uma função do pacote `lubridate` que facilita a conversão de datas: a função `dmy()` (que significa "dia-mês-ano"), mas vamos apresentá-la mais adiante.
+
+#### Transformando datas do Excel para `Date`
+
+A coluna `dt_chegada_real` foi importada como número (`Double`).
+
+Será que conseguimos transformar essa coluna para `Date` apenas usando a função `as.Date()`?
+
+```{r}
+voos_datas |> 
+  select(dt_chegada_real) |> 
+  mutate(
+    dt_chegada_real_date = as.Date(dt_chegada_real)
+  )
+```
+
+As datas convertidas estão no futuro (o que não faz sentido, já que os voos ocorreram em dezembro de 2024). O que aconteceu?
+
+Essa coluna está salva em um padrão comum de dados do Excel: o número de dias desde 01/01/1900. Para transformar essa coluna em `Date`, precisamos informar ao R que a data de referência é 30/12/1899 (um dia antes de 01/01/1900), utilizando o argumento `origin`:
+
+```{r}
+voos_datas |> 
+  select(dt_chegada_real) |> 
+  mutate(
+    dt_chegada_real_date = as.Date(dt_chegada_real, origin = "1899-12-30")
+  )
+```
+
+Não é muito prático ter que lembrar a data de referência para transformar datas do Excel em `Date`. Por isso, o `janitor` possui a função [`excel_numeric_to_date()`](https://sfirke.github.io/janitor/reference/excel_numeric_to_date.html) que faz essa conversão automaticamente:
+
+```{r}
+voos_datas |> 
+  select(dt_chegada_real) |> 
+  mutate(
+    dt_chegada_real_date = janitor::excel_numeric_to_date(dt_chegada_real)
+  )
+```
+#### Exercícios
+
+Em breve!
+
+
+
+### Pacote `lubridate`
+
+
+<img src="images/logo-lubridate.png" class="img-rstudio" align="right" width="120px"/>
+
+O pacote `lubridate` faz parte do pacote `{tidyverse}` do R, e tem funções que facilitam a manipulação de datas. Ele possui funções específicas para extrair informações de datas, como dia, mês, ano, semana, entre outras.
+
+```{r}
+#| message: false
+library(lubridate)
+```
+
+#### Funções de parse
+
+Como citado anteriormente, quando queremos transformar uma data no formato `dia/mês/ano` para `Date`, podemos utilizar a função `dmy()` (que significa "dia-mês-ano"):
+
+```{r}
+voos_datas |> 
+  select(dt_partida_real) |> 
+  mutate(
+    dt_partida_real_date = dmy(dt_partida_real)
+  )
+```
+
+O `lubridate` também possui funções para transformar datas que estejam em outros formatos. O importante é lembrar que `y` representa o ano, `m` representa o mês e `d` representa o dia, e assim podemos combinar essas letras para formar o nome da função que precisamos usar para transformar a data. Se quiser saber mais sobre esse grupo de funções, acesse a [documentação oficial](https://lubridate.tidyverse.org/reference/ymd.html).
+
+#### Extrair informações de datas
+
+O `lubridate` possui funções para extrair informações de datas. No exemplo abaixo, vamos extrair o dia, mês e ano da coluna `dt_referencia`:
+
+```{r}
+voos_datas |> 
+  select(dt_referencia) |> 
+  mutate(
+    dia = day(dt_referencia),
+    mes = month(dt_referencia),
+    ano = year(dt_referencia)
+  )
+```
+
+Algumas funções tem argumentos que permitem personalizar a saída. Por exemplo, a função `month()` tem o argumento `label` que permite retornar o mês por extenso (em vez de numérico), o argumento `abbr` que permite retornar o mês abreviado, e o argumento `locale` que permite retornar o mês em outro idioma:
+
+```{r}
+voos_datas |>
+  select(dt_referencia) |>
+  mutate(
+    mes_curto = month(dt_referencia, label = TRUE),
+    
+    mes = month(dt_referencia, label = TRUE, abbr = FALSE),
+    
+    mes_pt = month(
+      dt_referencia,
+      label = TRUE,
+      abbr = FALSE,
+      locale = "pt_BR"
+    )
+  )
+```
+A função `wday()` retorna o dia da semana, e também possui argumentos para personalizar a saída:
+
+```{r}
+voos_datas |>
+  select(dt_referencia) |>
+  mutate(
+    dia_semana_numero = wday(dt_referencia),
+    
+    dia_semana = wday(dt_referencia, label = TRUE),
+    
+    dia_semana_abbr = wday(dt_referencia, label = TRUE, abbr = FALSE),
+    
+    dia_semana_pt = wday(
+      dt_referencia,
+      label = TRUE,
+      abbr = FALSE,
+      locale = "pt_BR"
+    )
+  )
+```
+
+#### Arredondando datas
+
+O lubridate também possui funções para arredondar datas. Por exemplo, a função `floor_date()` arredonda a data para o início de um intervalo de tempo (por exemplo, o início do mês):
+
+```{r}
+voos_datas |> 
+  select(dt_referencia) |> 
+  mutate(
+    mes_arredondado = floor_date(dt_referencia, unit = "month"),
+  )
+```
+
+
+#### Exercícios
+
+Em breve!
+
+
 
 ### Datas em gráficos
 
+Vamos criar um gráfico com o pacote `ggplot2` utilizando a base de dados `voos`. Vamos criar um gráfico de barras com a quantidade de voos por dia de partida, que partiram do aeroporto de Brasília - DF: PRESIDENTE JUSCELINO KUBITSCHEK.
+
+```{r}
+voos_brasilia <- voos |>
+  filter(nm_aerodromo_origem == "PRESIDENTE JUSCELINO KUBITSCHEK")
+```
+
+
+
+Como essa coluna está originalmente salva como texto, o `ggplot2` entenderá que cada data é uma categoria (e não uma data), e o gráfico não será exibido corretamente:
+
+```{r}
+quantidade_voos_por_partida <- voos_brasilia |> 
+  count(dt_partida_real) 
+
+quantidade_voos_por_partida |> 
+  ggplot(aes(x = dt_partida_real, y = n)) +
+  geom_col() +
+  labs(
+    x = "Data",
+    y = "Quantidade de voos",
+    title = "Quantidade de voos por dia de partida"
+  )
+```
+Para que o `ggplot2` entenda que a variável é uma data, precisamos transformá-la para o tipo `Date` (como visto anteriormente):
+
+```{r}
+quantidade_voos_partida_data <- voos_brasilia |>
+  mutate(
+    dt_partida_real_date = dmy(dt_partida_real)
+  ) |>
+  count(dt_partida_real_date)
+
+quantidade_voos_partida_data
+```
+
+Agora vamos criar o gráfico com a data transformada. Observe que agora o `ggplot2` entende que a variável é uma data, e o gráfico é exibido corretamente:
+
+```{r}
+ grafico_voos <- quantidade_voos_partida_data |> 
+  ggplot(aes(x = dt_partida_real_date, y = n)) +
+  geom_col() +
+  labs(
+    x = "Data de partida",
+    y = "Quantidade de voos",
+    title = "Quantidade de voos por dia de partida",
+    subtitle = "Voos que partiram do aeroporto de Brasília, em dezembro de 2024"
+  ) +
+  coord_trans(expand = FALSE) +
+  theme_minimal()
+
+grafico_voos
+```
+
+O pacote `ggplot2` possui funções específicas para trabalhar com datas em gráficos. Por exemplo, a função `scale_x_date()` permite personalizar o eixo x de um gráfico com datas. Essa função possui argumentos para personalizar o formato das datas (`date_labels`), e o intervalo entre as datas (`date_breaks`).
+
+```{r}
+grafico_voos +
+  scale_x_date(date_labels = "%d", date_breaks = "1 day") 
+```
+#### Exercícios
+
 Em breve!
+
+
 
 ## Manipulação de textos
 
