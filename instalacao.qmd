@@ -39,7 +39,7 @@ tinytex::install_tinytex()
 
 ## Instalação do Git {#instalar-git}
 
-Para a aula de ["Introdução controle de versão com Git e GitHub"](git-github.qmd), é necessário ter o Git instalado. 
+Para a aula de ["Introdução controle de versão com Git e GitHub"](git-github.qmd), é necessário ter o Git instalado.
 
 O Git **não** é um pacote, e sim um software que deve ser instalado no seu computador.
 
@@ -47,11 +47,37 @@ Para instalar o Git, acesse a página oficial do [Git](https://git-scm.com/downl
 
 [![](images/install-git.png){fig-align="center" width="100%"}](https://git-scm.com/downloads)
 
+### O RStudio encontrou a instalação do Git?
+
 Para verificar se o Git foi instalado corretamente, execute o seguinte comando no painel "Terminal" do RStudio:
 
 ```{bash}
 git --version
 ```
+
+Em alguns casos, o RStudio não encontra a instalação do Git automaticamente, e retorna uma mensagem de erro como a seguinte:
+
+```         
+> 'git' não é reconhecido como um comando interno ou externo,
+um programa operável ou um arquivo em lotes.
+```
+
+Neste caso, é necessário informar ao RStudio onde o Git foi instalado. Para isso, abra o menu de configurações do RStudio (`Tools` -\> `Global Options`), selecione a aba `Git/SVN` e informe o caminho para o executável do Git em `Git executable`.
+
+::: callout-tip
+Atenção! O caminho para o executável depende do sistema operacional, e de onde o Git foi instalado. Você precisará procurar isso no seu computador!
+
+Abaixo estão alguns exemplos de caminhos para o executável do Git, quando instalado nos locais padrão:
+
+-   Windows: `C:/Program Files/Git/bin/git.exe`
+
+-   macOS e Linux: `/usr/bin/git`
+
+-   Para as pessoas utilizando o servidor do IPEA (substitua `r000000` pelo seu usuário): `C:/Users/r000000/AppData/Local/Programs/Git/bin/git.exe`
+:::
+
+
+![Configurações do RStudio para o Git](images/rstudio-git-config.png){fig-align="center" width="80%"}
 
 ## Conta no GitHub {#conta-github}
 
@@ -63,7 +89,6 @@ Caso ainda não tenha uma conta, acesse a página oficial do [GitHub](https://gi
 
 ![Página para criar a conta gratuitamente](images/github-signup.png){fig-align="center" width="100%"}
 
-
 ## Instalar o GitHub Desktop
 
 Para a aula de ["Introdução controle de versão com Git e GitHub"](git-github.qmd), é recomendado instalar o GitHub Desktop, que é uma interface gráfica para o Git.
@@ -71,4 +96,3 @@ Para a aula de ["Introdução controle de versão com Git e GitHub"](git-github.
 Para instalar o GitHub Desktop, acesse a página oficial do [GitHub Desktop](https://desktop.github.com/download/) e siga as instruções de instalação para o seu sistema operacional.
 
 [![](images/install-github-desktop.png){fig-align="center" width="100%"}](https://desktop.github.com/)
-
