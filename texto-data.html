@@ -8,7 +8,7 @@
 
 <meta name="author" content="Beatriz Milz">
 
-<title>7&nbsp; Manipulação de textos e datas – R intermediário e pesquisa reprodutível</title>
+<title>7&nbsp; Manipulação de datas e textos – R intermediário e pesquisa reprodutível</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -83,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./texto-data.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Manipulação de textos e datas</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./texto-data.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Manipulação de datas e textos</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -150,7 +184,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./texto-data.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Manipulação de textos e datas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Manipulação de datas e textos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -176,15 +210,51 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#dados" id="toc-dados" class="nav-link active" data-scroll-target="#dados"><span class="header-section-number">7.1</span> Dados</a></li>
+  <li><a href="#manipulação-de-datas" id="toc-manipulação-de-datas" class="nav-link" data-scroll-target="#manipulação-de-datas"><span class="header-section-number">7.2</span> Manipulação de datas</a>
+  <ul>
+  <li><a href="#tipo-date" id="toc-tipo-date" class="nav-link" data-scroll-target="#tipo-date"><span class="header-section-number">7.2.1</span> Tipo <code>Date</code></a>
+  <ul>
+  <li><a href="#exercício" id="toc-exercício" class="nav-link" data-scroll-target="#exercício"><span class="header-section-number">7.2.1.1</span> Exercício</a></li>
+  </ul></li>
+  <li><a href="#tipo-posixct-e-posixt" id="toc-tipo-posixct-e-posixt" class="nav-link" data-scroll-target="#tipo-posixct-e-posixt"><span class="header-section-number">7.2.2</span> Tipo <code>POSIXct</code> e <code>POSIXt</code></a>
+  <ul>
+  <li><a href="#exercício-1" id="toc-exercício-1" class="nav-link" data-scroll-target="#exercício-1"><span class="header-section-number">7.2.2.1</span> Exercício</a></li>
+  </ul></li>
+  <li><a href="#tipo-date-e-bases-de-dados" id="toc-tipo-date-e-bases-de-dados" class="nav-link" data-scroll-target="#tipo-date-e-bases-de-dados"><span class="header-section-number">7.2.3</span> Tipo <code>Date</code> e bases de dados</a>
+  <ul>
+  <li><a href="#transformando-variáveis-de-texto-em-datas" id="toc-transformando-variáveis-de-texto-em-datas" class="nav-link" data-scroll-target="#transformando-variáveis-de-texto-em-datas"><span class="header-section-number">7.2.3.1</span> Transformando variáveis de texto em datas</a></li>
+  <li><a href="#transformando-datas-do-excel-para-date" id="toc-transformando-datas-do-excel-para-date" class="nav-link" data-scroll-target="#transformando-datas-do-excel-para-date"><span class="header-section-number">7.2.3.2</span> Transformando datas do Excel para <code>Date</code></a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">7.2.3.3</span> Exercícios</a></li>
+  </ul></li>
+  <li><a href="#pacote-lubridate" id="toc-pacote-lubridate" class="nav-link" data-scroll-target="#pacote-lubridate"><span class="header-section-number">7.2.4</span> Pacote <code>lubridate</code></a>
+  <ul>
+  <li><a href="#funções-de-parse" id="toc-funções-de-parse" class="nav-link" data-scroll-target="#funções-de-parse"><span class="header-section-number">7.2.4.1</span> Funções de parse</a></li>
+  <li><a href="#extrair-informações-de-datas" id="toc-extrair-informações-de-datas" class="nav-link" data-scroll-target="#extrair-informações-de-datas"><span class="header-section-number">7.2.4.2</span> Extrair informações de datas</a></li>
+  <li><a href="#arredondando-datas" id="toc-arredondando-datas" class="nav-link" data-scroll-target="#arredondando-datas"><span class="header-section-number">7.2.4.3</span> Arredondando datas</a></li>
+  <li><a href="#exercícios-1" id="toc-exercícios-1" class="nav-link" data-scroll-target="#exercícios-1"><span class="header-section-number">7.2.4.4</span> Exercícios</a></li>
+  </ul></li>
+  <li><a href="#datas-em-gráficos" id="toc-datas-em-gráficos" class="nav-link" data-scroll-target="#datas-em-gráficos"><span class="header-section-number">7.2.5</span> Datas em gráficos</a>
+  <ul>
+  <li><a href="#exercícios-2" id="toc-exercícios-2" class="nav-link" data-scroll-target="#exercícios-2"><span class="header-section-number">7.2.5.1</span> Exercícios</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#manipulação-de-textos" id="toc-manipulação-de-textos" class="nav-link" data-scroll-target="#manipulação-de-textos"><span class="header-section-number">7.3</span> Manipulação de textos</a></li>
+  <li><a href="#material-complementar" id="toc-material-complementar" class="nav-link" data-scroll-target="#material-complementar"><span class="header-section-number">7.4</span> Material complementar</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Manipulação de textos e datas</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Manipulação de datas e textos</span></h1>
 </div>
 
 
@@ -207,7 +277,669 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Em breve!## Material complementar ## Material complementar</p>
+<p>No curso <a href="https://ipeadata-lab.github.io/curso_r_intro_202409/05_transformacao.html">Introdução à análise de dados com R</a> exploramos algumas funções de transformação de dados. Nesta aula, vamos explorar funções específicas para manipulação de datas e textos.</p>
+<p>Caso você tenha dúvidas sobre o tema, recomendamos revisar as seguintes aulas:</p>
+<ul>
+<li><p><a href="https://ipeadata-lab.github.io/curso_r_intro_202409/03_importacao.html">Como importar bases de dados</a></p></li>
+<li><p><a href="https://ipeadata-lab.github.io/curso_r_intro_202409/05_transformacao.html#criando-e-transformando-colunas-mutate">Função <code>dplyr::mutate()</code> para criar novas variáveis (colunas), ou alterar variáveis existentes</a></p></li>
+</ul>
+<section id="dados" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="dados"><span class="header-section-number">7.1</span> Dados</h2>
+<p>Antes de iniciar o conteúdo, vamos baixar a base de dados que utilizaremos nesta aula. A base de dados <code>voos_dez-2024-alterado.csv</code> apresenta informações sobre voos realizados em dezembro de 2024 realizados no Brasil. Esses dados foram obtidos com o pacote <a href="https://ipeagit.github.io/flightsbr/"><code>{flightsbr}</code></a>, e foram alterados para fins didáticos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">url =</span> <span class="st">"https://github.com/ipeadata-lab/curso_r_intermediario_202501/raw/refs/heads/main/dados/voos_dez-2024-alterado.csv"</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">destfile =</span> <span class="st">"dados/voos_dez-2024-alterado.csv"</span>,</span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mode =</span> <span class="st">"wb"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="2" data-code-annotation="1">URL do arquivo a ser baixado.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="2">Caminho onde o arquivo que será salvo.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Vamos carregar o pacote <code>{tidyverse}</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vamos importar a base de dados <code>voos_dez-2024-alterado.csv</code> e ver o resultado da função <code>glimpse()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>voos <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"dados/voos_dez-2024-alterado.csv"</span>) </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(voos)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 82,003
+Columns: 26
+$ id_basica             &lt;dbl&gt; 33821878, 33972533, 33819746, 33819747, 33914237…
+$ id_empresa            &lt;dbl&gt; 1002650, 1001070, 1007570, 1007570, 1000896, 100…
+$ nm_empresa            &lt;chr&gt; "DHL AERO EXPRESO", "AEROVÍAS DE MÉXICO S.A DE C…
+$ dt_referencia         &lt;date&gt; 2024-12-01, 2024-12-01, 2024-12-01, 2024-12-01,…
+$ ds_di                 &lt;chr&gt; "INCLUSÃO DE ETAPA EM UM VOO PREVISTO EM HOTRAN"…
+$ ds_grupo_di           &lt;chr&gt; "REGULAR", "REGULAR", "REGULAR", "REGULAR", "REG…
+$ ds_natureza_etapa     &lt;chr&gt; "INTERNACIONAL", "INTERNACIONAL", "INTERNACIONAL…
+$ hr_partida_real       &lt;time&gt; 13:35:00, 10:15:00, 05:34:00, 19:45:00, 20:24:0…
+$ dt_partida_real       &lt;chr&gt; "01/12/2024", "01/12/2024", "01/12/2024", "30/11…
+$ id_aerodromo_origem   &lt;dbl&gt; 467, 301, 301, 609, 66, 66, 301, 500, 301, 301, …
+$ nm_aerodromo_origem   &lt;chr&gt; "MIAMI INTERNATIONAL AIRPORT", "GUARULHOS - GOVE…
+$ nm_municipio_origem   &lt;chr&gt; "MIAMI, FLORIDA", "GUARULHOS", "GUARULHOS", "PUN…
+$ sg_uf_origem          &lt;chr&gt; NA, "SP", "SP", NA, NA, NA, "SP", NA, "SP", "SP"…
+$ nm_regiao_origem      &lt;chr&gt; NA, "SUDESTE", "SUDESTE", NA, NA, NA, "SUDESTE",…
+$ nm_pais_origem        &lt;chr&gt; "ESTADOS UNIDOS DA AMÉRICA", "BRASIL", "BRASIL",…
+$ nm_continente_origem  &lt;chr&gt; "AMÉRICA DO NORTE", "AMÉRICA DO SUL", "AMÉRICA D…
+$ hr_chegada_real       &lt;time&gt; 22:46:00, 19:01:00, 11:42:00, 03:28:00, 05:42:0…
+$ dt_chegada_real       &lt;dbl&gt; 45627, 45627, 45627, 45627, 45628, 45627, 45628,…
+$ id_aerodromo_destino  &lt;dbl&gt; 162, 466, 609, 301, 301, 301, 500, 301, 66, 66, …
+$ nm_aerodromo_destino  &lt;chr&gt; "VIRACOPOS", "BENITO JUAREZ INTL", "PUNTA CANA",…
+$ nm_municipio_destino  &lt;chr&gt; "CAMPINAS", "MEXICO", "PUNTA CANA", "GUARULHOS",…
+$ sg_uf_destino         &lt;chr&gt; "SP", NA, NA, "SP", "SP", "SP", NA, "SP", NA, NA…
+$ nm_regiao_destino     &lt;chr&gt; "SUDESTE", NA, NA, "SUDESTE", "SUDESTE", "SUDEST…
+$ nm_pais_destino       &lt;chr&gt; "BRASIL", "MÉXICO", "REPÚBLICA DOMINICANA", "BRA…
+$ nm_continente_destino &lt;chr&gt; "AMÉRICA DO SUL", "AMÉRICA DO NORTE", "AMÉRICA C…
+$ dt_sistema            &lt;dttm&gt; 2025-01-04 01:00:02, 2025-01-10 01:00:09, 2025-…</code></pre>
+</div>
+</div>
+</section>
+<section id="manipulação-de-datas" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="manipulação-de-datas"><span class="header-section-number">7.2</span> Manipulação de datas</h2>
+<section id="tipo-date" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="tipo-date"><span class="header-section-number">7.2.1</span> Tipo <code>Date</code></h3>
+<p>Quando escrevemos datas em português, é comum utilizarmos o formato <code>dia/mês/ano</code> (por exemplo: 20/01/2025). Ao criar uma variável com esta no R, teremos um objeto do tipo <code>character</code> (texto):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="st">"20/01/2025"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+</div>
+<p>Porém no R existe um tipo específico para datas, o <code>Date</code>. O tipo <code>Date</code> é útil em vários contextos: permite realizar operações específicas para datas, como calcular a diferença entre duas datas, extrair o dia da semana, alterar a formatação de datas em gráficos, entre outros.</p>
+<p>Para que o R reconheça um objeto com o tipo <code>Date</code>, precisamos salvar as datas no formato <code>ano-mês-dia</code> (por exemplo: 2025-01-20), e utilizar a função <code>as.Date()</code> para transformar a variável do tipo <code>character</code> em <code>Date</code>.</p>
+<p>Exemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data_inicio_curso <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2025-01-20"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data_inicio_curso</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-01-20"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(data_inicio_curso)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Date"</code></pre>
+</div>
+</div>
+<p>Porém, tome cuidado! Se você tentar transformar uma data no formato <code>dia/mês/ano</code> diretamente para <code>Date</code>, o R não irá reconhecer a data corretamente (e também não irá retornar um erro):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">"20/01/2025"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "20-01-20"</code></pre>
+</div>
+</div>
+<p>A função <code>Sys.Date()</code> retorna a data atual do sistema, com o tipo <code>Date</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.Date</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-02-03"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">Sys.Date</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Date"</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Curiosidade:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O tipo <code>Date</code> armazena o <strong>quantidade de dias</strong> desde 1 de janeiro de 1970. Podemos verificar isso utilizando a função <code>as.numeric()</code> para obter o número armazenado em uma variável do tipo <code>Date</code>. Por exemplo, a data 1 de janeiro de 1970:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data_1970 <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"1970-01-01"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>data_1970</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1970-01-01"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(data_1970)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<p>Um número negativo indica uma data anterior a 1 de janeiro de 1970, e um número positivo indica uma data posterior a essa data. Por exemplo, considerando a data de nascimento de <a href="https://jornal.usp.br/ciencias/ciencias-humanas/escritora-mais-publicada-da-primeira-republica-foi-vetada-na-abl/">Julia Lopes de Almeida</a> (24 de setembro de 1862):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>nascimento_julia_lopes <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"1862-09-24"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(nascimento_julia_lopes)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -39180</code></pre>
+</div>
+</div>
+</div>
+</div>
+<section id="exercício" class="level4" data-number="7.2.1.1">
+<h4 data-number="7.2.1.1" class="anchored" data-anchor-id="exercício"><span class="header-section-number">7.2.1.1</span> Exercício</h4>
+<ol type="1">
+<li><p>Crie uma variável chamada <code>data_nascimento</code> com sua data de nascimento e transforme-a para o tipo <code>Date</code>.</p></li>
+<li><p>Crie uma variável chamada <code>data_atual</code> com a data atual do sistema.</p></li>
+<li><p>Calcule a diferença entre a data atual e a sua data de nascimento. O que é retornado?</p></li>
+</ol>
+<ol start="4" type="1">
+<li>Utilize a função <code>Sys.time()</code> e guarde o resultado em uma variável.
+<ol type="a">
+<li>O que essa função retorna?</li>
+<li>Qual é o tipo da variável?</li>
+</ol></li>
+</ol>
+</section>
+</section>
+<section id="tipo-posixct-e-posixt" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="tipo-posixct-e-posixt"><span class="header-section-number">7.2.2</span> Tipo <code>POSIXct</code> e <code>POSIXt</code></h3>
+<p>O tipo <code>POSIXct</code> é uma extensão do tipo <code>Date</code>, que inclui informações de data, hora e fuso horário (em UTC: <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time">Coordinated Universal Time</a>). O formato padrão para datas e horas é <code>ano-mês-dia hora:minuto:segundo fuso_horario</code> (por exemplo: 2025-01-20 15:30:00 -03).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-02-03 02:00:58 UTC"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">Sys.time</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "POSIXct" "POSIXt" </code></pre>
+</div>
+</div>
+<p>Esse tipo armazena o número de segundos desde 1 de janeiro de 1970, no fuso horário UTC +0 (que é igual ao GMT).</p>
+<p><strong>Nesta aula, vamos focar no tipo <code>Date</code></strong>, mas é importante saber que o R possui funções específicas para manipulação de datas e horas (caso você precise trabalhar com isso).</p>
+<section id="exercício-1" class="level4" data-number="7.2.2.1">
+<h4 data-number="7.2.2.1" class="anchored" data-anchor-id="exercício-1"><span class="header-section-number">7.2.2.1</span> Exercício</h4>
+<ol type="1">
+<li>Utilizando a base de dados <code>voos</code> (importada no início da aula), explore:
+<ol type="a">
+<li>Quais são as colunas que armazenam alguma data?</li>
+<li>Qual é o tipo de cada uma dessas colunas?</li>
+<li>Quais dessas precisariam ser transformadas para o tipo <code>Date</code>? Como você faria isso?</li>
+</ol></li>
+</ol>
+</section>
+</section>
+<section id="tipo-date-e-bases-de-dados" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="tipo-date-e-bases-de-dados"><span class="header-section-number">7.2.3</span> Tipo <code>Date</code> e bases de dados</h3>
+<p>Até agora, exploramos como criar variáveis do tipo <code>Date</code> a partir de valores que digitamos diretamente no código. Porém, em muitos casos, as datas estão armazenadas em bases de dados.</p>
+<p>A rotina mais comum é importar a base de dados, e caso a variável de data esteja no formato <code>character</code> (texto), utilizamos alguma função para transformá-la em <code>Date</code>.</p>
+<p>Vamos explorar trabalhar com as datas da base de dados <code>voos</code>. As colunas que armazenam datas iniciam com o prefixo <code>dt_</code>. Vamos selecionar essas colunas e observar as primeiras linhas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-12"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-12-1"><a href="#annotated-cell-12-1" aria-hidden="true" tabindex="-1"></a>voos_datas <span class="ot">&lt;-</span> voos <span class="sc">|&gt;</span> </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1">1</button><span id="annotated-cell-12-2" class="code-annotation-target"><a href="#annotated-cell-12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"dt_"</span>))</span>
+<span id="annotated-cell-12-3"><a href="#annotated-cell-12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-12-4"><a href="#annotated-cell-12-4" aria-hidden="true" tabindex="-1"></a>voos_datas <span class="sc">|&gt;</span> </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="2">2</button><span id="annotated-cell-12-5" class="code-annotation-target"><a href="#annotated-cell-12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-12" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="2" data-code-annotation="1">Selecionamos apenas as colunas que iniciam com o prefixo <code>dt_</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="5" data-code-annotation="2">Exibimos as primeiras linhas da tabela.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  dt_referencia dt_partida_real dt_chegada_real dt_sistema         
+  &lt;date&gt;        &lt;chr&gt;                     &lt;dbl&gt; &lt;dttm&gt;             
+1 2024-12-01    01/12/2024                45627 2025-01-04 01:00:02
+2 2024-12-01    01/12/2024                45627 2025-01-10 01:00:09
+3 2024-12-01    01/12/2024                45627 2025-01-02 01:00:59
+4 2024-12-01    30/11/2024                45627 2025-01-02 01:00:59
+5 2024-12-01    01/12/2024                45628 2025-01-09 01:00:08
+6 2024-12-01    01/12/2024                45627 2025-01-09 01:00:08</code></pre>
+</div>
+</div>
+<ul>
+<li>Exercício: identifique as colunas que armazenam datas na base de dados <code>voos</code>.</li>
+</ul>
+<p>Com o resultado, vamos observar quais colunas são datas e quais não são:</p>
+<ul>
+<li><p><code>dt_referencia</code>: O <code>readr</code> identificou que a coluna é uma data e já importou como <code>&lt;date&gt;</code>.</p></li>
+<li><p><code>dt_partida_prevista</code>: está como tipo <code>&lt;character&gt;</code>. O formato é <code>dia/mês/ano</code>. Precisamos transformar para <code>&lt;date&gt;</code>.</p></li>
+<li><p><code>dt_chegada_real</code>: está como <code>&lt;double&gt;</code>, em um formato numérico. Precisamos transformar para <code>&lt;date&gt;</code>.</p></li>
+<li><p><code>dt_sistema</code>: está como <code>&lt;dttm&gt;</code>, ou seja, do tipo <code>POSIXct</code>. Vamos manter como está.</p></li>
+</ul>
+<section id="transformando-variáveis-de-texto-em-datas" class="level4" data-number="7.2.3.1">
+<h4 data-number="7.2.3.1" class="anchored" data-anchor-id="transformando-variáveis-de-texto-em-datas"><span class="header-section-number">7.2.3.1</span> Transformando variáveis de texto em datas</h4>
+<p>Como vimos anteriormente, existem funções para transformar variáveis de texto em datas. Vamos transformar a coluna <code>dt_partida_real</code> para o tipo <code>Date</code>.</p>
+<p>Se a gente tentar transformar a coluna <code>dt_partida_real</code> diretamente para <code>Date</code>, o R não irá reconhecer a data corretamente (e também não irá retornar um erro):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-13"><pre class="sourceCode r code-annotation-code code-with-copy"><code class="sourceCode r"><span id="annotated-cell-13-1"><a href="#annotated-cell-13-1" aria-hidden="true" tabindex="-1"></a>voos_datas <span class="sc">|&gt;</span> </span>
+<span id="annotated-cell-13-2"><a href="#annotated-cell-13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dt_partida_real) <span class="sc">|&gt;</span> </span>
+<span id="annotated-cell-13-3"><a href="#annotated-cell-13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="annotated-cell-13-4"><a href="#annotated-cell-13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">dt_partida_real_date =</span> <span class="fu">as.Date</span>(dt_partida_real)</span>
+<span id="annotated-cell-13-5"><a href="#annotated-cell-13-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 82,003 × 2
+   dt_partida_real dt_partida_real_date
+   &lt;chr&gt;           &lt;date&gt;              
+ 1 01/12/2024      1-12-20             
+ 2 01/12/2024      1-12-20             
+ 3 01/12/2024      1-12-20             
+ 4 30/11/2024      30-11-20            
+ 5 01/12/2024      1-12-20             
+ 6 01/12/2024      1-12-20             
+ 7 01/12/2024      1-12-20             
+ 8 01/12/2024      1-12-20             
+ 9 01/12/2024      1-12-20             
+10 01/12/2024      1-12-20             
+# ℹ 81,993 more rows</code></pre>
+</div>
+</div>
+<p>Então é importante lembrar que o R espera que a data esteja no formato <code>ano-mês-dia</code> para transformar em <code>Date</code>. Para isso, vamos utilizar a função <code>as.Date()</code> e especificar o formato da data, usando o argumento <code>format</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>voos_datas <span class="sc">|&gt;</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dt_partida_real) <span class="sc">|&gt;</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">dt_partida_real_date =</span> <span class="fu">as.Date</span>(dt_partida_real, <span class="at">format =</span> <span class="st">"%d/%m/%Y"</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 82,003 × 2
+   dt_partida_real dt_partida_real_date
+   &lt;chr&gt;           &lt;date&gt;              
+ 1 01/12/2024      2024-12-01          
+ 2 01/12/2024      2024-12-01          
+ 3 01/12/2024      2024-12-01          
+ 4 30/11/2024      2024-11-30          
+ 5 01/12/2024      2024-12-01          
+ 6 01/12/2024      2024-12-01          
+ 7 01/12/2024      2024-12-01          
+ 8 01/12/2024      2024-12-01          
+ 9 01/12/2024      2024-12-01          
+10 01/12/2024      2024-12-01          
+# ℹ 81,993 more rows</code></pre>
+</div>
+</div>
+<p>No argumento <code>format</code>, precisamos apresentar como a data está formatada. Ou seja: em <code>"%d/%m/%Y"</code>, <code>%d</code> representa o dia, <code>%m</code> representa o mês e <code>%Y</code> representa o ano.</p>
+<p>A função <code>readr::parse_date()</code> tem o mesmo propósito. A <a href="https://readr.tidyverse.org/reference/parse_datetime.html#format-specification">documentação dessa função é muito útil para entender como formatar datas</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>voos_datas <span class="sc">|&gt;</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dt_partida_real) <span class="sc">|&gt;</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">dt_partida_real_date =</span> <span class="fu">parse_date</span>(dt_partida_real, <span class="at">format =</span> <span class="st">"%d/%m/%Y"</span>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 82,003 × 2
+   dt_partida_real dt_partida_real_date
+   &lt;chr&gt;           &lt;date&gt;              
+ 1 01/12/2024      2024-12-01          
+ 2 01/12/2024      2024-12-01          
+ 3 01/12/2024      2024-12-01          
+ 4 30/11/2024      2024-11-30          
+ 5 01/12/2024      2024-12-01          
+ 6 01/12/2024      2024-12-01          
+ 7 01/12/2024      2024-12-01          
+ 8 01/12/2024      2024-12-01          
+ 9 01/12/2024      2024-12-01          
+10 01/12/2024      2024-12-01          
+# ℹ 81,993 more rows</code></pre>
+</div>
+</div>
+<p>Existe uma função do pacote <code>lubridate</code> que facilita a conversão de datas: a função <code>dmy()</code> (que significa “dia-mês-ano”), mas vamos apresentá-la mais adiante.</p>
+</section>
+<section id="transformando-datas-do-excel-para-date" class="level4" data-number="7.2.3.2">
+<h4 data-number="7.2.3.2" class="anchored" data-anchor-id="transformando-datas-do-excel-para-date"><span class="header-section-number">7.2.3.2</span> Transformando datas do Excel para <code>Date</code></h4>
+<p>A coluna <code>dt_chegada_real</code> foi importada como número (<code>Double</code>).</p>
+<p>Será que conseguimos transformar essa coluna para <code>Date</code> apenas usando a função <code>as.Date()</code>?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>voos_datas <span class="sc">|&gt;</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dt_chegada_real) <span class="sc">|&gt;</span> </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">dt_chegada_real_date =</span> <span class="fu">as.Date</span>(dt_chegada_real)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 82,003 × 2
+   dt_chegada_real dt_chegada_real_date
+             &lt;dbl&gt; &lt;date&gt;              
+ 1           45627 2094-12-03          
+ 2           45627 2094-12-03          
+ 3           45627 2094-12-03          
+ 4           45627 2094-12-03          
+ 5           45628 2094-12-04          
+ 6           45627 2094-12-03          
+ 7           45628 2094-12-04          
+ 8           45627 2094-12-03          
+ 9           45628 2094-12-04          
+10           45627 2094-12-03          
+# ℹ 81,993 more rows</code></pre>
+</div>
+</div>
+<p>As datas convertidas estão no futuro (o que não faz sentido, já que os voos ocorreram em dezembro de 2024). O que aconteceu?</p>
+<p>Essa coluna está salva em um padrão comum de dados do Excel: o número de dias desde 01/01/1900. Para transformar essa coluna em <code>Date</code>, precisamos informar ao R que a data de referência é 30/12/1899 (um dia antes de 01/01/1900), utilizando o argumento <code>origin</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>voos_datas <span class="sc">|&gt;</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dt_chegada_real) <span class="sc">|&gt;</span> </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">dt_chegada_real_date =</span> <span class="fu">as.Date</span>(dt_chegada_real, <span class="at">origin =</span> <span class="st">"1899-12-30"</span>)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 82,003 × 2
+   dt_chegada_real dt_chegada_real_date
+             &lt;dbl&gt; &lt;date&gt;              
+ 1           45627 2024-12-01          
+ 2           45627 2024-12-01          
+ 3           45627 2024-12-01          
+ 4           45627 2024-12-01          
+ 5           45628 2024-12-02          
+ 6           45627 2024-12-01          
+ 7           45628 2024-12-02          
+ 8           45627 2024-12-01          
+ 9           45628 2024-12-02          
+10           45627 2024-12-01          
+# ℹ 81,993 more rows</code></pre>
+</div>
+</div>
+<p>Não é muito prático ter que lembrar a data de referência para transformar datas do Excel em <code>Date</code>. Por isso, o <code>janitor</code> possui a função <a href="https://sfirke.github.io/janitor/reference/excel_numeric_to_date.html"><code>excel_numeric_to_date()</code></a> que faz essa conversão automaticamente:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>voos_datas <span class="sc">|&gt;</span> </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dt_chegada_real) <span class="sc">|&gt;</span> </span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">dt_chegada_real_date =</span> janitor<span class="sc">::</span><span class="fu">excel_numeric_to_date</span>(dt_chegada_real)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 82,003 × 2
+   dt_chegada_real dt_chegada_real_date
+             &lt;dbl&gt; &lt;date&gt;              
+ 1           45627 2024-12-01          
+ 2           45627 2024-12-01          
+ 3           45627 2024-12-01          
+ 4           45627 2024-12-01          
+ 5           45628 2024-12-02          
+ 6           45627 2024-12-01          
+ 7           45628 2024-12-02          
+ 8           45627 2024-12-01          
+ 9           45628 2024-12-02          
+10           45627 2024-12-01          
+# ℹ 81,993 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="exercícios" class="level4" data-number="7.2.3.3">
+<h4 data-number="7.2.3.3" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">7.2.3.3</span> Exercícios</h4>
+<p>Em breve!</p>
+</section>
+</section>
+<section id="pacote-lubridate" class="level3" data-number="7.2.4">
+<h3 data-number="7.2.4" class="anchored" data-anchor-id="pacote-lubridate"><span class="header-section-number">7.2.4</span> Pacote <code>lubridate</code></h3>
+<p><img src="images/logo-lubridate.png" class="img-rstudio" align="right" width="120px"></p>
+<p>O pacote <code>lubridate</code> faz parte do pacote <code>{tidyverse}</code> do R, e tem funções que facilitam a manipulação de datas. Ele possui funções específicas para extrair informações de datas, como dia, mês, ano, semana, entre outras.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="funções-de-parse" class="level4" data-number="7.2.4.1">
+<h4 data-number="7.2.4.1" class="anchored" data-anchor-id="funções-de-parse"><span class="header-section-number">7.2.4.1</span> Funções de parse</h4>
+<p>Como citado anteriormente, quando queremos transformar uma data no formato <code>dia/mês/ano</code> para <code>Date</code>, podemos utilizar a função <code>dmy()</code> (que significa “dia-mês-ano”):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>voos_datas <span class="sc">|&gt;</span> </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dt_partida_real) <span class="sc">|&gt;</span> </span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">dt_partida_real_date =</span> <span class="fu">dmy</span>(dt_partida_real)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 82,003 × 2
+   dt_partida_real dt_partida_real_date
+   &lt;chr&gt;           &lt;date&gt;              
+ 1 01/12/2024      2024-12-01          
+ 2 01/12/2024      2024-12-01          
+ 3 01/12/2024      2024-12-01          
+ 4 30/11/2024      2024-11-30          
+ 5 01/12/2024      2024-12-01          
+ 6 01/12/2024      2024-12-01          
+ 7 01/12/2024      2024-12-01          
+ 8 01/12/2024      2024-12-01          
+ 9 01/12/2024      2024-12-01          
+10 01/12/2024      2024-12-01          
+# ℹ 81,993 more rows</code></pre>
+</div>
+</div>
+<p>O <code>lubridate</code> também possui funções para transformar datas que estejam em outros formatos. O importante é lembrar que <code>y</code> representa o ano, <code>m</code> representa o mês e <code>d</code> representa o dia, e assim podemos combinar essas letras para formar o nome da função que precisamos usar para transformar a data. Se quiser saber mais sobre esse grupo de funções, acesse a <a href="https://lubridate.tidyverse.org/reference/ymd.html">documentação oficial</a>.</p>
+</section>
+<section id="extrair-informações-de-datas" class="level4" data-number="7.2.4.2">
+<h4 data-number="7.2.4.2" class="anchored" data-anchor-id="extrair-informações-de-datas"><span class="header-section-number">7.2.4.2</span> Extrair informações de datas</h4>
+<p>O <code>lubridate</code> possui funções para extrair informações de datas. No exemplo abaixo, vamos extrair o dia, mês e ano da coluna <code>dt_referencia</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>voos_datas <span class="sc">|&gt;</span> </span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dt_referencia) <span class="sc">|&gt;</span> </span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">dia =</span> <span class="fu">day</span>(dt_referencia),</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mes =</span> <span class="fu">month</span>(dt_referencia),</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ano =</span> <span class="fu">year</span>(dt_referencia)</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 82,003 × 4
+   dt_referencia   dia   mes   ano
+   &lt;date&gt;        &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 2024-12-01        1    12  2024
+ 2 2024-12-01        1    12  2024
+ 3 2024-12-01        1    12  2024
+ 4 2024-12-01        1    12  2024
+ 5 2024-12-01        1    12  2024
+ 6 2024-12-01        1    12  2024
+ 7 2024-12-01        1    12  2024
+ 8 2024-12-01        1    12  2024
+ 9 2024-12-01        1    12  2024
+10 2024-12-01        1    12  2024
+# ℹ 81,993 more rows</code></pre>
+</div>
+</div>
+<p>Algumas funções tem argumentos que permitem personalizar a saída. Por exemplo, a função <code>month()</code> tem o argumento <code>label</code> que permite retornar o mês por extenso (em vez de numérico), o argumento <code>abbr</code> que permite retornar o mês abreviado, e o argumento <code>locale</code> que permite retornar o mês em outro idioma:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>voos_datas <span class="sc">|&gt;</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dt_referencia) <span class="sc">|&gt;</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mes_curto =</span> <span class="fu">month</span>(dt_referencia, <span class="at">label =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mes =</span> <span class="fu">month</span>(dt_referencia, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mes_pt =</span> <span class="fu">month</span>(</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>      dt_referencia,</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">abbr =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">locale =</span> <span class="st">"pt_BR"</span></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There was 1 warning in `mutate()`.
+ℹ In argument: `mes_pt = month(dt_referencia, label = TRUE, abbr = FALSE,
+  locale = "pt_BR")`.
+Caused by warning in `Sys.setlocale()`:
+! OS reports request to set locale to "pt_BR" cannot be honored</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 82,003 × 4
+   dt_referencia mes_curto mes      mes_pt  
+   &lt;date&gt;        &lt;ord&gt;     &lt;ord&gt;    &lt;ord&gt;   
+ 1 2024-12-01    Dec       December December
+ 2 2024-12-01    Dec       December December
+ 3 2024-12-01    Dec       December December
+ 4 2024-12-01    Dec       December December
+ 5 2024-12-01    Dec       December December
+ 6 2024-12-01    Dec       December December
+ 7 2024-12-01    Dec       December December
+ 8 2024-12-01    Dec       December December
+ 9 2024-12-01    Dec       December December
+10 2024-12-01    Dec       December December
+# ℹ 81,993 more rows</code></pre>
+</div>
+</div>
+<p>A função <code>wday()</code> retorna o dia da semana, e também possui argumentos para personalizar a saída:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>voos_datas <span class="sc">|&gt;</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dt_referencia) <span class="sc">|&gt;</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">dia_semana_numero =</span> <span class="fu">wday</span>(dt_referencia),</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">dia_semana =</span> <span class="fu">wday</span>(dt_referencia, <span class="at">label =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">dia_semana_abbr =</span> <span class="fu">wday</span>(dt_referencia, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">dia_semana_pt =</span> <span class="fu">wday</span>(</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>      dt_referencia,</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">abbr =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">locale =</span> <span class="st">"pt_BR"</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 82,003 × 5
+   dt_referencia dia_semana_numero dia_semana dia_semana_abbr dia_semana_pt
+   &lt;date&gt;                    &lt;dbl&gt; &lt;ord&gt;      &lt;ord&gt;           &lt;ord&gt;        
+ 1 2024-12-01                    1 Sun        Sunday          Sunday       
+ 2 2024-12-01                    1 Sun        Sunday          Sunday       
+ 3 2024-12-01                    1 Sun        Sunday          Sunday       
+ 4 2024-12-01                    1 Sun        Sunday          Sunday       
+ 5 2024-12-01                    1 Sun        Sunday          Sunday       
+ 6 2024-12-01                    1 Sun        Sunday          Sunday       
+ 7 2024-12-01                    1 Sun        Sunday          Sunday       
+ 8 2024-12-01                    1 Sun        Sunday          Sunday       
+ 9 2024-12-01                    1 Sun        Sunday          Sunday       
+10 2024-12-01                    1 Sun        Sunday          Sunday       
+# ℹ 81,993 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="arredondando-datas" class="level4" data-number="7.2.4.3">
+<h4 data-number="7.2.4.3" class="anchored" data-anchor-id="arredondando-datas"><span class="header-section-number">7.2.4.3</span> Arredondando datas</h4>
+<p>O lubridate também possui funções para arredondar datas. Por exemplo, a função <code>floor_date()</code> arredonda a data para o início de um intervalo de tempo (por exemplo, o início do mês):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>voos_datas <span class="sc">|&gt;</span> </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dt_referencia) <span class="sc">|&gt;</span> </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mes_arredondado =</span> <span class="fu">floor_date</span>(dt_referencia, <span class="at">unit =</span> <span class="st">"month"</span>),</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 82,003 × 2
+   dt_referencia mes_arredondado
+   &lt;date&gt;        &lt;date&gt;         
+ 1 2024-12-01    2024-12-01     
+ 2 2024-12-01    2024-12-01     
+ 3 2024-12-01    2024-12-01     
+ 4 2024-12-01    2024-12-01     
+ 5 2024-12-01    2024-12-01     
+ 6 2024-12-01    2024-12-01     
+ 7 2024-12-01    2024-12-01     
+ 8 2024-12-01    2024-12-01     
+ 9 2024-12-01    2024-12-01     
+10 2024-12-01    2024-12-01     
+# ℹ 81,993 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="exercícios-1" class="level4" data-number="7.2.4.4">
+<h4 data-number="7.2.4.4" class="anchored" data-anchor-id="exercícios-1"><span class="header-section-number">7.2.4.4</span> Exercícios</h4>
+<p>Em breve!</p>
+</section>
+</section>
+<section id="datas-em-gráficos" class="level3" data-number="7.2.5">
+<h3 data-number="7.2.5" class="anchored" data-anchor-id="datas-em-gráficos"><span class="header-section-number">7.2.5</span> Datas em gráficos</h3>
+<p>Vamos criar um gráfico com o pacote <code>ggplot2</code> utilizando a base de dados <code>voos</code>. Vamos criar um gráfico de barras com a quantidade de voos por dia de partida, que partiram do aeroporto de Brasília - DF: PRESIDENTE JUSCELINO KUBITSCHEK.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>voos_brasilia <span class="ot">&lt;-</span> voos <span class="sc">|&gt;</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(nm_aerodromo_origem <span class="sc">==</span> <span class="st">"PRESIDENTE JUSCELINO KUBITSCHEK"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Como essa coluna está originalmente salva como texto, o <code>ggplot2</code> entenderá que cada data é uma categoria (e não uma data), e o gráfico não será exibido corretamente:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>quantidade_voos_por_partida <span class="ot">&lt;-</span> voos_brasilia <span class="sc">|&gt;</span> </span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(dt_partida_real) </span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>quantidade_voos_por_partida <span class="sc">|&gt;</span> </span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> dt_partida_real, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Data"</span>,</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Quantidade de voos"</span>,</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Quantidade de voos por dia de partida"</span></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="texto-data_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Para que o <code>ggplot2</code> entenda que a variável é uma data, precisamos transformá-la para o tipo <code>Date</code> (como visto anteriormente):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>quantidade_voos_partida_data <span class="ot">&lt;-</span> voos_brasilia <span class="sc">|&gt;</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">dt_partida_real_date =</span> <span class="fu">dmy</span>(dt_partida_real)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(dt_partida_real_date)</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>quantidade_voos_partida_data</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 31 × 2
+   dt_partida_real_date     n
+   &lt;date&gt;               &lt;int&gt;
+ 1 2024-12-01             142
+ 2 2024-12-02             158
+ 3 2024-12-03             163
+ 4 2024-12-04             160
+ 5 2024-12-05             164
+ 6 2024-12-06             157
+ 7 2024-12-07             126
+ 8 2024-12-08             146
+ 9 2024-12-09             160
+10 2024-12-10             159
+# ℹ 21 more rows</code></pre>
+</div>
+</div>
+<p>Agora vamos criar o gráfico com a data transformada. Observe que agora o <code>ggplot2</code> entende que a variável é uma data, e o gráfico é exibido corretamente:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a> grafico_voos <span class="ot">&lt;-</span> quantidade_voos_partida_data <span class="sc">|&gt;</span> </span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> dt_partida_real_date, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Data de partida"</span>,</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Quantidade de voos"</span>,</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Quantidade de voos por dia de partida"</span>,</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Voos que partiram do aeroporto de Brasília, em dezembro de 2024"</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_trans</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>grafico_voos</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="texto-data_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>O pacote <code>ggplot2</code> possui funções específicas para trabalhar com datas em gráficos. Por exemplo, a função <code>scale_x_date()</code> permite personalizar o eixo x de um gráfico com datas. Essa função possui argumentos para personalizar o formato das datas (<code>date_labels</code>), e o intervalo entre as datas (<code>date_breaks</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>grafico_voos <span class="sc">+</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">"%d"</span>, <span class="at">date_breaks =</span> <span class="st">"1 day"</span>) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="texto-data_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="exercícios-2" class="level4" data-number="7.2.5.1">
+<h4 data-number="7.2.5.1" class="anchored" data-anchor-id="exercícios-2"><span class="header-section-number">7.2.5.1</span> Exercícios</h4>
+<p>Em breve!</p>
+</section>
+</section>
+</section>
+<section id="manipulação-de-textos" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="manipulação-de-textos"><span class="header-section-number">7.3</span> Manipulação de textos</h2>
+<p>Em breve!</p>
+</section>
+<section id="material-complementar" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="material-complementar"><span class="header-section-number">7.4</span> Material complementar</h2>
 <ul>
 <li>Capítulos do livro <a href="https://pt.r4ds.hadley.nz/">“R para Ciência de Dados” (2 ed)</a> por Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund:
 <ul>
@@ -218,6 +950,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
