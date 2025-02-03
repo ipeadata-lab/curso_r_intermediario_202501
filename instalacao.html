@@ -217,7 +217,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#instalação-de-pacotes-necessários" id="toc-instalação-de-pacotes-necessários" class="nav-link active" data-scroll-target="#instalação-de-pacotes-necessários"><span class="header-section-number">3.1</span> Instalação de pacotes necessários</a></li>
   <li><a href="#instalação-do-tinytex" id="toc-instalação-do-tinytex" class="nav-link" data-scroll-target="#instalação-do-tinytex"><span class="header-section-number">3.2</span> Instalação do TinyTeX</a></li>
-  <li><a href="#instalar-git" id="toc-instalar-git" class="nav-link" data-scroll-target="#instalar-git"><span class="header-section-number">3.3</span> Instalação do Git</a></li>
+  <li><a href="#instalar-git" id="toc-instalar-git" class="nav-link" data-scroll-target="#instalar-git"><span class="header-section-number">3.3</span> Instalação do Git</a>
+  <ul>
+  <li><a href="#o-rstudio-encontrou-a-instalação-do-git" id="toc-o-rstudio-encontrou-a-instalação-do-git" class="nav-link" data-scroll-target="#o-rstudio-encontrou-a-instalação-do-git"><span class="header-section-number">3.3.1</span> O RStudio encontrou a instalação do Git?</a></li>
+  </ul></li>
   <li><a href="#conta-github" id="toc-conta-github" class="nav-link" data-scroll-target="#conta-github"><span class="header-section-number">3.4</span> Conta no GitHub</a></li>
   <li><a href="#instalar-o-github-desktop" id="toc-instalar-o-github-desktop" class="nav-link" data-scroll-target="#instalar-o-github-desktop"><span class="header-section-number">3.5</span> Instalar o GitHub Desktop</a></li>
   </ul>
@@ -296,6 +299,8 @@ Importante
 <p><a href="https://git-scm.com/downloads"><img src="images/install-git.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a></p>
 </figure>
 </div>
+<section id="o-rstudio-encontrou-a-instalação-do-git" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="o-rstudio-encontrou-a-instalação-do-git"><span class="header-section-number">3.3.1</span> O RStudio encontrou a instalação do Git?</h3>
 <p>Para verificar se o Git foi instalado corretamente, execute o seguinte comando no painel “Terminal” do RStudio:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -303,6 +308,36 @@ Importante
 <pre><code>git version 2.48.1</code></pre>
 </div>
 </div>
+<p>Em alguns casos, o RStudio não encontra a instalação do Git automaticamente, e retorna uma mensagem de erro como a seguinte:</p>
+<pre><code>&gt; 'git' não é reconhecido como um comando interno ou externo,
+um programa operável ou um arquivo em lotes.</code></pre>
+<p>Neste caso, é necessário informar ao RStudio onde o Git foi instalado. Para isso, abra o menu de configurações do RStudio (<code>Tools</code> -&gt; <code>Global Options</code>), selecione a aba <code>Git/SVN</code> e informe o caminho para o executável do Git em <code>Git executable</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Atenção! O caminho para o executável depende do sistema operacional, e de onde o Git foi instalado. Você precisará procurar isso no seu computador!</p>
+<p>Abaixo estão alguns exemplos de caminhos para o executável do Git, quando instalado nos locais padrão:</p>
+<ul>
+<li><p>Windows: <code>C:/Program Files/Git/bin/git.exe</code></p></li>
+<li><p>macOS e Linux: <code>/usr/bin/git</code></p></li>
+<li><p>Para as pessoas utilizando o servidor do IPEA (substitua <code>r000000</code> pelo seu usuário): <code>C:/Users/r000000/AppData/Local/Programs/Git/bin/git.exe</code></p></li>
+</ul>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/rstudio-git-config.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Configurações do RStudio para o Git</figcaption>
+</figure>
+</div>
+</section>
 </section>
 <section id="conta-github" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="conta-github"><span class="header-section-number">3.4</span> Conta no GitHub</h2>
