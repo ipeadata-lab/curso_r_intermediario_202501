@@ -207,7 +207,7 @@ voos_datas |>
 
 No argumento `format`, precisamos apresentar como a data está formatada. Ou seja: em `"%d/%m/%Y"`, `%d` representa o dia, `%m` representa o mês e `%Y` representa o ano.
 
-A função `readr::parse_date()` tem o mesmo propósito. A [documentação dessa função é muito útil para entender como formatar datas](https://readr.tidyverse.org/reference/parse_datetime.html#format-specification).
+A função `readr::parse_date()` tem o mesmo propósito, porém ela apresenta alguns argumentos extras (como o `locale`). A [documentação dessa função é muito útil para entender como formatar datas](https://readr.tidyverse.org/reference/parse_datetime.html#format-specification).
 
 ```{r}
 voos_datas |> 
@@ -217,7 +217,19 @@ voos_datas |>
   )
 ```
 
-Existe uma função do pacote `lubridate` que facilita a conversão de datas: a função `dmy()` (que significa "dia-mês-ano"), mas vamos apresentá-la mais adiante.
+Exemplo de um uso onde o `locale` é necessário: quando a data está escrita por extenso, em um idioma diferente do inglês:
+
+```{r}
+# Com as.Date(), fev não é reconhecido, pois em inglês é feb
+as.Date("03/fev/2025", format = "%d/%b/%Y")
+
+# Com o parse_date(), podemos informar o locale:
+readr::parse_date("03/fev/2025",
+                  format = "%d/%b/%Y",
+                  locale = locale("pt"))
+```
+
+Existe uma função do pacote `lubridate` que facilita a conversão de datas: a função `dmy()` (que significa "dia-mês-ano") e similares, mas vamos apresentá-las mais adiante.
 
 #### Transformando datas do Excel para `Date`
 
@@ -256,7 +268,28 @@ voos_datas |>
 ```
 #### Exercícios
 
-Em breve!
+
+1. Observe os valores abaixo, e identifique em qual formato de data estão. Como você transformaria esses valores para o tipo `Date`?
+    a) `"2025-02-03"`
+    b) `"03/02/2025"`
+    c) `"03 de fevereiro de 2025"`
+    d) `20122`
+    e) `45691`
+
+```{r}
+#| eval: false
+#| echo: false
+# a)
+as.Date("2025-02-03")
+# b)
+as.Date("03/02/2025", format = "%d/%m/%Y")
+# c)
+readr::parse_date("03 de fevereiro de 2025", format = "%d de %B de %Y", locale = locale("pt"))
+# d)
+as.Date(20122)
+# e) 
+janitor::excel_numeric_to_date(45691)
+```
 
 
 
@@ -354,7 +387,22 @@ voos_datas |>
 
 #### Exercícios
 
-Em breve!
+1. Utilizando a base de dados `voos`, tente gerar a tabela abaixo utilizando a coluna `dt_partida_real`:
+
+```{r}
+#| echo: false
+
+voos |> 
+  select(dt_partida_real) |> 
+  mutate(
+    dt_partida_real = dmy(dt_partida_real),
+    dia_partida = day(dt_partida_real),
+    mes_partida = month(dt_partida_real, label = TRUE, locale = "pt_BR"),
+    mes_partida_date = floor_date(dt_partida_real, unit = "month"),
+    dia_semana_partida = wday(dt_partida_real, label = TRUE, locale = "pt_BR")
+  )
+```
+
 
 
 
@@ -422,8 +470,32 @@ grafico_voos +
 ```
 #### Exercícios
 
-Em breve!
+1. Utilizando o gráfico criado anteriormente, personalize o eixo x para exibir o `dia/mês` de cada data (como `12/dez`), e o intervalo entre as datas seja de 7 dias.
 
+```{r}
+#| eval: false
+#| echo: false
+grafico_voos +
+  scale_x_date(date_labels = "%d/%b", date_breaks = "7 day") 
+```
+
+2. Os nomes dos meses estão em inglês ou em português? Caso esteja em inglês, como você faria para exibir os nomes dos meses em português?
+
+```{r}
+#| eval: false
+#| echo: false
+Sys.setlocale("LC_ALL", "pt_br.utf-8") 
+grafico_voos +
+  scale_x_date(date_labels = "%d/%b", date_breaks = "7 day") 
+```
+::: callout-tip
+Dica: a função `Sys.setlocale()` permite alterar o locale utilizado pelo R.
+
+```{r}
+#| eval: false
+Sys.setlocale("LC_ALL", "pt_br.utf-8") 
+```
+:::
 
 
 ## Manipulação de textos
