@@ -380,7 +380,7 @@ $ dt_sistema            &lt;dttm&gt; 2025-01-04 01:00:02, 2025-01-10 01:00:09, 2
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.Date</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-02-03"</code></pre>
+<pre><code>[1] "2025-02-09"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">Sys.Date</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -388,14 +388,16 @@ $ dt_sistema            &lt;dttm&gt; 2025-01-04 01:00:02, 2025-01-10 01:00:09, 2
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Curiosidade:
+Curiosidade: o que é armazenado em uma variável do tipo <code>Date</code>?
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>O tipo <code>Date</code> armazena o <strong>quantidade de dias</strong> desde 1 de janeiro de 1970. Podemos verificar isso utilizando a função <code>as.numeric()</code> para obter o número armazenado em uma variável do tipo <code>Date</code>. Por exemplo, a data 1 de janeiro de 1970:</p>
 <div class="cell">
@@ -416,6 +418,7 @@ Curiosidade:
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(nascimento_julia_lopes)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -39180</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -442,7 +445,7 @@ Curiosidade:
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-02-03 15:04:04 UTC"</code></pre>
+<pre><code>[1] "2025-02-09 19:24:25 UTC"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">Sys.time</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -560,6 +563,19 @@ Curiosidade:
 </div>
 </div>
 <p>No argumento <code>format</code>, precisamos apresentar como a data está formatada. Ou seja: em <code>"%d/%m/%Y"</code>, <code>%d</code> representa o dia, <code>%m</code> representa o mês e <code>%Y</code> representa o ano.</p>
+<p>Existe uma função do pacote <code>lubridate</code> que facilita a conversão de datas: a função <code>dmy()</code> (que significa “dia-mês-ano”) e similares, mas vamos apresentá-las mais adiante.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Extra: função <code>readr::parse_date()</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>A função <code>readr::parse_date()</code> tem o mesmo propósito, porém ela apresenta alguns argumentos extras (como o <code>locale</code>). A <a href="https://readr.tidyverse.org/reference/parse_datetime.html#format-specification">documentação dessa função é muito útil para entender como formatar datas</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>voos_datas <span class="sc">|&gt;</span> </span>
@@ -599,7 +615,9 @@ Curiosidade:
 <pre><code>[1] "2025-02-03"</code></pre>
 </div>
 </div>
-<p>Existe uma função do pacote <code>lubridate</code> que facilita a conversão de datas: a função <code>dmy()</code> (que significa “dia-mês-ano”) e similares, mas vamos apresentá-las mais adiante.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="transformando-datas-do-excel-para-date" class="level4" data-number="7.2.3.2">
 <h4 data-number="7.2.3.2" class="anchored" data-anchor-id="transformando-datas-do-excel-para-date"><span class="header-section-number">7.2.3.2</span> Transformando datas do Excel para <code>Date</code></h4>
@@ -685,7 +703,6 @@ Curiosidade:
 <ol type="a">
 <li><code>"2025-02-03"</code></li>
 <li><code>"03/02/2025"</code></li>
-<li><code>"03 de fevereiro de 2025"</code></li>
 <li><code>20122</code></li>
 <li><code>45691</code></li>
 </ol></li>
@@ -795,6 +812,18 @@ Caused by warning in `Sys.setlocale()`:
 # ℹ 81,993 more rows</code></pre>
 </div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Extra: extrair o dia da semana de datas
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>A função <code>wday()</code> retorna o dia da semana, e também possui argumentos para personalizar a saída:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>voos_datas <span class="sc">|&gt;</span></span>
@@ -828,6 +857,9 @@ Caused by warning in `Sys.setlocale()`:
  9 2024-12-01                    1 Sun        Sunday          Sunday       
 10 2024-12-01                    1 Sun        Sunday          Sunday       
 # ℹ 81,993 more rows</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
