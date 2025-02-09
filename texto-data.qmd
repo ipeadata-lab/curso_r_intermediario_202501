@@ -83,9 +83,8 @@ Sys.Date()
 class(Sys.Date())
 ```
 
-
-::: callout-note
-## Curiosidade:
+::: {.callout-note collapse="true"}
+## Curiosidade: o que é armazenado em uma variável do tipo `Date`?
 
 O tipo `Date` armazena o **quantidade de dias** desde 1 de janeiro de 1970. Podemos verificar isso utilizando a função `as.numeric()` para obter o número armazenado em uma variável do tipo `Date`. Por exemplo, a data 1 de janeiro de 1970:
 
@@ -207,6 +206,11 @@ voos_datas |>
 
 No argumento `format`, precisamos apresentar como a data está formatada. Ou seja: em `"%d/%m/%Y"`, `%d` representa o dia, `%m` representa o mês e `%Y` representa o ano.
 
+Existe uma função do pacote `lubridate` que facilita a conversão de datas: a função `dmy()` (que significa "dia-mês-ano") e similares, mas vamos apresentá-las mais adiante.
+
+::: {.callout-note collapse="true"}
+## Extra: função `readr::parse_date()`
+
 A função `readr::parse_date()` tem o mesmo propósito, porém ela apresenta alguns argumentos extras (como o `locale`). A [documentação dessa função é muito útil para entender como formatar datas](https://readr.tidyverse.org/reference/parse_datetime.html#format-specification).
 
 ```{r}
@@ -229,7 +233,8 @@ readr::parse_date("03/fev/2025",
                   locale = locale("pt"))
 ```
 
-Existe uma função do pacote `lubridate` que facilita a conversão de datas: a função `dmy()` (que significa "dia-mês-ano") e similares, mas vamos apresentá-las mais adiante.
+:::
+
 
 #### Transformando datas do Excel para `Date`
 
@@ -272,9 +277,8 @@ voos_datas |>
 1. Observe os valores abaixo, e identifique em qual formato de data estão. Como você transformaria esses valores para o tipo `Date`?
     a) `"2025-02-03"`
     b) `"03/02/2025"`
-    c) `"03 de fevereiro de 2025"`
-    d) `20122`
-    e) `45691`
+    c) `20122`
+    d) `45691`
 
 ```{r}
 #| eval: false
@@ -284,11 +288,11 @@ as.Date("2025-02-03")
 # b)
 as.Date("03/02/2025", format = "%d/%m/%Y")
 # c)
-readr::parse_date("03 de fevereiro de 2025", format = "%d de %B de %Y", locale = locale("pt"))
-# d)
 as.Date(20122)
-# e) 
+# d) 
 janitor::excel_numeric_to_date(45691)
+# c)
+readr::parse_date("03 de fevereiro de 2025", format = "%d de %B de %Y", locale = locale("pt"))
 ```
 
 
@@ -351,6 +355,12 @@ voos_datas |>
     )
   )
 ```
+
+::: {.callout-note collapse="true"}
+
+## Extra: extrair o dia da semana de datas
+
+
 A função `wday()` retorna o dia da semana, e também possui argumentos para personalizar a saída:
 
 ```{r}
@@ -371,6 +381,7 @@ voos_datas |>
     )
   )
 ```
+:::
 
 #### Arredondando datas
 
