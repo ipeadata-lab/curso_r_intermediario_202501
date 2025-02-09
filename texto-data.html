@@ -251,8 +251,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#exercícios-3" id="toc-exercícios-3" class="nav-link" data-scroll-target="#exercícios-3"><span class="header-section-number">7.3.2.1</span> Exercícios</a></li>
   </ul></li>
-  <li><a href="#manipulação-de-strings-com-stringr" id="toc-manipulação-de-strings-com-stringr" class="nav-link" data-scroll-target="#manipulação-de-strings-com-stringr"><span class="header-section-number">7.3.3</span> Manipulação de strings com <code>stringr</code></a></li>
-  <li><a href="#extra" id="toc-extra" class="nav-link" data-scroll-target="#extra"><span class="header-section-number">7.3.4</span> Extra</a></li>
+  <li><a href="#manipulação-de-strings-com-stringr" id="toc-manipulação-de-strings-com-stringr" class="nav-link" data-scroll-target="#manipulação-de-strings-com-stringr"><span class="header-section-number">7.3.3</span> Manipulação de strings com <code>stringr</code></a>
+  <ul>
+  <li><a href="#filtros-com-str_detect" id="toc-filtros-com-str_detect" class="nav-link" data-scroll-target="#filtros-com-str_detect"><span class="header-section-number">7.3.3.1</span> Filtros com <code>str_detect()</code></a></li>
+  <li><a href="#mutate-e-stringr" id="toc-mutate-e-stringr" class="nav-link" data-scroll-target="#mutate-e-stringr"><span class="header-section-number">7.3.3.2</span> <code>mutate()</code> e stringr</a></li>
+  <li><a href="#exercícios-4" id="toc-exercícios-4" class="nav-link" data-scroll-target="#exercícios-4"><span class="header-section-number">7.3.3.3</span> Exercícios</a></li>
+  </ul></li>
+  <li><a href="#extra" id="toc-extra" class="nav-link" data-scroll-target="#extra"><span class="header-section-number">7.3.4</span> Extra</a>
+  <ul>
+  <li><a href="#joins" id="toc-joins" class="nav-link" data-scroll-target="#joins"><span class="header-section-number">7.3.4.1</span> Joins</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#material-complementar" id="toc-material-complementar" class="nav-link" data-scroll-target="#material-complementar"><span class="header-section-number">7.4</span> Material complementar</a></li>
   </ul>
@@ -454,7 +462,7 @@ Curiosidade: o que é armazenado em uma variável do tipo <code>Date</code>?
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-02-09 21:11:06 UTC"</code></pre>
+<pre><code>[1] "2025-02-09 23:50:36 UTC"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">Sys.time</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1210,11 +1218,165 @@ Exemplo 3: <code>"\\d{2}/\\d{2}/\\d{4}"</code>
 </section>
 <section id="manipulação-de-strings-com-stringr" class="level3" data-number="7.3.3">
 <h3 data-number="7.3.3" class="anchored" data-anchor-id="manipulação-de-strings-com-stringr"><span class="header-section-number">7.3.3</span> Manipulação de strings com <code>stringr</code></h3>
-<p>Em breve!</p>
+<p>Nos exemplos anteriores, utilizamos funções básicas do <code>stringr</code> para detectar e extrair padrões em strings.</p>
+<p>Podemos também utilizar essas funções juntamente com o <code>dplyr</code> para realizar transformações em bases de dados.</p>
+<section id="filtros-com-str_detect" class="level4" data-number="7.3.3.1">
+<h4 data-number="7.3.3.1" class="anchored" data-anchor-id="filtros-com-str_detect"><span class="header-section-number">7.3.3.1</span> Filtros com <code>str_detect()</code></h4>
+<p>No curso introdutório, aprendemos a utilizar a função <code>filter()</code> do <code>dplyr</code> para filtrar linhas de uma base de dados. Porém o <code>filter()</code> busca por valores exatos, e não por padrões em strings.</p>
+<p>Se pesquisarmos por voos que saíram de Congonhas, podemos usar o <code>filter()</code> para encontrar exatamente “CONGONHAS”:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>voos <span class="sc">|&gt;</span> </span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(nm_aerodromo_origem <span class="sc">==</span> <span class="st">"CONGONHAS"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8,112 × 26
+   id_basica id_empresa nm_empresa               dt_referencia ds_di ds_grupo_di
+       &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;                    &lt;date&gt;        &lt;chr&gt; &lt;chr&gt;      
+ 1  33973670    1000854 GOL LINHAS AÉREAS S.A. … 2024-12-01    REGU… REGULAR    
+ 2  33973818    1000854 GOL LINHAS AÉREAS S.A. … 2024-12-01    REGU… REGULAR    
+ 3  33974325    1000854 GOL LINHAS AÉREAS S.A. … 2024-12-01    REGU… REGULAR    
+ 4  33974449    1000854 GOL LINHAS AÉREAS S.A. … 2024-12-01    REGU… REGULAR    
+ 5  33974542    1000854 GOL LINHAS AÉREAS S.A. … 2024-12-01    REGU… REGULAR    
+ 6  33974581    1000854 GOL LINHAS AÉREAS S.A. … 2024-12-01    REGU… REGULAR    
+ 7  33974592    1000854 GOL LINHAS AÉREAS S.A. … 2024-12-01    REGU… REGULAR    
+ 8  33974692    1000854 GOL LINHAS AÉREAS S.A. … 2024-12-01    REGU… REGULAR    
+ 9  33975020    1000854 GOL LINHAS AÉREAS S.A. … 2024-12-01    REGU… REGULAR    
+10  33975462    1000854 GOL LINHAS AÉREAS S.A. … 2024-12-01    REGU… REGULAR    
+# ℹ 8,102 more rows
+# ℹ 20 more variables: ds_natureza_etapa &lt;chr&gt;, hr_partida_real &lt;time&gt;,
+#   dt_partida_real &lt;chr&gt;, id_aerodromo_origem &lt;dbl&gt;,
+#   nm_aerodromo_origem &lt;chr&gt;, nm_municipio_origem &lt;chr&gt;, sg_uf_origem &lt;chr&gt;,
+#   nm_regiao_origem &lt;chr&gt;, nm_pais_origem &lt;chr&gt;, nm_continente_origem &lt;chr&gt;,
+#   hr_chegada_real &lt;time&gt;, dt_chegada_real &lt;dbl&gt;, id_aerodromo_destino &lt;dbl&gt;,
+#   nm_aerodromo_destino &lt;chr&gt;, nm_municipio_destino &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+<p>Porém caso queiramos encontrar voos que saíram de Guarulhos, não basta usar o <code>filter()</code> com <code>==</code>, pois o nome do aeroporto está escrito de forma diferente (“GUARULHOS - GOVERNADOR ANDRÉ FRANCO MONTORO”):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>voos <span class="sc">|&gt;</span> </span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(nm_aerodromo_origem <span class="sc">==</span> <span class="st">"GUARULHOS"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 26
+# ℹ 26 variables: id_basica &lt;dbl&gt;, id_empresa &lt;dbl&gt;, nm_empresa &lt;chr&gt;,
+#   dt_referencia &lt;date&gt;, ds_di &lt;chr&gt;, ds_grupo_di &lt;chr&gt;,
+#   ds_natureza_etapa &lt;chr&gt;, hr_partida_real &lt;time&gt;, dt_partida_real &lt;chr&gt;,
+#   id_aerodromo_origem &lt;dbl&gt;, nm_aerodromo_origem &lt;chr&gt;,
+#   nm_municipio_origem &lt;chr&gt;, sg_uf_origem &lt;chr&gt;, nm_regiao_origem &lt;chr&gt;,
+#   nm_pais_origem &lt;chr&gt;, nm_continente_origem &lt;chr&gt;, hr_chegada_real &lt;time&gt;,
+#   dt_chegada_real &lt;dbl&gt;, id_aerodromo_destino &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+<p>A função <code>str_detect()</code> retorna um vetor lógico (<code>TRUE</code> ou <code>FALSE</code>) indicando se um padrão está presente em uma string. Isso é muito útil para usar com a função <code>filter()</code> (do <code>dplyr</code>), para filtrar strings que contêm um padrão específico. Neste caso, podemos usar a função <code>str_detect()</code> para filtrar strings que contêm um padrão específico:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>voos <span class="sc">|&gt;</span> </span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(nm_aerodromo_origem, <span class="st">"GUARULHOS"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11,726 × 26
+   id_basica id_empresa nm_empresa               dt_referencia ds_di ds_grupo_di
+       &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;                    &lt;date&gt;        &lt;chr&gt; &lt;chr&gt;      
+ 1  33972533    1001070 AEROVÍAS DE MÉXICO S.A … 2024-12-01    REGU… REGULAR    
+ 2  33819746    1007570 ARAJET S.A.              2024-12-01    REGU… REGULAR    
+ 3  33914269    1000896 DELTA AIR LINES INC.     2024-12-01    REGU… REGULAR    
+ 4  33914319    1000896 DELTA AIR LINES INC.     2024-12-01    REGU… REGULAR    
+ 5  33914324    1000896 DELTA AIR LINES INC.     2024-12-01    REGU… REGULAR    
+ 6  33820286    1007303 FB LÍNEAS AÉREAS S.A (F… 2024-12-01    REGU… REGULAR    
+ 7  33820290    1007303 FB LÍNEAS AÉREAS S.A (F… 2024-12-01    REGU… REGULAR    
+ 8  33972705    1001220 BOA BOLIVIANA DE AVIACI… 2024-12-01    REGU… REGULAR    
+ 9  33972718    1001220 BOA BOLIVIANA DE AVIACI… 2024-12-01    REGU… REGULAR    
+10  33972965    1000854 GOL LINHAS AÉREAS S.A. … 2024-12-01    REGU… REGULAR    
+# ℹ 11,716 more rows
+# ℹ 20 more variables: ds_natureza_etapa &lt;chr&gt;, hr_partida_real &lt;time&gt;,
+#   dt_partida_real &lt;chr&gt;, id_aerodromo_origem &lt;dbl&gt;,
+#   nm_aerodromo_origem &lt;chr&gt;, nm_municipio_origem &lt;chr&gt;, sg_uf_origem &lt;chr&gt;,
+#   nm_regiao_origem &lt;chr&gt;, nm_pais_origem &lt;chr&gt;, nm_continente_origem &lt;chr&gt;,
+#   hr_chegada_real &lt;time&gt;, dt_chegada_real &lt;dbl&gt;, id_aerodromo_destino &lt;dbl&gt;,
+#   nm_aerodromo_destino &lt;chr&gt;, nm_municipio_destino &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+<p>Imagine que queremos descobrir quais são os destinos possíveis a partir dos aeroportos de Guarulhos e Congonhas (localizados na Região Metropolitana de São Paulo). Podemos utilizar a função <code>str_detect()</code> + <code>filter()</code> para filtrar estas origens. Observe que utilizamos o operador <code>|</code> para indicar que queremos encontrar voos que saíram de Guarulhos <strong>ou</strong> Congonhas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>voos <span class="sc">|&gt;</span> </span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(nm_aerodromo_origem, <span class="st">"GUARULHOS|CONGONHAS"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(nm_aerodromo_origem, nm_municipio_destino, nm_pais_destino, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 235 × 4
+   nm_aerodromo_origem                nm_municipio_destino nm_pais_destino     n
+   &lt;chr&gt;                              &lt;chr&gt;                &lt;chr&gt;           &lt;int&gt;
+ 1 CONGONHAS                          RIO DE JANEIRO       BRASIL           1757
+ 2 CONGONHAS                          BRASÍLIA             BRASIL            700
+ 3 CONGONHAS                          CONFINS              BRASIL            654
+ 4 CONGONHAS                          PORTO ALEGRE         BRASIL            583
+ 5 GUARULHOS - GOVERNADOR ANDRÉ FRAN… RECIFE               BRASIL            563
+ 6 CONGONHAS                          SÃO JOSÉ DOS PINHAIS BRASIL            557
+ 7 GUARULHOS - GOVERNADOR ANDRÉ FRAN… RIO DE JANEIRO       BRASIL            534
+ 8 CONGONHAS                          FLORIANÓPOLIS        BRASIL            481
+ 9 CONGONHAS                          SALVADOR             BRASIL            476
+10 GUARULHOS - GOVERNADOR ANDRÉ FRAN… CONFINS              BRASIL            425
+# ℹ 225 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="mutate-e-stringr" class="level4" data-number="7.3.3.2">
+<h4 data-number="7.3.3.2" class="anchored" data-anchor-id="mutate-e-stringr"><span class="header-section-number">7.3.3.2</span> <code>mutate()</code> e stringr</h4>
+<p>A função <code>mutate()</code> do <code>dplyr</code> é muito útil para criar novas variáveis em uma base de dados. Podemos utilizar o <code>mutate()</code> juntamente com o <code>stringr</code> para realizar vários tipos de transformações em strings. Existem muitas funções do <code>stringr</code> que podem ser utilizadas com o <code>mutate()</code>, como:</p>
+<ul>
+<li><p><a href="https://stringr.tidyverse.org/reference/str_extract.html"><code>str_extract()</code> e <code>str_extract_all()</code></a>: extrai o padrão encontrado em uma string.</p></li>
+<li><p><a href="https://stringr.tidyverse.org/reference/str_replace.html"><code>str_replace()</code> e <code>str_replace_all()</code></a>: substitui um padrão por outro.</p></li>
+<li><p><a href="https://stringr.tidyverse.org/reference/str_remove.html"><code>str_remove()</code> e <code>str_remove_all()</code></a>: remove um padrão de uma string.</p></li>
+<li><p><a href="https://stringr.tidyverse.org/reference/str_trim.html"><code>str_squish()</code></a>: remove espaços em branco extras de uma string.</p></li>
+<li><p><a href="https://stringr.tidyverse.org/reference/case.html"><code>str_to_lower()</code>, <code>str_to_upper()</code>, <code>str_to_sentence()</code>, <code>str_to_title()</code></a>: converte uma string para minúsculas ou maiúsculas.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>voos <span class="sc">|&gt;</span> </span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">nm_aerodromo_origem =</span> <span class="fu">str_squish</span>(nm_aerodromo_origem),</span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nm_aerodromo_origem =</span> <span class="fu">str_to_title</span>(nm_aerodromo_origem),</span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">nm_aerodromo_origem =</span> <span class="fu">str_replace_all</span>(nm_aerodromo_origem, <span class="st">" Do "</span>, <span class="st">" do "</span>),</span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">nm_aerodromo_origem =</span> <span class="fu">str_replace_all</span>(nm_aerodromo_origem, <span class="st">" De "</span>, <span class="st">" de "</span>),</span>
+<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">nm_aerodromo_origem =</span> <span class="fu">str_replace_all</span>(nm_aerodromo_origem, <span class="st">" Da "</span>, <span class="st">" da "</span>),</span>
+<span id="cb83-8"><a href="#cb83-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb83-9"><a href="#cb83-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(nm_aerodromo_origem, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 382 × 2
+   nm_aerodromo_origem                                                         n
+   &lt;chr&gt;                                                                   &lt;int&gt;
+ 1 Guarulhos - Governador André Franco Montoro                             11706
+ 2 Congonhas                                                                8112
+ 3 Viracopos                                                                5210
+ 4 Tancredo Neves                                                           4788
+ 5 Aeroporto Internacional do Rio de Janeiro (Galeão) - Antonio Carlos Jo…  4683
+ 6 Presidente Juscelino Kubitschek                                          4531
+ 7 Guararapes - Gilberto Freyre                                             3506
+ 8 Deputado Luís Eduardo Magalhães                                          2430
+ 9 Santos Dumont                                                            2395
+10 Afonso Pena                                                              2121
+# ℹ 372 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="exercícios-4" class="level4" data-number="7.3.3.3">
+<h4 data-number="7.3.3.3" class="anchored" data-anchor-id="exercícios-4"><span class="header-section-number">7.3.3.3</span> Exercícios</h4>
+<ol type="1">
+<li>Imagine que queremos criar uma tabela com as principais empresas aéreas que realizaram voos em dezembro de 2024, saindo do aeroporto de Brasília. Para isso, precisamos filtrar os vôos que partiram de Brasília, e contar quantos voos cada empresa realizou!</li>
+</ol>
+<ol type="a">
+<li>Filtre os voos que partiram de Brasília, e conte quantos voos cada empresa realizou.</li>
+</ol>
+<ol start="2" type="a">
+<li><p>O que você achou do resultado? Você acha que ele está correto? Por que?</p></li>
+<li><p>Como você faria para apresentar uma tabela com as três principais empresas aéreas que realizaram voos em Brasília?</p></li>
+</ol>
+</section>
 </section>
 <section id="extra" class="level3" data-number="7.3.4">
 <h3 data-number="7.3.4" class="anchored" data-anchor-id="extra"><span class="header-section-number">7.3.4</span> Extra</h3>
-<p>Em breve! <!-- Pareamento (probabilístico e fonético)  - pensar se vamos discutir --> <!-- left join window **/ intervalo**; fuzzy join** --></p>
+<section id="joins" class="level4" data-number="7.3.4.1">
+<h4 data-number="7.3.4.1" class="anchored" data-anchor-id="joins"><span class="header-section-number">7.3.4.1</span> Joins</h4>
+<p>Os joins são operações que combinam duas ou mais tabelas em uma única tabela. No <a href="https://ipeadata-lab.github.io/curso_r_intro_202409/05_transformacao.html#unindo-duas-bases-de-dados-left_join">curso Introdução à análise de dados no R</a>, conhecemos algumas funções de join do pacote <code>dplyr</code>.</p>
+<p>Para fazer joins, precisamos ter uma variável em comum entre as tabelas (chamada de chave). Porém, em alguns casos as chaves não são exatamente iguais, e precisamos utilizar funções do pacote <code>{stringr}</code> para transformar as colunas, de forma que os valores fiquem correspondentes; ou comparar strings de forma mais flexível.</p>
+<p>O pacote <a href="https://github.com/dgrtwo/fuzzyjoin"><code>{fuzzyjoin}</code></a> permite fazer joins entre tabelas considerando similaridade entre textos, utilizando técnicas de <em>fuzzy join</em>, que permite unir tabelas com base em similaridade parcial entre as chaves, em vez de exigir correspondência exata. Isso é útil quando trabalhamos com bases de dados que podem ter inconsistências, como erros de digitação em nomes de pessoas ou pequenas variações em endereços.</p>
+<!-- Pareamento (probabilístico e fonético)  - pensar se vamos discutir -->
+<!-- left join window **/ intervalo**; fuzzy join** -->
+</section>
 </section>
 </section>
 <section id="material-complementar" class="level2" data-number="7.4">
