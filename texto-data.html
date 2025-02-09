@@ -454,7 +454,7 @@ Curiosidade: o que é armazenado em uma variável do tipo <code>Date</code>?
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-02-09 20:36:55 UTC"</code></pre>
+<pre><code>[1] "2025-02-09 21:11:06 UTC"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">Sys.time</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1181,7 +1181,31 @@ Exemplo 3: <code>"\\d{2}/\\d{2}/\\d{4}"</code>
 <pre><code>character(0)</code></pre>
 </div>
 </div>
-<p>Em breve!</p>
+<ol start="2" type="1">
+<li>Considerando o vetor <code>palavras_pro</code>:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>palavras_pro <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"processo"</span>, <span class="st">"projeto"</span>, <span class="st">"produto"</span>,</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"improviso"</span>, <span class="st">"aprovar"</span>, <span class="st">"professora"</span>,</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"floresta"</span>, <span class="st">"prédio"</span>, <span class="st">"prova"</span>, <span class="st">"problema"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="a">
+<li>Qual é a diferença entre os padrões a seguir? O que você acha que cada um deles faz? Quais palavras você acha que serão retornadas em cada caso?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(palavras_pro, <span class="st">"^pro"</span>)</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(palavras_pro, <span class="st">"pro"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>Utilizando o vetor <code>emails</code> abaixo, crie um código que retorne apenas os emails válidos (ou seja, que possuem o formato <code>nome@provedor.etc</code>). Não precisa ser a solução perfeita, mas tente pensar em como você faria isso.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>emails <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"joao@gmail.com"</span>,</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">"maria@outlook"</span>,</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">"contato@empresa.org"</span>,</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">"isso_nao_eh_email"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 <section id="manipulação-de-strings-com-stringr" class="level3" data-number="7.3.3">
