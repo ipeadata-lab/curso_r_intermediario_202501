@@ -244,7 +244,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#exercícios-2" id="toc-exercícios-2" class="nav-link" data-scroll-target="#exercícios-2"><span class="header-section-number">7.2.5.1</span> Exercícios</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#manipulação-de-textos" id="toc-manipulação-de-textos" class="nav-link" data-scroll-target="#manipulação-de-textos"><span class="header-section-number">7.3</span> Manipulação de textos</a></li>
+  <li><a href="#manipulação-de-textos-strings" id="toc-manipulação-de-textos-strings" class="nav-link" data-scroll-target="#manipulação-de-textos-strings"><span class="header-section-number">7.3</span> Manipulação de textos (<em>strings</em>)</a>
+  <ul>
+  <li><a href="#o-pacote-stringr" id="toc-o-pacote-stringr" class="nav-link" data-scroll-target="#o-pacote-stringr"><span class="header-section-number">7.3.1</span> O pacote <code>stringr</code></a></li>
+  <li><a href="#introdução-à-expressões-regulares-regex" id="toc-introdução-à-expressões-regulares-regex" class="nav-link" data-scroll-target="#introdução-à-expressões-regulares-regex"><span class="header-section-number">7.3.2</span> Introdução à Expressões regulares (<code>regex</code>)</a>
+  <ul>
+  <li><a href="#exercícios-3" id="toc-exercícios-3" class="nav-link" data-scroll-target="#exercícios-3"><span class="header-section-number">7.3.2.1</span> Exercícios</a></li>
+  </ul></li>
+  <li><a href="#manipulação-de-strings-com-stringr" id="toc-manipulação-de-strings-com-stringr" class="nav-link" data-scroll-target="#manipulação-de-strings-com-stringr"><span class="header-section-number">7.3.3</span> Manipulação de strings com <code>stringr</code></a></li>
+  <li><a href="#extra" id="toc-extra" class="nav-link" data-scroll-target="#extra"><span class="header-section-number">7.3.4</span> Extra</a></li>
+  </ul></li>
   <li><a href="#material-complementar" id="toc-material-complementar" class="nav-link" data-scroll-target="#material-complementar"><span class="header-section-number">7.4</span> Material complementar</a></li>
   </ul>
 </nav>
@@ -445,7 +454,7 @@ Curiosidade: o que é armazenado em uma variável do tipo <code>Date</code>?
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-02-09 19:24:25 UTC"</code></pre>
+<pre><code>[1] "2025-02-09 20:36:55 UTC"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">Sys.time</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1031,9 +1040,158 @@ Dica
 </section>
 </section>
 </section>
-<section id="manipulação-de-textos" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="manipulação-de-textos"><span class="header-section-number">7.3</span> Manipulação de textos</h2>
+<section id="manipulação-de-textos-strings" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="manipulação-de-textos-strings"><span class="header-section-number">7.3</span> Manipulação de textos (<em>strings</em>)</h2>
+<p>Nesta seção, vamos explorar funções para manipulação de textos (<em>strings</em>). Isso é útil para extrair informações de textos, fazer limpeza de dados, realizar filtros, entre outros.</p>
+<section id="o-pacote-stringr" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="o-pacote-stringr"><span class="header-section-number">7.3.1</span> O pacote <code>stringr</code></h3>
+<p><img src="images/logo-stringr.png" class="img-rstudio" align="right" width="120px"></p>
+<p>O pacote <code>stringr</code> é um pacote do <code>tidyverse</code> que facilita a manipulação de strings. Ele possui funções para detectar padrões em strings, extrair informações, substituir textos, tratar textos, entre outros.</p>
+<p>A maioria das funções do pacote tem o prefixo <code>str_</code>, o que facilita a identificação das funções que trabalham com strings. De início, vamos explorar algumas funções básicas para detectar e extrair padrões em strings:</p>
+<ul>
+<li><p><a href="https://stringr.tidyverse.org/reference/str_detect.html"><code>str_detect()</code></a>: verifica se um padrão está presente em uma string. O resultado é um vetor lógico (<code>TRUE</code> ou <code>FALSE</code>).</p></li>
+<li><p><a href="https://stringr.tidyverse.org/reference/str_extract.html"><code>str_extract()</code> e <code>str_extract_all()</code></a>: extrai o primeiro ou todos os padrões encontrados em uma string.</p></li>
+<li><p><a href="https://stringr.tidyverse.org/reference/str_subset.html"><code>str_subset()</code></a> - extrai as strings que contêm o padrão.</p></li>
+</ul>
+<p>Essas funções seguem a mesma sintaxe: o primeiro argumento é a string, e o segundo argumento é o padrão que queremos buscar.</p>
+<p>Para entender como trabalhar com esses padrões, precisamos conhecer o conceito de expressões regulares (<code>regex</code>). Vamos explorar isso a seguir, e depois voltamos para o <code>stringr</code>!</p>
+</section>
+<section id="introdução-à-expressões-regulares-regex" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="introdução-à-expressões-regulares-regex"><span class="header-section-number">7.3.2</span> Introdução à Expressões regulares (<code>regex</code>)</h3>
+<p>As expressões regulares (ou <code>regex</code>) são padrões utilizados para encontrar e substituir textos em strings. Elas são muito úteis para realizar buscas complexas em textos, e são utilizadas em várias linguagens de programação (ou seja, não são exclusivas do R).</p>
+<p>Existem alguns caracteres especiais que são utilizados nas expressões regulares. Alguns exemplos:</p>
+<ul>
+<li><code>.</code> (qualquer caractere)</li>
+<li><code>^</code> (início da string)</li>
+<li><code>$</code> (fim da string)</li>
+<li><code>*</code>, <code>+</code>, <code>?</code> (quantificadores)</li>
+<li><code>[]</code> (conjunto de caracteres)</li>
+<li><code>{}</code> (quantificadores numéricos)</li>
+<li><code>\d</code> (dígitos: 0-9)</li>
+<li><code>\w</code> (letras e dígitos)</li>
+</ul>
+<p>O site <a href="https://regexr.com/">regexer</a> é uma ferramenta muito útil para testar expressões regulares. Você pode inserir um texto, e testar diferentes expressões regulares para encontrar padrões no texto. O ChatGPT (e outras ferramentas similares) também podem ser usados para interpretar expressões regulares.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Cuidado
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Existem alguns caracteres que precisamos “escapar” com <code>\</code> para que sejam interpretados como caracteres literais.</p>
+<ul>
+<li>No R, a barra invertida (<code>\</code>) é um caractere de escape. Quando queremos utilizar uma barra invertida em uma expressão regular, precisamos “escapar” a barra invertida com outra barra invertida.</li>
+</ul>
+<p>Por exemplo, se quisermos encontrar um dígito (<code>\d</code>), precisamos escrever <code>\\d</code>. Caso você encontre um erro como o abaixo, provavelmente é porque você esqueceu de escapar um caractere especial:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(<span class="st">"123"</span>, <span class="st">"\d"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: '\d' is an unrecognized escape in character string (&lt;input&gt;:1:22)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(<span class="st">"123"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">d"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>Vamos tentar interpretar o que cada um dos padrões a seguir faz (tente responder antes de abrir a resposta):</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemplo 1: <code>"*.csv$"</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Esse padrão é utilizado para encontrar arquivos que terminam com a extensão <code>.csv</code>. O <code>*</code> significa que pode ter qualquer caractere antes de <code>.csv</code>, e o <code>$</code> indica que <code>.csv</code> deve ser o final da string.</p>
+<p>Isso é útil para encontrar arquivos em um diretório, por exemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="st">"dados"</span>, <span class="at">glob =</span> <span class="st">"*.csv$"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dados/mtcars.csv                 dados/sidrar_4092_bruto.csv      
+dados/sidrar_4092_bruto_2.csv    dados/uf_regiao.csv              
+dados/voos_dez-2024-alterado.csv dados/voos_dez-2024.csv          </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemplo 2: <code>"\\d{2}"</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Esse padrão é utilizado para encontrar dois dígitos em uma string. O <code>\\d</code> representa um dígito, e <code>{2}</code> indica que devem ser dois dígitos.</p>
+<p>Este exemplo é útil para compreender o exemplo a seguir!</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemplo 3: <code>"\\d{2}/\\d{2}/\\d{4}"</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Esse padrão busca por datas no formato <code>dia/mês/ano</code>. O <code>\\d</code> representa um dígito, e <code>{2}</code> indica que devem ser dois dígitos. As barras (<code>/</code>) são caracteres literais, e o <code>{4}</code> indica que o ano deve ter quatro dígitos.</p>
+<p>Isso é útil para extrair datas de um texto, por exemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>texto <span class="ot">&lt;-</span> <span class="st">"Neste ano, o carnaval será entre os dias 03/03/2025 e 05/03/2025 (quarta-feira de cinzas)."</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(texto, <span class="st">"</span><span class="sc">\\</span><span class="st">d{2}/</span><span class="sc">\\</span><span class="st">d{2}/</span><span class="sc">\\</span><span class="st">d{4}"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] "03/03/2025" "05/03/2025"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="exercícios-3" class="level4" data-number="7.3.2.1">
+<h4 data-number="7.3.2.1" class="anchored" data-anchor-id="exercícios-3"><span class="header-section-number">7.3.2.1</span> Exercícios</h4>
+<ol type="1">
+<li>O código abaixo deveria retornar todos os elementos do vetor que estão com a palavra “R$”. Porém, ele retorna um caractere vazio. Por que isso acontece? Como você faria para corrigir?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"R$ 100"</span>, <span class="st">"USD 200"</span>, <span class="st">"300€"</span>, <span class="st">"R$ 200"</span>)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(valores, <span class="st">"R$"</span>) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>character(0)</code></pre>
+</div>
+</div>
 <p>Em breve!</p>
+</section>
+</section>
+<section id="manipulação-de-strings-com-stringr" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="manipulação-de-strings-com-stringr"><span class="header-section-number">7.3.3</span> Manipulação de strings com <code>stringr</code></h3>
+<p>Em breve!</p>
+</section>
+<section id="extra" class="level3" data-number="7.3.4">
+<h3 data-number="7.3.4" class="anchored" data-anchor-id="extra"><span class="header-section-number">7.3.4</span> Extra</h3>
+<p>Em breve! <!-- Pareamento (probabilístico e fonético)  - pensar se vamos discutir --> <!-- left join window **/ intervalo**; fuzzy join** --></p>
+</section>
 </section>
 <section id="material-complementar" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="material-complementar"><span class="header-section-number">7.4</span> Material complementar</h2>
@@ -1043,6 +1201,11 @@ Dica
 <li><a href="https://pt.r4ds.hadley.nz/datetimes.html">Datas e horários</a></li>
 <li><a href="https://pt.r4ds.hadley.nz/strings.html">Strings</a></li>
 <li><a href="https://pt.r4ds.hadley.nz/regexps.html">Expressões regulares</a></li>
+</ul></li>
+<li>Slides da Curso-R:
+<ul>
+<li><a href="https://curso-r.github.io/202409-r4ds-2/slides/02_strings.html#1">Trabalhando com strings (textos)</a></li>
+<li><a href="https://curso-r.github.io/202409-r4ds-2/slides/03_datas_fatores.html#1">Trabalhando com datas e fatores</a></li>
 </ul></li>
 </ul>
 
