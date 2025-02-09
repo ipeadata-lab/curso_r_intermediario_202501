@@ -684,9 +684,83 @@ voos |>
   count(nm_aerodromo_origem, nm_municipio_destino, nm_pais_destino, sort = TRUE)
 ```
 
+#### `mutate()` e stringr
+
+A função `mutate()` do `dplyr` é muito útil para criar novas variáveis em uma base de dados. Podemos utilizar o `mutate()` juntamente com o `stringr` para realizar vários tipos de  transformações em strings. Existem muitas funções do `stringr` que podem ser utilizadas com o `mutate()`, como:
+
+- [`str_extract()` e `str_extract_all()`](https://stringr.tidyverse.org/reference/str_extract.html): extrai o padrão encontrado em uma string.
+
+- [`str_replace()` e `str_replace_all()`](https://stringr.tidyverse.org/reference/str_replace.html): substitui um padrão por outro.
+
+- [`str_remove()` e `str_remove_all()`](https://stringr.tidyverse.org/reference/str_remove.html): remove um padrão de uma string.
+
+- [`str_squish()`](https://stringr.tidyverse.org/reference/str_trim.html): remove espaços em branco extras de uma string.
+
+- [`str_to_lower()`, `str_to_upper()`, `str_to_sentence()`, `str_to_title()`](https://stringr.tidyverse.org/reference/case.html): converte uma string para minúsculas ou maiúsculas.
+
+```{r}
+voos |> 
+  mutate(
+    nm_aerodromo_origem = str_squish(nm_aerodromo_origem),
+    nm_aerodromo_origem = str_to_title(nm_aerodromo_origem),
+    nm_aerodromo_origem = str_replace_all(nm_aerodromo_origem, " Do ", " do "),
+    nm_aerodromo_origem = str_replace_all(nm_aerodromo_origem, " De ", " de "),
+    nm_aerodromo_origem = str_replace_all(nm_aerodromo_origem, " Da ", " da "),
+  ) |> 
+  count(nm_aerodromo_origem, sort = TRUE)
+```
+
+
+
+
+
+#### Exercícios
+
+1. Imagine que queremos criar uma tabela com as principais empresas aéreas que realizaram voos em dezembro de 2024, saindo do aeroporto de Brasília. Para isso, precisamos filtrar os vôos que partiram de Brasília, e contar quantos voos cada empresa realizou! 
+
+a) Filtre os voos que partiram de Brasília, e conte quantos voos cada empresa realizou.
+
+```{r}
+#| eval: false
+#| echo: false
+voos_brasilia <- voos |> 
+  filter(nm_municipio_origem == "BRASÍLIA") 
+
+voos_brasilia |> 
+  count(nm_empresa, sort = TRUE)
+```
+
+b) O que você achou do resultado? Você acha que ele está correto? Por que?
+
+c) Como você faria para apresentar uma tabela com as três principais empresas aéreas que realizaram voos em Brasília?
+
+
+```{r}
+#| eval: false
+#| echo: false
+principais_empresas_brasilia <- voos |>
+  filter(nm_municipio_origem == "BRASÍLIA") |> 
+  filter(str_detect(nm_empresa, "^GOL |^AZUL |^TAM |^LATAM ")) |>
+  mutate(nm_empresa_reclassificado = case_when(
+    str_detect(nm_empresa, "^GOL") ~ "GOL",
+    str_detect(nm_empresa, "^AZUL") ~ "AZUL",
+    str_detect(nm_empresa, "^TAM|^LATAM") ~ "LATAM",
+  )) |>
+  count(nm_empresa_reclassificado, sort = TRUE)
+```
+
+
 ### Extra 
 
-Em breve!
+#### Joins
+
+Os joins são operações que combinam duas ou mais tabelas em uma única tabela. No [curso Introdução à análise de dados no R](https://ipeadata-lab.github.io/curso_r_intro_202409/05_transformacao.html#unindo-duas-bases-de-dados-left_join), conhecemos algumas funções de join do pacote `dplyr`.
+
+Para fazer joins, precisamos ter uma variável em comum entre as tabelas (chamada de chave). Porém, em alguns casos as chaves não são exatamente iguais, e precisamos utilizar funções do pacote `{stringr}` para transformar as colunas, de forma que os valores fiquem correspondentes; ou comparar strings de forma mais flexível.
+
+
+O pacote [`{fuzzyjoin}`](https://github.com/dgrtwo/fuzzyjoin) permite fazer joins entre tabelas considerando similaridade entre textos, utilizando técnicas de *fuzzy join*, que permite unir tabelas com base em similaridade parcial entre as chaves, em vez de exigir correspondência exata. Isso é útil quando trabalhamos com bases de dados que podem ter inconsistências, como erros de digitação em nomes de pessoas ou pequenas variações em endereços.
+
 <!-- Pareamento (probabilístico e fonético)  - pensar se vamos discutir -->
 <!-- left join window **/ intervalo**; fuzzy join** -->
 
