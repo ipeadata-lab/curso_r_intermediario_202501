@@ -509,9 +509,126 @@ Sys.setlocale("LC_ALL", "pt_br.utf-8")
 :::
 
 
-## Manipulação de textos
+## Manipulação de textos (*strings*)
+
+Nesta seção, vamos explorar funções para manipulação de textos (*strings*). Isso é útil para extrair informações de textos, fazer limpeza de dados, realizar filtros, entre outros.
+
+
+### O pacote `stringr`
+
+
+<img src="images/logo-stringr.png" class="img-rstudio" align="right" width="120px"/>
+
+O pacote `stringr` é um pacote do `tidyverse` que facilita a manipulação de strings. Ele possui funções para detectar padrões em strings, extrair informações, substituir textos, tratar textos, entre outros.
+
+A maioria das funções do pacote tem o prefixo `str_`, o que facilita a identificação das funções que trabalham com strings.  De início, vamos explorar algumas funções básicas para detectar e extrair padrões em strings:
+
+- [`str_detect()`](https://stringr.tidyverse.org/reference/str_detect.html): verifica se um padrão está presente em uma string. O resultado é um vetor lógico (`TRUE` ou `FALSE`).
+
+- [`str_extract()` e `str_extract_all()`](https://stringr.tidyverse.org/reference/str_extract.html): extrai o primeiro ou todos os padrões encontrados em uma string.
+
+- [`str_subset()`](https://stringr.tidyverse.org/reference/str_subset.html) - extrai as strings que contêm o padrão.
+
+Essas funções seguem a mesma sintaxe: o primeiro argumento é a string, e o segundo argumento é o padrão que queremos buscar. 
+
+Para entender como trabalhar com esses padrões, precisamos conhecer o conceito de expressões regulares (`regex`). Vamos explorar isso a seguir, e depois voltamos para o `stringr`!
+
+
+### Introdução à Expressões regulares (`regex`)
+
+As expressões regulares (ou `regex`) são padrões utilizados para encontrar e substituir textos em strings. Elas são muito úteis para realizar buscas complexas em textos, e são utilizadas em várias linguagens de programação (ou seja, não são exclusivas do R).
+
+Existem alguns caracteres especiais que são utilizados nas expressões regulares. Alguns exemplos:
+
+- `.` (qualquer caractere)
+- `^` (início da string)
+- `$` (fim da string)
+- `*`, `+`, `?` (quantificadores)
+- `[]` (conjunto de caracteres)
+- `{}` (quantificadores numéricos)
+- `\d` (dígitos: 0-9)
+- `\w` (letras e dígitos)
+
+O site [regexer](https://regexr.com/) é uma ferramenta muito útil para testar expressões regulares. Você pode inserir um texto, e testar diferentes expressões regulares para encontrar padrões no texto. O ChatGPT (e outras ferramentas similares) também podem ser usados para interpretar expressões regulares.
+
+::: {.callout-caution}
+Existem alguns caracteres que precisamos "escapar" com `\` para que sejam interpretados como caracteres literais. 
+
+- No R, a barra invertida (`\`) é um caractere de escape. Quando queremos utilizar uma barra invertida em uma expressão regular, precisamos "escapar" a barra invertida com outra barra invertida.
+
+
+Por exemplo, se quisermos encontrar um dígito (`\d`), precisamos escrever `\\d`. Caso você encontre um erro como o abaixo, provavelmente é porque você esqueceu de escapar um caractere especial:
+
+```{r}
+#| error: true
+str_extract("123", "\d")
+```
+
+```{r}
+str_extract("123", "\\d")
+```
+
+
+:::
+
+Vamos tentar interpretar o que cada um dos padrões a seguir faz (tente responder antes de abrir a resposta):
+
+::: {.callout-note collapse="true"}
+## Exemplo 1: `"*.csv$"`
+
+Esse padrão é utilizado para encontrar arquivos que terminam com a extensão `.csv`. O `*` significa que pode ter qualquer caractere antes de `.csv`, e o `$` indica que `.csv` deve ser o final da string.
+
+Isso é útil para encontrar arquivos em um diretório, por exemplo:
+```{r}
+fs::dir_ls("dados", glob = "*.csv$")
+```
+:::
+
+
+
+::: {.callout-note collapse="true"}
+## Exemplo 2: `"\\d{2}"`
+
+Esse padrão é utilizado para encontrar dois dígitos em uma string. O `\\d` representa um dígito, e `{2}` indica que devem ser dois dígitos.
+
+Este exemplo é útil para compreender o exemplo a seguir!
+:::
+
+
+::: {.callout-note collapse="true"}
+## Exemplo 3: `"\\d{2}/\\d{2}/\\d{4}"`
+
+Esse padrão busca por datas no formato `dia/mês/ano`. O `\\d` representa um dígito, e `{2}` indica que devem ser dois dígitos. As barras (`/`) são caracteres literais, e o `{4}` indica que o ano deve ter quatro dígitos.
+
+Isso é útil para extrair datas de um texto, por exemplo:
+```{r}
+texto <- "Neste ano, o carnaval será entre os dias 03/03/2025 e 05/03/2025 (quarta-feira de cinzas)."
+
+str_extract_all(texto, "\\d{2}/\\d{2}/\\d{4}")
+```
+:::
+
+
+#### Exercícios
+
+1.  O código abaixo deveria retornar todos os elementos do vetor que estão com a palavra "R$". Porém, ele retorna um caractere vazio. Por que isso acontece? Como você faria para corrigir?
+
+```{r}
+valores <- c("R$ 100", "USD 200", "300€", "R$ 200")
+str_subset(valores, "R$") 
+```
+Em breve!
+
+
+### Manipulação de strings com `stringr`
 
 Em breve!
+
+### Extra 
+
+Em breve!
+<!-- Pareamento (probabilístico e fonético)  - pensar se vamos discutir -->
+<!-- left join window **/ intervalo**; fuzzy join** -->
 
 ## Material complementar
 
@@ -519,3 +636,7 @@ Em breve!
     -   [Datas e horários](https://pt.r4ds.hadley.nz/datetimes.html)
     -   [Strings](https://pt.r4ds.hadley.nz/strings.html)
     -   [Expressões regulares](https://pt.r4ds.hadley.nz/regexps.html)
+    
+- Slides da Curso-R:
+  - [Trabalhando com strings (textos)](https://curso-r.github.io/202409-r4ds-2/slides/02_strings.html#1)
+  - [Trabalhando com datas e fatores](https://curso-r.github.io/202409-r4ds-2/slides/03_datas_fatores.html#1)
