@@ -643,10 +643,46 @@ emails <- c("joao@gmail.com",
             "isso_nao_eh_email")
 ```
 
-
 ### Manipulação de strings com `stringr`
 
-Em breve!
+
+Nos exemplos anteriores, utilizamos funções básicas do `stringr` para detectar e extrair padrões em strings. 
+
+Podemos também utilizar essas funções juntamente com o `dplyr` para realizar transformações em bases de dados.
+
+#### Filtros com `str_detect()`
+
+No curso introdutório, aprendemos a utilizar a função `filter()` do `dplyr` para filtrar linhas de uma base de dados. Porém o `filter()` busca por valores exatos, e não por padrões em strings.
+
+
+Se pesquisarmos por voos que saíram de Congonhas, podemos usar o `filter()` para encontrar exatamente "CONGONHAS":
+```{r}
+voos |> 
+  filter(nm_aerodromo_origem == "CONGONHAS")
+```
+
+Porém caso queiramos encontrar voos que saíram de Guarulhos, não basta usar o `filter()` com `==`, pois o nome do aeroporto está escrito de forma diferente ("GUARULHOS - GOVERNADOR ANDRÉ FRANCO MONTORO"):
+
+```{r}
+voos |> 
+  filter(nm_aerodromo_origem == "GUARULHOS")
+```
+
+
+A função `str_detect()` retorna um vetor lógico (`TRUE` ou `FALSE`) indicando se um padrão está presente em uma string. Isso é muito útil para usar com a função `filter()` (do `dplyr`), para filtrar strings que contêm um padrão específico. Neste caso, podemos usar a função `str_detect()` para filtrar strings que contêm um padrão específico:
+
+```{r}
+voos |> 
+  filter(str_detect(nm_aerodromo_origem, "GUARULHOS"))
+```
+
+Imagine que queremos descobrir quais são os destinos possíveis a partir dos aeroportos de Guarulhos e Congonhas (localizados na Região Metropolitana de São Paulo). Podemos utilizar a função `str_detect()` + `filter()` para filtrar estas origens. Observe que utilizamos o operador `|` para indicar que queremos encontrar voos que saíram de Guarulhos **ou** Congonhas:
+
+```{r}
+voos |> 
+  filter(str_detect(nm_aerodromo_origem, "GUARULHOS|CONGONHAS")) |> 
+  count(nm_aerodromo_origem, nm_municipio_destino, nm_pais_destino, sort = TRUE)
+```
 
 ### Extra 
 
