@@ -617,7 +617,31 @@ str_extract_all(texto, "\\d{2}/\\d{2}/\\d{4}")
 valores <- c("R$ 100", "USD 200", "300€", "R$ 200")
 str_subset(valores, "R$") 
 ```
-Em breve!
+2. Considerando o vetor `palavras_pro`:
+
+```{r}
+palavras_pro <- c("processo", "projeto", "produto",
+                  "improviso", "aprovar", "professora",
+                  "floresta", "prédio", "prova", "problema")
+```
+
+a) Qual é a diferença entre os padrões a seguir? O que você acha que cada um deles faz? Quais palavras você acha que serão retornadas em cada caso?
+
+```{r}
+#| eval: false
+str_subset(palavras_pro, "^pro")
+
+str_subset(palavras_pro, "pro")
+```
+
+3. Utilizando o vetor `emails` abaixo, crie um código que retorne apenas os emails válidos (ou seja, que possuem o formato `nome@provedor.etc`). Não precisa ser a solução perfeita, mas tente pensar em como você faria isso.
+
+```{r}
+emails <- c("joao@gmail.com",
+            "maria@outlook",
+            "contato@empresa.org",
+            "isso_nao_eh_email")
+```
 
 
 ### Manipulação de strings com `stringr`
