@@ -397,7 +397,7 @@ $ dt_sistema            &lt;dttm&gt; 2025-01-04 01:00:02, 2025-01-10 01:00:09, 2
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.Date</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-02-09"</code></pre>
+<pre><code>[1] "2025-02-10"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">Sys.Date</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -462,7 +462,7 @@ Curiosidade: o que é armazenado em uma variável do tipo <code>Date</code>?
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-02-09 23:50:36 UTC"</code></pre>
+<pre><code>[1] "2025-02-10 00:36:28 UTC"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">Sys.time</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1124,7 +1124,7 @@ Exemplo 1: <code>"*.csv$"</code>
 <p>Esse padrão é utilizado para encontrar arquivos que terminam com a extensão <code>.csv</code>. O <code>*</code> significa que pode ter qualquer caractere antes de <code>.csv</code>, e o <code>$</code> indica que <code>.csv</code> deve ser o final da string.</p>
 <p>Isso é útil para encontrar arquivos em um diretório, por exemplo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="st">"dados"</span>, <span class="at">glob =</span> <span class="st">"*.csv$"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="st">"dados"</span>, <span class="at">regexp =</span> <span class="st">"*.csv$"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>dados/mtcars.csv                 dados/sidrar_4092_bruto.csv      
 dados/sidrar_4092_bruto_2.csv    dados/uf_regiao.csv              
@@ -1362,7 +1362,7 @@ Exemplo 3: <code>"\\d{2}/\\d{2}/\\d{4}"</code>
 <li>Filtre os voos que partiram de Brasília, e conte quantos voos cada empresa realizou.</li>
 </ol>
 <ol start="2" type="a">
-<li><p>O que você achou do resultado? Você acha que ele está correto? Por que?</p></li>
+<li><p>O que você achou do resultado? Você acha que ele está correto? Por quê?</p></li>
 <li><p>Como você faria para apresentar uma tabela com as três principais empresas aéreas que realizaram voos em Brasília?</p></li>
 </ol>
 </section>
