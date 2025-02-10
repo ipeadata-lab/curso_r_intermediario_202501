@@ -580,7 +580,7 @@ Esse padrão é utilizado para encontrar arquivos que terminam com a extensão `
 
 Isso é útil para encontrar arquivos em um diretório, por exemplo:
 ```{r}
-fs::dir_ls("dados", glob = "*.csv$")
+fs::dir_ls("dados", regexp = "*.csv$")
 ```
 :::
 
@@ -730,7 +730,7 @@ voos_brasilia |>
   count(nm_empresa, sort = TRUE)
 ```
 
-b) O que você achou do resultado? Você acha que ele está correto? Por que?
+b) O que você achou do resultado? Você acha que ele está correto? Por quê?
 
 c) Como você faria para apresentar uma tabela com as três principais empresas aéreas que realizaram voos em Brasília?
 
