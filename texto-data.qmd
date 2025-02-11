@@ -6,7 +6,10 @@ code-annotations: hover
 # Manipulação de strings com stringr
 # Pareamento (probabilístico e fonético)  - pensar se vamos discutir
 # left join window **/ intervalo**; fuzzy join**
+execute:
+  freeze: auto
 ---
+
 
 No curso [Introdução à análise de dados com R](https://ipeadata-lab.github.io/curso_r_intro_202409/05_transformacao.html) exploramos algumas funções de transformação de dados. Nesta aula, vamos explorar funções específicas para manipulação de datas e textos.
 
@@ -703,53 +706,178 @@ voos |>
 ```
 
 
+#### Reclassificando categorias com `{stringr}` e `case_when()` 
 
-
-
-#### Exercícios
-
-1. Imagine que queremos criar uma tabela com as principais empresas aéreas que realizaram voos em dezembro de 2024, saindo do aeroporto de Brasília. Para isso, precisamos filtrar os vôos que partiram de Brasília, e contar quantos voos cada empresa realizou! 
-
-a) Filtre os voos que partiram de Brasília, e conte quantos voos cada empresa realizou.
+Imagine que queremos criar uma tabela com as **principais empresas aéreas que realizaram voos domésticos em dezembro de 2024**. Para isso, precisamos filtrar os vôos domésticos, e contar quantos voos cada empresa realizou:
 
 ```{r}
-#| eval: false
-#| echo: false
-voos_brasilia <- voos |> 
-  filter(nm_municipio_origem == "BRASÍLIA") 
+voos_brasil <- voos |> 
+  filter(ds_natureza_etapa == "DOMÉSTICA") 
 
-voos_brasilia |> 
+voos_brasil |> 
   count(nm_empresa, sort = TRUE)
 ```
 
-b) O que você achou do resultado? Você acha que ele está correto? Por quê?
-
-c) Como você faria para apresentar uma tabela com as três principais empresas aéreas que realizaram voos em Brasília?
-
+A tabela resultante apresenta nomes de empresas de forma diferente (por exemplo, `"AZUL LINHAS AÉREAS BRASILEIRAS S/A"` e `"AZUL CONECTA LTDA. (EX TWO TAXI AEREO LTDA)"`). Vamos consultar, por exemplo, quais nomes de empresas começam com `AZUL`: 
 
 ```{r}
-#| eval: false
-#| echo: false
-principais_empresas_brasilia <- voos |>
-  filter(nm_municipio_origem == "BRASÍLIA") |> 
-  filter(str_detect(nm_empresa, "^GOL |^AZUL |^TAM |^LATAM ")) |>
+#| result: false
+empresas_azul <- voos_brasil |> 
+  filter(
+    str_detect(nm_empresa, "^AZUL ")
+  ) |> 
+  count(nm_empresa, sort = TRUE)
+
+empresas_azul
+```
+
+São muitas formas de escrever, e parece que a maioria são erros de digitação.
+
+Como queremos buscar as principais empresas aéreas, vamos padronizar os nomes das empresas. Vamos criar uma nova variável `nm_empresa_reclassificado` com os nomes das empresas padronizados:
+
+```{r}
+voos_brasil |> 
   mutate(nm_empresa_reclassificado = case_when(
     str_detect(nm_empresa, "^GOL") ~ "GOL",
     str_detect(nm_empresa, "^AZUL") ~ "AZUL",
     str_detect(nm_empresa, "^TAM|^LATAM") ~ "LATAM",
+    .default = "OUTROS"
   )) |>
-  count(nm_empresa_reclassificado, sort = TRUE)
+  count(nm_empresa_reclassificado, sort = TRUE) |> 
+  mutate(porc = n / sum(n) * 100) 
 ```
 
 
-### Extra 
-
-#### Joins
+#### Joins (unindo duas tabelas)
 
 Os joins são operações que combinam duas ou mais tabelas em uma única tabela. No [curso Introdução à análise de dados no R](https://ipeadata-lab.github.io/curso_r_intro_202409/05_transformacao.html#unindo-duas-bases-de-dados-left_join), conhecemos algumas funções de join do pacote `dplyr`.
 
 Para fazer joins, precisamos ter uma variável em comum entre as tabelas (chamada de chave). Porém, em alguns casos as chaves não são exatamente iguais, e precisamos utilizar funções do pacote `{stringr}` para transformar as colunas, de forma que os valores fiquem correspondentes; ou comparar strings de forma mais flexível.
 
+#### Extra: exemplo de join com `{geobr}`
+
+Imagine que queremos fazer um mapa com a quantidade de voos por município de origem. Para isso, precisamos unir a base de dados `voos` com uma base de dados georreferenciada, que contém informações sobre os municípios do Brasil. Com o pacote `{geobr}`, podemos importar essa base de dados!
+
+```{r}
+#| message: false
+library(sf)
+geo_brasil_completo <- geobr::read_state() # <1>
+geo_brasil_municipios <- geobr::read_municipality() #<2>
+glimpse(geo_brasil_municipios)
+```
+1. Delimitação dos estados do Brasil.
+2. Delimitação dos municípios do Brasil.
+
+
+Observe que na base de dados `geo_brasil_municipios` temos o código IBGE do município, o nome do município e a sigla do estado. Porém a base de dados `voos` não possui o código do município, e sim o nome do município de origem.
+
+
+Para que essas colunas funcionem como chaves, precisamos que o nome do município de origem da base de dados `voos_brasil` esteja igual ao nome do município da base de dados `geo_brasil_municipios`. 
+
+```{r}
+voos_brasil |> 
+  select(nm_municipio_origem, sg_uf_origem) |> 
+  head()
+```
+
+```{r}
+geo_brasil_municipios |> 
+  select(name_muni, abbrev_state) |> 
+  head()
+```
+Ops, na primeira base de dados os nomes  dos municípios estão em caixa alta (ex: "SÃO PAULO"), já na segunda base de dados apenas a primeira letra dos nomes estão em caixa alta (ex: "São Paulo"). Vamos utilizar o `{stringr}` para deixar os nomes dos municípios padronizados. 
+
+::: {.callout-warning}
+Este processo de padronizar uma coluna de duas tabelas diferentes para utilizar como chave é iterativo, e pode ser necessário fazer mais ajustes conforme for unindo as bases de dados (e encontrando problemas). Tenha paciência!
+:::
+
+Primeiro, vamos transformar os nomes dos municípios para minúsculas e remover acentos:
+
+```{r}
+rm_accent <- function(x){
+  # função do pacote abjutils
+  stringi::stri_trans_general(x, "Latin-ASCII")
+}
+```
+
+
+```{r}
+geo_brasil_municipios_preparado <- geo_brasil_municipios |> 
+  mutate(
+    sigla_estado = abbrev_state,
+    nome_municipio = str_to_lower(name_muni),
+    nome_municipio = rm_accent(nome_municipio)
+  )
+
+voos_brasil_preparado <- voos_brasil |>
+  mutate(
+    sigla_estado = sg_uf_origem,
+    nome_municipio = str_to_lower(nm_municipio_origem),
+    nome_municipio = rm_accent(nome_municipio)
+  )
+```
+
+A função `anti_join()` é utilizada para retornar as linhas da primeira tabela que não estão presentes na segunda tabela, então podemos utilizar essa função para verificar onde o `left_join()` não daria certo (ou seja, onde os nomes dos municípios estão diferentes):
+
+```{r}
+join_nao_funcionou <- anti_join(voos_brasil_preparado, geo_brasil_municipios_preparado)
+
+nrow(voos_brasil_preparado)
+
+join_nao_funcionou |> 
+  count(nome_municipio, sigla_estado, sort = TRUE)
+```
+É possível perceber que neste caso temos muitos municípios que estão com erro de digitação. Poderíamos corrigir manualmente (com `case_when()`), mas neste caso, os erros representam menos de 1% dos dados (na verdade, apenas `r round(nrow(join_nao_funcionou) * 100 / nrow(voos_brasil_preparado), 2)` %).  Vamos seguir com o join! 
+
+
+A função `inner_join()` é utilizada para retornar as linhas que estão presentes nas duas tabelas (ou seja, os nomes que estão incorretos ficam de fora!).
+
+Como queremos criar um mapa apenas com a quantidade de voos por município de origem, vamos contar a quantidade de voos por município e salvar em um objeto:
+
+```{r}
+quantidade_voos_por_muni <- voos_brasil_preparado |> 
+  count(nome_municipio, sigla_estado, sort = TRUE)
+```
+
+
+Com este objeto, podemos fazer o join com a base de dados `geo_brasil_municipios_preparado`. Atenção: para que a base de dados resultante mantenha as propriedades espaciais, precisamos utilizar a tabela `geo_brasil_municipios` como base para o join (ou seja, utilizamos ela primeiro):
+
+```{r}
+join_brasil <- inner_join(geo_brasil_municipios_preparado,
+                          quantidade_voos_por_muni) 
+```
+
+
+Agora podemos apresentar o mapa!
+
+```{r}
+#| warning: false
+#| message: false
+ggplot() + # <1>
+  geom_sf(data = geo_brasil_completo, fill = "white") + # <2>
+  geom_sf(data = join_brasil, aes(fill = n)) + # <3>
+  scale_fill_viridis_c(direction = -1) + # <4>
+  gghighlight::gghighlight(n > 3000) + # <5> 
+  labs( # <6> 
+    x = "Quantidade de voos",
+    y = "Município",
+    title = "Quantidade de voos por município de origem",
+    subtitle = "Voos domésticos realizados em dezembro de 2024"
+  ) +  # <6> 
+  theme_void() # <7> 
+```
+1. Iniciando o gráfico.
+2. Adicionando a base de dados com os limites dos estados do Brasil.
+3. Adicionando a base de dados com a quantidade de voos por município.
+4. Personalizando as cores do mapa: usando a paleta viridis.
+5. Destacando os municípios com mais de 3000 voos.
+6. Personalizando os textos.
+7. Personalizando o tema.
+:::
+
+
+
+#### Extra - Joins avançados
 
 O pacote [`{fuzzyjoin}`](https://github.com/dgrtwo/fuzzyjoin) permite fazer joins entre tabelas considerando similaridade entre textos, utilizando técnicas de *fuzzy join*, que permite unir tabelas com base em similaridade parcial entre as chaves, em vez de exigir correspondência exata. Isso é útil quando trabalhamos com bases de dados que podem ter inconsistências, como erros de digitação em nomes de pessoas ou pequenas variações em endereços.
 
