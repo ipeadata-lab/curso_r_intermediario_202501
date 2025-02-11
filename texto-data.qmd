@@ -580,7 +580,7 @@ Esse padrão é utilizado para encontrar arquivos que terminam com a extensão `
 
 Isso é útil para encontrar arquivos em um diretório, por exemplo:
 ```{r}
-fs::dir_ls("dados", regexp = "*.csv$")
+fs::dir_ls("dados", regexp = ".csv$")
 ```
 :::
 
