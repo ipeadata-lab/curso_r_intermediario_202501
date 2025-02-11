@@ -255,11 +255,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#filtros-com-str_detect" id="toc-filtros-com-str_detect" class="nav-link" data-scroll-target="#filtros-com-str_detect"><span class="header-section-number">7.3.3.1</span> Filtros com <code>str_detect()</code></a></li>
   <li><a href="#mutate-e-stringr" id="toc-mutate-e-stringr" class="nav-link" data-scroll-target="#mutate-e-stringr"><span class="header-section-number">7.3.3.2</span> <code>mutate()</code> e stringr</a></li>
-  <li><a href="#exercícios-4" id="toc-exercícios-4" class="nav-link" data-scroll-target="#exercícios-4"><span class="header-section-number">7.3.3.3</span> Exercícios</a></li>
-  </ul></li>
-  <li><a href="#extra" id="toc-extra" class="nav-link" data-scroll-target="#extra"><span class="header-section-number">7.3.4</span> Extra</a>
-  <ul>
-  <li><a href="#joins" id="toc-joins" class="nav-link" data-scroll-target="#joins"><span class="header-section-number">7.3.4.1</span> Joins</a></li>
+  <li><a href="#reclassificando-categorias-com-stringr-e-case_when" id="toc-reclassificando-categorias-com-stringr-e-case_when" class="nav-link" data-scroll-target="#reclassificando-categorias-com-stringr-e-case_when"><span class="header-section-number">7.3.3.3</span> Reclassificando categorias com <code>{stringr}</code> e <code>case_when()</code></a></li>
+  <li><a href="#joins-unindo-duas-tabelas" id="toc-joins-unindo-duas-tabelas" class="nav-link" data-scroll-target="#joins-unindo-duas-tabelas"><span class="header-section-number">7.3.3.4</span> Joins (unindo duas tabelas)</a></li>
+  <li><a href="#extra-exemplo-de-join-com-geobr" id="toc-extra-exemplo-de-join-com-geobr" class="nav-link" data-scroll-target="#extra-exemplo-de-join-com-geobr"><span class="header-section-number">7.3.3.5</span> Extra: exemplo de join com <code>{geobr}</code></a></li>
+  <li><a href="#extra---joins-avançados" id="toc-extra---joins-avançados" class="nav-link" data-scroll-target="#extra---joins-avançados"><span class="header-section-number">7.3.3.6</span> Extra - Joins avançados</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#material-complementar" id="toc-material-complementar" class="nav-link" data-scroll-target="#material-complementar"><span class="header-section-number">7.4</span> Material complementar</a></li>
@@ -397,7 +396,7 @@ $ dt_sistema            &lt;dttm&gt; 2025-01-04 01:00:02, 2025-01-10 01:00:09, 2
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.Date</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-02-10"</code></pre>
+<pre><code>[1] "2025-02-11"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">Sys.Date</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -462,7 +461,7 @@ Curiosidade: o que é armazenado em uma variável do tipo <code>Date</code>?
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-02-10 00:36:28 UTC"</code></pre>
+<pre><code>[1] "2025-02-11 21:11:43 UTC"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">Sys.time</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1124,7 +1123,7 @@ Exemplo 1: <code>"*.csv$"</code>
 <p>Esse padrão é utilizado para encontrar arquivos que terminam com a extensão <code>.csv</code>. O <code>*</code> significa que pode ter qualquer caractere antes de <code>.csv</code>, e o <code>$</code> indica que <code>.csv</code> deve ser o final da string.</p>
 <p>Isso é útil para encontrar arquivos em um diretório, por exemplo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="st">"dados"</span>, <span class="at">regexp =</span> <span class="st">"*.csv$"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="st">"dados"</span>, <span class="at">regexp =</span> <span class="st">".csv$"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>dados/mtcars.csv                 dados/sidrar_4092_bruto.csv      
 dados/sidrar_4092_bruto_2.csv    dados/uf_regiao.csv              
@@ -1205,15 +1204,6 @@ Exemplo 3: <code>"\\d{2}/\\d{2}/\\d{4}"</code>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(palavras_pro, <span class="st">"pro"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="3" type="1">
-<li>Utilizando o vetor <code>emails</code> abaixo, crie um código que retorne apenas os emails válidos (ou seja, que possuem o formato <code>nome@provedor.etc</code>). Não precisa ser a solução perfeita, mas tente pensar em como você faria isso.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>emails <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"joao@gmail.com"</span>,</span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">"maria@outlook"</span>,</span>
-<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">"contato@empresa.org"</span>,</span>
-<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">"isso_nao_eh_email"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 </section>
 <section id="manipulação-de-strings-com-stringr" class="level3" data-number="7.3.3">
@@ -1225,8 +1215,8 @@ Exemplo 3: <code>"\\d{2}/\\d{2}/\\d{4}"</code>
 <p>No curso introdutório, aprendemos a utilizar a função <code>filter()</code> do <code>dplyr</code> para filtrar linhas de uma base de dados. Porém o <code>filter()</code> busca por valores exatos, e não por padrões em strings.</p>
 <p>Se pesquisarmos por voos que saíram de Congonhas, podemos usar o <code>filter()</code> para encontrar exatamente “CONGONHAS”:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>voos <span class="sc">|&gt;</span> </span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(nm_aerodromo_origem <span class="sc">==</span> <span class="st">"CONGONHAS"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>voos <span class="sc">|&gt;</span> </span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(nm_aerodromo_origem <span class="sc">==</span> <span class="st">"CONGONHAS"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8,112 × 26
    id_basica id_empresa nm_empresa               dt_referencia ds_di ds_grupo_di
@@ -1252,8 +1242,8 @@ Exemplo 3: <code>"\\d{2}/\\d{2}/\\d{4}"</code>
 </div>
 <p>Porém caso queiramos encontrar voos que saíram de Guarulhos, não basta usar o <code>filter()</code> com <code>==</code>, pois o nome do aeroporto está escrito de forma diferente (“GUARULHOS - GOVERNADOR ANDRÉ FRANCO MONTORO”):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>voos <span class="sc">|&gt;</span> </span>
-<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(nm_aerodromo_origem <span class="sc">==</span> <span class="st">"GUARULHOS"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>voos <span class="sc">|&gt;</span> </span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(nm_aerodromo_origem <span class="sc">==</span> <span class="st">"GUARULHOS"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 0 × 26
 # ℹ 26 variables: id_basica &lt;dbl&gt;, id_empresa &lt;dbl&gt;, nm_empresa &lt;chr&gt;,
@@ -1267,8 +1257,8 @@ Exemplo 3: <code>"\\d{2}/\\d{2}/\\d{4}"</code>
 </div>
 <p>A função <code>str_detect()</code> retorna um vetor lógico (<code>TRUE</code> ou <code>FALSE</code>) indicando se um padrão está presente em uma string. Isso é muito útil para usar com a função <code>filter()</code> (do <code>dplyr</code>), para filtrar strings que contêm um padrão específico. Neste caso, podemos usar a função <code>str_detect()</code> para filtrar strings que contêm um padrão específico:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>voos <span class="sc">|&gt;</span> </span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(nm_aerodromo_origem, <span class="st">"GUARULHOS"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>voos <span class="sc">|&gt;</span> </span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(nm_aerodromo_origem, <span class="st">"GUARULHOS"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 11,726 × 26
    id_basica id_empresa nm_empresa               dt_referencia ds_di ds_grupo_di
@@ -1294,9 +1284,9 @@ Exemplo 3: <code>"\\d{2}/\\d{2}/\\d{4}"</code>
 </div>
 <p>Imagine que queremos descobrir quais são os destinos possíveis a partir dos aeroportos de Guarulhos e Congonhas (localizados na Região Metropolitana de São Paulo). Podemos utilizar a função <code>str_detect()</code> + <code>filter()</code> para filtrar estas origens. Observe que utilizamos o operador <code>|</code> para indicar que queremos encontrar voos que saíram de Guarulhos <strong>ou</strong> Congonhas:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>voos <span class="sc">|&gt;</span> </span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(nm_aerodromo_origem, <span class="st">"GUARULHOS|CONGONHAS"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(nm_aerodromo_origem, nm_municipio_destino, nm_pais_destino, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>voos <span class="sc">|&gt;</span> </span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(nm_aerodromo_origem, <span class="st">"GUARULHOS|CONGONHAS"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(nm_aerodromo_origem, nm_municipio_destino, nm_pais_destino, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 235 × 4
    nm_aerodromo_origem                nm_municipio_destino nm_pais_destino     n
@@ -1326,15 +1316,15 @@ Exemplo 3: <code>"\\d{2}/\\d{2}/\\d{4}"</code>
 <li><p><a href="https://stringr.tidyverse.org/reference/case.html"><code>str_to_lower()</code>, <code>str_to_upper()</code>, <code>str_to_sentence()</code>, <code>str_to_title()</code></a>: converte uma string para minúsculas ou maiúsculas.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>voos <span class="sc">|&gt;</span> </span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">nm_aerodromo_origem =</span> <span class="fu">str_squish</span>(nm_aerodromo_origem),</span>
-<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nm_aerodromo_origem =</span> <span class="fu">str_to_title</span>(nm_aerodromo_origem),</span>
-<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">nm_aerodromo_origem =</span> <span class="fu">str_replace_all</span>(nm_aerodromo_origem, <span class="st">" Do "</span>, <span class="st">" do "</span>),</span>
-<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">nm_aerodromo_origem =</span> <span class="fu">str_replace_all</span>(nm_aerodromo_origem, <span class="st">" De "</span>, <span class="st">" de "</span>),</span>
-<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">nm_aerodromo_origem =</span> <span class="fu">str_replace_all</span>(nm_aerodromo_origem, <span class="st">" Da "</span>, <span class="st">" da "</span>),</span>
-<span id="cb83-8"><a href="#cb83-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb83-9"><a href="#cb83-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(nm_aerodromo_origem, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>voos <span class="sc">|&gt;</span> </span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">nm_aerodromo_origem =</span> <span class="fu">str_squish</span>(nm_aerodromo_origem),</span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nm_aerodromo_origem =</span> <span class="fu">str_to_title</span>(nm_aerodromo_origem),</span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">nm_aerodromo_origem =</span> <span class="fu">str_replace_all</span>(nm_aerodromo_origem, <span class="st">" Do "</span>, <span class="st">" do "</span>),</span>
+<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">nm_aerodromo_origem =</span> <span class="fu">str_replace_all</span>(nm_aerodromo_origem, <span class="st">" De "</span>, <span class="st">" de "</span>),</span>
+<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">nm_aerodromo_origem =</span> <span class="fu">str_replace_all</span>(nm_aerodromo_origem, <span class="st">" Da "</span>, <span class="st">" da "</span>),</span>
+<span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb82-9"><a href="#cb82-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(nm_aerodromo_origem, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 382 × 2
    nm_aerodromo_origem                                                         n
@@ -1353,26 +1343,290 @@ Exemplo 3: <code>"\\d{2}/\\d{2}/\\d{4}"</code>
 </div>
 </div>
 </section>
-<section id="exercícios-4" class="level4" data-number="7.3.3.3">
-<h4 data-number="7.3.3.3" class="anchored" data-anchor-id="exercícios-4"><span class="header-section-number">7.3.3.3</span> Exercícios</h4>
-<ol type="1">
-<li>Imagine que queremos criar uma tabela com as principais empresas aéreas que realizaram voos em dezembro de 2024, saindo do aeroporto de Brasília. Para isso, precisamos filtrar os vôos que partiram de Brasília, e contar quantos voos cada empresa realizou!</li>
-</ol>
-<ol type="a">
-<li>Filtre os voos que partiram de Brasília, e conte quantos voos cada empresa realizou.</li>
-</ol>
-<ol start="2" type="a">
-<li><p>O que você achou do resultado? Você acha que ele está correto? Por quê?</p></li>
-<li><p>Como você faria para apresentar uma tabela com as três principais empresas aéreas que realizaram voos em Brasília?</p></li>
-</ol>
+<section id="reclassificando-categorias-com-stringr-e-case_when" class="level4" data-number="7.3.3.3">
+<h4 data-number="7.3.3.3" class="anchored" data-anchor-id="reclassificando-categorias-com-stringr-e-case_when"><span class="header-section-number">7.3.3.3</span> Reclassificando categorias com <code>{stringr}</code> e <code>case_when()</code></h4>
+<p>Imagine que queremos criar uma tabela com as <strong>principais empresas aéreas que realizaram voos domésticos em dezembro de 2024</strong>. Para isso, precisamos filtrar os vôos domésticos, e contar quantos voos cada empresa realizou:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>voos_brasil <span class="ot">&lt;-</span> voos <span class="sc">|&gt;</span> </span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ds_natureza_etapa <span class="sc">==</span> <span class="st">"DOMÉSTICA"</span>) </span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>voos_brasil <span class="sc">|&gt;</span> </span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(nm_empresa, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 158 × 2
+   nm_empresa                                              n
+   &lt;chr&gt;                                               &lt;int&gt;
+ 1 AZUL LINHAS AÉREAS BRASILEIRAS S/A                  24643
+ 2 TAM LINHAS AÉREAS S.A.                              20428
+ 3 GOL LINHAS AÉREAS S.A. (EX- VRG LINHAS AÉREAS S.A.) 18463
+ 4 AZUL CONECTA LTDA. (EX TWO TAXI AEREO LTDA)          1677
+ 5 PASSAREDO TRANSPORTES AÉREOS S.A.                     996
+ 6 SIDERAL LINHAS AÉREAS LTDA.                           422
+ 7 TAM LINHAS ASUL                                       303
+ 8 TOTAL LINHAS AÉREAS S.A.                              157
+ 9 ABSA - AEROLINHAS BRASILEIRAS S.A.                    135
+10 MAP TRANSPORTES AÉREOS LTDA.                          124
+# ℹ 148 more rows</code></pre>
+</div>
+</div>
+<p>A tabela resultante apresenta nomes de empresas de forma diferente (por exemplo, <code>"AZUL LINHAS AÉREAS BRASILEIRAS S/A"</code> e <code>"AZUL CONECTA LTDA. (EX TWO TAXI AEREO LTDA)"</code>). Vamos consultar, por exemplo, quais nomes de empresas começam com <code>AZUL</code>:</p>
+<div class="cell" data-result="false">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>empresas_azul <span class="ot">&lt;-</span> voos_brasil <span class="sc">|&gt;</span> </span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(nm_empresa, <span class="st">"^AZUL "</span>)</span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(nm_empresa, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a>empresas_azul</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 28 × 2
+   nm_empresa                                      n
+   &lt;chr&gt;                                       &lt;int&gt;
+ 1 AZUL LINHAS AÉREAS BRASILEIRAS S/A          24643
+ 2 AZUL CONECTA LTDA. (EX TWO TAXI AEREO LTDA)  1677
+ 3 AZUL LINHAS AÉREAS BRASNDRÉ FRANC               5
+ 4 AZUL LINS - GOVERNADOR ANDRÉ FRANC              4
+ 5 AZUL LIN LUÍS EDUARDO MAGALHÃES                 2
+ 6 AZUL LINAS AÉREAS S.A. (EX- VRG LI              2
+ 7 AZUL LINHAS AÉREAS BRASILEIRAS ANC              2
+ 8 AZUL LINIONAL DE BELÉM/VAL DE CANS              2
+ 9 AZUL INHAS AÉREAS S.A. (EX- VRG LI              1
+10 AZUL LDO LUÍS EDUARDO MAGALHÃES                 1
+# ℹ 18 more rows</code></pre>
+</div>
+</div>
+<p>São muitas formas de escrever, e parece que a maioria são erros de digitação.</p>
+<p>Como queremos buscar as principais empresas aéreas, vamos padronizar os nomes das empresas. Vamos criar uma nova variável <code>nm_empresa_reclassificado</code> com os nomes das empresas padronizados:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>voos_brasil <span class="sc">|&gt;</span> </span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">nm_empresa_reclassificado =</span> <span class="fu">case_when</span>(</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(nm_empresa, <span class="st">"^GOL"</span>) <span class="sc">~</span> <span class="st">"GOL"</span>,</span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(nm_empresa, <span class="st">"^AZUL"</span>) <span class="sc">~</span> <span class="st">"AZUL"</span>,</span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(nm_empresa, <span class="st">"^TAM|^LATAM"</span>) <span class="sc">~</span> <span class="st">"LATAM"</span>,</span>
+<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="st">"OUTROS"</span></span>
+<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span></span>
+<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(nm_empresa_reclassificado, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb88-9"><a href="#cb88-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">porc =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  nm_empresa_reclassificado     n  porc
+  &lt;chr&gt;                     &lt;int&gt; &lt;dbl&gt;
+1 AZUL                      26365 38.7 
+2 LATAM                     20851 30.6 
+3 GOL                       18485 27.2 
+4 OUTROS                     2345  3.45</code></pre>
+</div>
+</div>
 </section>
-</section>
-<section id="extra" class="level3" data-number="7.3.4">
-<h3 data-number="7.3.4" class="anchored" data-anchor-id="extra"><span class="header-section-number">7.3.4</span> Extra</h3>
-<section id="joins" class="level4" data-number="7.3.4.1">
-<h4 data-number="7.3.4.1" class="anchored" data-anchor-id="joins"><span class="header-section-number">7.3.4.1</span> Joins</h4>
+<section id="joins-unindo-duas-tabelas" class="level4" data-number="7.3.3.4">
+<h4 data-number="7.3.3.4" class="anchored" data-anchor-id="joins-unindo-duas-tabelas"><span class="header-section-number">7.3.3.4</span> Joins (unindo duas tabelas)</h4>
 <p>Os joins são operações que combinam duas ou mais tabelas em uma única tabela. No <a href="https://ipeadata-lab.github.io/curso_r_intro_202409/05_transformacao.html#unindo-duas-bases-de-dados-left_join">curso Introdução à análise de dados no R</a>, conhecemos algumas funções de join do pacote <code>dplyr</code>.</p>
 <p>Para fazer joins, precisamos ter uma variável em comum entre as tabelas (chamada de chave). Porém, em alguns casos as chaves não são exatamente iguais, e precisamos utilizar funções do pacote <code>{stringr}</code> para transformar as colunas, de forma que os valores fiquem correspondentes; ou comparar strings de forma mais flexível.</p>
+</section>
+<section id="extra-exemplo-de-join-com-geobr" class="level4" data-number="7.3.3.5">
+<h4 data-number="7.3.3.5" class="anchored" data-anchor-id="extra-exemplo-de-join-com-geobr"><span class="header-section-number">7.3.3.5</span> Extra: exemplo de join com <code>{geobr}</code></h4>
+<p>Imagine que queremos fazer um mapa com a quantidade de voos por município de origem. Para isso, precisamos unir a base de dados <code>voos</code> com uma base de dados georreferenciada, que contém informações sobre os municípios do Brasil. Com o pacote <code>{geobr}</code>, podemos importar essa base de dados!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-39"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-39-1"><a href="#annotated-cell-39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-39" data-target-annotation="1">1</button><span id="annotated-cell-39-2" class="code-annotation-target"><a href="#annotated-cell-39-2" aria-hidden="true" tabindex="-1"></a>geo_brasil_completo <span class="ot">&lt;-</span> geobr<span class="sc">::</span><span class="fu">read_state</span>()</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-39" data-target-annotation="2">2</button><span id="annotated-cell-39-3" class="code-annotation-target"><a href="#annotated-cell-39-3" aria-hidden="true" tabindex="-1"></a>geo_brasil_municipios <span class="ot">&lt;-</span> geobr<span class="sc">::</span><span class="fu">read_municipality</span>()</span>
+<span id="annotated-cell-39-4"><a href="#annotated-cell-39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(geo_brasil_municipios)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-39" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-39" data-code-lines="2" data-code-annotation="1">Delimitação dos estados do Brasil.</span>
+</dd>
+<dt data-target-cell="annotated-cell-39" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-39" data-code-lines="3" data-code-annotation="2">Delimitação dos municípios do Brasil.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 5,565
+Columns: 5
+$ code_muni    &lt;dbl&gt; 1100015, 1100023, 1100031, 1100049, 1100056, 1100064, 110…
+$ name_muni    &lt;chr&gt; "Alta Floresta D'oeste", "Ariquemes", "Cabixi", "Cacoal",…
+$ code_state   &lt;chr&gt; "11", "11", "11", "11", "11", "11", "11", "11", "11", "11…
+$ abbrev_state &lt;chr&gt; "RO", "RO", "RO", "RO", "RO", "RO", "RO", "RO", "RO", "RO…
+$ geom         &lt;MULTIPOLYGON [°]&gt; MULTIPOLYGON (((-62.2462 -1..., MULTIPOLYGON…</code></pre>
+</div>
+</div>
+<p>Observe que na base de dados <code>geo_brasil_municipios</code> temos o código IBGE do município, o nome do município e a sigla do estado. Porém a base de dados <code>voos</code> não possui o código do município, e sim o nome do município de origem.</p>
+<p>Para que essas colunas funcionem como chaves, precisamos que o nome do município de origem da base de dados <code>voos_brasil</code> esteja igual ao nome do município da base de dados <code>geo_brasil_municipios</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>voos_brasil <span class="sc">|&gt;</span> </span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(nm_municipio_origem, sg_uf_origem) <span class="sc">|&gt;</span> </span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  nm_municipio_origem sg_uf_origem
+  &lt;chr&gt;               &lt;chr&gt;       
+1 RECIFE              PE          
+2 JUAZEIRO DO NORTE   CE          
+3 RIBEIRÃO PRETO      SP          
+4 RIO DE JANEIRO      RJ          
+5 GUARULHOS           SP          
+6 RIO DE JANEIRO      RJ          </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>geo_brasil_municipios <span class="sc">|&gt;</span> </span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name_muni, abbrev_state) <span class="sc">|&gt;</span> </span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 6 features and 2 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -63.61822 ymin: -13.6937 xmax: -60.33317 ymax: -9.66916
+Geodetic CRS:  SIRGAS 2000
+              name_muni abbrev_state                           geom
+1 Alta Floresta D'oeste           RO MULTIPOLYGON (((-62.2462 -1...
+2             Ariquemes           RO MULTIPOLYGON (((-63.13712 -...
+3                Cabixi           RO MULTIPOLYGON (((-60.52408 -...
+4                Cacoal           RO MULTIPOLYGON (((-61.42679 -...
+5            Cerejeiras           RO MULTIPOLYGON (((-61.41347 -...
+6     Colorado Do Oeste           RO MULTIPOLYGON (((-60.66352 -...</code></pre>
+</div>
+</div>
+<p>Ops, na primeira base de dados os nomes dos municípios estão em caixa alta (ex: “SÃO PAULO”), já na segunda base de dados apenas a primeira letra dos nomes estão em caixa alta (ex: “São Paulo”). Vamos utilizar o <code>{stringr}</code> para deixar os nomes dos municípios padronizados.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Aviso
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Este processo de padronizar uma coluna de duas tabelas diferentes para utilizar como chave é iterativo, e pode ser necessário fazer mais ajustes conforme for unindo as bases de dados (e encontrando problemas). Tenha paciência!</p>
+</div>
+</div>
+<p>Primeiro, vamos transformar os nomes dos municípios para minúsculas e remover acentos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>rm_accent <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># função do pacote abjutils</span></span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>  stringi<span class="sc">::</span><span class="fu">stri_trans_general</span>(x, <span class="st">"Latin-ASCII"</span>)</span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>geo_brasil_municipios_preparado <span class="ot">&lt;-</span> geo_brasil_municipios <span class="sc">|&gt;</span> </span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sigla_estado =</span> abbrev_state,</span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nome_municipio =</span> <span class="fu">str_to_lower</span>(name_muni),</span>
+<span id="cb96-5"><a href="#cb96-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">nome_municipio =</span> <span class="fu">rm_accent</span>(nome_municipio)</span>
+<span id="cb96-6"><a href="#cb96-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb96-7"><a href="#cb96-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-8"><a href="#cb96-8" aria-hidden="true" tabindex="-1"></a>voos_brasil_preparado <span class="ot">&lt;-</span> voos_brasil <span class="sc">|&gt;</span></span>
+<span id="cb96-9"><a href="#cb96-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb96-10"><a href="#cb96-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">sigla_estado =</span> sg_uf_origem,</span>
+<span id="cb96-11"><a href="#cb96-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">nome_municipio =</span> <span class="fu">str_to_lower</span>(nm_municipio_origem),</span>
+<span id="cb96-12"><a href="#cb96-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">nome_municipio =</span> <span class="fu">rm_accent</span>(nome_municipio)</span>
+<span id="cb96-13"><a href="#cb96-13" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>anti_join()</code> é utilizada para retornar as linhas da primeira tabela que não estão presentes na segunda tabela, então podemos utilizar essa função para verificar onde o <code>left_join()</code> não daria certo (ou seja, onde os nomes dos municípios estão diferentes):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>join_nao_funcionou <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(voos_brasil_preparado, geo_brasil_municipios_preparado)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(sigla_estado, nome_municipio)`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(voos_brasil_preparado)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 68046</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>join_nao_funcionou <span class="sc">|&gt;</span> </span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(nome_municipio, sigla_estado, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 50 × 3
+   nome_municipio       sigla_estado     n
+   &lt;chr&gt;                &lt;chr&gt;        &lt;int&gt;
+ 1 sao jose doul        PR              22
+ 2 sao gonco sul        RN              14
+ 3 sao jose dsul        PR              12
+ 4 sao jose dsul        SP               6
+ 5 domestica            SP               4
+ 6 america do sul       PR               3
+ 7 sao jose dos         PR               3
+ 8 sao jose do�reas s.a PR               3
+ 9 domestic             DF               2
+10 domestica            SC               2
+# ℹ 40 more rows</code></pre>
+</div>
+</div>
+<p>É possível perceber que neste caso temos muitos municípios que estão com erro de digitação. Poderíamos corrigir manualmente (com <code>case_when()</code>), mas neste caso, os erros representam menos de 1% dos dados (na verdade, apenas 0.17 %). Vamos seguir com o join!</p>
+<p>A função <code>inner_join()</code> é utilizada para retornar as linhas que estão presentes nas duas tabelas (ou seja, os nomes que estão incorretos ficam de fora!).</p>
+<p>Como queremos criar um mapa apenas com a quantidade de voos por município de origem, vamos contar a quantidade de voos por município e salvar em um objeto:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>quantidade_voos_por_muni <span class="ot">&lt;-</span> voos_brasil_preparado <span class="sc">|&gt;</span> </span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(nome_municipio, sigla_estado, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Com este objeto, podemos fazer o join com a base de dados <code>geo_brasil_municipios_preparado</code>. Atenção: para que a base de dados resultante mantenha as propriedades espaciais, precisamos utilizar a tabela <code>geo_brasil_municipios</code> como base para o join (ou seja, utilizamos ela primeiro):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>join_brasil <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(geo_brasil_municipios_preparado,</span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>                          quantidade_voos_por_muni) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(sigla_estado, nome_municipio)`</code></pre>
+</div>
+</div>
+<p>Agora podemos apresentar o mapa!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-49"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-49" data-target-annotation="1">1</button><span id="annotated-cell-49-1" class="code-annotation-target"><a href="#annotated-cell-49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-49" data-target-annotation="2">2</button><span id="annotated-cell-49-2" class="code-annotation-target"><a href="#annotated-cell-49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> geo_brasil_completo, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-49" data-target-annotation="3">3</button><span id="annotated-cell-49-3" class="code-annotation-target"><a href="#annotated-cell-49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> join_brasil, <span class="fu">aes</span>(<span class="at">fill =</span> n)) <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-49" data-target-annotation="4">4</button><span id="annotated-cell-49-4" class="code-annotation-target"><a href="#annotated-cell-49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-49" data-target-annotation="5">5</button><span id="annotated-cell-49-5" class="code-annotation-target"><a href="#annotated-cell-49-5" aria-hidden="true" tabindex="-1"></a>  gghighlight<span class="sc">::</span><span class="fu">gghighlight</span>(n <span class="sc">&gt;</span> <span class="dv">3000</span>) <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-49" data-target-annotation="6">6</button><span id="annotated-cell-49-6" class="code-annotation-target"><a href="#annotated-cell-49-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="annotated-cell-49-7"><a href="#annotated-cell-49-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Quantidade de voos"</span>,</span>
+<span id="annotated-cell-49-8"><a href="#annotated-cell-49-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Município"</span>,</span>
+<span id="annotated-cell-49-9"><a href="#annotated-cell-49-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Quantidade de voos por município de origem"</span>,</span>
+<span id="annotated-cell-49-10"><a href="#annotated-cell-49-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Voos domésticos realizados em dezembro de 2024"</span></span>
+<span id="annotated-cell-49-11"><a href="#annotated-cell-49-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-49" data-target-annotation="7">7</button><span id="annotated-cell-49-12" class="code-annotation-target"><a href="#annotated-cell-49-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-49" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-49" data-code-lines="1" data-code-annotation="1">Iniciando o gráfico.</span>
+</dd>
+<dt data-target-cell="annotated-cell-49" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-49" data-code-lines="2" data-code-annotation="2">Adicionando a base de dados com os limites dos estados do Brasil.</span>
+</dd>
+<dt data-target-cell="annotated-cell-49" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-49" data-code-lines="3" data-code-annotation="3">Adicionando a base de dados com a quantidade de voos por município.</span>
+</dd>
+<dt data-target-cell="annotated-cell-49" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-49" data-code-lines="4" data-code-annotation="4">Personalizando as cores do mapa: usando a paleta viridis.</span>
+</dd>
+<dt data-target-cell="annotated-cell-49" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-49" data-code-lines="5" data-code-annotation="5">Destacando os municípios com mais de 3000 voos.</span>
+</dd>
+<dt data-target-cell="annotated-cell-49" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-49" data-code-lines="6,11" data-code-annotation="6">Personalizando os textos.</span>
+</dd>
+<dt data-target-cell="annotated-cell-49" data-target-annotation="7">7</dt>
+<dd>
+<span data-code-cell="annotated-cell-49" data-code-lines="12" data-code-annotation="7">Personalizando o tema. :::</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="texto-data_files/figure-html/unnamed-chunk-59-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="extra---joins-avançados" class="level4" data-number="7.3.3.6">
+<h4 data-number="7.3.3.6" class="anchored" data-anchor-id="extra---joins-avançados"><span class="header-section-number">7.3.3.6</span> Extra - Joins avançados</h4>
 <p>O pacote <a href="https://github.com/dgrtwo/fuzzyjoin"><code>{fuzzyjoin}</code></a> permite fazer joins entre tabelas considerando similaridade entre textos, utilizando técnicas de <em>fuzzy join</em>, que permite unir tabelas com base em similaridade parcial entre as chaves, em vez de exigir correspondência exata. Isso é útil quando trabalhamos com bases de dados que podem ter inconsistências, como erros de digitação em nomes de pessoas ou pequenas variações em endereços.</p>
 <!-- Pareamento (probabilístico e fonético)  - pensar se vamos discutir -->
 <!-- left join window **/ intervalo**; fuzzy join** -->
