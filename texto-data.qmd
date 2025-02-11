@@ -634,14 +634,6 @@ str_subset(palavras_pro, "^pro")
 str_subset(palavras_pro, "pro")
 ```
 
-3. Utilizando o vetor `emails` abaixo, crie um código que retorne apenas os emails válidos (ou seja, que possuem o formato `nome@provedor.etc`). Não precisa ser a solução perfeita, mas tente pensar em como você faria isso.
-
-```{r}
-emails <- c("joao@gmail.com",
-            "maria@outlook",
-            "contato@empresa.org",
-            "isso_nao_eh_email")
-```
 
 ### Manipulação de strings com `stringr`
 
