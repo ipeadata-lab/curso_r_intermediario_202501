@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -41,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-72c93205fb41c15e2e398b4f9a505ee2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2ce9fc9ac8b614e7ffef13962cc12eaf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -181,7 +215,26 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#material-complementar" id="toc-material-complementar" class="nav-link active" data-scroll-target="#material-complementar"><span class="header-section-number">8.1</span> Material complementar</a></li>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">8.1</span> Introdução</a></li>
+  <li><a href="#funções-no-r" id="toc-funções-no-r" class="nav-link" data-scroll-target="#funções-no-r"><span class="header-section-number">8.2</span> Funções no R</a>
+  <ul>
+  <li><a href="#estrutura-básica-de-uma-função" id="toc-estrutura-básica-de-uma-função" class="nav-link" data-scroll-target="#estrutura-básica-de-uma-função"><span class="header-section-number">8.2.1</span> Estrutura básica de uma função</a>
+  <ul>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">8.2.1.1</span> Exercícios</a></li>
+  </ul></li>
+  <li><a href="#argumentos-padrão" id="toc-argumentos-padrão" class="nav-link" data-scroll-target="#argumentos-padrão"><span class="header-section-number">8.2.2</span> Argumentos padrão</a>
+  <ul>
+  <li><a href="#exercícios-1" id="toc-exercícios-1" class="nav-link" data-scroll-target="#exercícios-1"><span class="header-section-number">8.2.2.1</span> Exercícios</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#environments" id="toc-environments" class="nav-link" data-scroll-target="#environments"><span class="header-section-number">8.3</span> Environments</a>
+  <ul>
+  <li><a href="#escopo-de-variáveis-local-vs.-global" id="toc-escopo-de-variáveis-local-vs.-global" class="nav-link" data-scroll-target="#escopo-de-variáveis-local-vs.-global"><span class="header-section-number">8.3.1</span> Escopo de Variáveis (Local vs.&nbsp;Global)</a></li>
+  </ul></li>
+  <li><a href="#iteração-for" id="toc-iteração-for" class="nav-link" data-scroll-target="#iteração-for"><span class="header-section-number">8.4</span> Iteração: <code>for</code></a></li>
+  <li><a href="#pacote-purrr" id="toc-pacote-purrr" class="nav-link" data-scroll-target="#pacote-purrr"><span class="header-section-number">8.5</span> Pacote <code>purrr</code></a></li>
+  <li><a href="#paralelização-com-o-pacote-furrr" id="toc-paralelização-com-o-pacote-furrr" class="nav-link" data-scroll-target="#paralelização-com-o-pacote-furrr"><span class="header-section-number">8.6</span> Paralelização com o pacote <code>furrr</code></a></li>
+  <li><a href="#material-complementar" id="toc-material-complementar" class="nav-link" data-scroll-target="#material-complementar"><span class="header-section-number">8.7</span> Material complementar</a></li>
   </ul>
 </nav>
     </div>
@@ -213,9 +266,433 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="introdução" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">8.1</span> Introdução</h2>
+<p>A programação funcional é um paradigma de programação que se concentra em funções e em como elas são usadas para resolver problemas<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>Utilizar funções tem várias vantagens, como:</p>
+<ul>
+<li><p>Evitamos copiar e colar o mesmo código (ou muito parecido) várias vezes. Isso faz com que o código seja mais fácil de manter e de entender, e também diminui a chance de erros.</p></li>
+<li><p>Podemos reutilizar o código em diferentes partes do programa.</p></li>
+</ul>
+<p>Até, nós temos utilizado as funções existentes (do R e de pacotes) para realizar tarefas específicas.</p>
+<p>Mas e se quisermos criar nossas próprias funções, para facilitar a execução de tarefas repetitivas?</p>
+<p>Nesta aula, vamos aprender a criar nossas próprias funções!</p>
+<p>Vamos carregar os dados dos voos (utilizado na aula anterior) para utilizarmos como exemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>voos <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv2</span>(<span class="st">"dados/voos_dez-2024-alterado.csv"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Using "','" as decimal and "'.'" as grouping mark. Use `read_delim()` for more control.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 82003 Columns: 26
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ";"
+chr  (17): nm_empresa, ds_di, ds_grupo_di, ds_natureza_etapa, dt_partida_rea...
+dbl   (5): id_basica, id_empresa, id_aerodromo_origem, dt_chegada_real, id_a...
+dttm  (1): dt_sistema
+date  (1): dt_referencia
+time  (2): hr_partida_real, hr_chegada_real
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p>Caso tenha dificuldades em carregar os dados, você pode carregar o arquivo diretamente da internet:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>voos <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv2</span>(<span class="st">"https://github.com/ipeadata-lab/curso_r_intermediario_202501/raw/refs/heads/main/dados/voos_dez-2024-alterado.csv"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="funções-no-r" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="funções-no-r"><span class="header-section-number">8.2</span> Funções no R</h2>
+<p>Já vimos que o R possui várias funções embutidas, como <code>mean()</code>, <code>sum()</code>, <code>sd()</code>, entre outras. Também já utilizamos funções de pacotes, como <code>dplyr::filter()</code> e <code>ggplot2::ggplot()</code>.</p>
+<p>Mas e se quisermos criar nossas próprias funções?</p>
+<section id="estrutura-básica-de-uma-função" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="estrutura-básica-de-uma-função"><span class="header-section-number">8.2.1</span> Estrutura básica de uma função</h3>
+<p>As funções no R são criadas com a função <code>function()</code>, e tem a seguinte estrutura básica:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nome_da_funcao <span class="ot">&lt;-</span> <span class="cf">function</span>(argumento1, argumento2, ...) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Corpo da função</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Aqui, escrevemos o código que a função irá executar</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Uma forma que facilita o processo de criação de funções é pensar em pequenas tarefas que podem ser agrupadas em uma função. Assim, a função se torna mais fácil de entender e de testar.</p>
+<p>Por exemplo, na aula de <a href="./relatorios.html">relatórios com Quarto</a>, utilizamos a função knitr::combine_words() para combinar palavras em uma frase. Se quisermos criar uma função que faça isso, poderíamos seguir os seguintes passos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1">1</button><span id="annotated-cell-4-1" class="code-annotation-target"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a>combinar_palavras <span class="ot">&lt;-</span> <span class="cf">function</span>(vetor_de_palavras) {</span>
+<span id="annotated-cell-4-2"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="2">2</button><span id="annotated-cell-4-3" class="code-annotation-target"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a>  palavras_unicas <span class="ot">&lt;-</span> <span class="fu">unique</span>(vetor_de_palavras)</span>
+<span id="annotated-cell-4-4"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="3">3</button><span id="annotated-cell-4-5" class="code-annotation-target"><a href="#annotated-cell-4-5" aria-hidden="true" tabindex="-1"></a>  palavras_combinadas <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">combine_words</span>(</span>
+<span id="annotated-cell-4-6"><a href="#annotated-cell-4-6" aria-hidden="true" tabindex="-1"></a>    palavras_unicas,</span>
+<span id="annotated-cell-4-7"><a href="#annotated-cell-4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">and =</span> <span class="st">" e "</span>,</span>
+<span id="annotated-cell-4-8"><a href="#annotated-cell-4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">oxford_comma =</span> <span class="cn">FALSE</span>)</span>
+<span id="annotated-cell-4-9"><a href="#annotated-cell-4-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="4">4</button><span id="annotated-cell-4-10" class="code-annotation-target"><a href="#annotated-cell-4-10" aria-hidden="true" tabindex="-1"></a>  palavras_combinadas</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="5">5</button><span id="annotated-cell-4-11" class="code-annotation-target"><a href="#annotated-cell-4-11" aria-hidden="true" tabindex="-1"></a>}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="1" data-code-annotation="1">Início da função <code>combinar_palavras()</code>. A função recebe um argumento chamado <code>vetor_de_palavras</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="3" data-code-annotation="2">O argumento <code>vetor_de_palavras</code> é utilizado como argumento para a função <code>unique()</code> para obter as palavras únicas do vetor de palavras.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="5,8" data-code-annotation="3">As palavras únicas são combinadas utilizando a função <code>knitr::combine_words()</code>. Neste caso, estamos utilizando o argumento <code>and</code> para separar as palavras e <code>oxford_comma</code> para definir se queremos a vírgula de Oxford.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="10" data-code-annotation="4">O resultado da função é a variável <code>palavras_combinadas</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="11" data-code-annotation="5">Fim da função <code>combinar_palavras()</code>.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Com a função criada, podemos experimentá-la:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimentando com um vetor de palavras</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">combinar_palavras</span>(<span class="fu">c</span>(<span class="st">"R"</span>, <span class="st">"Python"</span>, <span class="st">"SQL"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R, Python e SQL</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimentando com um vetor de palavras, com palavras repetidas</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">combinar_palavras</span>(<span class="fu">c</span>(<span class="st">"R"</span>, <span class="st">"Python"</span>, <span class="st">"SQL"</span>, <span class="st">"R"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R, Python e SQL</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimentando com uma coluna de um data frame</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">combinar_palavras</span>(voos<span class="sc">$</span>sg_uf_origem)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NA, SP, RJ, SC, PE, CE, MG, AM, MT, DF, PR, PA, ES, RS, AC, BA, SE, GO, PB, RN, AL, AP, MS, PI, RR, MA, TO e RO</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># O que acontece quando tentamos chamar a função sem argumentos?</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">combinar_palavras</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in combinar_palavras(): argument "vetor_de_palavras" is missing, with no default</code></pre>
+</div>
+</div>
+<p>No exemplo acima, podemos observar que:</p>
+<ul>
+<li><p><strong>Nome da função:</strong> Criamos uma função chamada <code>combinar_palavras()</code>. Utilizamos o operador <code>&lt;-</code> para atribuir a função a um objeto chamado <code>combinar_palavras</code>.</p></li>
+<li><p>A função recebe um <strong>argumento</strong> chamado <code>vetor_de_palavras</code>. Este argumento é o que vamos passar para a função quando quisermos utilizá-la.</p></li>
+<li><p>O valor passado no argumento <code>vetor_de_palavras</code> é substituído no <strong>corpo da função</strong> para realizar as operações desejadas.</p></li>
+<li><p>Podemos utilizar funções existentes dentro de outras funções. No exemplo, utilizamos a função <code>unique()</code> para obter as palavras únicas e a função <code>knitr::combine_words()</code> para combinar as palavras.</p></li>
+<li><p>O resultado da função é o valor da última expressão avaliada. Neste caso, o resultado é a variável <code>palavras_combinadas</code>.</p></li>
+<li><p>Podemos chamar a função com diferentes argumentos, como um vetor de palavras ou uma coluna de um data frame. No entanto, se tentarmos chamar a função sem argumentos, obteremos um erro.</p></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Dica: Quando começamos a criar funções, podemos partir de um código que já temos e que gostaríamos de reutilizar. Assim, podemos identificar as partes do código que podem ser agrupadas em uma função.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A função <code>combinar_palavras()</code> recebe um vetor com <code>n</code> palavras, e retorna um vetor de tamanho <code>1</code> com a frase combinada.</p>
+<p>Chamamos este tipo de função de <a href="https://r4ds.hadley.nz/functions.html#summary-functions">função de sumarização (summary function)</a>, pois ela “resume” as <code>n</code> palavras em uma única frase.</p>
+<p>Outros exemplos de função de sumarização são <code>mean()</code>, <code>sum()</code>, <code>sd()</code>, <code>median()</code>, entre outras: elas recebem um vetor de números (que pode conter muitos números) e retornam um único número.</p>
+</div>
+</div>
+<section id="exercícios" class="level4" data-number="8.2.1.1">
+<h4 data-number="8.2.1.1" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">8.2.1.1</span> Exercícios</h4>
+<ol type="1">
+<li>Criar uma função simples!</li>
+</ol>
+<!-- -->
+<ol type="a">
+<li>Crie uma função que recebe um valor em dólar e retorna o valor em reais. Considere que 1 dólar é igual a R$ 5,77 (ou consulte o <a href="https://www.bcb.gov.br/estabilidadefinanceira/historicocotacoes">site do Banco Central</a> para buscar o valor atualizado).</li>
+<li>Experimente a função com diferentes valores.</li>
+</ol>
+<ol start="2" type="1">
+<li>Na aula passada, falamos sobre tratar textos. O exemplo abaixo mostra como a função <code>stringi::stri_trans_general()</code> pode ser utilizada para remover acentos de palavras.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>stringi<span class="sc">::</span><span class="fu">stri_trans_general</span>(<span class="st">"RIBEIRÃO PRETO"</span>, <span class="st">"Latin-ASCII"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "RIBEIRAO PRETO"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>stringi<span class="sc">::</span><span class="fu">stri_trans_general</span>(<span class="st">"SÃO PAULO"</span>, <span class="st">"Latin-ASCII"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "SAO PAULO"</code></pre>
+</div>
+</div>
+<p>Repare que o segundo argumento da função é um pouco complicado de lembrar. Podemos “encapsular” essa função em uma função mais simples, que recebe apenas a palavra a ser transformada.</p>
+<ol type="a">
+<li>Crie uma função chamada <code>remover_acentos()</code> que recebe um vetor de palavras e retorna as palavras sem acentos.</li>
+<li>Experimente a função com outras palavras que possuem acentos.</li>
+</ol>
+<!-- -->
+<ol start="3" type="1">
+<li>Considerando a função <code>combinar_palavras()</code> criada anteriormente:</li>
+</ol>
+<!-- -->
+<ol type="a">
+<li>Adapte a função para que ordene as palavras (<code>sort()</code>) e remova os <code>NA</code> (<code>na.omit()</code>) antes de combiná-las. Dê o nome para a função de <code>combinar_palavras_sem_na()</code>.</li>
+<li>Experimente a função com o vetor <code>voos$sg_uf_origem</code>. Qual é a diferença no resultado das funções <code>combinar_palavras()</code> e <code>combinar_palavras_sem_na()</code>?</li>
+</ol>
+</section>
+</section>
+<section id="argumentos-padrão" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="argumentos-padrão"><span class="header-section-number">8.2.2</span> Argumentos padrão</h3>
+<p>No exemplo anterior, a função <code>combinar_palavras()</code> não funcionará se não fornecermos um argumento. Isso acontece porque o argumento <code>vetor_de_palavras</code> não tem um valor padrão.</p>
+<p>Podemos definir argumentos padrão para uma função, que serão utilizados caso o argumento não seja fornecido.</p>
+<p>Vamos explorar este conceito com uma função do base R: <code>round()</code>. Essa função apresenta dois argumentos: <code>x</code> (o número que queremos arredondar) e <code>digits</code> (o número de casas decimais para arredondar).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Podemos chamar a função round() com os dois argumentos</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(pi, <span class="at">digits =</span> <span class="dv">2</span>) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.14</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(pi, <span class="at">digits =</span> <span class="dv">1</span>) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ou podemos chamar a função com apenas o argumento x</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(pi) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<p>Repare que, quando chamamos a função <code>round()</code> sem o argumento <code>digits</code>, o valor padrão é utilizado (<code>0</code>). Ou seja, o número é arredondado para o inteiro mais próximo. Este argumento padrão é definido na própria função <code>round()</code>, e podemos consultar a documentação as funções para descobrir quais são os argumentos padrão.</p>
+<p>Entretanto, a função <code>round()</code> tem um argumento obrigatório: <code>x</code>. Ou seja, precisamos fornecer um valor para <code>x</code> sempre que chamamos a função. Caso contrário, a função não saberá o que arredondar, e retornará um erro.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: argument "x" is missing, with no default</code></pre>
+</div>
+</div>
+<p>Portanto, quando estamos criando nossas próprias funções, é importante pensar em quais argumentos são obrigatórios e quais são opcionais (ou seja, com valores padrão). Assim, podemos definir argumentos padrão para tornar a função mais flexível e fácil de usar.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A função <code>round()</code> recebe um vetor com <code>n</code> números, e retorna um vetor de tamanho <code>n</code> com os números arredondados. Ou seja, a função <code>round()</code> retorna um vetor do mesmo tamanho do vetor de entrada.</p>
+<p>Chamamos este tipo de função de <a href="https://r4ds.hadley.nz/functions.html#mutate-functions">mutate functions</a>, pois ela “transforma” os <code>n</code> números em <code>n</code> números arredondados. As funções do tipo <code>mutate</code> são interessantes pois podemos utilizar dentro de um <code>mutate()</code> do pacote <code>dplyr</code>.</p>
+</div>
+</div>
+<section id="exercícios-1" class="level4" data-number="8.2.2.1">
+<h4 data-number="8.2.2.1" class="anchored" data-anchor-id="exercícios-1"><span class="header-section-number">8.2.2.1</span> Exercícios</h4>
+<ol type="1">
+<li>No exercício 1 da seção anterior, criamos uma função para converter valores em dólar para reais.</li>
+</ol>
+<!-- -->
+<ol type="a">
+<li>Modifique a função para que o valor do dólar seja um argumento padrão. O valor padrão deve ser 5,77.</li>
+<li>Experimente a função, calculando o valor de um mesmo produto com diferentes valores de dólar. Por exemplo: no dia 02/01/2025, o valor do dólar era 6,19. Qual seria o valor do produto nesse dia? E qual seria o valor do produto hoje?</li>
+</ol>
+<!-- -->
+<ol start="2" type="1">
+<li><p>Para a função <code>combinar_palavras()</code> criada anteriormente, faz sentido ter um argumento padrão? Se sim, qual seria esse argumento padrão?</p></li>
+<li><p>Uma aplicação útil para as funções do <code>{stringr}</code> é preparar uma coluna para ser utilizada em um <code>join</code>. Por exemplo, podemos remover acentos e transformar todas as letras em minúsculas.</p></li>
+</ol>
+<!-- -->
+<ol type="a">
+<li>Crie uma função chamada <code>preparar_coluna()</code> que recebe um vetor (uma coluna da tabela) e retorna esse vetor sem acentos e em minúsculas.</li>
+<li>Experimente a função com a coluna <code>voos$nm_municipio_origem</code>: <code>preparar_coluna(voos$nm_municipio_origem)</code>.</li>
+<li>Experimente utilizar a função <code>preparar_coluna()</code> dentro de um <code>mutate()</code> do pacote <code>dplyr</code> para criar uma nova coluna <code>nm_municipio_origem_preparado</code> na tabela <code>voos</code>.</li>
+</ol>
+</section>
+</section>
+</section>
+<section id="environments" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="environments"><span class="header-section-number">8.3</span> Environments</h2>
+<p>Em R, um conceito importante que pode nos ajudar a entender problemas que ocorrem ao criar funções (e as boas práticas) é o de <em>environment</em>. Entretanto, <a href="https://adv-r.hadley.nz/environments.html">este assunto é avançado</a>, e vamos apresentar de forma simplificada.</p>
+<p>Já ouvimos falar de <em>Enviroment</em> ao utilizar o RStudio, no painel <em>Enviroment</em>. Quando criamos um objeto, o R adiciona este objeto no <em>Global Environment</em> e conseguimos visualizar este objeto no painel <em>Enviroment</em>.</p>
+<p>Mas o que acontece quando tentamos acessar um objeto que não aparece no <em>Global Environment</em>?</p>
+<p>Por exemplo, se tentarmos acessar o objeto <code>mtcars</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtcars)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+</div>
+</div>
+<p>O R encontrou este objeto, mesmo não estando no <em>Global Environment</em>. Isso acontece porque o R procura primeiramente o objeto no <em>Global Environment</em>, e se não encontrar, ele procura em outros <em>environments</em>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://adv-r.hadley.nz/environments.html"><img src="images/search-path.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Imagem do livro “Advanced R” por Hadley Wickham"></a></p>
+</figure>
+</div>
+<figcaption>Imagem do livro “Advanced R” por Hadley Wickham</figcaption>
+</figure>
+</div>
+<p>A função <code>search()</code> nos mostra a ordem em que o R procura por objetos. Vamos experimentar:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">search</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] ".GlobalEnv"        "package:stats"     "package:graphics" 
+ [4] "package:grDevices" "package:datasets"  "renv:shims"       
+ [7] "package:utils"     "package:methods"   "Autoloads"        
+[10] "package:base"     </code></pre>
+</div>
+</div>
+<p>E por que isso é importante para criar funções?</p>
+<section id="escopo-de-variáveis-local-vs.-global" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="escopo-de-variáveis-local-vs.-global"><span class="header-section-number">8.3.1</span> Escopo de Variáveis (Local vs.&nbsp;Global)</h3>
+<p>Quando executamos funções, o R cria um <em>enviroment</em> temporário para execução para a função. Este <em>environment</em> é onde as variáveis criadas dentro da função são armazenadas. Vamos chamar de <em>escopo local</em>.</p>
+<p>Existem dois tipos principais de escopo:</p>
+<ul>
+<li><p><strong>Escopo Local:</strong> Variáveis criadas dentro de uma função existem apenas enquanto a função está em execução. Elas não afetam o ambiente global (<em>global environment</em>) e são descartadas após a execução da função. Isso garante que o código seja mais seguro e previsível, já que alterações em variáveis locais não influenciam outros trechos do código.</p></li>
+<li><p><strong>Escopo Global:</strong> Variáveis definidas fora de funções estão no ambiente global (<em>global environment</em>) e podem ser acessadas de qualquer lugar do código. No entanto, confiar em variáveis globais dentro de funções pode gerar dependências implícitas, dificultando a compreensão e a depuração do código.</p></li>
+</ul>
+<p>Quando uma função precisa de um objeto que não está definido em seu escopo local (ou seja, não foi criada dentro da função ou recebida como um argumento), o R inicia uma busca nos ambientes acima, até encontrar o objeto ou gerar um erro caso ele não exista. Esse comportamento pode causar efeitos inesperados, especialmente se o objeto global for alterado em outro lugar do código.</p>
+<p>Por exemplo, considere a seguinte função:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>contagem_coluna <span class="ot">&lt;-</span> <span class="cf">function</span>(coluna){</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  voos <span class="sc">|&gt;</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">count</span>(.data[[coluna]], <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimentando a função: UF de origem</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="fu">contagem_coluna</span>(<span class="st">"sg_uf_origem"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 28 × 2
+   sg_uf_origem     n
+   &lt;chr&gt;        &lt;int&gt;
+ 1 SP           26358
+ 2 RJ            7434
+ 3 &lt;NA&gt;          7228
+ 4 MG            5969
+ 5 DF            4531
+ 6 PE            3976
+ 7 BA            3787
+ 8 PR            3586
+ 9 SC            2785
+10 RS            2028
+# ℹ 18 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimentando a função: município de origem</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contagem_coluna</span>(<span class="st">"nm_municipio_origem"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 299 × 2
+   nm_municipio_origem      n
+   &lt;chr&gt;                &lt;int&gt;
+ 1 GUARULHOS            11809
+ 2 SÃO PAULO             8104
+ 3 RIO DE JANEIRO        7345
+ 4 CAMPINAS              5210
+ 5 CONFINS               4788
+ 6 BRASÍLIA              4524
+ 7 RECIFE                3506
+ 8 SALVADOR              2449
+ 9 SÃO JOSÉ DOS PINHAIS  2069
+10 PORTO ALEGRE          1716
+# ℹ 289 more rows</code></pre>
+</div>
+</div>
+<p>O que acontece se tentarmos executar a função <code>contagem_coluna()</code>? Observe que estamos usando a base de dados <code>voos</code> dentro da função, mas ela não foi passada como argumento.</p>
+<p>E ao executar a função, ela não gerou erro!! Isso acontece porque o R procura primeiro no ambiente local, depois no ambiente global, e encontra a base de dados <code>voos</code> no ambiente global. E como a base de dados <code>voos</code> foi carregada no ambiente global, a função consegue acessá-la. Se o objeto <code>voos</code> não existisse, a função geraria um erro.</p>
+<p>O ideal seria deixar a base de dados <code>voos</code> como argumento da função, para que ela seja mais flexível e independente do ambiente global.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>contagem_coluna_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(df, coluna){</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">count</span>(.data[[coluna]], <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimentando a função: UF de origem</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="fu">contagem_coluna_2</span>(voos, <span class="st">"sg_uf_origem"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 28 × 2
+   sg_uf_origem     n
+   &lt;chr&gt;        &lt;int&gt;
+ 1 SP           26358
+ 2 RJ            7434
+ 3 &lt;NA&gt;          7228
+ 4 MG            5969
+ 5 DF            4531
+ 6 PE            3976
+ 7 BA            3787
+ 8 PR            3586
+ 9 SC            2785
+10 RS            2028
+# ℹ 18 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimentando a função: município de origem</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contagem_coluna_2</span>(voos, <span class="st">"nm_municipio_origem"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 299 × 2
+   nm_municipio_origem      n
+   &lt;chr&gt;                &lt;int&gt;
+ 1 GUARULHOS            11809
+ 2 SÃO PAULO             8104
+ 3 RIO DE JANEIRO        7345
+ 4 CAMPINAS              5210
+ 5 CONFINS               4788
+ 6 BRASÍLIA              4524
+ 7 RECIFE                3506
+ 8 SALVADOR              2449
+ 9 SÃO JOSÉ DOS PINHAIS  2069
+10 PORTO ALEGRE          1716
+# ℹ 289 more rows</code></pre>
+</div>
+</div>
+<p>Também é uma boa prática evitar alterar objetos fora do ambiente de execução da função. Funções devem ser “puras”, ou seja, receber entradas e retornar saídas sem efeitos colaterais externos. Em outras palavras, não devem alterar objetos fora de seu escopo local.</p>
+<p>Além disso, ao utilizar pacotes dentro de funções, o ideal é usar a notação <code>::</code> (por exemplo, <code>dplyr::filter()</code>) em vez de <code>library()</code>. Isso porque <code>library()</code> altera o ambiente global, carregando o pacote para todo o script, enquanto <code>::</code> garante que a função específica seja chamada diretamente do pacote desejado, sem afetar o restante do código. Isso melhora a legibilidade e evita conflitos entre funções de diferentes pacotes.s</p>
+</section>
+</section>
+<section id="iteração-for" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="iteração-for"><span class="header-section-number">8.4</span> Iteração: <code>for</code></h2>
 <p>Em breve!</p>
-<section id="material-complementar" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="material-complementar"><span class="header-section-number">8.1</span> Material complementar</h2>
+<!-- Estrutura básica do for loop no R -->
+</section>
+<section id="pacote-purrr" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="pacote-purrr"><span class="header-section-number">8.5</span> Pacote <code>purrr</code></h2>
+<p>Em breve!</p>
+<!-- Introdução ao purrr e filosofia do tidyverse -->
+<!-- Funções principais: map() -->
+<!-- Trabalhando com listas e tibbles -->
+<!-- Comparação: for loop vs. map() (em termos de legibilidade e performance) -->
+<!-- Exercício prático: Transformar um código com for em um código usando purrr -->
+</section>
+<section id="paralelização-com-o-pacote-furrr" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="paralelização-com-o-pacote-furrr"><span class="header-section-number">8.6</span> Paralelização com o pacote <code>furrr</code></h2>
+<p>Em breve!</p>
+<!-- O que é paralelização? Conceitos básicos -->
+<!-- Diferença entre processamento sequencial e paralelo -->
+<!-- Configuração com furrr: -->
+<!--     future::plan() e furrr::future_map() -->
+<!--     Detectando o número de cores disponíveis (parallel::detectCores()) -->
+<!--     Configurando para não usar todos os cores -->
+<!-- Global objects: como garantir que objetos estejam disponíveis para todos os workers -->
+<!-- Exercício prático: Paralelizar uma tarefa com furrr -->
+</section>
+<section id="material-complementar" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="material-complementar"><span class="header-section-number">8.7</span> Material complementar</h2>
 <ul>
 <li>Capítulos do livro <a href="https://pt.r4ds.hadley.nz/">“R para Ciência de Dados” (2 ed)</a> por Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund:
 <ul>
@@ -223,9 +700,19 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="https://pt.r4ds.hadley.nz/functions.html">Funções</a></li>
 <li><a href="https://pt.r4ds.hadley.nz/iteration.html">Iteração</a></li>
 </ul></li>
+<li>Capítulos do livro Zen do R, por <a href="https://curso-r.github.io/zen-do-r/index.html">Curso-R</a>:
+<ul>
+<li><a href="https://curso-r.github.io/zen-do-r/funcoes-deps.html">Funções e dependências</a></li>
+</ul></li>
 </ul>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>O termo “programação funcional” aqui é usado de forma simplificada. Caso queira uma definição mais detalhada, confira a <a href="https://pt.wikipedia.org/wiki/Programa%C3%A7%C3%A3o_funcional">Wikipedia</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
