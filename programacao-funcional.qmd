@@ -3,12 +3,385 @@ title: "Programação funcional"
 code-annotations: hover
 ---
 
+## Introdução
+
+A programação funcional é um paradigma de programação que se concentra em funções e em como elas são usadas para resolver problemas[^programacao-funcional-1].
+
+[^programacao-funcional-1]: O termo "programação funcional" aqui é usado de forma simplificada. Caso queira uma definição mais detalhada, confira a [Wikipedia](https://pt.wikipedia.org/wiki/Programa%C3%A7%C3%A3o_funcional).
+
+Utilizar funções tem várias vantagens, como:
+
+-   Evitamos copiar e colar o mesmo código (ou muito parecido) várias vezes. Isso faz com que o código seja mais fácil de manter e de entender, e também diminui a chance de erros.
+
+-   Podemos reutilizar o código em diferentes partes do programa.
+
+Até, nós temos utilizado as funções existentes (do R e de pacotes) para realizar tarefas específicas.
+
+Mas e se quisermos criar nossas próprias funções, para facilitar a execução de tarefas repetitivas?
+
+Nesta aula, vamos aprender a criar nossas próprias funções!
+
+Vamos carregar os dados dos voos (utilizado na aula anterior) para utilizarmos como exemplo:
+
+```{r}
+voos <- readr::read_csv2("dados/voos_dez-2024-alterado.csv")
+```
+
+Caso tenha dificuldades em carregar os dados, você pode carregar o arquivo diretamente da internet:
+
+```{r}
+#| echo: true
+#| eval: false
+voos <- readr::read_csv2("https://github.com/ipeadata-lab/curso_r_intermediario_202501/raw/refs/heads/main/dados/voos_dez-2024-alterado.csv")
+```
+
+## Funções no R
+
+Já vimos que o R possui várias funções embutidas, como `mean()`, `sum()`, `sd()`, entre outras. Também já utilizamos funções de pacotes, como `dplyr::filter()` e `ggplot2::ggplot()`.
+
+Mas e se quisermos criar nossas próprias funções?
+
+### Estrutura básica de uma função
+
+As funções no R são criadas com a função `function()`, e tem a seguinte estrutura básica:
+
+```{r}
+#| eval: false
+nome_da_funcao <- function(argumento1, argumento2, ...) {
+  # Corpo da função
+  # Aqui, escrevemos o código que a função irá executar
+}
+```
+
+Uma forma que facilita o processo de criação de funções é pensar em pequenas tarefas que podem ser agrupadas em uma função. Assim, a função se torna mais fácil de entender e de testar.
+
+Por exemplo, na aula de [relatórios com Quarto](relatorios.qmd), utilizamos a função knitr::combine_words() para combinar palavras em uma frase. Se quisermos criar uma função que faça isso, poderíamos seguir os seguintes passos:
+
+```{r}
+combinar_palavras <- function(vetor_de_palavras) { #<1>
+  
+  palavras_unicas <- unique(vetor_de_palavras) # <2>
+  
+  palavras_combinadas <- knitr::combine_words( # <3>
+    palavras_unicas,
+    and = " e ",
+    oxford_comma = FALSE) # <3>
+  
+  palavras_combinadas # <4>
+} # <5>
+```
+
+1.  Início da função `combinar_palavras()`. A função recebe um argumento chamado `vetor_de_palavras`.
+2.  O argumento `vetor_de_palavras` é utilizado como argumento para a função `unique()` para obter as palavras únicas do vetor de palavras.
+3.  As palavras únicas são combinadas utilizando a função `knitr::combine_words()`. Neste caso, estamos utilizando o argumento `and` para separar as palavras e `oxford_comma` para definir se queremos a vírgula de Oxford.
+4.  O resultado da função é a variável `palavras_combinadas`.
+5.  Fim da função `combinar_palavras()`.
+
+Com a função criada, podemos experimentá-la:
+
+```{r}
+# Experimentando com um vetor de palavras
+combinar_palavras(c("R", "Python", "SQL"))
+
+# Experimentando com um vetor de palavras, com palavras repetidas
+combinar_palavras(c("R", "Python", "SQL", "R"))
+
+# Experimentando com uma coluna de um data frame
+combinar_palavras(voos$sg_uf_origem)
+```
+
+```{r}
+#| error: true
+
+# O que acontece quando tentamos chamar a função sem argumentos?
+combinar_palavras()
+```
+
+No exemplo acima, podemos observar que:
+
+-   **Nome da função:** Criamos uma função chamada `combinar_palavras()`. Utilizamos o operador `<-` para atribuir a função a um objeto chamado `combinar_palavras`.
+
+-   A função recebe um **argumento** chamado `vetor_de_palavras`. Este argumento é o que vamos passar para a função quando quisermos utilizá-la.
+
+-   O valor passado no argumento `vetor_de_palavras` é substituído no **corpo da função** para realizar as operações desejadas.
+
+-   Podemos utilizar funções existentes dentro de outras funções. No exemplo, utilizamos a função `unique()` para obter as palavras únicas e a função `knitr::combine_words()` para combinar as palavras.
+
+-   O resultado da função é o valor da última expressão avaliada. Neste caso, o resultado é a variável `palavras_combinadas`.
+
+-   Podemos chamar a função com diferentes argumentos, como um vetor de palavras ou uma coluna de um data frame. No entanto, se tentarmos chamar a função sem argumentos, obteremos um erro.
+
+::: callout-tip
+Dica: Quando começamos a criar funções, podemos partir de um código que já temos e que gostaríamos de reutilizar. Assim, podemos identificar as partes do código que podem ser agrupadas em uma função.
+:::
+
+::: callout-note
+A função `combinar_palavras()` recebe um vetor com `n` palavras, e retorna um vetor de tamanho `1` com a frase combinada.
+
+Chamamos este tipo de função de [função de sumarização (summary function)](https://r4ds.hadley.nz/functions.html#summary-functions), pois ela "resume" as `n` palavras em uma única frase.
+
+Outros exemplos de função de sumarização são `mean()`, `sum()`, `sd()`, `median()`, entre outras: elas recebem um vetor de números (que pode conter muitos números) e retornam um único número.
+:::
+
+#### Exercícios
+
+1.  Criar uma função simples!
+
+<!-- -->
+
+a.  Crie uma função que recebe um valor em dólar e retorna o valor em reais. Considere que 1 dólar é igual a R\$ 5,77 (ou consulte o [site do Banco Central](https://www.bcb.gov.br/estabilidadefinanceira/historicocotacoes) para buscar o valor atualizado).
+b.  Experimente a função com diferentes valores.
+
+```{r}
+#| eval: false
+#| echo: false
+
+converter_dolar_para_real <- function(valor_para_converter) {
+  valor_em_reais <- valor_para_converter * 5.77
+  valor_em_reais
+}
+
+converter_dolar_para_real(1599)
+```
+
+2.  Na aula passada, falamos sobre tratar textos. O exemplo abaixo mostra como a função `stringi::stri_trans_general()` pode ser utilizada para remover acentos de palavras.
+
+```{r}
+stringi::stri_trans_general("RIBEIRÃO PRETO", "Latin-ASCII")
+stringi::stri_trans_general("SÃO PAULO", "Latin-ASCII")
+```
+
+Repare que o segundo argumento da função é um pouco complicado de lembrar. Podemos "encapsular" essa função em uma função mais simples, que recebe apenas a palavra a ser transformada.
+
+a)  Crie uma função chamada `remover_acentos()` que recebe um vetor de palavras e retorna as palavras sem acentos.
+b)  Experimente a função com outras palavras que possuem acentos.
+
+<!-- -->
+
+3.  Considerando a função `combinar_palavras()` criada anteriormente:
+
+<!-- -->
+
+a)  Adapte a função para que ordene as palavras (`sort()`) e remova os `NA` (`na.omit()`) antes de combiná-las. Dê o nome para a função de `combinar_palavras_sem_na()`.
+b)  Experimente a função com o vetor `voos$sg_uf_origem`. Qual é a diferença no resultado das funções `combinar_palavras()` e `combinar_palavras_sem_na()`?
+
+```{r}
+#| eval: false
+#| echo: false
+combinar_palavras_sem_na <- function(vetor_de_palavras) { 
+  
+  palavras_unicas <- unique(vetor_de_palavras)
+  
+  palavras_ordenadas <- sort(palavras_unicas) 
+  
+  palavras_sem_na <- na.omit(palavras_ordenadas) 
+  
+  palavras_combinadas <- knitr::combine_words(
+    palavras_sem_na,
+    and = " e ",
+    oxford_comma = FALSE) 
+  
+  palavras_combinadas
+}
+```
+
+### Argumentos padrão
+
+No exemplo anterior, a função `combinar_palavras()` não funcionará se não fornecermos um argumento. Isso acontece porque o argumento `vetor_de_palavras` não tem um valor padrão.
+
+Podemos definir argumentos padrão para uma função, que serão utilizados caso o argumento não seja fornecido.
+
+Vamos explorar este conceito com uma função do base R: `round()`. Essa função apresenta dois argumentos: `x` (o número que queremos arredondar) e `digits` (o número de casas decimais para arredondar).
+
+```{r}
+# Podemos chamar a função round() com os dois argumentos
+round(pi, digits = 2) 
+round(pi, digits = 1) 
+
+# Ou podemos chamar a função com apenas o argumento x
+round(pi) 
+```
+
+Repare que, quando chamamos a função `round()` sem o argumento `digits`, o valor padrão é utilizado (`0`). Ou seja, o número é arredondado para o inteiro mais próximo. Este argumento padrão é definido na própria função `round()`, e podemos consultar a documentação as funções para descobrir quais são os argumentos padrão.
+
+Entretanto, a função `round()` tem um argumento obrigatório: `x`. Ou seja, precisamos fornecer um valor para `x` sempre que chamamos a função. Caso contrário, a função não saberá o que arredondar, e retornará um erro.
+
+```{r}
+#| error: true
+round()
+```
+
+Portanto, quando estamos criando nossas próprias funções, é importante pensar em quais argumentos são obrigatórios e quais são opcionais (ou seja, com valores padrão). Assim, podemos definir argumentos padrão para tornar a função mais flexível e fácil de usar.
+
+::: callout-note
+A função `round()` recebe um vetor com `n` números, e retorna um vetor de tamanho `n` com os números arredondados. Ou seja, a função `round()` retorna um vetor do mesmo tamanho do vetor de entrada.
+
+Chamamos este tipo de função de [mutate functions](https://r4ds.hadley.nz/functions.html#mutate-functions), pois ela "transforma" os `n` números em `n` números arredondados. As funções do tipo `mutate` são interessantes pois podemos utilizar dentro de um `mutate()` do pacote `dplyr`.
+:::
+
+#### Exercícios
+
+1.  No exercício 1 da seção anterior, criamos uma função para converter valores em dólar para reais.
+
+<!-- -->
+
+a)  Modifique a função para que o valor do dólar seja um argumento padrão. O valor padrão deve ser 5,77.
+b)  Experimente a função, calculando o valor de um mesmo produto com diferentes valores de dólar. Por exemplo: no dia 02/01/2025, o valor do dólar era 6,19. Qual seria o valor do produto nesse dia? E qual seria o valor do produto hoje?
+
+<!-- -->
+
+2.  Para a função `combinar_palavras()` criada anteriormente, faz sentido ter um argumento padrão? Se sim, qual seria esse argumento padrão?
+
+3.  Uma aplicação útil para as funções do `{stringr}` é preparar uma coluna para ser utilizada em um `join`. Por exemplo, podemos remover acentos e transformar todas as letras em minúsculas.
+
+<!-- -->
+
+a)  Crie uma função chamada `preparar_coluna()` que recebe um vetor (uma coluna da tabela) e retorna esse vetor sem acentos e em minúsculas.
+b)  Experimente a função com a coluna `voos$nm_municipio_origem`: `preparar_coluna(voos$nm_municipio_origem)`.
+c)  Experimente utilizar a função `preparar_coluna()` dentro de um `mutate()` do pacote `dplyr` para criar uma nova coluna `nm_municipio_origem_preparado` na tabela `voos`.
+
+```{r}
+#| eval: false
+#| echo: false
+preparar_coluna <- function(vetor_de_palavras) {
+  vetor_minusculo <- stringr::str_to_lower(vetor_de_palavras)
+  
+  vetor_sem_acentos <- stringi::stri_trans_general(vetor_minusculo, "Latin-ASCII")
+  
+  vetor_sem_acentos
+  
+}
+preparar_coluna(voos$nm_municipio_origem)
+
+
+voos |>
+  dplyr::mutate(nm_municipio_origem_preparado = preparar_coluna(nm_municipio_origem)) |>
+  dplyr::select(nm_municipio_origem, nm_municipio_origem_preparado)
+```
+
+## Environments
+
+Em R, um conceito importante que pode nos ajudar a entender problemas que ocorrem ao criar funções (e as boas práticas) é o de *environment*. Entretanto, [este assunto é avançado](https://adv-r.hadley.nz/environments.html), e vamos apresentar de forma simplificada.
+
+Já ouvimos falar de *Enviroment* ao utilizar o RStudio, no painel *Enviroment*. Quando criamos um objeto, o R adiciona este objeto no *Global Environment* e conseguimos visualizar este objeto no painel *Enviroment*.
+
+Mas o que acontece quando tentamos acessar um objeto que não aparece no *Global Environment*?
+
+Por exemplo, se tentarmos acessar o objeto `mtcars`:
+
+```{r}
+head(mtcars)
+```
+
+O R encontrou este objeto, mesmo não estando no *Global Environment*. Isso acontece porque o R procura primeiramente o objeto no *Global Environment*, e se não encontrar, ele procura em outros *environments*.
+
+[![Imagem do livro "Advanced R" por Hadley Wickham](images/search-path.png){fig-align="center"}](https://adv-r.hadley.nz/environments.html)
+
+
+A função `search()` nos mostra a ordem em que o R procura por objetos. Vamos experimentar:
+
+```{r}
+search()
+```
+E por que isso é importante para criar funções? 
+
+
+### Escopo de Variáveis (Local vs. Global)
+
+Quando executamos funções, o R cria um *enviroment* temporário para execução para a função. Este *environment* é onde as variáveis criadas dentro da função são armazenadas. Vamos chamar de *escopo local*.
+
+Existem dois tipos principais de escopo:
+
+- **Escopo Local:** Variáveis criadas dentro de uma função existem apenas enquanto a função está em execução. Elas não afetam o ambiente global (*global environment*) e são descartadas após a execução da função. Isso garante que o código seja mais seguro e previsível, já que alterações em variáveis locais não influenciam outros trechos do código.
+
+- **Escopo Global:** Variáveis definidas fora de funções estão no ambiente global  (*global environment*) e podem ser acessadas de qualquer lugar do código. No entanto, confiar em variáveis globais dentro de funções pode gerar dependências implícitas, dificultando a compreensão e a depuração do código.
+
+
+Quando uma função precisa de um objeto que não está definido em seu escopo local (ou seja, não foi criada dentro da função ou recebida como um argumento), o R inicia uma busca nos ambientes acima, até encontrar o objeto ou gerar um erro caso ele não exista. Esse comportamento pode causar efeitos inesperados, especialmente se o objeto global for alterado em outro lugar do código.
+
+Por exemplo, considere a seguinte função:
+
+```{r}
+contagem_coluna <- function(coluna){
+  voos |> 
+    dplyr::count(.data[[coluna]], sort = TRUE)
+}
+# Experimentando a função: UF de origem
+contagem_coluna("sg_uf_origem")
+# Experimentando a função: município de origem
+contagem_coluna("nm_municipio_origem")
+```
+
+O que acontece se tentarmos executar a função `contagem_coluna()`? Observe que estamos usando a base de dados `voos` dentro da função, mas ela não foi passada como argumento.
+
+E ao executar a função, ela não gerou erro!!
+Isso acontece porque o R procura primeiro no ambiente local, depois no ambiente global, e encontra a base de dados `voos` no ambiente global. E como a base de dados `voos` foi carregada no ambiente global, a função consegue acessá-la. Se o objeto `voos` não existisse, a função geraria um erro.
+
+O ideal seria deixar a base de dados `voos` como argumento da função, para que ela seja mais flexível e independente do ambiente global.
+
+```{r}
+contagem_coluna_2 <- function(df, coluna){
+  df |> 
+    dplyr::count(.data[[coluna]], sort = TRUE)
+}
+
+# Experimentando a função: UF de origem
+contagem_coluna_2(voos, "sg_uf_origem")
+# Experimentando a função: município de origem
+contagem_coluna_2(voos, "nm_municipio_origem")
+```
+
+
+Também é uma boa prática evitar alterar objetos fora do ambiente de execução da função. Funções devem ser "puras", ou seja, receber entradas e retornar saídas sem efeitos colaterais externos. Em outras palavras, não devem alterar objetos fora de seu escopo local.
+
+
+Além disso, ao utilizar pacotes dentro de funções, o ideal é usar a notação `::` (por exemplo, `dplyr::filter()`) em vez de `library()`. Isso porque `library()` altera o ambiente global, carregando o pacote para todo o script, enquanto `::` garante que a função específica seja chamada diretamente do pacote desejado, sem afetar o restante do código. Isso melhora a legibilidade e evita conflitos entre funções de diferentes pacotes.s
+
+## Iteração: `for`
+
 Em breve!
 
+<!-- Estrutura básica do for loop no R -->
+
+## Pacote `purrr`
+
+Em breve!
+
+<!-- Introdução ao purrr e filosofia do tidyverse -->
+
+<!-- Funções principais: map() -->
+
+<!-- Trabalhando com listas e tibbles -->
+
+<!-- Comparação: for loop vs. map() (em termos de legibilidade e performance) -->
+
+<!-- Exercício prático: Transformar um código com for em um código usando purrr -->
+
+## Paralelização com o pacote `furrr`
+
+Em breve!
+
+<!-- O que é paralelização? Conceitos básicos -->
+
+<!-- Diferença entre processamento sequencial e paralelo -->
+
+<!-- Configuração com furrr: -->
+
+<!--     future::plan() e furrr::future_map() -->
+
+<!--     Detectando o número de cores disponíveis (parallel::detectCores()) -->
+
+<!--     Configurando para não usar todos os cores -->
+
+<!-- Global objects: como garantir que objetos estejam disponíveis para todos os workers -->
+
+<!-- Exercício prático: Paralelizar uma tarefa com furrr -->
 
 ## Material complementar
 
-- Capítulos do livro ["R para Ciência de Dados" (2 ed)](https://pt.r4ds.hadley.nz/) por  Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund:
-  - [Um guia para o R Base](https://pt.r4ds.hadley.nz/base-R.html)
-  - [Funções](https://pt.r4ds.hadley.nz/functions.html)
-  - [Iteração](https://pt.r4ds.hadley.nz/iteration.html)
+-   Capítulos do livro ["R para Ciência de Dados" (2 ed)](https://pt.r4ds.hadley.nz/) por Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund:
+    -   [Um guia para o R Base](https://pt.r4ds.hadley.nz/base-R.html)
+    -   [Funções](https://pt.r4ds.hadley.nz/functions.html)
+    -   [Iteração](https://pt.r4ds.hadley.nz/iteration.html)
+-   Capítulos do livro Zen do R, por [Curso-R](https://curso-r.github.io/zen-do-r/index.html):
+    -   [Funções e dependências](https://curso-r.github.io/zen-do-r/funcoes-deps.html)
