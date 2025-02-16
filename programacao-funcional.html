@@ -234,10 +234,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#escopo-de-variáveis-local-vs.-global" id="toc-escopo-de-variáveis-local-vs.-global" class="nav-link" data-scroll-target="#escopo-de-variáveis-local-vs.-global"><span class="header-section-number">8.2.5</span> Escopo de Variáveis (Local vs.&nbsp;Global)</a></li>
   <li><a href="#indo-além-com-funções" id="toc-indo-além-com-funções" class="nav-link" data-scroll-target="#indo-além-com-funções"><span class="header-section-number">8.2.6</span> Indo além com funções</a></li>
   </ul></li>
-  <li><a href="#iteração-for" id="toc-iteração-for" class="nav-link" data-scroll-target="#iteração-for"><span class="header-section-number">8.3</span> Iteração: <code>for</code></a></li>
-  <li><a href="#pacote-purrr" id="toc-pacote-purrr" class="nav-link" data-scroll-target="#pacote-purrr"><span class="header-section-number">8.4</span> Pacote <code>purrr</code></a></li>
-  <li><a href="#paralelização-com-o-pacote-furrr" id="toc-paralelização-com-o-pacote-furrr" class="nav-link" data-scroll-target="#paralelização-com-o-pacote-furrr"><span class="header-section-number">8.5</span> Paralelização com o pacote <code>furrr</code></a></li>
-  <li><a href="#material-complementar" id="toc-material-complementar" class="nav-link" data-scroll-target="#material-complementar"><span class="header-section-number">8.6</span> Material complementar</a></li>
+  <li><a href="#iteração" id="toc-iteração" class="nav-link" data-scroll-target="#iteração"><span class="header-section-number">8.3</span> Iteração</a>
+  <ul>
+  <li><a href="#loop-for" id="toc-loop-for" class="nav-link" data-scroll-target="#loop-for"><span class="header-section-number">8.3.1</span> Loop <code>for</code></a></li>
+  <li><a href="#pacote-purrr" id="toc-pacote-purrr" class="nav-link" data-scroll-target="#pacote-purrr"><span class="header-section-number">8.3.2</span> Pacote <code>purrr</code></a></li>
+  </ul></li>
+  <li><a href="#paralelização" id="toc-paralelização" class="nav-link" data-scroll-target="#paralelização"><span class="header-section-number">8.4</span> Paralelização</a>
+  <ul>
+  <li><a href="#pacote-furrr" id="toc-pacote-furrr" class="nav-link" data-scroll-target="#pacote-furrr"><span class="header-section-number">8.4.1</span> Pacote <code>furrr</code></a></li>
+  </ul></li>
+  <li><a href="#material-complementar" id="toc-material-complementar" class="nav-link" data-scroll-target="#material-complementar"><span class="header-section-number">8.5</span> Material complementar</a></li>
   </ul>
 </nav>
     </div>
@@ -758,13 +764,111 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <p>O <a href="https://pt.r4ds.hadley.nz/functions.html">capítulo sobre funções do livro R for Data Science (2ed)</a> é uma ótima referência para aprender mais sobre funções no R.</p>
 </section>
 </section>
-<section id="iteração-for" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="iteração-for"><span class="header-section-number">8.3</span> Iteração: <code>for</code></h2>
-<p>Em breve!</p>
-<!-- Estrutura básica do for loop no R -->
+<section id="iteração" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="iteração"><span class="header-section-number">8.3</span> Iteração</h2>
+<p>Na seção anterior, aprendemos a criar funções para facilitar a execução de tarefas repetitivas. No entanto, às vezes precisamos executar a mesma operação em vários elementos de uma lista, vetor ou data frame.</p>
+<p>Imagine que queremos salvar arquivos CSV separados para cada uma das empresas aéreas no dataset <code>voos</code>. Podemos criar uma função que salva um arquivo CSV para uma empresa específica:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>salvar_csv_por_empresa <span class="ot">&lt;-</span> <span class="cf">function</span>(dados,</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>                                   nome_empresa,</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">dir_salvar =</span> <span class="st">"dados/voos_empresas/"</span>) {</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Verificar se os argumentos são válidos</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.data.frame</span>(dados))</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.character</span>(nome_empresa))</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">length</span>(nome_empresa) <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.character</span>(dir_salvar))</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Limpar o nome da empresa</span></span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>  nome_empresa_limpo <span class="ot">&lt;-</span> janitor<span class="sc">::</span><span class="fu">make_clean_names</span>(nome_empresa)</span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Criando o diretório para salvar os arquivos</span></span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>  fs<span class="sc">::</span><span class="fu">dir_create</span>(dir_salvar)</span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Compor o caminho do arquivo a ser salvo</span></span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a>  caminho_arquivo_salvar <span class="ot">&lt;-</span> <span class="fu">paste0</span>(dir_salvar, nome_empresa_limpo, <span class="st">".csv"</span>)</span>
+<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filtrar os dados para a empresa desejada</span></span>
+<span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a>  dados_filtrados <span class="ot">&lt;-</span> dados <span class="sc">|&gt;</span></span>
+<span id="cb56-23"><a href="#cb56-23" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(nm_empresa <span class="sc">==</span> nome_empresa)</span>
+<span id="cb56-24"><a href="#cb56-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb56-25"><a href="#cb56-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Salvar os dados em um arquivo CSV</span></span>
+<span id="cb56-26"><a href="#cb56-26" aria-hidden="true" tabindex="-1"></a>  readr<span class="sc">::</span><span class="fu">write_csv2</span>(dados_filtrados, <span class="at">file =</span> caminho_arquivo_salvar)</span>
+<span id="cb56-27"><a href="#cb56-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb56-28"><a href="#cb56-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apresentar uma mensagem ao usuário</span></span>
+<span id="cb56-29"><a href="#cb56-29" aria-hidden="true" tabindex="-1"></a>  usethis<span class="sc">::</span><span class="fu">ui_done</span>(<span class="st">"Arquivo salvo: {caminho_arquivo_salvar}"</span>)</span>
+<span id="cb56-30"><a href="#cb56-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb56-31"><a href="#cb56-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Retornar o caminho do arquivo salvo</span></span>
+<span id="cb56-32"><a href="#cb56-32" aria-hidden="true" tabindex="-1"></a>  caminho_arquivo_salvar</span>
+<span id="cb56-33"><a href="#cb56-33" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Se quisermos salvar arquivos CSV separados para uma empresa, podemos utilizar a função <code>salvar_csv_por_empresa()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">salvar_csv_por_empresa</span>(voos, <span class="st">"TAM LINHAS AÉREAS S.A."</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ Arquivo salvo: dados/voos_empresas/tam_linhas_aereas_s_a.csv</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "dados/voos_empresas/tam_linhas_aereas_s_a.csv"</code></pre>
+</div>
+</div>
+<p>A função <code>salvar_csv_por_empresa()</code> não aceita um vetor com nome de várias empresas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">salvar_csv_por_empresa</span>(voos, </span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">c</span>(<span class="st">"AZUL LINHAS AÉREAS BRASILEIRAS S/A"</span>,</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"TAM LINHAS AÉREAS S.A."</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in salvar_csv_por_empresa(voos, c("AZUL LINHAS AÉREAS BRASILEIRAS S/A", : length(nome_empresa) == 1 não é TRUE</code></pre>
+</div>
+</div>
+<p>Uma forma de resolver esse problema seria chamar a função <code>salvar_csv_por_empresa()</code> para cada empresa. Porém essa base de dados apresenta mais de 200 valores únicos para a variável <code>nm_empresa</code>. Isso tornaria o processo manual e demorado (e com maior chance de erros!)</p>
+<p>Uma forma de resolver esse problema é utilizando alguma técnica de iteração. No R base, podemos utilizar o <em>loop</em> <code>for</code> para iterar sobre os valores de um vetor ou lista. No entanto, o pacote <code>purrr</code> oferece funções mais flexíveis e fáceis de usar para iterar sobre elementos.</p>
+<p>Vamos explorar algumas técnicas para fazer isso!</p>
+<section id="loop-for" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="loop-for"><span class="header-section-number">8.3.1</span> Loop <code>for</code></h3>
+<p>Os <em>loops</em> <code>for</code> são utilizados para iterar (ou seja, repetir o mesmo bloco de código) sobre sequências, como vetores, listas e data frames.</p>
+<p>No R, a sintaxe básica de um <em>loop</em> <code>for</code> é:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (variavel <span class="cf">in</span> sequencia) {</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Código a ser executado</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Onde:</p>
+<ul>
+<li><p><code>sequencia</code> é a sequência de valores sobre a qual o <em>loop</em> será executado. Pode ser um vetor ou uma lista.</p></li>
+<li><p><code>variavel</code> é a variável que será utilizada a cada iteração do <em>loop</em>. Esse nome será substituído pelos valores da sequência a cada iteração.</p></li>
+<li><p>O bloco de código a ser executado é delimitado por chaves <code>{}</code>.</p></li>
+</ul>
+<p>Considerando o exemplo anterior, podemos usar um <em>loop</em> <code>for</code> para salvar arquivos CSV separados para cada uma das empresas aéreas no dataset <code>voos</code>. Primeiro, vamos criar um vetor com os nomes das 10 empresas com mais voos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>nome_empresas <span class="ot">&lt;-</span> voos <span class="sc">|&gt;</span> </span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(nm_empresa, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span> (<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(nm_empresa)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Agora, podemos utilizar um <em>loop</em> <code>for</code> para salvar arquivos CSV para cada empresa:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (empresa <span class="cf">in</span> nome_empresas) {</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">salvar_csv_por_empresa</span>(voos, empresa)</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ Arquivo salvo: dados/voos_empresas/azul_linhas_aereas_brasileiras_s_a.csv
+✔ Arquivo salvo: dados/voos_empresas/tam_linhas_aereas_s_a.csv
+✔ Arquivo salvo: dados/voos_empresas/gol_linhas_aereas_s_a_ex_vrg_linhas_aereas_s_a.csv
+✔ Arquivo salvo: dados/voos_empresas/azul_conecta_ltda_ex_two_taxi_aereo_ltda.csv
+✔ Arquivo salvo: dados/voos_empresas/passaredo_transportes_aereos_s_a.csv
+✔ Arquivo salvo: dados/voos_empresas/tap_transportes_aereos_portugueses_s_a.csv
+✔ Arquivo salvo: dados/voos_empresas/latam_airlines_group_ex_lan_airlines_s_a.csv
+✔ Arquivo salvo: dados/voos_empresas/compania_panamena_de_aviacion_s_a_copa_airlines.csv
+✔ Arquivo salvo: dados/voos_empresas/aerolineas_argentinas_s_a.csv
+✔ Arquivo salvo: dados/voos_empresas/american_airlines_inc.csv</code></pre>
+</div>
+</div>
+<p>Veja como o <em>loop</em> <code>for</code> é utilizado para iterar sobre os valores do vetor <code>nome_empresas</code> e executar a função <code>salvar_csv_por_empresa()</code> para cada empresa.</p>
 </section>
-<section id="pacote-purrr" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="pacote-purrr"><span class="header-section-number">8.4</span> Pacote <code>purrr</code></h2>
+<section id="pacote-purrr" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="pacote-purrr"><span class="header-section-number">8.3.2</span> Pacote <code>purrr</code></h3>
 <p>Em breve!</p>
 <!-- Introdução ao purrr e filosofia do tidyverse -->
 <!-- Funções principais: map() -->
@@ -772,11 +876,15 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <!-- Comparação: for loop vs. map() (em termos de legibilidade e performance) -->
 <!-- Exercício prático: Transformar um código com for em um código usando purrr -->
 </section>
-<section id="paralelização-com-o-pacote-furrr" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="paralelização-com-o-pacote-furrr"><span class="header-section-number">8.5</span> Paralelização com o pacote <code>furrr</code></h2>
+</section>
+<section id="paralelização" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="paralelização"><span class="header-section-number">8.4</span> Paralelização</h2>
 <p>Em breve!</p>
 <!-- O que é paralelização? Conceitos básicos -->
 <!-- Diferença entre processamento sequencial e paralelo -->
+<section id="pacote-furrr" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="pacote-furrr"><span class="header-section-number">8.4.1</span> Pacote <code>furrr</code></h3>
+<p>Em breve!</p>
 <!-- Configuração com furrr: -->
 <!--     future::plan() e furrr::future_map() -->
 <!--     Detectando o número de cores disponíveis (parallel::detectCores()) -->
@@ -784,8 +892,9 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <!-- Global objects: como garantir que objetos estejam disponíveis para todos os workers -->
 <!-- Exercício prático: Paralelizar uma tarefa com furrr -->
 </section>
-<section id="material-complementar" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="material-complementar"><span class="header-section-number">8.6</span> Material complementar</h2>
+</section>
+<section id="material-complementar" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="material-complementar"><span class="header-section-number">8.5</span> Material complementar</h2>
 <ul>
 <li>Capítulos do livro <a href="https://pt.r4ds.hadley.nz/">“R para Ciência de Dados” (2 ed)</a> por Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund:
 <ul>
