@@ -431,34 +431,121 @@ Uma dica é tentar criar funções para tarefas repetitivas que você realiza co
 O [capítulo sobre funções do livro R for Data Science (2ed)](https://pt.r4ds.hadley.nz/functions.html) é uma ótima referência para aprender mais sobre funções no R.
 
 
-## Iteração: `for`
+## Iteração 
 
-Em breve!
 
-<!-- Estrutura básica do for loop no R -->
+Na seção anterior, aprendemos a criar funções para facilitar a execução de tarefas repetitivas. No entanto, às vezes precisamos executar a mesma operação em vários elementos de uma lista, vetor ou data frame.
 
-## Pacote `purrr`
+Imagine que queremos salvar arquivos CSV separados para cada uma das empresas aéreas no dataset `voos`. Podemos criar uma função que salva um arquivo CSV para uma empresa específica:
 
-Em breve!
+```{r}
+salvar_csv_por_empresa <- function(dados,
+                                   nome_empresa,
+                                   dir_salvar = "dados/voos_empresas/") {
+  
+  # Verificar se os argumentos são válidos
+  stopifnot(is.data.frame(dados))
+  stopifnot(is.character(nome_empresa))
+  stopifnot(length(nome_empresa) == 1)
+  stopifnot(is.character(dir_salvar))
+  
+
+  # Limpar o nome da empresa
+  nome_empresa_limpo <- janitor::make_clean_names(nome_empresa)
+  
+  # Criando o diretório para salvar os arquivos
+  fs::dir_create(dir_salvar)
+  
+  # Compor o caminho do arquivo a ser salvo
+  caminho_arquivo_salvar <- paste0(dir_salvar, nome_empresa_limpo, ".csv")
+  
+  # Filtrar os dados para a empresa desejada
+  dados_filtrados <- dados |>
+    dplyr::filter(nm_empresa == nome_empresa)
+  
+  # Salvar os dados em um arquivo CSV
+  readr::write_csv2(dados_filtrados, file = caminho_arquivo_salvar)
+  
+  # Apresentar uma mensagem ao usuário
+  usethis::ui_done("Arquivo salvo: {caminho_arquivo_salvar}")
+  
+  # Retornar o caminho do arquivo salvo
+  caminho_arquivo_salvar
+}
+```
+
+Se quisermos salvar arquivos CSV separados para uma empresa, podemos utilizar a função `salvar_csv_por_empresa()`:
+
+```{r}
+salvar_csv_por_empresa(voos, "TAM LINHAS AÉREAS S.A.")
+```
+
+A função `salvar_csv_por_empresa()` não aceita um vetor com nome de várias empresas:
+
+```{r}
+#| error: true
+salvar_csv_por_empresa(voos, 
+                       c("AZUL LINHAS AÉREAS BRASILEIRAS S/A",
+                         "TAM LINHAS AÉREAS S.A."))
+```
+
+Uma forma de resolver esse problema seria chamar a função `salvar_csv_por_empresa()` para cada empresa. Porém essa base de dados apresenta mais de 200 valores únicos para a variável `nm_empresa`. Isso tornaria o processo manual e demorado (e com maior chance de erros!)
+
+
+Uma forma de resolver esse problema é utilizando alguma técnica de iteração. No R base, podemos utilizar o *loop* `for` para iterar sobre os valores de um vetor ou lista. No entanto, o pacote `purrr` oferece funções mais flexíveis e fáceis de usar para iterar sobre elementos.
+
+Vamos explorar algumas técnicas para fazer isso!
+
+
+### Loop `for`
+
+Os *loops* `for` são utilizados para iterar (ou seja, repetir o mesmo bloco de código) sobre sequências, como vetores, listas e data frames. 
+
+
+No R, a sintaxe básica de um *loop* `for` é:
 
 
 ```{r}
-#| echo: false
-# extrair_sigla <- function(vetor){
-#   
-#   vetor_sigla <- vetor |> 
-#     stringr::str_split(" ") |> 
-#     purrr::map(stringr::str_sub, 1, 1) |> 
-#     purrr::map(paste0, collapse = "") |> 
-#     purrr::list_c()
-#   
-#   vetor_sigla
-#   
-# }
-
-# vetor_muni <- unique(voos$nm_municipio_origem)
-# extrair_sigla(vetor_muni)
+#| eval: false
+for (variavel in sequencia) {
+  # Código a ser executado
+}
 ```
+
+
+Onde:
+
+- `sequencia` é a sequência de valores sobre a qual o *loop* será executado. Pode ser um vetor ou uma lista.
+
+- `variavel` é a variável que será utilizada a cada iteração do *loop*. Esse nome será substituído pelos valores da sequência a cada iteração.
+
+- O bloco de código a ser executado é delimitado por chaves `{}`.
+
+Considerando o exemplo anterior, podemos usar um *loop* `for` para salvar arquivos CSV separados para cada uma das empresas aéreas no dataset `voos`. Primeiro, vamos criar um vetor com os nomes das 10 empresas com mais voos:
+
+```{r}
+nome_empresas <- voos |> 
+  dplyr::count(nm_empresa, sort = TRUE) |> 
+  dplyr::slice_head (n = 10) |>
+  dplyr::pull(nm_empresa)
+```
+
+
+Agora, podemos utilizar um *loop* `for` para salvar arquivos CSV para cada empresa:
+
+```{r}
+for (empresa in nome_empresas) {
+  salvar_csv_por_empresa(voos, empresa)
+}
+```
+
+
+Veja como o *loop* `for` é utilizado para iterar sobre os valores do vetor `nome_empresas` e executar a função `salvar_csv_por_empresa()` para cada empresa.
+
+
+### Pacote `purrr`
+
+Em breve!
 
 <!-- Introdução ao purrr e filosofia do tidyverse -->
 
@@ -470,13 +557,18 @@ Em breve!
 
 <!-- Exercício prático: Transformar um código com for em um código usando purrr -->
 
-## Paralelização com o pacote `furrr`
+## Paralelização
 
 Em breve!
 
 <!-- O que é paralelização? Conceitos básicos -->
 
 <!-- Diferença entre processamento sequencial e paralelo -->
+
+
+### Pacote `furrr`
+
+Em breve!
 
 <!-- Configuração com furrr: -->
 
