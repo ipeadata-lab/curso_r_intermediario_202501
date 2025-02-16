@@ -226,15 +226,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#exercícios-1" id="toc-exercícios-1" class="nav-link" data-scroll-target="#exercícios-1"><span class="header-section-number">8.2.2.1</span> Exercícios</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#environments" id="toc-environments" class="nav-link" data-scroll-target="#environments"><span class="header-section-number">8.3</span> Environments</a>
+  <li><a href="#verificação-dos-argumentos" id="toc-verificação-dos-argumentos" class="nav-link" data-scroll-target="#verificação-dos-argumentos"><span class="header-section-number">8.2.3</span> Verificação dos argumentos</a>
   <ul>
-  <li><a href="#escopo-de-variáveis-local-vs.-global" id="toc-escopo-de-variáveis-local-vs.-global" class="nav-link" data-scroll-target="#escopo-de-variáveis-local-vs.-global"><span class="header-section-number">8.3.1</span> Escopo de Variáveis (Local vs.&nbsp;Global)</a></li>
+  <li><a href="#exercícios-2" id="toc-exercícios-2" class="nav-link" data-scroll-target="#exercícios-2"><span class="header-section-number">8.2.3.1</span> Exercícios</a></li>
   </ul></li>
-  <li><a href="#iteração-for" id="toc-iteração-for" class="nav-link" data-scroll-target="#iteração-for"><span class="header-section-number">8.4</span> Iteração: <code>for</code></a></li>
-  <li><a href="#pacote-purrr" id="toc-pacote-purrr" class="nav-link" data-scroll-target="#pacote-purrr"><span class="header-section-number">8.5</span> Pacote <code>purrr</code></a></li>
-  <li><a href="#paralelização-com-o-pacote-furrr" id="toc-paralelização-com-o-pacote-furrr" class="nav-link" data-scroll-target="#paralelização-com-o-pacote-furrr"><span class="header-section-number">8.6</span> Paralelização com o pacote <code>furrr</code></a></li>
-  <li><a href="#material-complementar" id="toc-material-complementar" class="nav-link" data-scroll-target="#material-complementar"><span class="header-section-number">8.7</span> Material complementar</a></li>
+  <li><a href="#environments" id="toc-environments" class="nav-link" data-scroll-target="#environments"><span class="header-section-number">8.2.4</span> Environments</a></li>
+  <li><a href="#escopo-de-variáveis-local-vs.-global" id="toc-escopo-de-variáveis-local-vs.-global" class="nav-link" data-scroll-target="#escopo-de-variáveis-local-vs.-global"><span class="header-section-number">8.2.5</span> Escopo de Variáveis (Local vs.&nbsp;Global)</a></li>
+  <li><a href="#indo-além-com-funções" id="toc-indo-além-com-funções" class="nav-link" data-scroll-target="#indo-além-com-funções"><span class="header-section-number">8.2.6</span> Indo além com funções</a></li>
+  </ul></li>
+  <li><a href="#iteração-for" id="toc-iteração-for" class="nav-link" data-scroll-target="#iteração-for"><span class="header-section-number">8.3</span> Iteração: <code>for</code></a></li>
+  <li><a href="#pacote-purrr" id="toc-pacote-purrr" class="nav-link" data-scroll-target="#pacote-purrr"><span class="header-section-number">8.4</span> Pacote <code>purrr</code></a></li>
+  <li><a href="#paralelização-com-o-pacote-furrr" id="toc-paralelização-com-o-pacote-furrr" class="nav-link" data-scroll-target="#paralelização-com-o-pacote-furrr"><span class="header-section-number">8.5</span> Paralelização com o pacote <code>furrr</code></a></li>
+  <li><a href="#material-complementar" id="toc-material-complementar" class="nav-link" data-scroll-target="#material-complementar"><span class="header-section-number">8.6</span> Material complementar</a></li>
   </ul>
 </nav>
     </div>
@@ -522,15 +525,98 @@ Nota
 </ol>
 </section>
 </section>
+<section id="verificação-dos-argumentos" class="level3" data-number="8.2.3">
+<h3 data-number="8.2.3" class="anchored" data-anchor-id="verificação-dos-argumentos"><span class="header-section-number">8.2.3</span> Verificação dos argumentos</h3>
+<p>Quando criamos funções, é importante verificar se os argumentos fornecidos são válidos. Por exemplo, se a função espera um vetor de números, mas recebe um vetor de caracteres, a função pode gerar um erro ou retornar um resultado inesperado.</p>
+<p>Para isso, é importante lembrar das funções do R Base que podem nos ajudar a verificar se um objeto é de um determinado tipo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>()</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>()</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">is.logical</span>()</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">is.vector</span>()</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">is.data.frame</span>()</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co"># is.***()</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Outra função útil é a <code>stop()</code> que pode ser utilizada para interromper a execução da função e gerar um erro:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stop</span>(<span class="st">"Mensagem de erro"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: Mensagem de erro</code></pre>
+</div>
+</div>
+<p>A função <code>stopifnot()</code> é uma forma mais prática de verificar se uma condição é verdadeira. Se a condição for falsa, a função gera um erro. Uma desvantagem é que essa função não permite personalizar a mensagem de erro.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">is.character</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: is.character(1:10) não é TRUE</code></pre>
+</div>
+</div>
+<p>Por exemplo, podemos adicionar uma verificação ao início da função <code>combinar_palavras()</code> para garantir que o argumento fornecido é um vetor:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>combinar_palavras_com_verificacao <span class="ot">&lt;-</span> <span class="cf">function</span>(vetor_de_palavras) {</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.vector</span>(vetor_de_palavras))</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  palavras_unicas <span class="ot">&lt;-</span> <span class="fu">unique</span>(vetor_de_palavras)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  palavras_combinadas <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">combine_words</span>(</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    palavras_unicas,</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">and =</span> <span class="st">" e "</span>,</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">oxford_comma =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  palavras_combinadas</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vamos experimentar a função com diferentes argumentos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">combinar_palavras_com_verificacao</span>(<span class="st">"R"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">combinar_palavras_com_verificacao</span>(<span class="fu">c</span>(<span class="st">"R"</span>, <span class="st">"Python"</span>, <span class="st">"SQL"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R, Python e SQL</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">combinar_palavras_com_verificacao</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1, 2, 3, 4, 5, 6, 7, 8, 9 e 10</code></pre>
+</div>
+</div>
+<p>Experimentando a função utilizando um data frame como argumento:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">combinar_palavras_com_verificacao</span>(mtcars)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in combinar_palavras_com_verificacao(mtcars): is.vector(vetor_de_palavras) não é TRUE</code></pre>
+</div>
+</div>
+<p>As funções <code>stop()</code> e <code>stopifnot()</code> são do R Base, mas existem pacotes que facilitam a verificação de argumentos, como o pacote <code>assertthat</code>.</p>
+<p>O interessante do pacote <a href="https://github.com/hadley/assertthat"><code>{assertthat}</code></a> é que ele gera mensagens de erro mais úteis, e também permite personalizá-las, o que pode ser útil para indicar ao usuário o que deu errado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>assertthat<span class="sc">::</span><span class="fu">assert_that</span>(<span class="fu">is.vector</span>(mtcars))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in loadNamespace(x): não há nenhum pacote chamado 'assertthat'</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>assertthat<span class="sc">::</span><span class="fu">assert_that</span>(<span class="fu">is.vector</span>(mtcars),</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">msg =</span> <span class="st">"O argumento fornecido não é um vetor."</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in loadNamespace(x): não há nenhum pacote chamado 'assertthat'</code></pre>
+</div>
+</div>
+<section id="exercícios-2" class="level4" data-number="8.2.3.1">
+<h4 data-number="8.2.3.1" class="anchored" data-anchor-id="exercícios-2"><span class="header-section-number">8.2.3.1</span> Exercícios</h4>
+<ol type="1">
+<li>Modifique a função <code>converter_dolar_para_real()</code> para que ela verifique se os argumentos fornecidos são válidos. A função deve aceitar apenas valores numéricos.</li>
+</ol>
 </section>
-<section id="environments" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="environments"><span class="header-section-number">8.3</span> Environments</h2>
+</section>
+<section id="environments" class="level3" data-number="8.2.4">
+<h3 data-number="8.2.4" class="anchored" data-anchor-id="environments"><span class="header-section-number">8.2.4</span> Environments</h3>
 <p>Em R, um conceito importante que pode nos ajudar a entender problemas que ocorrem ao criar funções (e as boas práticas) é o de <em>environment</em>. Entretanto, <a href="https://adv-r.hadley.nz/environments.html">este assunto é avançado</a>, e vamos apresentar de forma simplificada.</p>
 <p>Já ouvimos falar de <em>Enviroment</em> ao utilizar o RStudio, no painel <em>Enviroment</em>. Quando criamos um objeto, o R adiciona este objeto no <em>Global Environment</em> e conseguimos visualizar este objeto no painel <em>Enviroment</em>.</p>
 <p>Mas o que acontece quando tentamos acessar um objeto que não aparece no <em>Global Environment</em>?</p>
 <p>Por exemplo, se tentarmos acessar o objeto <code>mtcars</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtcars)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtcars)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
 Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
@@ -554,7 +640,7 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 </div>
 <p>A função <code>search()</code> nos mostra a ordem em que o R procura por objetos. Vamos experimentar:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">search</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">search</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] ".GlobalEnv"        "package:stats"     "package:graphics" 
  [4] "package:grDevices" "package:datasets"  "renv:shims"       
@@ -563,8 +649,9 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 </div>
 </div>
 <p>E por que isso é importante para criar funções?</p>
-<section id="escopo-de-variáveis-local-vs.-global" class="level3" data-number="8.3.1">
-<h3 data-number="8.3.1" class="anchored" data-anchor-id="escopo-de-variáveis-local-vs.-global"><span class="header-section-number">8.3.1</span> Escopo de Variáveis (Local vs.&nbsp;Global)</h3>
+</section>
+<section id="escopo-de-variáveis-local-vs.-global" class="level3" data-number="8.2.5">
+<h3 data-number="8.2.5" class="anchored" data-anchor-id="escopo-de-variáveis-local-vs.-global"><span class="header-section-number">8.2.5</span> Escopo de Variáveis (Local vs.&nbsp;Global)</h3>
 <p>Quando executamos funções, o R cria um <em>enviroment</em> temporário para execução para a função. Este <em>environment</em> é onde as variáveis criadas dentro da função são armazenadas. Vamos chamar de <em>escopo local</em>.</p>
 <p>Existem dois tipos principais de escopo:</p>
 <ul>
@@ -574,12 +661,12 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <p>Quando uma função precisa de um objeto que não está definido em seu escopo local (ou seja, não foi criada dentro da função ou recebida como um argumento), o R inicia uma busca nos ambientes acima, até encontrar o objeto ou gerar um erro caso ele não exista. Esse comportamento pode causar efeitos inesperados, especialmente se o objeto global for alterado em outro lugar do código.</p>
 <p>Por exemplo, considere a seguinte função:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>contagem_coluna <span class="ot">&lt;-</span> <span class="cf">function</span>(coluna){</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  voos <span class="sc">|&gt;</span> </span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">count</span>(.data[[coluna]], <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimentando a função: UF de origem</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="fu">contagem_coluna</span>(<span class="st">"sg_uf_origem"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>contagem_coluna <span class="ot">&lt;-</span> <span class="cf">function</span>(coluna){</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  voos <span class="sc">|&gt;</span> </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">count</span>(.data[[coluna]], <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimentando a função: UF de origem</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="fu">contagem_coluna</span>(<span class="st">"sg_uf_origem"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 28 × 2
    sg_uf_origem     n
@@ -596,8 +683,8 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 10 RS            2028
 # ℹ 18 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimentando a função: município de origem</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contagem_coluna</span>(<span class="st">"nm_municipio_origem"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimentando a função: município de origem</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contagem_coluna</span>(<span class="st">"nm_municipio_origem"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 299 × 2
    nm_municipio_origem      n
@@ -619,13 +706,13 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <p>E ao executar a função, ela não gerou erro!! Isso acontece porque o R procura primeiro no ambiente local, depois no ambiente global, e encontra a base de dados <code>voos</code> no ambiente global. E como a base de dados <code>voos</code> foi carregada no ambiente global, a função consegue acessá-la. Se o objeto <code>voos</code> não existisse, a função geraria um erro.</p>
 <p>O ideal seria deixar a base de dados <code>voos</code> como argumento da função, para que ela seja mais flexível e independente do ambiente global.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>contagem_coluna_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(df, coluna){</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">count</span>(.data[[coluna]], <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimentando a função: UF de origem</span></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="fu">contagem_coluna_2</span>(voos, <span class="st">"sg_uf_origem"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>contagem_coluna_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(df, coluna){</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">count</span>(.data[[coluna]], <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimentando a função: UF de origem</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="fu">contagem_coluna_2</span>(voos, <span class="st">"sg_uf_origem"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 28 × 2
    sg_uf_origem     n
@@ -642,8 +729,8 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 10 RS            2028
 # ℹ 18 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimentando a função: município de origem</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contagem_coluna_2</span>(voos, <span class="st">"nm_municipio_origem"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimentando a função: município de origem</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contagem_coluna_2</span>(voos, <span class="st">"nm_municipio_origem"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 299 × 2
    nm_municipio_origem      n
@@ -662,16 +749,22 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 </div>
 </div>
 <p>Também é uma boa prática evitar alterar objetos fora do ambiente de execução da função. Funções devem ser “puras”, ou seja, receber entradas e retornar saídas sem efeitos colaterais externos. Em outras palavras, não devem alterar objetos fora de seu escopo local.</p>
-<p>Além disso, ao utilizar pacotes dentro de funções, o ideal é usar a notação <code>::</code> (por exemplo, <code>dplyr::filter()</code>) em vez de <code>library()</code>. Isso porque <code>library()</code> altera o ambiente global, carregando o pacote para todo o script, enquanto <code>::</code> garante que a função específica seja chamada diretamente do pacote desejado, sem afetar o restante do código. Isso melhora a legibilidade e evita conflitos entre funções de diferentes pacotes.s</p>
+<p>Além disso, ao utilizar pacotes dentro de funções, o ideal é usar a notação <code>::</code> (por exemplo, <code>dplyr::filter()</code>) em vez de <code>library()</code>. Isso porque <code>library()</code> altera o ambiente global, carregando o pacote para todo o script, enquanto <code>::</code> garante que a função específica seja chamada diretamente do pacote desejado, sem afetar o restante do código. Isso melhora a legibilidade e evita conflitos entre funções de diferentes pacotes.</p>
+</section>
+<section id="indo-além-com-funções" class="level3" data-number="8.2.6">
+<h3 data-number="8.2.6" class="anchored" data-anchor-id="indo-além-com-funções"><span class="header-section-number">8.2.6</span> Indo além com funções</h3>
+<p>Nesta aula, apresentamos uma introdução sobre como criar funções no R. Criar funções é uma habilidade importante para tornar o código mais organizado, reutilizável e fácil de manter, e para melhorar essa habilidade é <strong>preciso praticar</strong>!</p>
+<p>Uma dica é tentar criar funções para tarefas repetitivas que você realiza com frequência.</p>
+<p>O <a href="https://pt.r4ds.hadley.nz/functions.html">capítulo sobre funções do livro R for Data Science (2ed)</a> é uma ótima referência para aprender mais sobre funções no R.</p>
 </section>
 </section>
-<section id="iteração-for" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="iteração-for"><span class="header-section-number">8.4</span> Iteração: <code>for</code></h2>
+<section id="iteração-for" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="iteração-for"><span class="header-section-number">8.3</span> Iteração: <code>for</code></h2>
 <p>Em breve!</p>
 <!-- Estrutura básica do for loop no R -->
 </section>
-<section id="pacote-purrr" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="pacote-purrr"><span class="header-section-number">8.5</span> Pacote <code>purrr</code></h2>
+<section id="pacote-purrr" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="pacote-purrr"><span class="header-section-number">8.4</span> Pacote <code>purrr</code></h2>
 <p>Em breve!</p>
 <!-- Introdução ao purrr e filosofia do tidyverse -->
 <!-- Funções principais: map() -->
@@ -679,8 +772,8 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <!-- Comparação: for loop vs. map() (em termos de legibilidade e performance) -->
 <!-- Exercício prático: Transformar um código com for em um código usando purrr -->
 </section>
-<section id="paralelização-com-o-pacote-furrr" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="paralelização-com-o-pacote-furrr"><span class="header-section-number">8.6</span> Paralelização com o pacote <code>furrr</code></h2>
+<section id="paralelização-com-o-pacote-furrr" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="paralelização-com-o-pacote-furrr"><span class="header-section-number">8.5</span> Paralelização com o pacote <code>furrr</code></h2>
 <p>Em breve!</p>
 <!-- O que é paralelização? Conceitos básicos -->
 <!-- Diferença entre processamento sequencial e paralelo -->
@@ -691,8 +784,8 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <!-- Global objects: como garantir que objetos estejam disponíveis para todos os workers -->
 <!-- Exercício prático: Paralelizar uma tarefa com furrr -->
 </section>
-<section id="material-complementar" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="material-complementar"><span class="header-section-number">8.7</span> Material complementar</h2>
+<section id="material-complementar" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="material-complementar"><span class="header-section-number">8.6</span> Material complementar</h2>
 <ul>
 <li>Capítulos do livro <a href="https://pt.r4ds.hadley.nz/">“R para Ciência de Dados” (2 ed)</a> por Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund:
 <ul>
