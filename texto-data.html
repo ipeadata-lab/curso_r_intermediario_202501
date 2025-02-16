@@ -396,7 +396,7 @@ $ dt_sistema            &lt;dttm&gt; 2025-01-04 01:00:02, 2025-01-10 01:00:09, 2
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.Date</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-02-12"</code></pre>
+<pre><code>[1] "2025-02-16"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">Sys.Date</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -461,7 +461,7 @@ Curiosidade: o que é armazenado em uma variável do tipo <code>Date</code>?
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-02-12 11:43:40 UTC"</code></pre>
+<pre><code>[1] "2025-02-16 20:59:37 UTC"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">Sys.time</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -621,7 +621,7 @@ Extra: função <code>readr::parse_date()</code>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Com as.Date(), fev não é reconhecido, pois em inglês é feb</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">"03/fev/2025"</span>, <span class="at">format =</span> <span class="st">"%d/%b/%Y"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] NA</code></pre>
+<pre><code>[1] "2025-02-03"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Com o parse_date(), podemos informar o locale:</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">parse_date</span>(<span class="st">"03/fev/2025"</span>,</span>
@@ -809,22 +809,22 @@ Extra: função <code>readr::parse_date()</code>
 ℹ In argument: `mes_pt = month(dt_referencia, label = TRUE, abbr = FALSE,
   locale = "pt_BR")`.
 Caused by warning in `Sys.setlocale()`:
-! OS reports request to set locale to "pt_BR" cannot be honored</code></pre>
+! SO informa que a requisição para definir o locale como 'pt_BR' não pode ser honrada</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 82,003 × 4
    dt_referencia mes_curto mes      mes_pt  
    &lt;date&gt;        &lt;ord&gt;     &lt;ord&gt;    &lt;ord&gt;   
- 1 2024-12-01    Dec       December December
- 2 2024-12-01    Dec       December December
- 3 2024-12-01    Dec       December December
- 4 2024-12-01    Dec       December December
- 5 2024-12-01    Dec       December December
- 6 2024-12-01    Dec       December December
- 7 2024-12-01    Dec       December December
- 8 2024-12-01    Dec       December December
- 9 2024-12-01    Dec       December December
-10 2024-12-01    Dec       December December
+ 1 2024-12-01    dez       dezembro dezembro
+ 2 2024-12-01    dez       dezembro dezembro
+ 3 2024-12-01    dez       dezembro dezembro
+ 4 2024-12-01    dez       dezembro dezembro
+ 5 2024-12-01    dez       dezembro dezembro
+ 6 2024-12-01    dez       dezembro dezembro
+ 7 2024-12-01    dez       dezembro dezembro
+ 8 2024-12-01    dez       dezembro dezembro
+ 9 2024-12-01    dez       dezembro dezembro
+10 2024-12-01    dez       dezembro dezembro
 # ℹ 81,993 more rows</code></pre>
 </div>
 </div>
@@ -862,16 +862,16 @@ Extra: extrair o dia da semana de datas
 <pre><code># A tibble: 82,003 × 5
    dt_referencia dia_semana_numero dia_semana dia_semana_abbr dia_semana_pt
    &lt;date&gt;                    &lt;dbl&gt; &lt;ord&gt;      &lt;ord&gt;           &lt;ord&gt;        
- 1 2024-12-01                    1 Sun        Sunday          Sunday       
- 2 2024-12-01                    1 Sun        Sunday          Sunday       
- 3 2024-12-01                    1 Sun        Sunday          Sunday       
- 4 2024-12-01                    1 Sun        Sunday          Sunday       
- 5 2024-12-01                    1 Sun        Sunday          Sunday       
- 6 2024-12-01                    1 Sun        Sunday          Sunday       
- 7 2024-12-01                    1 Sun        Sunday          Sunday       
- 8 2024-12-01                    1 Sun        Sunday          Sunday       
- 9 2024-12-01                    1 Sun        Sunday          Sunday       
-10 2024-12-01                    1 Sun        Sunday          Sunday       
+ 1 2024-12-01                    1 dom        domingo         domingo      
+ 2 2024-12-01                    1 dom        domingo         domingo      
+ 3 2024-12-01                    1 dom        domingo         domingo      
+ 4 2024-12-01                    1 dom        domingo         domingo      
+ 5 2024-12-01                    1 dom        domingo         domingo      
+ 6 2024-12-01                    1 dom        domingo         domingo      
+ 7 2024-12-01                    1 dom        domingo         domingo      
+ 8 2024-12-01                    1 dom        domingo         domingo      
+ 9 2024-12-01                    1 dom        domingo         domingo      
+10 2024-12-01                    1 dom        domingo         domingo      
 # ℹ 81,993 more rows</code></pre>
 </div>
 </div>
@@ -916,16 +916,16 @@ Extra: extrair o dia da semana de datas
 <pre><code># A tibble: 82,003 × 5
    dt_partida_real dia_partida mes_partida mes_partida_date dia_semana_partida
    &lt;date&gt;                &lt;int&gt; &lt;ord&gt;       &lt;date&gt;           &lt;ord&gt;             
- 1 2024-12-01                1 Dec         2024-12-01       Sun               
- 2 2024-12-01                1 Dec         2024-12-01       Sun               
- 3 2024-12-01                1 Dec         2024-12-01       Sun               
- 4 2024-11-30               30 Nov         2024-11-01       Sat               
- 5 2024-12-01                1 Dec         2024-12-01       Sun               
- 6 2024-12-01                1 Dec         2024-12-01       Sun               
- 7 2024-12-01                1 Dec         2024-12-01       Sun               
- 8 2024-12-01                1 Dec         2024-12-01       Sun               
- 9 2024-12-01                1 Dec         2024-12-01       Sun               
-10 2024-12-01                1 Dec         2024-12-01       Sun               
+ 1 2024-12-01                1 dez         2024-12-01       dom               
+ 2 2024-12-01                1 dez         2024-12-01       dom               
+ 3 2024-12-01                1 dez         2024-12-01       dom               
+ 4 2024-11-30               30 nov         2024-11-01       sáb               
+ 5 2024-12-01                1 dez         2024-12-01       dom               
+ 6 2024-12-01                1 dez         2024-12-01       dom               
+ 7 2024-12-01                1 dez         2024-12-01       dom               
+ 8 2024-12-01                1 dez         2024-12-01       dom               
+ 9 2024-12-01                1 dez         2024-12-01       dom               
+10 2024-12-01                1 dez         2024-12-01       dom               
 # ℹ 81,993 more rows</code></pre>
 </div>
 </div>
