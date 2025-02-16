@@ -259,7 +259,92 @@ voos |>
   dplyr::select(nm_municipio_origem, nm_municipio_origem_preparado)
 ```
 
-## Environments
+
+### Verificação dos argumentos
+
+Quando criamos funções, é importante verificar se os argumentos fornecidos são válidos. Por exemplo, se a função espera um vetor de números, mas recebe um vetor de caracteres, a função pode gerar um erro ou retornar um resultado inesperado.
+
+Para isso, é importante lembrar das funções do R Base que podem nos ajudar a verificar se um objeto é de um determinado tipo:
+
+```{r}
+#| eval: false
+is.character()
+is.numeric()
+is.logical()
+is.vector()
+is.data.frame()
+# is.***()
+```
+
+Outra função útil é a `stop()` que pode ser utilizada para interromper a execução da função e gerar um erro:
+
+```{r}
+#| error: true
+stop("Mensagem de erro")
+```
+
+
+A função `stopifnot()` é uma forma mais prática de verificar se uma condição é verdadeira. Se a condição for falsa, a função gera um erro. Uma desvantagem é que essa função não permite personalizar a mensagem de erro.
+
+```{r}
+#| error: true
+stopifnot(is.character(1:10))
+```
+
+Por exemplo, podemos adicionar uma verificação ao início da função `combinar_palavras()` para garantir que o argumento fornecido é um vetor:
+
+```{r}
+combinar_palavras_com_verificacao <- function(vetor_de_palavras) {
+  
+  stopifnot(is.vector(vetor_de_palavras))
+  
+  palavras_unicas <- unique(vetor_de_palavras)
+  
+  palavras_combinadas <- knitr::combine_words(
+    palavras_unicas,
+    and = " e ",
+    oxford_comma = FALSE)
+  
+  palavras_combinadas
+}
+```
+
+Vamos experimentar a função com diferentes argumentos:
+
+```{r}
+combinar_palavras_com_verificacao("R")
+combinar_palavras_com_verificacao(c("R", "Python", "SQL"))
+combinar_palavras_com_verificacao(1:10)
+```
+
+Experimentando a função utilizando um data frame como argumento:
+```{r}
+#| error: true
+combinar_palavras_com_verificacao(mtcars)
+```
+
+As funções `stop()` e `stopifnot()` são do R Base, mas existem pacotes que facilitam a verificação de argumentos, como o pacote `assertthat`.
+
+O interessante do pacote [`{assertthat}`](https://github.com/hadley/assertthat) é que ele gera mensagens de erro mais úteis, e também permite personalizá-las, o que pode ser útil para indicar ao usuário o que deu errado.
+
+```{r}
+#| error: true
+assertthat::assert_that(is.vector(mtcars))
+
+assertthat::assert_that(is.vector(mtcars),
+                        msg = "O argumento fornecido não é um vetor.")
+```
+
+#### Exercícios
+
+1. Modifique a função `converter_dolar_para_real()` para que ela verifique se os argumentos fornecidos são válidos. A função deve aceitar apenas valores numéricos.
+
+
+
+
+
+
+### Environments
 
 Em R, um conceito importante que pode nos ajudar a entender problemas que ocorrem ao criar funções (e as boas práticas) é o de *environment*. Entretanto, [este assunto é avançado](https://adv-r.hadley.nz/environments.html), e vamos apresentar de forma simplificada.
 
@@ -335,7 +420,16 @@ contagem_coluna_2(voos, "nm_municipio_origem")
 Também é uma boa prática evitar alterar objetos fora do ambiente de execução da função. Funções devem ser "puras", ou seja, receber entradas e retornar saídas sem efeitos colaterais externos. Em outras palavras, não devem alterar objetos fora de seu escopo local.
 
 
-Além disso, ao utilizar pacotes dentro de funções, o ideal é usar a notação `::` (por exemplo, `dplyr::filter()`) em vez de `library()`. Isso porque `library()` altera o ambiente global, carregando o pacote para todo o script, enquanto `::` garante que a função específica seja chamada diretamente do pacote desejado, sem afetar o restante do código. Isso melhora a legibilidade e evita conflitos entre funções de diferentes pacotes.s
+Além disso, ao utilizar pacotes dentro de funções, o ideal é usar a notação `::` (por exemplo, `dplyr::filter()`) em vez de `library()`. Isso porque `library()` altera o ambiente global, carregando o pacote para todo o script, enquanto `::` garante que a função específica seja chamada diretamente do pacote desejado, sem afetar o restante do código. Isso melhora a legibilidade e evita conflitos entre funções de diferentes pacotes.
+
+### Indo além com funções
+
+Nesta aula, apresentamos uma introdução sobre como criar funções no R. Criar funções é uma habilidade importante para tornar o código mais organizado, reutilizável e fácil de manter, e para melhorar essa habilidade é **preciso praticar**!
+
+Uma dica é tentar criar funções para tarefas repetitivas que você realiza com frequência. 
+
+O [capítulo sobre funções do livro R for Data Science (2ed)](https://pt.r4ds.hadley.nz/functions.html) é uma ótima referência para aprender mais sobre funções no R.
+
 
 ## Iteração: `for`
 
@@ -346,6 +440,25 @@ Em breve!
 ## Pacote `purrr`
 
 Em breve!
+
+
+```{r}
+#| echo: false
+# extrair_sigla <- function(vetor){
+#   
+#   vetor_sigla <- vetor |> 
+#     stringr::str_split(" ") |> 
+#     purrr::map(stringr::str_sub, 1, 1) |> 
+#     purrr::map(paste0, collapse = "") |> 
+#     purrr::list_c()
+#   
+#   vetor_sigla
+#   
+# }
+
+# vetor_muni <- unique(voos$nm_municipio_origem)
+# extrair_sigla(vetor_muni)
+```
 
 <!-- Introdução ao purrr e filosofia do tidyverse -->
 
