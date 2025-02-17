@@ -1,6 +1,7 @@
 ---
 title: "Programação funcional"
 code-annotations: hover
+cache: true
 ---
 
 ## Introdução
@@ -439,8 +440,8 @@ Na seção anterior, aprendemos a criar funções para facilitar a execução de
 Imagine que queremos salvar arquivos CSV separados para cada uma das empresas aéreas no dataset `voos`. Podemos criar uma função que salva um arquivo CSV para uma empresa específica:
 
 ```{r}
-salvar_csv_por_empresa <- function(dados,
-                                   nome_empresa,
+salvar_csv_por_empresa <- function(nome_empresa,
+                                   dados,
                                    dir_salvar = "dados/voos_empresas/") {
   
   # Verificar se os argumentos são válidos
@@ -477,16 +478,16 @@ salvar_csv_por_empresa <- function(dados,
 Se quisermos salvar arquivos CSV separados para uma empresa, podemos utilizar a função `salvar_csv_por_empresa()`:
 
 ```{r}
-salvar_csv_por_empresa(voos, "TAM LINHAS AÉREAS S.A.")
+salvar_csv_por_empresa(nome_empresa = "TAM LINHAS AÉREAS S.A.", dados = voos)
 ```
 
 A função `salvar_csv_por_empresa()` não aceita um vetor com nome de várias empresas:
 
 ```{r}
 #| error: true
-salvar_csv_por_empresa(voos, 
-                       c("AZUL LINHAS AÉREAS BRASILEIRAS S/A",
-                         "TAM LINHAS AÉREAS S.A."))
+salvar_csv_por_empresa(nome_empresa =  c("AZUL LINHAS AÉREAS BRASILEIRAS S/A",
+                         "TAM LINHAS AÉREAS S.A."),
+                       dados = voos)
 ```
 
 Uma forma de resolver esse problema seria chamar a função `salvar_csv_por_empresa()` para cada empresa. Porém essa base de dados apresenta mais de 200 valores únicos para a variável `nm_empresa`. Isso tornaria o processo manual e demorado (e com maior chance de erros!)
@@ -535,52 +536,238 @@ Agora, podemos utilizar um *loop* `for` para salvar arquivos CSV para cada empre
 
 ```{r}
 for (empresa in nome_empresas) {
-  salvar_csv_por_empresa(voos, empresa)
+  salvar_csv_por_empresa(nome_empresa = empresa,
+                         dados = voos)
 }
 ```
 
 
-Veja como o *loop* `for` é utilizado para iterar sobre os valores do vetor `nome_empresas` e executar a função `salvar_csv_por_empresa()` para cada empresa.
+Repare como o *loop* `for` é utilizado para iterar sobre os valores do vetor `nome_empresas` e executar a função `salvar_csv_por_empresa()` para cada empresa.
 
-
-### Pacote `purrr`
+#### Exercício
 
 Em breve!
 
-<!-- Introdução ao purrr e filosofia do tidyverse -->
+### Pacote `purrr`
 
-<!-- Funções principais: map() -->
+<img src="images/logo-purrr.png" class="img-rstudio" align="right" width="120px"/>
 
-<!-- Trabalhando com listas e tibbles -->
+O pacote [`purrr`](https://purrr.tidyverse.org/) faz parte do [`{tidyverse}`](https://www.tidyverse.org/) e oferece ferramentas para trabalhar com programação funcional em R. 
 
-<!-- Comparação: for loop vs. map() (em termos de legibilidade e performance) -->
+As funções do tidyverse são projetadas para funcionar bem com o pipe (`%>%` ou `|>`), o que torna o código mais legível e fácil de entender. Repare que as funções do `tidyverse` recebem os dados no primeiro argumento, o que facilita a utilização do pipe.
+
+As funções do `purrr` também são projetadas para trabalhar com o pipe, o que facilita a integração com outras funções do tidyverse.
+
+
+#### Funções principais: `map()`
+
+Uma das funções mais utilizadas do `purrr` é a função `map()`. A função `map()` é utilizada para aplicar uma função a cada elemento de uma lista ou vetor, e retorna uma lista com os resultados.
+
+Existem várias variações da função `map()`, porém o ideal é começar com a função `map()` e, conforme for se familiarizando com o pacote, explorar as outras funções.
+
+A sintaxe básica da função `map()` é:
+
+```{r}
+#| eval: false
+purrr::map(.x = vetor_para_iterar,
+           .f = funcao_que_queremos_aplicar)
+```
+
+Sendo que:
+
+- `.x` é argumento que recebe o vetor ou lista que queremos iterar.
+
+- `.f` é argumento que recebe a função que queremos aplicar a cada elemento de `.x`.
+
+-  Essa função também aceita argumentos adicionais que serão passados para a função `.f`.
+
+
+Vamos utilizar a função `map()` para realizar a mesma tarefa que fizemos com o *loop* `for` anteriormente:
+
+```{r}
+nome_empresas <- voos |> 
+  dplyr::count(nm_empresa, sort = TRUE) |> 
+  dplyr::slice_head (n = 10) |>
+  dplyr::pull(nm_empresa)
+
+
+purrr::map(nome_empresas,
+           salvar_csv_por_empresa,
+           dados = voos)
+```
+
+Repare que o retorno da função `map()` é uma **lista** com os caminhos dos arquivos salvos. Isso acontece porque a função `salvar_csv_por_empresa()` retorna o caminho do arquivo salvo, e o `map()` retorna os resultados de cada iteração em uma lista.
+
+
+Também poderíamos reescrever de uma forma mais direta, com o pipe (considerando que o primeiro argumento do `map()` recebe o vetor ou a lista que queremos iterar):
+
+```{r}
+#| eval: false
+voos |>
+  dplyr::distinct(nm_empresa) |>
+  dplyr::pull(nm_empresa) |>
+  purrr::map(salvar_csv_por_empresa, dados = voos)
+```
+
+#### Exercício
+
+Em breve!
+
+### Outras aplicações 
+
+Podemos utilizar as técnicas de iteração (seja com *loops* `for` ou com `purrr`) para realizar outras tarefas, como:
+
+
+- Importar diversos arquivos e combinar em um único data frame. Exemplo: importar múltiplos arquivos CSV contendo dados de voos mensais e consolidá-los em uma única base.
+
+- Gerar documentos Quarto com parâmetros. Exemplo: gerar um relatório para cada aeroporto do Brasil.
+
+
+- Criar gráficos automaticamente para diferentes grupos ou variáveis. Exemplo: gerar histogramas para cada variável numérica de um data frame.
+
+-  E muitas outras tarefas! Depende das nossas habilidades para criar funções e utilizar as técnicas de iteração.
+
+
+### Comparação: `for` loop vs. `map()`
+
+Quando comparamos diferentes técnicas de iteração, como *loops* `for` e funções do `purrr`, é importante considerar:
+
+- Eficiência de código: qual é a velocidade de execução de cada método?
+
+- Eficiência de programação: qual é a facilidade de escrever e manter o código?
+
+O tidyverse escolhe otimizar a eficiência de programação, ou seja, a facilidade de escrever e manter o código.  Escrever códigos com `purrr`, no geral, é mais fácil e legível do que escrever códigos com *loops* `for`.
+
+Por outro lado, *loops* `for` podem ser mais rápidos em algumas situações, especialmente quando precisamos de controle total sobre a iteração. No entanto, a diferença de desempenho entre *loops* `for` e funções do `purrr` é geralmente pequena, e a eficiência de programação geralmente supera a eficiência de código.
+
+
+
+Caso você tenha interesse em medir a eficiência de código, o pacote [`{bench}`](https://bench.r-lib.org/) é uma ferramenta para medir o tempo de execução de expressões em R. 
+
+
+Vamos comparar o tempo de execução de um *loop* `for` e do`map()`, para ter um exemplo:
+
+```{r}
+#| results: false
+#| eval: false
+dados_benchmark <- bench::mark(
+  { #<1>
+  vetor_numeros <- 1:10
+  quadrados <- numeric(length(vetor_numeros))
+  
+  for (i in seq_along(vetor_numeros)) {
+    quadrados[i] <- vetor_numeros[i] ^ 2
+  }
+  
+  print(quadrados)
+}, #<1>
+{ # <2>
+  vetor_numeros <- 1:10
+  quadrados <- purrr::map_dbl(vetor_numeros, ~ .x ^ 2) # <3>
+  print(quadrados)
+} #<2>
+)
+```
+1. Código com *loop* `for` para calcular o quadrado de cada número de 1 a 10, e armazenar o resultado em um vetor `quadrados`.
+2. Código com `purrr` para calcular o quadrado de cada número de 1 a 10, e armazenar o resultado em um vetor `quadrados`.
+3. Com a função `map_dbl()` (é uma variação do `map()`, porém retorna um vetor numérico)
+
+
+Vamos visualizar o resultado do benchmark:
+
+```{r}
+#| eval: false
+summary(dados_benchmark)
+# # A tibble: 2 × 6
+#   expression                             min median `itr/sec` mem_alloc `gc/sec`
+#   <bch:expr>                           <bch> <bch:>     <dbl> <bch:byt>    <dbl>
+# 1 { vetor_numeros <- 1:10 quadrados <… 775µs  898µs     1047.    44.8KB     33.6
+# 2 { vetor_numeros <- 1:10 quadrados <…  45µs   48µs    18840.   437.7KB     16.5
+```
+
+No exemplo acima, o código com `purrr` é mais rápido do que o *loop* `for`. No entanto, a diferença de desempenho é pequena, e a diferença dependerá do que está sendo feito em cada iteração (ou seja, o código que executamos).
+
+O mais importante é considerar a eficiência de programação e a legibilidade do código ao escolher entre *loops* `for` e funções do `purrr`.
+
+https://youtu.be/wki0BqlztCo?feature=shared&t=222
+
+
+#### Exercício
+
+Em breve!
 
 <!-- Exercício prático: Transformar um código com for em um código usando purrr -->
 
 ## Paralelização
 
-Em breve!
+Em alguns casos, precisaremos executar tarefas que são demoradas, como processar grandes volumes de dados. Até então, aprendemos a utilizar funções e técnicas de iteração para facilitar a execução de tarefas repetitivas. No entanto, em alguns casos, a execução sequencial (ou seja, uma depois da outra) dessas tarefas pode ser lenta.
 
-<!-- O que é paralelização? Conceitos básicos -->
+Nesses casos, a paralelização pode ser uma estratégia útil para acelerar o processamento.
 
-<!-- Diferença entre processamento sequencial e paralelo -->
+A paralelização é a técnica de dividir um problema em partes menores que podem ser executadas simultaneamente em diferentes núcleos do processador do computador. Isso melhora significativamente o desempenho de tarefas que envolvem grandes volumes de dados ou operações repetitivas.
+
+
+Ou seja, utilizando o processamento paralelo, as operações são distribuídas entre múltiplos núcleos do processador e executadas simultaneamente. 
 
 
 ### Pacote `furrr`
 
+<img src="images/logo-furrr.png" class="img-rstudio" align="right" width="120px"/>
+
+O pacote [`{furrr}`](https://furrr.futureverse.org/) é um pacote que extende o pacote [`{purrr}`](https://purrr.tidyverse.org/) e oferece funções para executar operações em paralelo. O `furrr` é baseado no pacote [`{future}`](https://future.futureverse.org/), que fornece uma interface unificada para processamento paralelo em R.
+
+#### Configuração
+
+Para configurar o processamento paralelo com o `furrr`, precisamos seguir alguns passos:
+
+
+2. Configurar o plano de processamento paralelo com a função `future::plan()`. 
+
+- argumento `strategy`: O `future` oferece diferentes planos de processamento paralelo, como `multisession` ou `multicore` (porém `multicore` não funciona no Windows). No entanto, o plano `multicore` não é suportado no RStudio, devido a problemas de estabilidade. Portanto, se você estiver utilizando o RStudio, sempre utilize o `multisession`.
+
+- argumento `workers`: O número de núcleos que queremos utilizar para o processamento paralelo. Uma boa prática é deixar alguns núcleos livres para o sistema operacional. Caso este argumento não seja fornecido, o `future` utilizará todos os núcleos disponíveis.
+
+
+```{r}
+#| eval: false
+# Exemplo: em um computador com 8 núcleos, podemos utilizar 6 núcleos para o processamento paralelo
+future::plan(multisession, workers = 6)
+```
+
+
+
+
+#### Utilizando o `furrr`
+
+O `furrr` oferece funções que são uma extensão das funções do `purrr`, porém com suporte a processamento paralelo. Por exemplo, a função `furrr::future_map()` é uma versão paralela da função `purrr::map()`.
+
+A sintaxe da função `furrr::future_map()` é semelhante à função `purrr::map()`.
+
+```{r}
+#| eval: false
+nome_empresas <- voos |> 
+  dplyr::count(nm_empresa, sort = TRUE) |> 
+  dplyr::slice_head (n = 10) |>
+  dplyr::pull(nm_empresa)
+
+ furrr::future_map(nome_empresas,
+           salvar_csv_por_empresa,
+           dados = voos) 
+```
+
+Repare que a função `furrr::future_map()` é utilizada da mesma forma que a função `purrr::map()`, porém com suporte a processamento paralelo. Isso significa que a função `salvar_csv_por_empresa()` será executada em paralelo para cada empresa, o que pode acelerar o processamento.
+
+::: {.callout-note}
+
+É importante avaliar o problema e a estratégia de paralelização antes de implementar o processamento paralelo. Utilizamos o processamento paralelo quando **realmente** precisamos acelerar a execução de tarefas.
+
+:::
+
+
+#### Exercício
+
 Em breve!
 
-<!-- Configuração com furrr: -->
-
-<!--     future::plan() e furrr::future_map() -->
-
-<!--     Detectando o número de cores disponíveis (parallel::detectCores()) -->
-
-<!--     Configurando para não usar todos os cores -->
-
-<!-- Global objects: como garantir que objetos estejam disponíveis para todos os workers -->
-
-<!-- Exercício prático: Paralelizar uma tarefa com furrr -->
 
 ## Material complementar
 
