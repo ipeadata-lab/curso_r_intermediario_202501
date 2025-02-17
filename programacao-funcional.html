@@ -246,10 +246,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#exercício-1" id="toc-exercício-1" class="nav-link" data-scroll-target="#exercício-1"><span class="header-section-number">8.3.2.2</span> Exercício</a></li>
   </ul></li>
   <li><a href="#outras-aplicações" id="toc-outras-aplicações" class="nav-link" data-scroll-target="#outras-aplicações"><span class="header-section-number">8.3.3</span> Outras aplicações</a></li>
-  <li><a href="#comparação-for-loop-vs.-map" id="toc-comparação-for-loop-vs.-map" class="nav-link" data-scroll-target="#comparação-for-loop-vs.-map"><span class="header-section-number">8.3.4</span> Comparação: <code>for</code> loop vs.&nbsp;<code>map()</code></a>
-  <ul>
-  <li><a href="#exercício-2" id="toc-exercício-2" class="nav-link" data-scroll-target="#exercício-2"><span class="header-section-number">8.3.4.1</span> Exercício</a></li>
-  </ul></li>
+  <li><a href="#comparação-for-loop-vs.-map" id="toc-comparação-for-loop-vs.-map" class="nav-link" data-scroll-target="#comparação-for-loop-vs.-map"><span class="header-section-number">8.3.4</span> Comparação: <code>for</code> loop vs.&nbsp;<code>map()</code></a></li>
   </ul></li>
   <li><a href="#paralelização" id="toc-paralelização" class="nav-link" data-scroll-target="#paralelização"><span class="header-section-number">8.4</span> Paralelização</a>
   <ul>
@@ -257,7 +254,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#configuração" id="toc-configuração" class="nav-link" data-scroll-target="#configuração"><span class="header-section-number">8.4.1.1</span> Configuração</a></li>
   <li><a href="#utilizando-o-furrr" id="toc-utilizando-o-furrr" class="nav-link" data-scroll-target="#utilizando-o-furrr"><span class="header-section-number">8.4.1.2</span> Utilizando o <code>furrr</code></a></li>
-  <li><a href="#exercício-3" id="toc-exercício-3" class="nav-link" data-scroll-target="#exercício-3"><span class="header-section-number">8.4.1.3</span> Exercício</a></li>
+  <li><a href="#exercício-2" id="toc-exercício-2" class="nav-link" data-scroll-target="#exercício-2"><span class="header-section-number">8.4.1.3</span> Exercício</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#material-complementar" id="toc-material-complementar" class="nav-link" data-scroll-target="#material-complementar"><span class="header-section-number">8.5</span> Material complementar</a></li>
@@ -886,7 +883,15 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <p>Repare como o <em>loop</em> <code>for</code> é utilizado para iterar sobre os valores do vetor <code>nome_empresas</code> e executar a função <code>salvar_csv_por_empresa()</code> para cada empresa.</p>
 <section id="exercício" class="level4" data-number="8.3.1.1">
 <h4 data-number="8.3.1.1" class="anchored" data-anchor-id="exercício"><span class="header-section-number">8.3.1.1</span> Exercício</h4>
-<p>Em breve!</p>
+<ol type="1">
+<li>Observe o código abaixo. O que cada parte do código faz? Tente entender o que ele faz antes de executá-lo. O que acontece quando executamos o código?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Sys.sleep</span>(<span class="dv">1</span>)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(x)</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 <section id="pacote-purrr" class="level3" data-number="8.3.2">
@@ -901,8 +906,8 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <p>Existem várias variações da função <code>map()</code>, porém o ideal é começar com a função <code>map()</code> e, conforme for se familiarizando com o pacote, explorar as outras funções.</p>
 <p>A sintaxe básica da função <code>map()</code> é:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map</span>(<span class="at">.x =</span> vetor_para_iterar,</span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">.f =</span> funcao_que_queremos_aplicar)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map</span>(<span class="at">.x =</span> vetor_para_iterar,</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">.f =</span> funcao_que_queremos_aplicar)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Sendo que:</p>
 <ul>
@@ -912,15 +917,16 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 </ul>
 <p>Vamos utilizar a função <code>map()</code> para realizar a mesma tarefa que fizemos com o <em>loop</em> <code>for</code> anteriormente:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>nome_empresas <span class="ot">&lt;-</span> voos <span class="sc">|&gt;</span> </span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(nm_empresa, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span> (<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
-<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(nm_empresa)</span>
-<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map</span>(nome_empresas,</span>
-<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>           salvar_csv_por_empresa,</span>
-<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">dados =</span> voos)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>nome_empresas <span class="ot">&lt;-</span> voos <span class="sc">|&gt;</span> </span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(nm_empresa, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span> (<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(nm_empresa)</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map</span>(nome_empresas,</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>           salvar_csv_por_empresa,</span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">dados =</span> voos,</span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">.progress =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>✔ Arquivo salvo: dados/voos_empresas/azul_linhas_aereas_brasileiras_s_a.csv
 ✔ Arquivo salvo: dados/voos_empresas/tam_linhas_aereas_s_a.csv
@@ -968,15 +974,58 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <p>Repare que o retorno da função <code>map()</code> é uma <strong>lista</strong> com os caminhos dos arquivos salvos. Isso acontece porque a função <code>salvar_csv_por_empresa()</code> retorna o caminho do arquivo salvo, e o <code>map()</code> retorna os resultados de cada iteração em uma lista.</p>
 <p>Também poderíamos reescrever de uma forma mais direta, com o pipe (considerando que o primeiro argumento do <code>map()</code> recebe o vetor ou a lista que queremos iterar):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>voos <span class="sc">|&gt;</span></span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(nm_empresa) <span class="sc">|&gt;</span></span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(nm_empresa) <span class="sc">|&gt;</span></span>
-<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(salvar_csv_por_empresa, <span class="at">dados =</span> voos)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>voos <span class="sc">|&gt;</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(nm_empresa) <span class="sc">|&gt;</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(nm_empresa) <span class="sc">|&gt;</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(salvar_csv_por_empresa, <span class="at">dados =</span> voos)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercício-1" class="level4" data-number="8.3.2.2">
 <h4 data-number="8.3.2.2" class="anchored" data-anchor-id="exercício-1"><span class="header-section-number">8.3.2.2</span> Exercício</h4>
-<p>Em breve!</p>
+<ol type="1">
+<li>Observe o código abaixo. A função <code>criar_histograma()</code> cria um histograma para uma variável de um data frame:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>criar_histograma <span class="ot">&lt;-</span> <span class="cf">function</span>(dados, variavel){</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.data.frame</span>(dados))</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.character</span>(variavel))</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>  dados <span class="sc">|&gt;</span> </span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> .data[[variavel]]) <span class="sc">+</span></span>
+<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb72-10"><a href="#cb72-10" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb72-11"><a href="#cb72-11" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Histograma de"</span>, variavel))</span>
+<span id="cb72-12"><a href="#cb72-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo de uso:</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">criar_histograma</span>(palmerpenguins<span class="sc">::</span>penguins, <span class="st">"bill_length_mm"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="programacao-funcional_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol type="a">
+<li>Utilize a função <code>map()</code> e a função <code>criar_histograma()</code> para criar um histograma para cada variável numérica do data frame <code>palmerpenguins::penguins</code>.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) Obter as variáveis numéricas do data frame</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2) Iterar com a função map() </span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 <section id="outras-aplicações" class="level3" data-number="8.3.3">
@@ -1001,57 +1050,67 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <p>Caso você tenha interesse em medir a eficiência de código, o pacote <a href="https://bench.r-lib.org/"><code>{bench}</code></a> é uma ferramenta para medir o tempo de execução de expressões em R.</p>
 <p>Vamos comparar o tempo de execução de um <em>loop</em> <code>for</code> e do<code>map()</code>, para ter um exemplo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-40"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-40-1"><a href="#annotated-cell-40-1" aria-hidden="true" tabindex="-1"></a>dados_benchmark <span class="ot">&lt;-</span> bench<span class="sc">::</span><span class="fu">mark</span>(</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-40" data-target-annotation="1">1</button><span id="annotated-cell-40-2" class="code-annotation-target"><a href="#annotated-cell-40-2" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="annotated-cell-40-3"><a href="#annotated-cell-40-3" aria-hidden="true" tabindex="-1"></a>  vetor_numeros <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="annotated-cell-40-4"><a href="#annotated-cell-40-4" aria-hidden="true" tabindex="-1"></a>  quadrados <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">length</span>(vetor_numeros))</span>
-<span id="annotated-cell-40-5"><a href="#annotated-cell-40-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="annotated-cell-40-6"><a href="#annotated-cell-40-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(vetor_numeros)) {</span>
-<span id="annotated-cell-40-7"><a href="#annotated-cell-40-7" aria-hidden="true" tabindex="-1"></a>    quadrados[i] <span class="ot">&lt;-</span> vetor_numeros[i] <span class="sc">^</span> <span class="dv">2</span></span>
-<span id="annotated-cell-40-8"><a href="#annotated-cell-40-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="annotated-cell-40-9"><a href="#annotated-cell-40-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="annotated-cell-40-10"><a href="#annotated-cell-40-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(quadrados)</span>
-<span id="annotated-cell-40-11"><a href="#annotated-cell-40-11" aria-hidden="true" tabindex="-1"></a>},</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-40" data-target-annotation="2">2</button><span id="annotated-cell-40-12" class="code-annotation-target"><a href="#annotated-cell-40-12" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="annotated-cell-40-13"><a href="#annotated-cell-40-13" aria-hidden="true" tabindex="-1"></a>  vetor_numeros <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-40" data-target-annotation="3">3</button><span id="annotated-cell-40-14" class="code-annotation-target"><a href="#annotated-cell-40-14" aria-hidden="true" tabindex="-1"></a>  quadrados <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dbl</span>(vetor_numeros, <span class="sc">~</span> .x <span class="sc">^</span> <span class="dv">2</span>)</span>
-<span id="annotated-cell-40-15"><a href="#annotated-cell-40-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(quadrados)</span>
-<span id="annotated-cell-40-16"><a href="#annotated-cell-40-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="annotated-cell-40-17"><a href="#annotated-cell-40-17" aria-hidden="true" tabindex="-1"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-44"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-44-1"><a href="#annotated-cell-44-1" aria-hidden="true" tabindex="-1"></a>dados_benchmark <span class="ot">&lt;-</span> bench<span class="sc">::</span><span class="fu">mark</span>(</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-44" data-target-annotation="1">1</button><span id="annotated-cell-44-2" class="code-annotation-target"><a href="#annotated-cell-44-2" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="annotated-cell-44-3"><a href="#annotated-cell-44-3" aria-hidden="true" tabindex="-1"></a>  vetor_numeros <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="annotated-cell-44-4"><a href="#annotated-cell-44-4" aria-hidden="true" tabindex="-1"></a>  quadrados <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">length</span>(vetor_numeros))</span>
+<span id="annotated-cell-44-5"><a href="#annotated-cell-44-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="annotated-cell-44-6"><a href="#annotated-cell-44-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(vetor_numeros)) {</span>
+<span id="annotated-cell-44-7"><a href="#annotated-cell-44-7" aria-hidden="true" tabindex="-1"></a>    quadrados[i] <span class="ot">&lt;-</span> vetor_numeros[i] <span class="sc">^</span> <span class="dv">2</span></span>
+<span id="annotated-cell-44-8"><a href="#annotated-cell-44-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="annotated-cell-44-9"><a href="#annotated-cell-44-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="annotated-cell-44-10"><a href="#annotated-cell-44-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(quadrados)</span>
+<span id="annotated-cell-44-11"><a href="#annotated-cell-44-11" aria-hidden="true" tabindex="-1"></a>},</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-44" data-target-annotation="2">2</button><span id="annotated-cell-44-12" class="code-annotation-target"><a href="#annotated-cell-44-12" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="annotated-cell-44-13"><a href="#annotated-cell-44-13" aria-hidden="true" tabindex="-1"></a>  vetor_numeros <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-44" data-target-annotation="3">3</button><span id="annotated-cell-44-14" class="code-annotation-target"><a href="#annotated-cell-44-14" aria-hidden="true" tabindex="-1"></a>  quadrados <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dbl</span>(vetor_numeros, <span class="sc">~</span> .x <span class="sc">^</span> <span class="dv">2</span>)</span>
+<span id="annotated-cell-44-15"><a href="#annotated-cell-44-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(quadrados)</span>
+<span id="annotated-cell-44-16"><a href="#annotated-cell-44-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="annotated-cell-44-17"><a href="#annotated-cell-44-17" aria-hidden="true" tabindex="-1"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-40" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-44" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-40" data-code-lines="2,11" data-code-annotation="1">Código com <em>loop</em> <code>for</code> para calcular o quadrado de cada número de 1 a 10, e armazenar o resultado em um vetor <code>quadrados</code>.</span>
+<span data-code-cell="annotated-cell-44" data-code-lines="2,11" data-code-annotation="1">Código com <em>loop</em> <code>for</code> para calcular o quadrado de cada número de 1 a 10, e armazenar o resultado em um vetor <code>quadrados</code>.</span>
 </dd>
-<dt data-target-cell="annotated-cell-40" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-44" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-40" data-code-lines="12,16" data-code-annotation="2">Código com <code>purrr</code> para calcular o quadrado de cada número de 1 a 10, e armazenar o resultado em um vetor <code>quadrados</code>.</span>
+<span data-code-cell="annotated-cell-44" data-code-lines="12,16" data-code-annotation="2">Código com <code>purrr</code> para calcular o quadrado de cada número de 1 a 10, e armazenar o resultado em um vetor <code>quadrados</code>.</span>
 </dd>
-<dt data-target-cell="annotated-cell-40" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-44" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-40" data-code-lines="14" data-code-annotation="3">Com a função <code>map_dbl()</code> (é uma variação do <code>map()</code>, porém retorna um vetor numérico)</span>
+<span data-code-cell="annotated-cell-44" data-code-lines="14" data-code-annotation="3">Com a função <code>map_dbl()</code> (é uma variação do <code>map()</code>, porém retorna um vetor numérico)</span>
 </dd>
 </dl>
 </div>
 </div>
 <p>Vamos visualizar o resultado do benchmark:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dados_benchmark)</span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 2 × 6</span></span>
-<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   expression                             min median `itr/sec` mem_alloc `gc/sec`</span></span>
-<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   &lt;bch:expr&gt;                           &lt;bch&gt; &lt;bch:&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span></span>
-<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 { vetor_numeros &lt;- 1:10 quadrados &lt;… 775µs  898µs     1047.    44.8KB     33.6</span></span>
-<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 { vetor_numeros &lt;- 1:10 quadrados &lt;…  45µs   48µs    18840.   437.7KB     16.5</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dados_benchmark)</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 2 × 6</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   expression                             min median `itr/sec` mem_alloc `gc/sec`</span></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   &lt;bch:expr&gt;                           &lt;bch&gt; &lt;bch:&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span></span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 { vetor_numeros &lt;- 1:10 quadrados &lt;… 775µs  898µs     1047.    44.8KB     33.6</span></span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 { vetor_numeros &lt;- 1:10 quadrados &lt;…  45µs   48µs    18840.   437.7KB     16.5</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>No exemplo acima, o código com <code>purrr</code> é mais rápido do que o <em>loop</em> <code>for</code>. No entanto, a diferença de desempenho é pequena, e a diferença dependerá do que está sendo feito em cada iteração (ou seja, o código que executamos).</p>
 <p>O mais importante é considerar a eficiência de programação e a legibilidade do código ao escolher entre <em>loops</em> <code>for</code> e funções do <code>purrr</code>.</p>
-<p>https://youtu.be/wki0BqlztCo?feature=shared&amp;t=222</p>
-<section id="exercício-2" class="level4" data-number="8.3.4.1">
-<h4 data-number="8.3.4.1" class="anchored" data-anchor-id="exercício-2"><span class="header-section-number">8.3.4.1</span> Exercício</h4>
-<p>Em breve!</p>
-<!-- Exercício prático: Transformar um código com for em um código usando purrr -->
-</section>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Comentário interessante do Hadley Wickham, em um <a href="https://www.youtube.com/watch?v=wki0BqlztCo&amp;t=222s">seminário apresentado em Stanford</a>:</p>
+<blockquote class="blockquote">
+<p>“[…] what are the bottlenecks in the data analysis process? I think there are 2 main categories: first of all, you have to think about what do you want to do, figure it out what the next step is. Then you need to precisely describe it in such a way that the computer can understand what you want; in other words, you have to program it and then finally the computer has to go away and crunch some number. And in my experience, when you’re doing a data analysis, the biggest bottleneck is cognitive: you spend way more time thinking about the problem, then you do actually computing on the problem. And if that’s the bottleneck then you don’t want to choose a programming language that’s optimized for performance, it doesn’t matter if you can do this computation ten times faster if the computation takes a second, and you have to spend a minute thinking about it. You want to pick a language that helps you think about the problem, and then helps you express that in code.”</p>
+</blockquote>
+</div>
+</div>
 </section>
 </section>
 <section id="paralelização" class="level2" data-number="8.4">
@@ -1075,8 +1134,8 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <li><p>argumento <code>workers</code>: O número de núcleos que queremos utilizar para o processamento paralelo. Uma boa prática é deixar alguns núcleos livres para o sistema operacional. Caso este argumento não seja fornecido, o <code>future</code> utilizará todos os núcleos disponíveis.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo: em um computador com 8 núcleos, podemos utilizar 6 núcleos para o processamento paralelo</span></span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>future<span class="sc">::</span><span class="fu">plan</span>(multisession, <span class="at">workers =</span> <span class="dv">6</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo: em um computador com 8 núcleos, podemos utilizar 6 núcleos para o processamento paralelo</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>future<span class="sc">::</span><span class="fu">plan</span>(multisession, <span class="at">workers =</span> <span class="dv">6</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="utilizando-o-furrr" class="level4" data-number="8.4.1.2">
@@ -1084,14 +1143,14 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <p>O <code>furrr</code> oferece funções que são uma extensão das funções do <code>purrr</code>, porém com suporte a processamento paralelo. Por exemplo, a função <code>furrr::future_map()</code> é uma versão paralela da função <code>purrr::map()</code>.</p>
 <p>A sintaxe da função <code>furrr::future_map()</code> é semelhante à função <code>purrr::map()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>nome_empresas <span class="ot">&lt;-</span> voos <span class="sc">|&gt;</span> </span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(nm_empresa, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span> (<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
-<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(nm_empresa)</span>
-<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a> furrr<span class="sc">::</span><span class="fu">future_map</span>(nome_empresas,</span>
-<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>           salvar_csv_por_empresa,</span>
-<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">dados =</span> voos) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>nome_empresas <span class="ot">&lt;-</span> voos <span class="sc">|&gt;</span> </span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(nm_empresa, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span> (<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(nm_empresa)</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a> furrr<span class="sc">::</span><span class="fu">future_map</span>(nome_empresas,</span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>           salvar_csv_por_empresa,</span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">dados =</span> voos) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Repare que a função <code>furrr::future_map()</code> é utilizada da mesma forma que a função <code>purrr::map()</code>, porém com suporte a processamento paralelo. Isso significa que a função <code>salvar_csv_por_empresa()</code> será executada em paralelo para cada empresa, o que pode acelerar o processamento.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1108,9 +1167,38 @@ Nota
 </div>
 </div>
 </section>
-<section id="exercício-3" class="level4" data-number="8.4.1.3">
-<h4 data-number="8.4.1.3" class="anchored" data-anchor-id="exercício-3"><span class="header-section-number">8.4.1.3</span> Exercício</h4>
-<p>Em breve!</p>
+<section id="exercício-2" class="level4" data-number="8.4.1.3">
+<h4 data-number="8.4.1.3" class="anchored" data-anchor-id="exercício-2"><span class="header-section-number">8.4.1.3</span> Exercício</h4>
+<ol type="1">
+<li>Observe o código abaixo. O que cada parte do código faz? O que o resultado de <code>df_benchmark</code> nos mostra?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>dormir <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Sys.sleep</span>(<span class="dv">1</span>)</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>  usethis<span class="sc">::</span><span class="fu">ui_info</span>(<span class="st">"Dormindo.. {x}"</span>)</span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x)</span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>future<span class="sc">::</span><span class="fu">plan</span>(multisession)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>df_benchmark <span class="ot">&lt;-</span> bench<span class="sc">::</span><span class="fu">mark</span>(</span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, dormir),</span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>  furrr<span class="sc">::</span><span class="fu">future_map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, dormir)</span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a>df_benchmark</span>
+<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 2 × 13</span></span>
+<span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   expression      min median `itr/sec` mem_alloc `gc/sec` n_itr</span></span>
+<span id="cb82-9"><a href="#cb82-9" aria-hidden="true" tabindex="-1"></a><span class="co">#   &lt;bch:expr&gt;    &lt;bch&gt; &lt;bch:&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt; &lt;int&gt;</span></span>
+<span id="cb82-10"><a href="#cb82-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 purrr::map(1… 4.96s  4.96s     0.202  115.82KB        0     1</span></span>
+<span id="cb82-11"><a href="#cb82-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 furrr::futur… 1.14s  1.14s     0.879    8.32MB        0     1</span></span>
+<span id="cb82-12"><a href="#cb82-12" aria-hidden="true" tabindex="-1"></a><span class="co"># # ℹ 6 more variables: n_gc &lt;dbl&gt;, total_time &lt;bch:tm&gt;,</span></span>
+<span id="cb82-13"><a href="#cb82-13" aria-hidden="true" tabindex="-1"></a><span class="co"># #   result &lt;list&gt;, memory &lt;list&gt;, time &lt;list&gt;, gc &lt;list&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 </section>
