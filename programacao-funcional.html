@@ -236,12 +236,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#iteração" id="toc-iteração" class="nav-link" data-scroll-target="#iteração"><span class="header-section-number">8.3</span> Iteração</a>
   <ul>
-  <li><a href="#loop-for" id="toc-loop-for" class="nav-link" data-scroll-target="#loop-for"><span class="header-section-number">8.3.1</span> Loop <code>for</code></a></li>
-  <li><a href="#pacote-purrr" id="toc-pacote-purrr" class="nav-link" data-scroll-target="#pacote-purrr"><span class="header-section-number">8.3.2</span> Pacote <code>purrr</code></a></li>
+  <li><a href="#loop-for" id="toc-loop-for" class="nav-link" data-scroll-target="#loop-for"><span class="header-section-number">8.3.1</span> Loop <code>for</code></a>
+  <ul>
+  <li><a href="#exercício" id="toc-exercício" class="nav-link" data-scroll-target="#exercício"><span class="header-section-number">8.3.1.1</span> Exercício</a></li>
+  </ul></li>
+  <li><a href="#pacote-purrr" id="toc-pacote-purrr" class="nav-link" data-scroll-target="#pacote-purrr"><span class="header-section-number">8.3.2</span> Pacote <code>purrr</code></a>
+  <ul>
+  <li><a href="#funções-principais-map" id="toc-funções-principais-map" class="nav-link" data-scroll-target="#funções-principais-map"><span class="header-section-number">8.3.2.1</span> Funções principais: <code>map()</code></a></li>
+  <li><a href="#exercício-1" id="toc-exercício-1" class="nav-link" data-scroll-target="#exercício-1"><span class="header-section-number">8.3.2.2</span> Exercício</a></li>
+  </ul></li>
+  <li><a href="#outras-aplicações" id="toc-outras-aplicações" class="nav-link" data-scroll-target="#outras-aplicações"><span class="header-section-number">8.3.3</span> Outras aplicações</a></li>
+  <li><a href="#comparação-for-loop-vs.-map" id="toc-comparação-for-loop-vs.-map" class="nav-link" data-scroll-target="#comparação-for-loop-vs.-map"><span class="header-section-number">8.3.4</span> Comparação: <code>for</code> loop vs.&nbsp;<code>map()</code></a>
+  <ul>
+  <li><a href="#exercício-2" id="toc-exercício-2" class="nav-link" data-scroll-target="#exercício-2"><span class="header-section-number">8.3.4.1</span> Exercício</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#paralelização" id="toc-paralelização" class="nav-link" data-scroll-target="#paralelização"><span class="header-section-number">8.4</span> Paralelização</a>
   <ul>
-  <li><a href="#pacote-furrr" id="toc-pacote-furrr" class="nav-link" data-scroll-target="#pacote-furrr"><span class="header-section-number">8.4.1</span> Pacote <code>furrr</code></a></li>
+  <li><a href="#pacote-furrr" id="toc-pacote-furrr" class="nav-link" data-scroll-target="#pacote-furrr"><span class="header-section-number">8.4.1</span> Pacote <code>furrr</code></a>
+  <ul>
+  <li><a href="#configuração" id="toc-configuração" class="nav-link" data-scroll-target="#configuração"><span class="header-section-number">8.4.1.1</span> Configuração</a></li>
+  <li><a href="#utilizando-o-furrr" id="toc-utilizando-o-furrr" class="nav-link" data-scroll-target="#utilizando-o-furrr"><span class="header-section-number">8.4.1.2</span> Utilizando o <code>furrr</code></a></li>
+  <li><a href="#exercício-3" id="toc-exercício-3" class="nav-link" data-scroll-target="#exercício-3"><span class="header-section-number">8.4.1.3</span> Exercício</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#material-complementar" id="toc-material-complementar" class="nav-link" data-scroll-target="#material-complementar"><span class="header-section-number">8.5</span> Material complementar</a></li>
   </ul>
@@ -600,12 +617,12 @@ Nota
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>assertthat<span class="sc">::</span><span class="fu">assert_that</span>(<span class="fu">is.vector</span>(mtcars))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in loadNamespace(x): não há nenhum pacote chamado 'assertthat'</code></pre>
+<pre><code>Error: mtcars is not an atomic vector without attributes</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>assertthat<span class="sc">::</span><span class="fu">assert_that</span>(<span class="fu">is.vector</span>(mtcars),</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">msg =</span> <span class="st">"O argumento fornecido não é um vetor."</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in loadNamespace(x): não há nenhum pacote chamado 'assertthat'</code></pre>
+<pre><code>Error: O argumento fornecido não é um vetor.</code></pre>
 </div>
 </div>
 <section id="exercícios-2" class="level4" data-number="8.2.3.1">
@@ -769,8 +786,8 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <p>Na seção anterior, aprendemos a criar funções para facilitar a execução de tarefas repetitivas. No entanto, às vezes precisamos executar a mesma operação em vários elementos de uma lista, vetor ou data frame.</p>
 <p>Imagine que queremos salvar arquivos CSV separados para cada uma das empresas aéreas no dataset <code>voos</code>. Podemos criar uma função que salva um arquivo CSV para uma empresa específica:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>salvar_csv_por_empresa <span class="ot">&lt;-</span> <span class="cf">function</span>(dados,</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>                                   nome_empresa,</span>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>salvar_csv_por_empresa <span class="ot">&lt;-</span> <span class="cf">function</span>(nome_empresa,</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>                                   dados,</span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">dir_salvar =</span> <span class="st">"dados/voos_empresas/"</span>) {</span>
 <span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Verificar se os argumentos são válidos</span></span>
@@ -805,7 +822,7 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 </div>
 <p>Se quisermos salvar arquivos CSV separados para uma empresa, podemos utilizar a função <code>salvar_csv_por_empresa()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">salvar_csv_por_empresa</span>(voos, <span class="st">"TAM LINHAS AÉREAS S.A."</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">salvar_csv_por_empresa</span>(<span class="at">nome_empresa =</span> <span class="st">"TAM LINHAS AÉREAS S.A."</span>, <span class="at">dados =</span> voos)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>✔ Arquivo salvo: dados/voos_empresas/tam_linhas_aereas_s_a.csv</code></pre>
 </div>
@@ -815,11 +832,11 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 </div>
 <p>A função <code>salvar_csv_por_empresa()</code> não aceita um vetor com nome de várias empresas:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">salvar_csv_por_empresa</span>(voos, </span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">c</span>(<span class="st">"AZUL LINHAS AÉREAS BRASILEIRAS S/A"</span>,</span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"TAM LINHAS AÉREAS S.A."</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">salvar_csv_por_empresa</span>(<span class="at">nome_empresa =</span>  <span class="fu">c</span>(<span class="st">"AZUL LINHAS AÉREAS BRASILEIRAS S/A"</span>,</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"TAM LINHAS AÉREAS S.A."</span>),</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">dados =</span> voos)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in salvar_csv_por_empresa(voos, c("AZUL LINHAS AÉREAS BRASILEIRAS S/A", : length(nome_empresa) == 1 não é TRUE</code></pre>
+<pre><code>Error in salvar_csv_por_empresa(nome_empresa = c("AZUL LINHAS AÉREAS BRASILEIRAS S/A", : length(nome_empresa) == 1 não é TRUE</code></pre>
 </div>
 </div>
 <p>Uma forma de resolver esse problema seria chamar a função <code>salvar_csv_por_empresa()</code> para cada empresa. Porém essa base de dados apresenta mais de 200 valores únicos para a variável <code>nm_empresa</code>. Isso tornaria o processo manual e demorado (e com maior chance de erros!)</p>
@@ -850,8 +867,9 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <p>Agora, podemos utilizar um <em>loop</em> <code>for</code> para salvar arquivos CSV para cada empresa:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (empresa <span class="cf">in</span> nome_empresas) {</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">salvar_csv_por_empresa</span>(voos, empresa)</span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">salvar_csv_por_empresa</span>(<span class="at">nome_empresa =</span> empresa,</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">dados =</span> voos)</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>✔ Arquivo salvo: dados/voos_empresas/azul_linhas_aereas_brasileiras_s_a.csv
 ✔ Arquivo salvo: dados/voos_empresas/tam_linhas_aereas_s_a.csv
@@ -865,32 +883,235 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 ✔ Arquivo salvo: dados/voos_empresas/american_airlines_inc.csv</code></pre>
 </div>
 </div>
-<p>Veja como o <em>loop</em> <code>for</code> é utilizado para iterar sobre os valores do vetor <code>nome_empresas</code> e executar a função <code>salvar_csv_por_empresa()</code> para cada empresa.</p>
+<p>Repare como o <em>loop</em> <code>for</code> é utilizado para iterar sobre os valores do vetor <code>nome_empresas</code> e executar a função <code>salvar_csv_por_empresa()</code> para cada empresa.</p>
+<section id="exercício" class="level4" data-number="8.3.1.1">
+<h4 data-number="8.3.1.1" class="anchored" data-anchor-id="exercício"><span class="header-section-number">8.3.1.1</span> Exercício</h4>
+<p>Em breve!</p>
+</section>
 </section>
 <section id="pacote-purrr" class="level3" data-number="8.3.2">
 <h3 data-number="8.3.2" class="anchored" data-anchor-id="pacote-purrr"><span class="header-section-number">8.3.2</span> Pacote <code>purrr</code></h3>
+<p><img src="images/logo-purrr.png" class="img-rstudio" align="right" width="120px"></p>
+<p>O pacote <a href="https://purrr.tidyverse.org/"><code>purrr</code></a> faz parte do <a href="https://www.tidyverse.org/"><code>{tidyverse}</code></a> e oferece ferramentas para trabalhar com programação funcional em R.</p>
+<p>As funções do tidyverse são projetadas para funcionar bem com o pipe (<code>%&gt;%</code> ou <code>|&gt;</code>), o que torna o código mais legível e fácil de entender. Repare que as funções do <code>tidyverse</code> recebem os dados no primeiro argumento, o que facilita a utilização do pipe.</p>
+<p>As funções do <code>purrr</code> também são projetadas para trabalhar com o pipe, o que facilita a integração com outras funções do tidyverse.</p>
+<section id="funções-principais-map" class="level4" data-number="8.3.2.1">
+<h4 data-number="8.3.2.1" class="anchored" data-anchor-id="funções-principais-map"><span class="header-section-number">8.3.2.1</span> Funções principais: <code>map()</code></h4>
+<p>Uma das funções mais utilizadas do <code>purrr</code> é a função <code>map()</code>. A função <code>map()</code> é utilizada para aplicar uma função a cada elemento de uma lista ou vetor, e retorna uma lista com os resultados.</p>
+<p>Existem várias variações da função <code>map()</code>, porém o ideal é começar com a função <code>map()</code> e, conforme for se familiarizando com o pacote, explorar as outras funções.</p>
+<p>A sintaxe básica da função <code>map()</code> é:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map</span>(<span class="at">.x =</span> vetor_para_iterar,</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">.f =</span> funcao_que_queremos_aplicar)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Sendo que:</p>
+<ul>
+<li><p><code>.x</code> é argumento que recebe o vetor ou lista que queremos iterar.</p></li>
+<li><p><code>.f</code> é argumento que recebe a função que queremos aplicar a cada elemento de <code>.x</code>.</p></li>
+<li><p>Essa função também aceita argumentos adicionais que serão passados para a função <code>.f</code>.</p></li>
+</ul>
+<p>Vamos utilizar a função <code>map()</code> para realizar a mesma tarefa que fizemos com o <em>loop</em> <code>for</code> anteriormente:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>nome_empresas <span class="ot">&lt;-</span> voos <span class="sc">|&gt;</span> </span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(nm_empresa, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span> (<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(nm_empresa)</span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map</span>(nome_empresas,</span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>           salvar_csv_por_empresa,</span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">dados =</span> voos)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ Arquivo salvo: dados/voos_empresas/azul_linhas_aereas_brasileiras_s_a.csv
+✔ Arquivo salvo: dados/voos_empresas/tam_linhas_aereas_s_a.csv
+✔ Arquivo salvo: dados/voos_empresas/gol_linhas_aereas_s_a_ex_vrg_linhas_aereas_s_a.csv
+✔ Arquivo salvo: dados/voos_empresas/azul_conecta_ltda_ex_two_taxi_aereo_ltda.csv
+✔ Arquivo salvo: dados/voos_empresas/passaredo_transportes_aereos_s_a.csv
+✔ Arquivo salvo: dados/voos_empresas/tap_transportes_aereos_portugueses_s_a.csv
+✔ Arquivo salvo: dados/voos_empresas/latam_airlines_group_ex_lan_airlines_s_a.csv
+✔ Arquivo salvo: dados/voos_empresas/compania_panamena_de_aviacion_s_a_copa_airlines.csv
+✔ Arquivo salvo: dados/voos_empresas/aerolineas_argentinas_s_a.csv
+✔ Arquivo salvo: dados/voos_empresas/american_airlines_inc.csv</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] "dados/voos_empresas/azul_linhas_aereas_brasileiras_s_a.csv"
+
+[[2]]
+[1] "dados/voos_empresas/tam_linhas_aereas_s_a.csv"
+
+[[3]]
+[1] "dados/voos_empresas/gol_linhas_aereas_s_a_ex_vrg_linhas_aereas_s_a.csv"
+
+[[4]]
+[1] "dados/voos_empresas/azul_conecta_ltda_ex_two_taxi_aereo_ltda.csv"
+
+[[5]]
+[1] "dados/voos_empresas/passaredo_transportes_aereos_s_a.csv"
+
+[[6]]
+[1] "dados/voos_empresas/tap_transportes_aereos_portugueses_s_a.csv"
+
+[[7]]
+[1] "dados/voos_empresas/latam_airlines_group_ex_lan_airlines_s_a.csv"
+
+[[8]]
+[1] "dados/voos_empresas/compania_panamena_de_aviacion_s_a_copa_airlines.csv"
+
+[[9]]
+[1] "dados/voos_empresas/aerolineas_argentinas_s_a.csv"
+
+[[10]]
+[1] "dados/voos_empresas/american_airlines_inc.csv"</code></pre>
+</div>
+</div>
+<p>Repare que o retorno da função <code>map()</code> é uma <strong>lista</strong> com os caminhos dos arquivos salvos. Isso acontece porque a função <code>salvar_csv_por_empresa()</code> retorna o caminho do arquivo salvo, e o <code>map()</code> retorna os resultados de cada iteração em uma lista.</p>
+<p>Também poderíamos reescrever de uma forma mais direta, com o pipe (considerando que o primeiro argumento do <code>map()</code> recebe o vetor ou a lista que queremos iterar):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>voos <span class="sc">|&gt;</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(nm_empresa) <span class="sc">|&gt;</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(nm_empresa) <span class="sc">|&gt;</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(salvar_csv_por_empresa, <span class="at">dados =</span> voos)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercício-1" class="level4" data-number="8.3.2.2">
+<h4 data-number="8.3.2.2" class="anchored" data-anchor-id="exercício-1"><span class="header-section-number">8.3.2.2</span> Exercício</h4>
 <p>Em breve!</p>
-<!-- Introdução ao purrr e filosofia do tidyverse -->
-<!-- Funções principais: map() -->
-<!-- Trabalhando com listas e tibbles -->
-<!-- Comparação: for loop vs. map() (em termos de legibilidade e performance) -->
+</section>
+</section>
+<section id="outras-aplicações" class="level3" data-number="8.3.3">
+<h3 data-number="8.3.3" class="anchored" data-anchor-id="outras-aplicações"><span class="header-section-number">8.3.3</span> Outras aplicações</h3>
+<p>Podemos utilizar as técnicas de iteração (seja com <em>loops</em> <code>for</code> ou com <code>purrr</code>) para realizar outras tarefas, como:</p>
+<ul>
+<li><p>Importar diversos arquivos e combinar em um único data frame. Exemplo: importar múltiplos arquivos CSV contendo dados de voos mensais e consolidá-los em uma única base.</p></li>
+<li><p>Gerar documentos Quarto com parâmetros. Exemplo: gerar um relatório para cada aeroporto do Brasil.</p></li>
+<li><p>Criar gráficos automaticamente para diferentes grupos ou variáveis. Exemplo: gerar histogramas para cada variável numérica de um data frame.</p></li>
+<li><p>E muitas outras tarefas! Depende das nossas habilidades para criar funções e utilizar as técnicas de iteração.</p></li>
+</ul>
+</section>
+<section id="comparação-for-loop-vs.-map" class="level3" data-number="8.3.4">
+<h3 data-number="8.3.4" class="anchored" data-anchor-id="comparação-for-loop-vs.-map"><span class="header-section-number">8.3.4</span> Comparação: <code>for</code> loop vs.&nbsp;<code>map()</code></h3>
+<p>Quando comparamos diferentes técnicas de iteração, como <em>loops</em> <code>for</code> e funções do <code>purrr</code>, é importante considerar:</p>
+<ul>
+<li><p>Eficiência de código: qual é a velocidade de execução de cada método?</p></li>
+<li><p>Eficiência de programação: qual é a facilidade de escrever e manter o código?</p></li>
+</ul>
+<p>O tidyverse escolhe otimizar a eficiência de programação, ou seja, a facilidade de escrever e manter o código. Escrever códigos com <code>purrr</code>, no geral, é mais fácil e legível do que escrever códigos com <em>loops</em> <code>for</code>.</p>
+<p>Por outro lado, <em>loops</em> <code>for</code> podem ser mais rápidos em algumas situações, especialmente quando precisamos de controle total sobre a iteração. No entanto, a diferença de desempenho entre <em>loops</em> <code>for</code> e funções do <code>purrr</code> é geralmente pequena, e a eficiência de programação geralmente supera a eficiência de código.</p>
+<p>Caso você tenha interesse em medir a eficiência de código, o pacote <a href="https://bench.r-lib.org/"><code>{bench}</code></a> é uma ferramenta para medir o tempo de execução de expressões em R.</p>
+<p>Vamos comparar o tempo de execução de um <em>loop</em> <code>for</code> e do<code>map()</code>, para ter um exemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-40"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-40-1"><a href="#annotated-cell-40-1" aria-hidden="true" tabindex="-1"></a>dados_benchmark <span class="ot">&lt;-</span> bench<span class="sc">::</span><span class="fu">mark</span>(</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-40" data-target-annotation="1">1</button><span id="annotated-cell-40-2" class="code-annotation-target"><a href="#annotated-cell-40-2" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="annotated-cell-40-3"><a href="#annotated-cell-40-3" aria-hidden="true" tabindex="-1"></a>  vetor_numeros <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="annotated-cell-40-4"><a href="#annotated-cell-40-4" aria-hidden="true" tabindex="-1"></a>  quadrados <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">length</span>(vetor_numeros))</span>
+<span id="annotated-cell-40-5"><a href="#annotated-cell-40-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="annotated-cell-40-6"><a href="#annotated-cell-40-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(vetor_numeros)) {</span>
+<span id="annotated-cell-40-7"><a href="#annotated-cell-40-7" aria-hidden="true" tabindex="-1"></a>    quadrados[i] <span class="ot">&lt;-</span> vetor_numeros[i] <span class="sc">^</span> <span class="dv">2</span></span>
+<span id="annotated-cell-40-8"><a href="#annotated-cell-40-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="annotated-cell-40-9"><a href="#annotated-cell-40-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="annotated-cell-40-10"><a href="#annotated-cell-40-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(quadrados)</span>
+<span id="annotated-cell-40-11"><a href="#annotated-cell-40-11" aria-hidden="true" tabindex="-1"></a>},</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-40" data-target-annotation="2">2</button><span id="annotated-cell-40-12" class="code-annotation-target"><a href="#annotated-cell-40-12" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="annotated-cell-40-13"><a href="#annotated-cell-40-13" aria-hidden="true" tabindex="-1"></a>  vetor_numeros <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-40" data-target-annotation="3">3</button><span id="annotated-cell-40-14" class="code-annotation-target"><a href="#annotated-cell-40-14" aria-hidden="true" tabindex="-1"></a>  quadrados <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dbl</span>(vetor_numeros, <span class="sc">~</span> .x <span class="sc">^</span> <span class="dv">2</span>)</span>
+<span id="annotated-cell-40-15"><a href="#annotated-cell-40-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(quadrados)</span>
+<span id="annotated-cell-40-16"><a href="#annotated-cell-40-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="annotated-cell-40-17"><a href="#annotated-cell-40-17" aria-hidden="true" tabindex="-1"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-40" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-40" data-code-lines="2,11" data-code-annotation="1">Código com <em>loop</em> <code>for</code> para calcular o quadrado de cada número de 1 a 10, e armazenar o resultado em um vetor <code>quadrados</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-40" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-40" data-code-lines="12,16" data-code-annotation="2">Código com <code>purrr</code> para calcular o quadrado de cada número de 1 a 10, e armazenar o resultado em um vetor <code>quadrados</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-40" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-40" data-code-lines="14" data-code-annotation="3">Com a função <code>map_dbl()</code> (é uma variação do <code>map()</code>, porém retorna um vetor numérico)</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Vamos visualizar o resultado do benchmark:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dados_benchmark)</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 2 × 6</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   expression                             min median `itr/sec` mem_alloc `gc/sec`</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   &lt;bch:expr&gt;                           &lt;bch&gt; &lt;bch:&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span></span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 { vetor_numeros &lt;- 1:10 quadrados &lt;… 775µs  898µs     1047.    44.8KB     33.6</span></span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 { vetor_numeros &lt;- 1:10 quadrados &lt;…  45µs   48µs    18840.   437.7KB     16.5</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>No exemplo acima, o código com <code>purrr</code> é mais rápido do que o <em>loop</em> <code>for</code>. No entanto, a diferença de desempenho é pequena, e a diferença dependerá do que está sendo feito em cada iteração (ou seja, o código que executamos).</p>
+<p>O mais importante é considerar a eficiência de programação e a legibilidade do código ao escolher entre <em>loops</em> <code>for</code> e funções do <code>purrr</code>.</p>
+<p>https://youtu.be/wki0BqlztCo?feature=shared&amp;t=222</p>
+<section id="exercício-2" class="level4" data-number="8.3.4.1">
+<h4 data-number="8.3.4.1" class="anchored" data-anchor-id="exercício-2"><span class="header-section-number">8.3.4.1</span> Exercício</h4>
+<p>Em breve!</p>
 <!-- Exercício prático: Transformar um código com for em um código usando purrr -->
+</section>
 </section>
 </section>
 <section id="paralelização" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="paralelização"><span class="header-section-number">8.4</span> Paralelização</h2>
-<p>Em breve!</p>
-<!-- O que é paralelização? Conceitos básicos -->
-<!-- Diferença entre processamento sequencial e paralelo -->
+<p>Em alguns casos, precisaremos executar tarefas que são demoradas, como processar grandes volumes de dados. Até então, aprendemos a utilizar funções e técnicas de iteração para facilitar a execução de tarefas repetitivas. No entanto, em alguns casos, a execução sequencial (ou seja, uma depois da outra) dessas tarefas pode ser lenta.</p>
+<p>Nesses casos, a paralelização pode ser uma estratégia útil para acelerar o processamento.</p>
+<p>A paralelização é a técnica de dividir um problema em partes menores que podem ser executadas simultaneamente em diferentes núcleos do processador do computador. Isso melhora significativamente o desempenho de tarefas que envolvem grandes volumes de dados ou operações repetitivas.</p>
+<p>Ou seja, utilizando o processamento paralelo, as operações são distribuídas entre múltiplos núcleos do processador e executadas simultaneamente.</p>
 <section id="pacote-furrr" class="level3" data-number="8.4.1">
 <h3 data-number="8.4.1" class="anchored" data-anchor-id="pacote-furrr"><span class="header-section-number">8.4.1</span> Pacote <code>furrr</code></h3>
+<p><img src="images/logo-furrr.png" class="img-rstudio" align="right" width="120px"></p>
+<p>O pacote <a href="https://furrr.futureverse.org/"><code>{furrr}</code></a> é um pacote que extende o pacote <a href="https://purrr.tidyverse.org/"><code>{purrr}</code></a> e oferece funções para executar operações em paralelo. O <code>furrr</code> é baseado no pacote <a href="https://future.futureverse.org/"><code>{future}</code></a>, que fornece uma interface unificada para processamento paralelo em R.</p>
+<section id="configuração" class="level4" data-number="8.4.1.1">
+<h4 data-number="8.4.1.1" class="anchored" data-anchor-id="configuração"><span class="header-section-number">8.4.1.1</span> Configuração</h4>
+<p>Para configurar o processamento paralelo com o <code>furrr</code>, precisamos seguir alguns passos:</p>
+<ol start="2" type="1">
+<li>Configurar o plano de processamento paralelo com a função <code>future::plan()</code>.</li>
+</ol>
+<ul>
+<li><p>argumento <code>strategy</code>: O <code>future</code> oferece diferentes planos de processamento paralelo, como <code>multisession</code> ou <code>multicore</code> (porém <code>multicore</code> não funciona no Windows). No entanto, o plano <code>multicore</code> não é suportado no RStudio, devido a problemas de estabilidade. Portanto, se você estiver utilizando o RStudio, sempre utilize o <code>multisession</code>.</p></li>
+<li><p>argumento <code>workers</code>: O número de núcleos que queremos utilizar para o processamento paralelo. Uma boa prática é deixar alguns núcleos livres para o sistema operacional. Caso este argumento não seja fornecido, o <code>future</code> utilizará todos os núcleos disponíveis.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo: em um computador com 8 núcleos, podemos utilizar 6 núcleos para o processamento paralelo</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>future<span class="sc">::</span><span class="fu">plan</span>(multisession, <span class="at">workers =</span> <span class="dv">6</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="utilizando-o-furrr" class="level4" data-number="8.4.1.2">
+<h4 data-number="8.4.1.2" class="anchored" data-anchor-id="utilizando-o-furrr"><span class="header-section-number">8.4.1.2</span> Utilizando o <code>furrr</code></h4>
+<p>O <code>furrr</code> oferece funções que são uma extensão das funções do <code>purrr</code>, porém com suporte a processamento paralelo. Por exemplo, a função <code>furrr::future_map()</code> é uma versão paralela da função <code>purrr::map()</code>.</p>
+<p>A sintaxe da função <code>furrr::future_map()</code> é semelhante à função <code>purrr::map()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>nome_empresas <span class="ot">&lt;-</span> voos <span class="sc">|&gt;</span> </span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(nm_empresa, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span> (<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(nm_empresa)</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a> furrr<span class="sc">::</span><span class="fu">future_map</span>(nome_empresas,</span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>           salvar_csv_por_empresa,</span>
+<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">dados =</span> voos) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Repare que a função <code>furrr::future_map()</code> é utilizada da mesma forma que a função <code>purrr::map()</code>, porém com suporte a processamento paralelo. Isso significa que a função <code>salvar_csv_por_empresa()</code> será executada em paralelo para cada empresa, o que pode acelerar o processamento.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>É importante avaliar o problema e a estratégia de paralelização antes de implementar o processamento paralelo. Utilizamos o processamento paralelo quando <strong>realmente</strong> precisamos acelerar a execução de tarefas.</p>
+</div>
+</div>
+</section>
+<section id="exercício-3" class="level4" data-number="8.4.1.3">
+<h4 data-number="8.4.1.3" class="anchored" data-anchor-id="exercício-3"><span class="header-section-number">8.4.1.3</span> Exercício</h4>
 <p>Em breve!</p>
-<!-- Configuração com furrr: -->
-<!--     future::plan() e furrr::future_map() -->
-<!--     Detectando o número de cores disponíveis (parallel::detectCores()) -->
-<!--     Configurando para não usar todos os cores -->
-<!-- Global objects: como garantir que objetos estejam disponíveis para todos os workers -->
-<!-- Exercício prático: Paralelizar uma tarefa com furrr -->
+</section>
 </section>
 </section>
 <section id="material-complementar" class="level2" data-number="8.5">
