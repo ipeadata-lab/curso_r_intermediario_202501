@@ -546,7 +546,16 @@ Repare como o *loop* `for` é utilizado para iterar sobre os valores do vetor `n
 
 #### Exercício
 
-Em breve!
+1. Observe o código abaixo. O que cada parte do código faz?
+Tente entender o que ele faz antes de executá-lo. O que acontece quando executamos o código?
+
+```{r}
+#| eval: false
+for (x in 1:5) {
+  Sys.sleep(1)
+  print(x)
+}
+```
 
 ### Pacote `purrr`
 
@@ -593,7 +602,8 @@ nome_empresas <- voos |>
 
 purrr::map(nome_empresas,
            salvar_csv_por_empresa,
-           dados = voos)
+           dados = voos,
+           .progress = TRUE)
 ```
 
 Repare que o retorno da função `map()` é uma **lista** com os caminhos dos arquivos salvos. Isso acontece porque a função `salvar_csv_por_empresa()` retorna o caminho do arquivo salvo, e o `map()` retorna os resultados de cada iteração em uma lista.
@@ -611,7 +621,58 @@ voos |>
 
 #### Exercício
 
-Em breve!
+1. Observe o código abaixo. A função `criar_histograma()` cria um histograma para uma variável de um data frame:
+
+```{r}
+criar_histograma <- function(dados, variavel){
+  
+  stopifnot(is.data.frame(dados))
+  stopifnot(is.character(variavel))
+  
+  dados |> 
+  ggplot2::ggplot() +
+    ggplot2::aes(x = .data[[variavel]]) +
+    ggplot2::geom_histogram() +
+    ggplot2::theme_light() +
+    ggplot2::labs(title = paste("Histograma de", variavel))
+}
+```
+
+```{r}
+# Exemplo de uso:
+criar_histograma(palmerpenguins::penguins, "bill_length_mm")
+```
+
+a) Utilize a função `map()` e a função `criar_histograma()` para criar um histograma para cada variável numérica do data frame `palmerpenguins::penguins`.
+
+```{r}
+#| eval: false
+# 1) Obter as variáveis numéricas do data frame
+
+
+# 2) Iterar com a função map() 
+
+
+```
+
+
+```{r}
+#| eval: false
+#| echo: false
+# Obter as variáveis numéricas do data frame
+variaveis_numericas <- palmerpenguins::penguins |> 
+  dplyr::select(where(is.numeric)) |> 
+  names()
+
+# Criar um histograma para cada variável numérica
+purrr::map(variaveis_numericas,
+           criar_histograma,
+           dados = palmerpenguins::penguins)
+
+```
+
+
+
 
 ### Outras aplicações 
 
@@ -689,14 +750,16 @@ No exemplo acima, o código com `purrr` é mais rápido do que o *loop* `for`. N
 
 O mais importante é considerar a eficiência de programação e a legibilidade do código ao escolher entre *loops* `for` e funções do `purrr`.
 
-https://youtu.be/wki0BqlztCo?feature=shared&t=222
+
+::: {.callout-note}
+Comentário interessante do Hadley Wickham, em um [seminário apresentado em Stanford](https://www.youtube.com/watch?v=wki0BqlztCo&t=222s): 
+
+> "[...] what are the bottlenecks in the data analysis process? I think there are 3 main categories: first of all, you have to think about what do you want to do, figure it out what the next step is. Then you need to precisely describe it in such a way that the computer can understand what you want; in other words, you have to program it and then finally the computer has to go away and crunch some number. And in my experience, when you're doing a data analysis, the biggest bottleneck is cognitive: you spend way more time thinking about the problem, then you do actually computing on the problem. 
+And if that's the bottleneck then you don't want to choose a programming language that's optimized for performance, it doesn't matter if you can do this computation ten times faster if the computation takes a second, and you have to spend a minute thinking about it. You want to pick a language that helps you think about the problem, and then helps you express that in code."
+
+:::
 
 
-#### Exercício
-
-Em breve!
-
-<!-- Exercício prático: Transformar um código com for em um código usando purrr -->
 
 ## Paralelização
 
@@ -766,7 +829,40 @@ Repare que a função `furrr::future_map()` é utilizada da mesma forma que a fu
 
 #### Exercício
 
-Em breve!
+1. Observe o código abaixo. O que cada parte do código faz? O que o resultado de `df_benchmark` nos mostra?
+
+```{r}
+#| eval: false
+dormir <- function(x) {
+  Sys.sleep(1)
+  
+  usethis::ui_info("Dormindo.. {x}")
+  
+  return(x)
+}
+```
+
+```{r}
+#| eval: false
+future::plan(multisession)
+```
+
+```{r}
+#| eval: false
+df_benchmark <- bench::mark(
+  purrr::map(1:5, dormir),
+  furrr::future_map(1:5, dormir)
+)
+
+df_benchmark
+# # A tibble: 2 × 13
+#   expression      min median `itr/sec` mem_alloc `gc/sec` n_itr
+#   <bch:expr>    <bch> <bch:>     <dbl> <bch:byt>    <dbl> <int>
+# 1 purrr::map(1… 4.96s  4.96s     0.202  115.82KB        0     1
+# 2 furrr::futur… 1.14s  1.14s     0.879    8.32MB        0     1
+# # ℹ 6 more variables: n_gc <dbl>, total_time <bch:tm>,
+# #   result <list>, memory <list>, time <list>, gc <list>
+```
 
 
 ## Material complementar
