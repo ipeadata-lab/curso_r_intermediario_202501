@@ -8,7 +8,7 @@
 
 <meta name="author" content="Beatriz Milz">
 
-<title>9&nbsp; Dados espaciais – R intermediário e pesquisa reprodutível</title>
+<title>9&nbsp; Dados espaciais no R – R intermediário e pesquisa reprodutível</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dados-espaciais.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dados espaciais</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dados-espaciais.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dados espaciais no R</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -162,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dados-espaciais.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dados espaciais</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dados espaciais no R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -176,15 +176,30 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#tipos-de-dados-espaciais" id="toc-tipos-de-dados-espaciais" class="nav-link active" data-scroll-target="#tipos-de-dados-espaciais"><span class="header-section-number">9.1</span> Tipos de dados espaciais</a>
+  <ul>
+  <li><a href="#dados-matriciais-raster" id="toc-dados-matriciais-raster" class="nav-link" data-scroll-target="#dados-matriciais-raster"><span class="header-section-number">9.1.1</span> Dados matriciais (raster)</a></li>
+  <li><a href="#dados-vetoriais" id="toc-dados-vetoriais" class="nav-link" data-scroll-target="#dados-vetoriais"><span class="header-section-number">9.1.2</span> Dados vetoriais</a></li>
+  </ul></li>
+  <li><a href="#pacote-sf" id="toc-pacote-sf" class="nav-link" data-scroll-target="#pacote-sf"><span class="header-section-number">9.2</span> Pacote <code>{sf}</code></a></li>
+  <li><a href="#criação-de-mapas-temáticos" id="toc-criação-de-mapas-temáticos" class="nav-link" data-scroll-target="#criação-de-mapas-temáticos"><span class="header-section-number">9.3</span> Criação de mapas temáticos</a></li>
+  <li><a href="#geoprocessamento-básico" id="toc-geoprocessamento-básico" class="nav-link" data-scroll-target="#geoprocessamento-básico"><span class="header-section-number">9.4</span> Geoprocessamento básico</a></li>
+  <li><a href="#introdução-ao-pacote-geobr" id="toc-introdução-ao-pacote-geobr" class="nav-link" data-scroll-target="#introdução-ao-pacote-geobr"><span class="header-section-number">9.5</span> Introdução ao pacote <code>{geobr}</code></a></li>
+  <li><a href="#material-complementar" id="toc-material-complementar" class="nav-link" data-scroll-target="#material-complementar"><span class="header-section-number">9.6</span> Material complementar</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dados espaciais</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dados espaciais no R</span></h1>
 </div>
 
 
@@ -207,9 +222,105 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Dados espaciais são dados que possuem uma localização geográfica associada, como coordenadas geográficas, endereços, códigos de municípios, entre outros.</p>
+<p>A análise de dados espaciais é muito importante para diversas áreas, como planejamento urbano, planejamento ambiental, epidemiologia, entre outras.</p>
+<p>Muitas vezes, são utilizados softwares <em>point-and-click</em> como o QGIS e o ArcGIS para análise de dados espaciais. No entanto, o R é uma ferramenta muito poderosa para análise de dados espaciais, pois podemos escrever scripts e reproduzir nossas análises, além de possuir diversos pacotes que facilitam a manipulação e visualização de dados geográficos.</p>
+<p>Nesta aula, vamos apresentar uma introdução à manipulação de dados espaciais no R, utilizando o pacote <a href="https://r-spatial.github.io/sf/"><code>{sf}</code></a>. Além disso, também exploraremos o pacote <a href="https://ipeagit.github.io/geobr/"><code>{geobr}</code></a>, produzido pela equipe do IPEA.</p>
+<section id="tipos-de-dados-espaciais" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="tipos-de-dados-espaciais"><span class="header-section-number">9.1</span> Tipos de dados espaciais</h2>
+<p>Os modelos de dados espaciais são uma forma de representar o mundo real em um ambiente computacional.</p>
+<p>Existem dois tipos principais de dados espaciais: vetoriais e raster (chamados também de matriciais). Nesta aula, nos concentraremos em dados vetoriais, porém vamos apresentar uma breve introdução aos dados raster.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://guides.lib.uw.edu/"><img src="images/vetor-raster-mundo-real.jpeg" class="img-fluid figure-img" alt="Modelos de dados espaciais. Fonte: University of Washington"></a></p>
+<figcaption>Modelos de dados espaciais. Fonte: University of Washington</figcaption>
+</figure>
+</div>
+<section id="dados-matriciais-raster" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="dados-matriciais-raster"><span class="header-section-number">9.1.1</span> Dados matriciais (raster)</h3>
+<p>Os dados matriciais, ou raster, são uma forma de representar o mundo em uma grade contínua de células (ou uma matriz de células) de tamanho constante, onde cada célula possui um valor. Fazendo uma analogia, vamos imaginar um tabuleiro de xadrez, onde cada célula é uma unidade de informação, e cada célula tem um mesmo tamanho:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://www.naurt.com/blog-posts/naurt-raster-maps-vs-vector-maps"><img src="images/tabuleiro-de-xadrez.png" class="img-fluid figure-img" alt="Analogia com o tabuleiro de xadrez. Fonte da imagem: Naurt"></a></p>
+<figcaption>Analogia com o tabuleiro de xadrez. Fonte da imagem: Naurt</figcaption>
+</figure>
+</div>
+<p>No exemplo acima, cada célula do tabuleiro de xadrez possui um valor 1 ou 0, porém quando falamos de dados raster, cada célula pode possuir um valor contínuo.</p>
+<p>Um exemplo de dado raster é uma <strong>imagem de satélite</strong>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://www.neonscience.org/resources/learning-hub/tutorials/dc-raster-data-r"><img src="images/raster_concept.png" class="img-fluid figure-img" alt="Conceito de raster/dados matriciais. Imagem por: National Ecological Observatory Network"></a></p>
+<figcaption>Conceito de raster/dados matriciais. Imagem por: <em>National Ecological Observatory Network</em></figcaption>
+</figure>
+</div>
+<p>Existem diversos pacotes no R que permitem a manipulação de dados raster, como o <a href="https://rspatial.github.io/terra/index.html"><code>{terra}</code></a> e <a href="https://r-spatial.github.io/stars/"><code>{stars}</code></a>. No entanto, não abordaremos a manipulação de dados raster nesta aula.</p>
+</section>
+<section id="dados-vetoriais" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="dados-vetoriais"><span class="header-section-number">9.1.2</span> Dados vetoriais</h3>
+<p>Os dados vetoriais são representados por <strong>pontos</strong>, <strong>linhas</strong> e <strong>polígonos</strong>.</p>
+<ul>
+<li><p><strong>Pontos</strong>: representam um local específico no espaço, como uma coordenada geográfica. Por exemplo: um ponto de coleta de dados, a localização de uma escola.</p></li>
+<li><p><strong>Linhas</strong>: representam uma sequência de pontos conectados. Por exemplo: uma estrada, um rio.</p></li>
+<li><p><strong>Polígonos</strong>: representam uma delimitação de uma área. Por exemplo: um município, um estado, um país.</p></li>
+</ul>
+<p>A imagem abaixo apresenta um exemplo de dados vetoriais, onde temos pontos, linhas e polígonos, representando o município de Osasco - SP:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/exemplo-vetorial-osasco.png" class="img-fluid figure-img"></p>
+<figcaption>Exemplo de dados vetoriais: Osasco. Elaborado por Beatriz Milz, com dados do pacote <code>{geobr}</code> e <a href="https://www.gov.br/transportes/pt-br/assuntos/dados-de-transportes/bit/bit-mapas">DNIT</a>.</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="pacote-sf" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="pacote-sf"><span class="header-section-number">9.2</span> Pacote <code>{sf}</code></h2>
 <p>Em breve!</p>
+</section>
+<section id="criação-de-mapas-temáticos" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="criação-de-mapas-temáticos"><span class="header-section-number">9.3</span> Criação de mapas temáticos</h2>
+<p>Em breve!</p>
+</section>
+<section id="geoprocessamento-básico" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="geoprocessamento-básico"><span class="header-section-number">9.4</span> Geoprocessamento básico</h2>
+<p>Em breve! <!-- Geoprocessamento básico (operações de filtro e interseção espacial, cálculo de distâncias) --></p>
+</section>
+<section id="introdução-ao-pacote-geobr" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="introdução-ao-pacote-geobr"><span class="header-section-number">9.5</span> Introdução ao pacote <code>{geobr}</code></h2>
+<p>Em breve! <!-- pacote geocodebr - geolocalização --> <!-- pacote geobr --></p>
+</section>
+<section id="material-complementar" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="material-complementar"><span class="header-section-number">9.6</span> Material complementar</h2>
+<ul>
+<li><p><a href="https://r.geocompx.org/">Livro Geocomputation with R</a></p></li>
+<li><p><a href="https://analises-ecologicas.com/cap15">Capítulo 15 - Dados geoespaciais, livro Análises Ecológicas no R</a></p></li>
+<li><p>Dados Raster:</p>
+<ul>
+<li><a href="https://rspatial.org/">Spatial Data Science</a>.</li>
+<li><a href="https://www.neonscience.org/resources/learning-hub/tutorials/dc-raster-data-r">Tutorial: Raster 00: Intro to Raster Data in R</a>, escrito pelo <em>National Ecological Observatory Network</em>.</li>
+<li><a href="https://jakob.schwalb-willmann.de/getSpatialData/">Pacote <code>{getSpatialData}</code></a>, para obter dados raster.</li>
+<li><a href="https://rspatial.github.io/terra/index.html"><code>{terra}</code></a> - Pacote para trabalhar com dados raster.</li>
+<li><a href="https://r-spatial.github.io/stars/"><code>{stars}</code> - Spatiotemporal Arrays: Raster and Vector Datacubes</a> - pacote para trabalhar com dados raster, especialmente com dados espaço-temporais.</li>
+</ul></li>
+<li><p>Dados Vetoriais:</p>
+<ul>
+<li><a href="https://docs.ropensci.org/parzer/">Pacote <code>{parzer}</code></a> - Pacote para ajudar a limpar coordenadas geográficas para o formato que o R entende.</li>
+<li><a href="https://r-spatial.github.io/sf/">Pacote <code>{sf}</code></a> - Pacote para manipulação de dados espaciais.</li>
+<li><a href="https://ipeagit.github.io/geobr/">Pacote <code>{geobr}</code></a> - Pacote para baixar dados geográficos do Brasil.</li>
+</ul></li>
+<li><p>Visualização de dados espaciais:</p>
+<ul>
+<li><a href="https://rstudio.github.io/leaflet/">Pacote <code>{leaflet}</code></a> - Pacote para visualização interativa de mapas.</li>
+<li><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">Pacote <code>{ggplot2}</code> - Geometria <code>geom_sf</code></a> - Geometria específica para dados espaciais.</li>
+<li><a href="https://r-tmap.github.io/tmap/">Pacote <code>{tmap}</code></a> - Pacote para visualização de dados espaciais.</li>
+</ul></li>
+<li><p>Aplicações:</p>
+<ul>
+<li><a href="https://ipeagit.github.io/intro_access_book/pt/">Livro “Introdução à acessibilidade urbana”</a></li>
+</ul></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
