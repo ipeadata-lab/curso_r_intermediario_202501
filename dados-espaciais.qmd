@@ -1,6 +1,8 @@
 ---
 title: "Dados espaciais no R"
 code-annotations: hover
+execute:
+  freeze: auto
 ---
 
 Dados espaciais são dados que possuem uma localização geográfica associada, como coordenadas geográficas, endereços, códigos de municípios, entre outros.
@@ -10,6 +12,19 @@ A análise de dados espaciais é muito importante para diversas áreas, como pla
 Muitas vezes, são utilizados softwares *point-and-click* como o QGIS e o ArcGIS para análise de dados espaciais. No entanto, o R é uma ferramenta muito poderosa para análise de dados espaciais, pois podemos escrever scripts e reproduzir nossas análises, além de possuir diversos pacotes que facilitam a manipulação e visualização de dados geográficos.
 
 Nesta aula, vamos apresentar uma introdução à manipulação de dados espaciais no R, utilizando o pacote [`{sf}`](https://r-spatial.github.io/sf/). Além disso, também exploraremos o pacote [`{geobr}`](https://ipeagit.github.io/geobr/), produzido pela equipe do IPEA.
+
+Vamos carregar os pacotes necessários para a aula:
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse) # <1>
+library(geobr) # <2>
+library(sf) # <3>
+```
+1. Carrega os pacotes dplyr, ggplot2, readr, entre outros
+2. Carrega o pacote geobr, para importar dados espaciais do Brasil
+3. Carrega o pacote sf, para manipulação de dados espaciais
 
 ## Tipos de dados espaciais
 
@@ -73,7 +88,19 @@ O pacote [`{sf}`](https://r-spatial.github.io/sf/) (*Simple Features for R*) é 
 
 ## Problemas de instalação?
 
-O pacote `{sf}` possui dependências que devem ser instalados no computador (e não no R), e que podem ser um pouco complicadas de instalar. Se você tiver problemas para instalar o pacote, tente instalar o pacote diretamente do GitHub:
+O pacote `{sf}` possui dependências que devem ser instalados no computador (e não no R), e que podem ser um pouco complicadas de instalar.
+
+Observe que, ao carregar o pacote `{sf}`, uma mensagem é apresentada, com informações sobre as dependências:
+
+```{r}
+#| eval: false
+library(sf)
+# > Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0;
+# sf_use_s2() is TRUE
+```
+
+
+Se você tiver problemas para instalar o pacote, tente instalar o pacote diretamente do GitHub:
 
 ```{r}
 #| eval: false
@@ -82,17 +109,13 @@ remotes::install_github(repo = "r-spatial/sf")
 ```
 
 Caso ainda tenha problemas, consulte as [instruções de instalação na documentação oficial do pacote](https://r-spatial.github.io/sf/#installing).
+
+
+
 :::
 
 
-Para começar a explorar, vamos carregar os pacotes `{sf}` e `{ggplot2}`:
 
-```{r}
-library(ggplot2)
-library(sf)
-```
-
-Observe que, ao carregar o pacote `{sf}`, uma mensagem é apresentada, com informações sobre as dependências.
 
 O pacote `{sf}` apresenta um novo tipo de classe: `sf`. A classe `sf` costuma estar associada a um objeto do tipo `data.frame`, onde uma das colunas é do tipo `geometry`, que armazena as informações espaciais (pontos, linhas ou polígonos).
 
@@ -128,7 +151,7 @@ rodovias_df <- read_sf(arquivo_dnit_df)
 Vamos explorar as colunas do objeto `rodovias_df`:
 
 ```{r}
-dplyr::glimpse(rodovias_df)
+glimpse(rodovias_df)
 ```
 
 Perceba que o objeto `rodovias_df` é um objeto do tipo `sf`, e possui informações sobre a geometria (tipo de geometria, dimensão, *bounding box* e sistema de referência de coordenadas):
@@ -147,6 +170,7 @@ rodovias_df
 O pacote `ggplot2` apresenta a geometria `geom_sf()` para visualização de dados espaciais. Vamos visualizar no mapa o que foi importado:
 
 ```{r}
+#| label: sf-ggplot2-rodovias-df
 ggplot() +
   geom_sf(data = rodovias_df)
 ```
@@ -160,15 +184,17 @@ Neste exemplo, vamos utilizar um arquivo `.csv` que contém coordenadas de latit
 Os dados que vamos utilizar são da base de dados de [Classificação Nacional de Barragens de Mineração](https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem), disponiblizada pela Agência Nacional de Mineração (ANM).
 
 ```{r}
+#| message: false
+#| warning: false
 caminho_arquivo <- "https://github.com/ipeadata-lab/curso_r_intermediario_202501/raw/refs/heads/main/dados/sigbm_20252118.csv"
 
-dados_sigbm <- readr::read_csv2(caminho_arquivo, show_col_types = FALSE)
+dados_sigbm <- read_csv2(caminho_arquivo)
 ```
 
 Vamos visualizar as primeiras linhas do arquivo:
 
 ```{r}
-dplyr::glimpse(dados_sigbm)
+glimpse(dados_sigbm)
 ```
 
 Perceba que as colunas `LatitudeFormatada` e `LongitudeFormatada` estão no formato de texto, e não número.
@@ -178,12 +204,12 @@ Para transformar essas colunas em coordenadas geográficas, podemos utilizar fun
 
 ```{r}
 dados_sigbm_parzer <- dados_sigbm |> 
-  dplyr::mutate(
+  mutate(
     lat = parzer::parse_lat(LatitudeFormatada),
     lon = parzer::parse_lon(LongitudeFormatada)
   )
 
-dplyr::glimpse(dados_sigbm_parzer)
+glimpse(dados_sigbm_parzer)
 ```
 Perceba que agora temos as colunas `lat` e `lon` no formato numérico, que representam as coordenadas geográficas. Com essas colunas, podemos criar um objeto do tipo `sf`, utilizando a função `st_as_sf()`, e informando nos argumentos: 1) `coords` o nome das colunas  que representam as coordenadas geográficas; e 2) `crs` o sistema de referência de coordenadas (CRS, *Coordinate Reference System*).
 
@@ -216,6 +242,7 @@ dados_sigbm_sf
 Agora que temos um objeto do tipo `sf`, podemos visualizar esses dados em um mapa. Para isso, vamos utilizar a função `geom_sf()` do pacote `{ggplot2}`:
 
 ```{r}
+#| label: sf-ggplot2-sigbm
 dados_sigbm_sf |> 
   ggplot() +
   geom_sf() +
@@ -295,19 +322,20 @@ estados_br <- read_state()
 
 ```{r}
 #| eval: false
-readr::write_rds(estados_br, "dados/geobr/estados_br.rds")
+write_rds(estados_br, "dados/geobr/estados_br.rds")
 ```
 
 
 3) Carregando a delimitação dos estados quando necessário:
 
 ```{r}
-estados_br <- readr::read_rds("dados/geobr/estados_br.rds")
+estados_br <- read_rds("dados/geobr/estados_br.rds")
 ```
 
 Com o objeto `estados_br`, podemos utilizar a função `geom_sf()` do pacote `{ggplot2}` para visualizar a delimitação dos estados brasileiros:
 
 ```{r}
+#| label: sf-ggplot2-estados-br
 ggplot() +
   geom_sf(data = estados_br)
 ```
