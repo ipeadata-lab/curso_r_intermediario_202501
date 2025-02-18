@@ -873,8 +873,6 @@ ggplot() + # <1>
 5. Destacando os municípios com mais de 3000 voos.
 6. Personalizando os textos.
 7. Personalizando o tema.
-:::
-
 
 
 #### Extra - Joins avançados
