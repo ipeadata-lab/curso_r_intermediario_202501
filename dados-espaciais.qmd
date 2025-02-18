@@ -1,6 +1,108 @@
 ---
-title: "Dados espaciais"
+title: "Dados espaciais no R"
 code-annotations: hover
 ---
 
+Dados espaciais são dados que possuem uma localização geográfica associada, como coordenadas geográficas, endereços, códigos de municípios, entre outros.
+
+A análise de dados espaciais é muito importante para diversas áreas, como planejamento urbano, planejamento ambiental, epidemiologia, entre outras.
+
+Muitas vezes, são utilizados softwares *point-and-click* como o QGIS e o ArcGIS para análise de dados espaciais. No entanto, o R é uma ferramenta muito poderosa para análise de dados espaciais, pois podemos escrever scripts e reproduzir nossas análises, além de possuir diversos pacotes que facilitam a manipulação e visualização de dados geográficos.
+
+Nesta aula, vamos apresentar uma introdução à manipulação de dados espaciais no R, utilizando o pacote [`{sf}`](https://r-spatial.github.io/sf/). Além disso, também exploraremos o pacote [`{geobr}`](https://ipeagit.github.io/geobr/), produzido pela equipe do IPEA.
+
+## Tipos de dados espaciais
+
+Os modelos de dados espaciais são uma forma de representar o mundo real em um ambiente computacional.
+
+
+Existem dois tipos principais de dados espaciais: vetoriais e raster (chamados também de matriciais). Nesta aula, nos concentraremos em dados vetoriais, porém vamos apresentar uma breve introdução aos dados raster.
+
+
+
+
+[![Modelos de dados espaciais. Fonte: University of Washington](images/vetor-raster-mundo-real.jpeg)](https://guides.lib.uw.edu/)
+
+
+### Dados matriciais (raster)
+
+Os dados matriciais, ou raster, são uma forma de representar o mundo em uma grade contínua de células (ou uma matriz de células) de tamanho constante, onde cada célula possui um valor. Fazendo uma analogia, vamos imaginar um tabuleiro de xadrez, onde cada célula é uma unidade de informação, e cada célula tem um mesmo tamanho:
+
+
+[![Analogia com o tabuleiro de xadrez. Fonte da imagem: Naurt](images/tabuleiro-de-xadrez.png)](https://www.naurt.com/blog-posts/naurt-raster-maps-vs-vector-maps)
+
+No exemplo acima, cada célula do tabuleiro de xadrez possui um valor 1 ou 0, porém quando falamos de dados raster, cada célula pode possuir um valor contínuo.
+
+Um exemplo de dado raster é uma **imagem de satélite**:
+
+
+[![Conceito de raster/dados matriciais. Imagem por: *National Ecological Observatory Network*](images/raster_concept.png)](https://www.neonscience.org/resources/learning-hub/tutorials/dc-raster-data-r)
+
+Existem diversos pacotes no R que permitem a manipulação de dados raster, como o [`{terra}`](https://rspatial.github.io/terra/index.html) e [`{stars}`](https://r-spatial.github.io/stars/). No entanto, não abordaremos a manipulação de dados raster nesta aula.
+
+
+### Dados vetoriais
+
+Os dados vetoriais são representados por **pontos**, **linhas** e **polígonos**.
+
+- **Pontos**: representam um local específico no espaço, como uma coordenada geográfica. Por exemplo: um ponto de coleta de dados, a localização de uma escola.
+
+- **Linhas**: representam uma sequência de pontos conectados. Por exemplo: uma estrada, um rio.
+
+- **Polígonos**: representam uma delimitação de uma área. Por exemplo: um município, um estado, um país.
+
+
+A imagem abaixo apresenta um exemplo de dados vetoriais, onde temos pontos, linhas e polígonos, representando o município de Osasco - SP:
+
+![Exemplo de dados vetoriais: Osasco. Elaborado por Beatriz Milz, com dados do pacote `{geobr}` e [DNIT](https://www.gov.br/transportes/pt-br/assuntos/dados-de-transportes/bit/bit-mapas).](images/exemplo-vetorial-osasco.png)
+
+
+## Pacote `{sf}`
+
 Em breve!
+
+## Criação de mapas temáticos
+
+Em breve!
+
+
+## Geoprocessamento básico 
+
+Em breve!
+<!-- Geoprocessamento básico (operações de filtro e interseção espacial, cálculo de distâncias) -->
+
+
+## Introdução ao pacote `{geobr}`
+
+Em breve!
+<!-- pacote geocodebr - geolocalização -->
+<!-- pacote geobr -->
+
+
+## Material complementar
+
+- [Livro Geocomputation with R](https://r.geocompx.org/)
+- [Capítulo 15 - Dados geoespaciais, livro Análises Ecológicas no R](https://analises-ecologicas.com/cap15)
+
+- Dados Raster:
+  - [Spatial Data Science](https://rspatial.org/).
+  - [Tutorial: Raster 00: Intro to Raster Data in R](https://www.neonscience.org/resources/learning-hub/tutorials/dc-raster-data-r), escrito pelo *National Ecological Observatory Network*.
+  - [Pacote `{getSpatialData}`](https://jakob.schwalb-willmann.de/getSpatialData/), para obter dados raster.
+  - [`{terra}`](https://rspatial.github.io/terra/index.html) - Pacote para trabalhar com dados raster.
+  - [`{stars}` - Spatiotemporal Arrays: Raster and Vector Datacubes](https://r-spatial.github.io/stars/) - pacote para trabalhar com dados raster, especialmente com dados espaço-temporais.
+
+
+- Dados Vetoriais:
+  - [Pacote `{parzer}`](https://docs.ropensci.org/parzer/) - Pacote para ajudar a limpar coordenadas geográficas para o formato que o R entende.
+  - [Pacote `{sf}`](https://r-spatial.github.io/sf/) - Pacote para manipulação de dados espaciais.
+  - [Pacote `{geobr}`](https://ipeagit.github.io/geobr/) - Pacote para baixar dados geográficos do Brasil.
+  
+  
+- Visualização de dados espaciais:
+  - [Pacote `{leaflet}`](https://rstudio.github.io/leaflet/) - Pacote para visualização interativa de mapas.
+  - [Pacote `{ggplot2}` - Geometria `geom_sf`](https://ggplot2.tidyverse.org/reference/ggsf.html) - Geometria específica para dados espaciais.
+  - [Pacote `{tmap}`](https://r-tmap.github.io/tmap/) - Pacote para visualização de dados espaciais.
+  
+  
+- Aplicações:
+  - [Livro "Introdução à acessibilidade urbana"](https://ipeagit.github.io/intro_access_book/pt/)
