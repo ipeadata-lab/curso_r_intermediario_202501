@@ -16,7 +16,7 @@ book:
   chapters:
     - text: "Página inicial"
       href: index.qmd  
-    - href: calendario.qmd
+#    - href: calendario.qmd
     - href: instalacao.qmd
     - href: reprodutibilidade.qmd
     - href: relatorios.qmd
