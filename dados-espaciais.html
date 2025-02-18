@@ -8,7 +8,7 @@
 
 <meta name="author" content="Beatriz Milz">
 
-<title>9&nbsp; Dados espaciais no R – R intermediário e pesquisa reprodutível</title>
+<title>8&nbsp; Dados espaciais no R – R intermediário e pesquisa reprodutível</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -83,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dados-espaciais.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dados espaciais no R</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dados-espaciais.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Dados espaciais no R</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -119,56 +153,50 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./calendario.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Calendário do curso</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./instalacao.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalações e outros preparativos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Instalações e outros preparativos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reprodutibilidade.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reprodutibilidade e estruturação de projeto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reprodutibilidade e estruturação de projeto</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./relatorios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Produção de relatórios com Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Produção de relatórios com Quarto</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./git-github.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introdução ao controle de versão com Git e GitHub</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Introdução ao controle de versão com Git e GitHub</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./texto-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Manipulação de datas e textos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Manipulação de datas e textos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./programacao-funcional.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Programação funcional</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programação funcional</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dados-espaciais.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dados espaciais no R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Dados espaciais no R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./big-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introdução à <em>Big Data</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introdução à <em>Big Data</em></span></span></a>
   </div>
 </li>
     </ul>
@@ -181,16 +209,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#tipos-de-dados-espaciais" id="toc-tipos-de-dados-espaciais" class="nav-link active" data-scroll-target="#tipos-de-dados-espaciais"><span class="header-section-number">9.1</span> Tipos de dados espaciais</a>
+  <li><a href="#tipos-de-dados-espaciais" id="toc-tipos-de-dados-espaciais" class="nav-link active" data-scroll-target="#tipos-de-dados-espaciais"><span class="header-section-number">8.1</span> Tipos de dados espaciais</a>
   <ul>
-  <li><a href="#dados-matriciais-raster" id="toc-dados-matriciais-raster" class="nav-link" data-scroll-target="#dados-matriciais-raster"><span class="header-section-number">9.1.1</span> Dados matriciais (raster)</a></li>
-  <li><a href="#dados-vetoriais" id="toc-dados-vetoriais" class="nav-link" data-scroll-target="#dados-vetoriais"><span class="header-section-number">9.1.2</span> Dados vetoriais</a></li>
+  <li><a href="#dados-matriciais-raster" id="toc-dados-matriciais-raster" class="nav-link" data-scroll-target="#dados-matriciais-raster"><span class="header-section-number">8.1.1</span> Dados matriciais (raster)</a></li>
+  <li><a href="#dados-vetoriais" id="toc-dados-vetoriais" class="nav-link" data-scroll-target="#dados-vetoriais"><span class="header-section-number">8.1.2</span> Dados vetoriais</a></li>
   </ul></li>
-  <li><a href="#pacote-sf" id="toc-pacote-sf" class="nav-link" data-scroll-target="#pacote-sf"><span class="header-section-number">9.2</span> Pacote <code>{sf}</code></a></li>
-  <li><a href="#criação-de-mapas-temáticos" id="toc-criação-de-mapas-temáticos" class="nav-link" data-scroll-target="#criação-de-mapas-temáticos"><span class="header-section-number">9.3</span> Criação de mapas temáticos</a></li>
-  <li><a href="#geoprocessamento-básico" id="toc-geoprocessamento-básico" class="nav-link" data-scroll-target="#geoprocessamento-básico"><span class="header-section-number">9.4</span> Geoprocessamento básico</a></li>
-  <li><a href="#introdução-ao-pacote-geobr" id="toc-introdução-ao-pacote-geobr" class="nav-link" data-scroll-target="#introdução-ao-pacote-geobr"><span class="header-section-number">9.5</span> Introdução ao pacote <code>{geobr}</code></a></li>
-  <li><a href="#material-complementar" id="toc-material-complementar" class="nav-link" data-scroll-target="#material-complementar"><span class="header-section-number">9.6</span> Material complementar</a></li>
+  <li><a href="#pacote-sf" id="toc-pacote-sf" class="nav-link" data-scroll-target="#pacote-sf"><span class="header-section-number">8.2</span> Pacote <code>{sf}</code></a>
+  <ul>
+  <li><a href="#importação-de-dados-espaciais" id="toc-importação-de-dados-espaciais" class="nav-link" data-scroll-target="#importação-de-dados-espaciais"><span class="header-section-number">8.2.1</span> Importação de dados espaciais</a>
+  <ul>
+  <li><a href="#importação-de-arquivos-de-dados-espaciais" id="toc-importação-de-arquivos-de-dados-espaciais" class="nav-link" data-scroll-target="#importação-de-arquivos-de-dados-espaciais"><span class="header-section-number">8.2.1.1</span> Importação de arquivos de dados espaciais</a></li>
+  <li><a href="#coordenadas-como-texto" id="toc-coordenadas-como-texto" class="nav-link" data-scroll-target="#coordenadas-como-texto"><span class="header-section-number">8.2.1.2</span> Coordenadas como texto</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#introdução-ao-pacote-geobr" id="toc-introdução-ao-pacote-geobr" class="nav-link" data-scroll-target="#introdução-ao-pacote-geobr"><span class="header-section-number">8.3</span> Introdução ao pacote <code>{geobr}</code></a>
+  <ul>
+  <li><a href="#principais-funções" id="toc-principais-funções" class="nav-link" data-scroll-target="#principais-funções"><span class="header-section-number">8.3.1</span> Principais funções</a></li>
+  <li><a href="#dica-armazenar-uma-cópia-dos-dados" id="toc-dica-armazenar-uma-cópia-dos-dados" class="nav-link" data-scroll-target="#dica-armazenar-uma-cópia-dos-dados"><span class="header-section-number">8.3.2</span> Dica: armazenar uma cópia dos dados</a></li>
+  </ul></li>
+  <li><a href="#criação-de-mapas-temáticos" id="toc-criação-de-mapas-temáticos" class="nav-link" data-scroll-target="#criação-de-mapas-temáticos"><span class="header-section-number">8.4</span> Criação de mapas temáticos</a></li>
+  <li><a href="#geoprocessamento-básico" id="toc-geoprocessamento-básico" class="nav-link" data-scroll-target="#geoprocessamento-básico"><span class="header-section-number">8.5</span> Geoprocessamento básico</a></li>
+  <li><a href="#material-complementar" id="toc-material-complementar" class="nav-link" data-scroll-target="#material-complementar"><span class="header-section-number">8.6</span> Material complementar</a></li>
   </ul>
 </nav>
     </div>
@@ -199,7 +238,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dados espaciais no R</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Dados espaciais no R</span></h1>
 </div>
 
 
@@ -226,8 +265,8 @@ ul.task-list li input[type="checkbox"] {
 <p>A análise de dados espaciais é muito importante para diversas áreas, como planejamento urbano, planejamento ambiental, epidemiologia, entre outras.</p>
 <p>Muitas vezes, são utilizados softwares <em>point-and-click</em> como o QGIS e o ArcGIS para análise de dados espaciais. No entanto, o R é uma ferramenta muito poderosa para análise de dados espaciais, pois podemos escrever scripts e reproduzir nossas análises, além de possuir diversos pacotes que facilitam a manipulação e visualização de dados geográficos.</p>
 <p>Nesta aula, vamos apresentar uma introdução à manipulação de dados espaciais no R, utilizando o pacote <a href="https://r-spatial.github.io/sf/"><code>{sf}</code></a>. Além disso, também exploraremos o pacote <a href="https://ipeagit.github.io/geobr/"><code>{geobr}</code></a>, produzido pela equipe do IPEA.</p>
-<section id="tipos-de-dados-espaciais" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="tipos-de-dados-espaciais"><span class="header-section-number">9.1</span> Tipos de dados espaciais</h2>
+<section id="tipos-de-dados-espaciais" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="tipos-de-dados-espaciais"><span class="header-section-number">8.1</span> Tipos de dados espaciais</h2>
 <p>Os modelos de dados espaciais são uma forma de representar o mundo real em um ambiente computacional.</p>
 <p>Existem dois tipos principais de dados espaciais: vetoriais e raster (chamados também de matriciais). Nesta aula, nos concentraremos em dados vetoriais, porém vamos apresentar uma breve introdução aos dados raster.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -236,8 +275,8 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>Modelos de dados espaciais. Fonte: University of Washington</figcaption>
 </figure>
 </div>
-<section id="dados-matriciais-raster" class="level3" data-number="9.1.1">
-<h3 data-number="9.1.1" class="anchored" data-anchor-id="dados-matriciais-raster"><span class="header-section-number">9.1.1</span> Dados matriciais (raster)</h3>
+<section id="dados-matriciais-raster" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="dados-matriciais-raster"><span class="header-section-number">8.1.1</span> Dados matriciais (raster)</h3>
 <p>Os dados matriciais, ou raster, são uma forma de representar o mundo em uma grade contínua de células (ou uma matriz de células) de tamanho constante, onde cada célula possui um valor. Fazendo uma analogia, vamos imaginar um tabuleiro de xadrez, onde cada célula é uma unidade de informação, e cada célula tem um mesmo tamanho:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -246,7 +285,8 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <p>No exemplo acima, cada célula do tabuleiro de xadrez possui um valor 1 ou 0, porém quando falamos de dados raster, cada célula pode possuir um valor contínuo.</p>
-<p>Um exemplo de dado raster é uma <strong>imagem de satélite</strong>:</p>
+<p>Este tipo de formato é muito utilizado para imagens de satélite, modelos digitais de elevação, e mapas de uso e cobertura da terra.</p>
+<p>A ilustração abaixo nos ajuda a conectar o conceito de <em>raster</em> e <strong>imagens de satélite</strong>:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="https://www.neonscience.org/resources/learning-hub/tutorials/dc-raster-data-r"><img src="images/raster_concept.png" class="img-fluid figure-img" alt="Conceito de raster/dados matriciais. Imagem por: National Ecological Observatory Network"></a></p>
@@ -255,9 +295,9 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>Existem diversos pacotes no R que permitem a manipulação de dados raster, como o <a href="https://rspatial.github.io/terra/index.html"><code>{terra}</code></a> e <a href="https://r-spatial.github.io/stars/"><code>{stars}</code></a>. No entanto, não abordaremos a manipulação de dados raster nesta aula.</p>
 </section>
-<section id="dados-vetoriais" class="level3" data-number="9.1.2">
-<h3 data-number="9.1.2" class="anchored" data-anchor-id="dados-vetoriais"><span class="header-section-number">9.1.2</span> Dados vetoriais</h3>
-<p>Os dados vetoriais são representados por <strong>pontos</strong>, <strong>linhas</strong> e <strong>polígonos</strong>.</p>
+<section id="dados-vetoriais" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="dados-vetoriais"><span class="header-section-number">8.1.2</span> Dados vetoriais</h3>
+<p>Os dados vetoriais são representados por <strong>pontos</strong>, <strong>linhas</strong> e <strong>polígonos</strong>:</p>
 <ul>
 <li><p><strong>Pontos</strong>: representam um local específico no espaço, como uma coordenada geográfica. Por exemplo: um ponto de coleta de dados, a localização de uma escola.</p></li>
 <li><p><strong>Linhas</strong>: representam uma sequência de pontos conectados. Por exemplo: uma estrada, um rio.</p></li>
@@ -270,26 +310,492 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>Exemplo de dados vetoriais: Osasco. Elaborado por Beatriz Milz, com dados do pacote <code>{geobr}</code> e <a href="https://www.gov.br/transportes/pt-br/assuntos/dados-de-transportes/bit/bit-mapas">DNIT</a>.</figcaption>
 </figure>
 </div>
+<p>No R, podemos manipular dados vetoriais utilizando o pacote <a href="https://r-spatial.github.io/sf/"><code>{sf}</code></a>. Vamos explorar um pouco mais sobre esse pacote na próxima seção.</p>
 </section>
 </section>
-<section id="pacote-sf" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="pacote-sf"><span class="header-section-number">9.2</span> Pacote <code>{sf}</code></h2>
+<section id="pacote-sf" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="pacote-sf"><span class="header-section-number">8.2</span> Pacote <code>{sf}</code></h2>
+<p><img src="images/sf-logo.png" class="img-rstudio" align="right" width="120px"></p>
+<p>O pacote <a href="https://r-spatial.github.io/sf/"><code>{sf}</code></a> (<em>Simple Features for R</em>) é um dos principais pacotes para manipulação de dados espaciais no R. Ele é um pacote que implementa classes e métodos para manipulação de dados espaciais, e é baseado no padrão <a href="https://en.wikipedia.org/wiki/Simple_Features">Simple Features</a>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Problemas de instalação?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O pacote <code>{sf}</code> possui dependências que devem ser instalados no computador (e não no R), e que podem ser um pouco complicadas de instalar. Se você tiver problemas para instalar o pacote, tente instalar o pacote diretamente do GitHub:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="at">repo =</span> <span class="st">"r-spatial/sf"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Caso ainda tenha problemas, consulte as <a href="https://r-spatial.github.io/sf/#installing">instruções de instalação na documentação oficial do pacote</a>.</p>
+</div>
+</div>
+<p>Para começar a explorar, vamos carregar os pacotes <code>{sf}</code> e <code>{ggplot2}</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Linking to GEOS 3.12.1, GDAL 3.8.4, PROJ 9.4.0; sf_use_s2() is TRUE</code></pre>
+</div>
+</div>
+<p>Observe que, ao carregar o pacote <code>{sf}</code>, uma mensagem é apresentada, com informações sobre as dependências.</p>
+<p>O pacote <code>{sf}</code> apresenta um novo tipo de classe: <code>sf</code>. A classe <code>sf</code> costuma estar associada a um objeto do tipo <code>data.frame</code>, onde uma das colunas é do tipo <code>geometry</code>, que armazena as informações espaciais (pontos, linhas ou polígonos).</p>
+<p>Portanto, ao trabalhar com esse pacote, teremos tabelas similares a um <code>data.frame</code>, mas com uma coluna adicional que armazena as informações espaciais. A figura abaixo ajuda a ilustrar essa ideia:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://github.com/allisonhorst/stats-illustrations"><img src="images/sf_horst.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%" alt="Imagem por Allison Horst"></a></p>
+</figure>
+</div>
+<figcaption>Imagem por Allison Horst</figcaption>
+</figure>
+</div>
+<section id="importação-de-dados-espaciais" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="importação-de-dados-espaciais"><span class="header-section-number">8.2.1</span> Importação de dados espaciais</h3>
+<p>Ao trabalhar com dados espaciais, é comum importar arquivos no formato <code>shapefile</code> (<code>.shp</code>), <code>geopackage</code> (<code>.gpkg</code>), <code>GeoJSON</code>, entre outros. Porém, em alguns casos, podemos ter dados espaciais em outros formatos, como um arquivo <code>.csv</code> que contém coordenadas geográficas (latitude e longitude).</p>
+<p>Vamos explorar alguns exemplos de importação de dados espaciais utilizando o pacote <code>{sf}</code>.</p>
+<section id="importação-de-arquivos-de-dados-espaciais" class="level4" data-number="8.2.1.1">
+<h4 data-number="8.2.1.1" class="anchored" data-anchor-id="importação-de-arquivos-de-dados-espaciais"><span class="header-section-number">8.2.1.1</span> Importação de arquivos de dados espaciais</h4>
+<p>Para importação de arquivos de dados espaciais, podemos utilizar a função <code>st_read()</code>. Esta função é capaz de ler diversos formatos de arquivos, como <code>shapefile</code> (<code>.shp</code>), <code>geopackage</code> (<code>.gpkg</code>), <code>GeoJSON</code>, entre outros.</p>
+<p>Neste exemplo, vamos importar dados de rodovias do Distrito Federal, disponibilizados pelo <a href="https://www.gov.br/transportes/pt-br/assuntos/dados-de-transportes/bit/bit-mapas">DNIT</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>arquivo_dnit_df <span class="ot">&lt;-</span> <span class="st">"https://github.com/ipeadata-lab/curso_r_intermediario_202501/raw/refs/heads/main/dados/shapefiles/dnit/dnit_df.gpkg"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>rodovias_df <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(arquivo_dnit_df)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vamos explorar as colunas do objeto <code>rodovias_df</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(rodovias_df)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 128
+Columns: 29
+$ id_trecho_ &lt;dbl&gt; 151119, 151120, 151121, 151122, 151123, 151124, 151125, 151…
+$ vl_br      &lt;chr&gt; "010", "010", "010", "010", "010", "010", "010", "010", "01…
+$ sg_uf      &lt;chr&gt; "DF", "DF", "DF", "DF", "DF", "DF", "DF", "DF", "DF", "DF",…
+$ nm_tipo_tr &lt;chr&gt; "Eixo Principal", "Eixo Principal", "Eixo Principal", "Eixo…
+$ sg_tipo_tr &lt;chr&gt; "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B",…
+$ desc_coinc &lt;chr&gt; "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "Coinc", …
+$ vl_codigo  &lt;chr&gt; "010BDF0010", "010BDF0015", "010BDF0016", "010BDF0018", "01…
+$ ds_local_i &lt;chr&gt; "ENTR BR-020(A)/030(A)/450/DF-001 (BRASÍLIA)", "ENTR DF-440…
+$ ds_local_f &lt;chr&gt; "ENTR DF-440", "ACESSO I SOBRADINHO", "ACESSO II SOBRADINHO…
+$ vl_km_inic &lt;dbl&gt; 0.0, 2.4, 6.0, 8.3, 18.2, 22.0, 25.0, 34.0, 38.1, 42.7, 0.0…
+$ vl_km_fina &lt;dbl&gt; 2.4, 6.0, 8.3, 18.2, 22.0, 25.0, 34.0, 38.1, 42.7, 45.0, 2.…
+$ vl_extensa &lt;dbl&gt; 2.4, 3.6, 2.3, 9.9, 3.8, 3.0, 9.0, 4.1, 4.6, 2.3, 2.4, 3.6,…
+$ ds_sup_fed &lt;chr&gt; "DUP", "DUP", "DUP", "DUP", "DUP", "DUP", "DUP", "PLA", "PL…
+$ ds_obra    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ ul         &lt;chr&gt; "Brasília", "Brasília", "Brasília", "Brasília", "Brasília",…
+$ ds_coinc   &lt;chr&gt; "010BDF0010;020BDF0010;030BDF0010", "010BDF0015;020BDF0015;…
+$ ds_tipo_ad &lt;chr&gt; "Convênio Adm.Federal/Estadual", "Convênio Adm.Federal/Esta…
+$ ds_ato_leg &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ est_coinc  &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, "DF-345", "DF-345", "DF-345", N…
+$ sup_est_co &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, "PAV", "PAV", "PAV", NA, NA, NA…
+$ ds_jurisdi &lt;chr&gt; "Federal", "Federal", "Federal", "Federal", "Federal", "Fed…
+$ ds_superfi &lt;chr&gt; "PAV", "PAV", "PAV", "PAV", "PAV", "PAV", "PAV", "PLA", "PL…
+$ ds_legenda &lt;chr&gt; "Duplicada", "Duplicada", "Duplicada", "Duplicada", "Duplic…
+$ sg_legenda &lt;chr&gt; "DUP", "DUP", "DUP", "DUP", "DUP", "DUP", "DUP", "PLA", "PL…
+$ leg_multim &lt;chr&gt; "Duplicada Concessão/Convênio", "Duplicada Concessão/Convên…
+$ versao_snv &lt;chr&gt; "202501A", "202501A", "202501A", "202501A", "202501A", "202…
+$ id_versao  &lt;dbl&gt; 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78,…
+$ marcador   &lt;chr&gt; "|", "|", "|", "|", "|", "|", "|", "|", "|", "|", "|", "|",…
+$ geom       &lt;LINESTRING [°]&gt; LINESTRING (-47.85885 -15.6..., LINESTRING (-47.…</code></pre>
+</div>
+</div>
+<p>Perceba que o objeto <code>rodovias_df</code> é um objeto do tipo <code>sf</code>, e possui informações sobre a geometria (tipo de geometria, dimensão, <em>bounding box</em> e sistema de referência de coordenadas):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rodovias_df</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple feature collection with 128 features and 28 fields</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Geometry type: LINESTRING</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Dimension:     XY</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Bounding box:  xmin: -48.25963 ymin: -16.05217 xmax: -47.3186 ymax: -15.50038</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Geodetic CRS:  SIRGAS 2000</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O pacote <code>ggplot2</code> apresenta a geometria <code>geom_sf()</code> para visualização de dados espaciais. Vamos visualizar no mapa o que foi importado:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rodovias_df)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dados-espaciais_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="coordenadas-como-texto" class="level4" data-number="8.2.1.2">
+<h4 data-number="8.2.1.2" class="anchored" data-anchor-id="coordenadas-como-texto"><span class="header-section-number">8.2.1.2</span> Coordenadas como texto</h4>
+<p>Neste exemplo, vamos utilizar um arquivo <code>.csv</code> que contém coordenadas de latitude e longitude, e então vamos transformar esses dados em um objeto do tipo <code>sf</code>.</p>
+<p>Os dados que vamos utilizar são da base de dados de <a href="https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem">Classificação Nacional de Barragens de Mineração</a>, disponiblizada pela Agência Nacional de Mineração (ANM).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>caminho_arquivo <span class="ot">&lt;-</span> <span class="st">"https://github.com/ipeadata-lab/curso_r_intermediario_202501/raw/refs/heads/main/dados/sigbm_20252118.csv"</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>dados_sigbm <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv2</span>(caminho_arquivo, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Using "','" as decimal and "'.'" as grouping mark. Use `read_delim()` for more control.</code></pre>
+</div>
+</div>
+<p>Vamos visualizar as primeiras linhas do arquivo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(dados_sigbm)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 919
+Columns: 23
+$ Codigo                                         &lt;dbl&gt; 9776, 8662, 8435, 8619,…
+$ NomeBarragem                                   &lt;chr&gt; "VALE GOLD", "0-1", "1 …
+$ NomeEmpreendedor                               &lt;chr&gt; "VALE GOLD S.A.", "MINE…
+$ CpfCnpjFormatado                               &lt;chr&gt; "38.615.413/0001-53", "…
+$ LatitudeFormatada                              &lt;chr&gt; "-15°55'09.590\"", "-00…
+$ LongitudeFormatada                             &lt;chr&gt; "-56°29'27.180\"", "-60…
+$ CoordenadaSIRGAFormatado                       &lt;chr&gt; "Sul do Equador", "Sul …
+$ Municipio                                      &lt;chr&gt; "NOSSA SENHORA DO LIVRA…
+$ UF                                             &lt;chr&gt; "MT", "AM", "PA", "PA",…
+$ Minerio                                        &lt;chr&gt; NA, "Minério de Estanho…
+$ Altura                                         &lt;dbl&gt; 0.00, 19.60, 6.99, 7.59…
+$ VolumeAtualFormatado                           &lt;dbl&gt; 0.00, 57463773.00, 1341…
+$ MetodoConstrutivoFormatado                     &lt;chr&gt; "Indefinido", "0 - Etap…
+$ CategoriaRisco                                 &lt;chr&gt; "Baixo", "Alto", "Baixo…
+$ DanoPotencial                                  &lt;chr&gt; "Baixo", "Alto", "Baixo…
+$ GestaoOperacional                              &lt;chr&gt; "N/A", "B", "N/A", "N/A…
+$ InseridaPNSBFormatada                          &lt;chr&gt; "Não", "Sim", "Não", "N…
+$ SituacaoNivelEmergencial                       &lt;chr&gt; "Sem emergência", "Níve…
+$ SituacaoDeclaracaoCondicaoEstabilidade         &lt;chr&gt; "-", "2º Campanha 2024 …
+$ SituacaoDeclaracaoCondicaoEstabilidadeRPSB     &lt;chr&gt; "-", "Não Atestado", "-…
+$ SituacaoDeclaracaoConformidadeOperacionalidade &lt;chr&gt; "-", "Campanha 2024 - A…
+$ SituacaoOperacionalFormatado                   &lt;chr&gt; "Em Construção", "Inati…
+$ StatusEmbargo                                  &lt;chr&gt; "Não Embargada", "Embar…</code></pre>
+</div>
+</div>
+<p>Perceba que as colunas <code>LatitudeFormatada</code> e <code>LongitudeFormatada</code> estão no formato de texto, e não número.</p>
+<p>Para transformar essas colunas em coordenadas geográficas, podemos utilizar funções do pacote <code>{parzer}</code>, para fazer o <em>parse</em> de coordenadas geográficas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dados_sigbm_parzer <span class="ot">&lt;-</span> dados_sigbm <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">lat =</span> parzer<span class="sc">::</span><span class="fu">parse_lat</span>(LatitudeFormatada),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">lon =</span> parzer<span class="sc">::</span><span class="fu">parse_lon</span>(LongitudeFormatada)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(dados_sigbm_parzer)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 919
+Columns: 25
+$ Codigo                                         &lt;dbl&gt; 9776, 8662, 8435, 8619,…
+$ NomeBarragem                                   &lt;chr&gt; "VALE GOLD", "0-1", "1 …
+$ NomeEmpreendedor                               &lt;chr&gt; "VALE GOLD S.A.", "MINE…
+$ CpfCnpjFormatado                               &lt;chr&gt; "38.615.413/0001-53", "…
+$ LatitudeFormatada                              &lt;chr&gt; "-15°55'09.590\"", "-00…
+$ LongitudeFormatada                             &lt;chr&gt; "-56°29'27.180\"", "-60…
+$ CoordenadaSIRGAFormatado                       &lt;chr&gt; "Sul do Equador", "Sul …
+$ Municipio                                      &lt;chr&gt; "NOSSA SENHORA DO LIVRA…
+$ UF                                             &lt;chr&gt; "MT", "AM", "PA", "PA",…
+$ Minerio                                        &lt;chr&gt; NA, "Minério de Estanho…
+$ Altura                                         &lt;dbl&gt; 0.00, 19.60, 6.99, 7.59…
+$ VolumeAtualFormatado                           &lt;dbl&gt; 0.00, 57463773.00, 1341…
+$ MetodoConstrutivoFormatado                     &lt;chr&gt; "Indefinido", "0 - Etap…
+$ CategoriaRisco                                 &lt;chr&gt; "Baixo", "Alto", "Baixo…
+$ DanoPotencial                                  &lt;chr&gt; "Baixo", "Alto", "Baixo…
+$ GestaoOperacional                              &lt;chr&gt; "N/A", "B", "N/A", "N/A…
+$ InseridaPNSBFormatada                          &lt;chr&gt; "Não", "Sim", "Não", "N…
+$ SituacaoNivelEmergencial                       &lt;chr&gt; "Sem emergência", "Níve…
+$ SituacaoDeclaracaoCondicaoEstabilidade         &lt;chr&gt; "-", "2º Campanha 2024 …
+$ SituacaoDeclaracaoCondicaoEstabilidadeRPSB     &lt;chr&gt; "-", "Não Atestado", "-…
+$ SituacaoDeclaracaoConformidadeOperacionalidade &lt;chr&gt; "-", "Campanha 2024 - A…
+$ SituacaoOperacionalFormatado                   &lt;chr&gt; "Em Construção", "Inati…
+$ StatusEmbargo                                  &lt;chr&gt; "Não Embargada", "Embar…
+$ lat                                            &lt;dbl&gt; -15.9193306, -0.7333611…
+$ lon                                            &lt;dbl&gt; -56.49088, -60.13839, -…</code></pre>
+</div>
+</div>
+<p>Perceba que agora temos as colunas <code>lat</code> e <code>lon</code> no formato numérico, que representam as coordenadas geográficas. Com essas colunas, podemos criar um objeto do tipo <code>sf</code>, utilizando a função <code>st_as_sf()</code>, e informando nos argumentos: 1) <code>coords</code> o nome das colunas que representam as coordenadas geográficas; e 2) <code>crs</code> o sistema de referência de coordenadas (CRS, <em>Coordinate Reference System</em>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>dados_sigbm_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(dados_sigbm_parzer,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"lon"</span>, <span class="st">"lat"</span>),</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">crs =</span> <span class="dv">4674</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Observe a classe do objeto <code>dados_sigbm_sf</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dados_sigbm_sf)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "sf"         "tbl_df"     "tbl"        "data.frame"</code></pre>
+</div>
+</div>
+<p>Ao transformar os dados em um objeto do tipo <code>sf</code>, o objeto apresentará informações sobre: tipo de geometria (ponto, linha, polígono), a dimensão, o <em>bouding box</em> (limites do quadrante onde nossos dados estão contidos), e o sistema de referência de coordenadas (CRS).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dados_sigbm_sf</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple feature collection with 919 features and 23 fields</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Geometry type: POINT</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Dimension:     XY</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Bounding box:  xmin: -63.62128 ymin: -30.91978 xmax: -36.29974 ymax: 2.321194</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Geodetic CRS:  WGS 84</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Agora que temos um objeto do tipo <code>sf</code>, podemos visualizar esses dados em um mapa. Para isso, vamos utilizar a função <code>geom_sf()</code> do pacote <code>{ggplot2}</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>dados_sigbm_sf <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(SituacaoNivelEmergencial))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dados-espaciais_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="introdução-ao-pacote-geobr" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="introdução-ao-pacote-geobr"><span class="header-section-number">8.3</span> Introdução ao pacote <code>{geobr}</code></h2>
+<p><img src="images/logo-geobr.png" class="img-rstudio" align="right" width="120px"></p>
+<p>O pacote <a href="https://ipeagit.github.io/geobr/"><code>{geobr}</code></a> disponibiliza funções para obter diversas bases de dados espaciais oficiais do Brasil. Este pacote está disponível para <code>R</code> e <code>Python</code>.</p>
+<p>O pacote foi desenvolvido e é mantido pela equipe do <a href="https://www.ipea.gov.br/portal/">Instituto de Pesquisa Econômica Aplicada (IPEA)</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geobr)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="principais-funções" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="principais-funções"><span class="header-section-number">8.3.1</span> Principais funções</h3>
+<p>O pacote <code>{geobr}</code> possui diversas funções para baixar bases de dados espaciais do Brasil.</p>
+<p>A função <code>list_geobr()</code> retorna uma tabela com informações sobre as bases de dados disponíveis no pacote:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 63%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">function</th>
+<th style="text-align: left;">geography</th>
+<th style="text-align: left;">source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>read_country</code></td>
+<td style="text-align: left;">Country</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>read_region</code></td>
+<td style="text-align: left;">Region</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>read_state</code></td>
+<td style="text-align: left;">States</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>read_meso_region</code></td>
+<td style="text-align: left;">Meso region</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>read_micro_region</code></td>
+<td style="text-align: left;">Micro region</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>read_intermediate_region</code></td>
+<td style="text-align: left;">Intermediate region</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>read_immediate_region</code></td>
+<td style="text-align: left;">Immediate region</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>read_municipality</code></td>
+<td style="text-align: left;">Municipality</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>read_municipal_seat</code></td>
+<td style="text-align: left;">Municipality seats (sedes municipais)</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>read_weighting_area</code></td>
+<td style="text-align: left;">Census weighting area (área de ponderação)</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>read_census_tract</code></td>
+<td style="text-align: left;">Census tract (setor censitário)</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>read_statistical_grid</code></td>
+<td style="text-align: left;">Statistical Grid of 200 x 200 meters</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>read_metro_area</code></td>
+<td style="text-align: left;">Metropolitan areas</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>read_urban_area</code></td>
+<td style="text-align: left;">Urban footprints</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>read_amazon</code></td>
+<td style="text-align: left;">Brazil’s Legal Amazon</td>
+<td style="text-align: left;">MMA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>read_biomes</code></td>
+<td style="text-align: left;">Biomes</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>read_conservation_units</code></td>
+<td style="text-align: left;">Environmental Conservation Units</td>
+<td style="text-align: left;">MMA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>read_disaster_risk_area</code></td>
+<td style="text-align: left;">Disaster risk areas</td>
+<td style="text-align: left;">CEMADEN and IBGE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>read_indigenous_land</code></td>
+<td style="text-align: left;">Indigenous lands</td>
+<td style="text-align: left;">FUNAI</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>read_semiarid</code></td>
+<td style="text-align: left;">Semi Arid region</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>read_health_facilities</code></td>
+<td style="text-align: left;">Health facilities</td>
+<td style="text-align: left;">CNES, DataSUS</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>read_health_region</code></td>
+<td style="text-align: left;">Health regions and macro regions</td>
+<td style="text-align: left;">DataSUS</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>read_neighborhood</code></td>
+<td style="text-align: left;">Neighborhood limits</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>read_schools</code></td>
+<td style="text-align: left;">Schools</td>
+<td style="text-align: left;">INEP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>read_comparable_areas</code></td>
+<td style="text-align: left;">Historically comparable municipalities, aka Áreas mínimas comparáveis (AMCs)</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>read_urban_concentrations</code></td>
+<td style="text-align: left;">Urban concentration areas (concentrações urbanas)</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>read_pop_arrangements</code></td>
+<td style="text-align: left;">Population arrangements (arranjos populacionais)</td>
+<td style="text-align: left;">IBGE</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Em algumas funções, podemos passar argumentos para filtrar os dados que queremos baixar. Por exemplo, a função <code>read_municipality()</code> permite baixar a delimitação de um município específico, passando o código do IBGE do município como argumento.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Como saber o código IBGE de um município?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Você pode consultar o código IBGE de um município no site do <a href="https://www.ibge.gov.br/explica/codigos-dos-municipios.php">IBGE</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://www.ibge.gov.br/explica/codigos-dos-municipios.php"><img src="images/codigo-muni.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A seguir, estão as funções que apresentam a delimitação do Brasil, seus estados e municípios:</p>
+<ul>
+<li><p><code>read_country()</code>: Delimitação do Brasil.</p></li>
+<li><p><code>read_state()</code>: Delimitação dos estados do Brasil.</p></li>
+<li><p><code>read_state("SP")</code>: Delimitação de um estado específico, usando a sigla como argumento.</p></li>
+<li><p><code>read_municipality()</code>: Delimitação de todos os municípios do Brasil. É uma base pesada!</p></li>
+<li><p><code>read_municipality(code_muni = 3550308)</code>: Delimitação de um município específico, usando o código do IBGE do município.</p></li>
+</ul>
+</section>
+<section id="dica-armazenar-uma-cópia-dos-dados" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="dica-armazenar-uma-cópia-dos-dados"><span class="header-section-number">8.3.2</span> Dica: armazenar uma cópia dos dados</h3>
+<p>O pacote <code>{geobr}</code> faz o download das bases de dados. Isso significa que você precisa estar conectado à internet para baixar as bases de dados. Caso o servidor onde os dados estão armazenados esteja fora do ar, ou você esteja com problemas de conexão de internet, você não conseguirá baixar as bases de dados.</p>
+<p>Uma sugestão é salvar os resultados em um arquivo após baixar os dados, para evitar ter que baixar novamente, com a função <code>readr::write_rds()</code>. Por exemplo:</p>
+<ol type="1">
+<li>Lendo a delimitação dos estados:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>estados_br <span class="ot">&lt;-</span> <span class="fu">read_state</span>() </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using year/date 2010</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Download status: 27 done; 0 in progress. Total size: 4.19 Mb (287%)... done!  </span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>Salvando os dados obtidos em formato <code>.rds</code>:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_rds</span>(estados_br, <span class="st">"dados/geobr/estados_br.rds"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>Carregando a delimitação dos estados quando necessário:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>estados_br <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_rds</span>(<span class="st">"dados/geobr/estados_br.rds"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Com o objeto <code>estados_br</code>, podemos utilizar a função <code>geom_sf()</code> do pacote <code>{ggplot2}</code> para visualizar a delimitação dos estados brasileiros:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> estados_br)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dados-espaciais_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="criação-de-mapas-temáticos" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="criação-de-mapas-temáticos"><span class="header-section-number">8.4</span> Criação de mapas temáticos</h2>
 <p>Em breve!</p>
 </section>
-<section id="criação-de-mapas-temáticos" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="criação-de-mapas-temáticos"><span class="header-section-number">9.3</span> Criação de mapas temáticos</h2>
-<p>Em breve!</p>
-</section>
-<section id="geoprocessamento-básico" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="geoprocessamento-básico"><span class="header-section-number">9.4</span> Geoprocessamento básico</h2>
+<section id="geoprocessamento-básico" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="geoprocessamento-básico"><span class="header-section-number">8.5</span> Geoprocessamento básico</h2>
 <p>Em breve! <!-- Geoprocessamento básico (operações de filtro e interseção espacial, cálculo de distâncias) --></p>
+<!-- https://github.com/rstudio/cheatsheets/blob/main/sf.pdf -->
 </section>
-<section id="introdução-ao-pacote-geobr" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="introdução-ao-pacote-geobr"><span class="header-section-number">9.5</span> Introdução ao pacote <code>{geobr}</code></h2>
-<p>Em breve! <!-- pacote geocodebr - geolocalização --> <!-- pacote geobr --></p>
-</section>
-<section id="material-complementar" class="level2" data-number="9.6">
-<h2 data-number="9.6" class="anchored" data-anchor-id="material-complementar"><span class="header-section-number">9.6</span> Material complementar</h2>
+<section id="material-complementar" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="material-complementar"><span class="header-section-number">8.6</span> Material complementar</h2>
 <ul>
 <li><p><a href="https://r.geocompx.org/">Livro Geocomputation with R</a></p></li>
 <li><p><a href="https://analises-ecologicas.com/cap15">Capítulo 15 - Dados geoespaciais, livro Análises Ecológicas no R</a></p></li>
@@ -320,6 +826,12 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Os dados originalmente são disponibilizados em <code>.shp</code>, com registros de rodovias para todo o Brasil. Porém os dados foram convertidos para o formato <code>geopackage</code>, e filtrados apenas para o DF, para deixar o arquivo mais leve e facilitar o exemplo.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -787,12 +1299,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./programacao-funcional.html" class="pagination-link" aria-label="Programação funcional">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Programação funcional</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programação funcional</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./big-data.html" class="pagination-link" aria-label="Introdução à *Big Data*">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introdução à <em>Big Data</em></span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introdução à <em>Big Data</em></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
