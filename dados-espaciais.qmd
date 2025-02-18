@@ -33,7 +33,10 @@ Os dados matriciais, ou raster, são uma forma de representar o mundo em uma gra
 
 No exemplo acima, cada célula do tabuleiro de xadrez possui um valor 1 ou 0, porém quando falamos de dados raster, cada célula pode possuir um valor contínuo.
 
-Um exemplo de dado raster é uma **imagem de satélite**:
+Este tipo de formato é muito utilizado para imagens de satélite, modelos digitais de elevação, e mapas de uso e cobertura da terra.
+
+
+A ilustração abaixo nos ajuda a conectar o conceito de *raster* e **imagens de satélite**:
 
 
 [![Conceito de raster/dados matriciais. Imagem por: *National Ecological Observatory Network*](images/raster_concept.png)](https://www.neonscience.org/resources/learning-hub/tutorials/dc-raster-data-r)
@@ -43,7 +46,7 @@ Existem diversos pacotes no R que permitem a manipulação de dados raster, como
 
 ### Dados vetoriais
 
-Os dados vetoriais são representados por **pontos**, **linhas** e **polígonos**.
+Os dados vetoriais são representados por **pontos**, **linhas** e **polígonos**:
 
 - **Pontos**: representam um local específico no espaço, como uma coordenada geográfica. Por exemplo: um ponto de coleta de dados, a localização de uma escola.
 
@@ -56,10 +59,257 @@ A imagem abaixo apresenta um exemplo de dados vetoriais, onde temos pontos, linh
 
 ![Exemplo de dados vetoriais: Osasco. Elaborado por Beatriz Milz, com dados do pacote `{geobr}` e [DNIT](https://www.gov.br/transportes/pt-br/assuntos/dados-de-transportes/bit/bit-mapas).](images/exemplo-vetorial-osasco.png)
 
+No R, podemos manipular dados vetoriais utilizando o pacote [`{sf}`](https://r-spatial.github.io/sf/). Vamos explorar um pouco mais sobre esse pacote na próxima seção.
+
+    
 
 ## Pacote `{sf}`
 
-Em breve!
+<img src="images/sf-logo.png" class="img-rstudio" align="right" width="120px"/>
+
+O pacote [`{sf}`](https://r-spatial.github.io/sf/) (*Simple Features for R*) é um dos principais pacotes para manipulação de dados espaciais no R. Ele é um pacote que implementa classes e métodos para manipulação de dados espaciais, e é baseado no padrão [Simple Features](https://en.wikipedia.org/wiki/Simple_Features).
+
+::: {.callout-warning}
+
+## Problemas de instalação?
+
+O pacote `{sf}` possui dependências que devem ser instalados no computador (e não no R), e que podem ser um pouco complicadas de instalar. Se você tiver problemas para instalar o pacote, tente instalar o pacote diretamente do GitHub:
+
+```{r}
+#| eval: false
+install.packages("remotes")
+remotes::install_github(repo = "r-spatial/sf")
+```
+
+Caso ainda tenha problemas, consulte as [instruções de instalação na documentação oficial do pacote](https://r-spatial.github.io/sf/#installing).
+:::
+
+
+Para começar a explorar, vamos carregar os pacotes `{sf}` e `{ggplot2}`:
+
+```{r}
+library(ggplot2)
+library(sf)
+```
+
+Observe que, ao carregar o pacote `{sf}`, uma mensagem é apresentada, com informações sobre as dependências.
+
+O pacote `{sf}` apresenta um novo tipo de classe: `sf`. A classe `sf` costuma estar associada a um objeto do tipo `data.frame`, onde uma das colunas é do tipo `geometry`, que armazena as informações espaciais (pontos, linhas ou polígonos).
+
+Portanto, ao trabalhar com esse pacote, teremos tabelas similares a um `data.frame`, mas com uma coluna adicional que armazena as informações espaciais. A figura abaixo ajuda a ilustrar essa ideia:
+
+[![Imagem por Allison Horst](images/sf_horst.png){fig-align="center" width="90%"}](https://github.com/allisonhorst/stats-illustrations)
+
+
+### Importação de dados espaciais
+
+Ao trabalhar com dados espaciais, é comum importar arquivos no formato `shapefile` (`.shp`),  `geopackage` (`.gpkg`),  `GeoJSON`, entre outros. Porém, em alguns casos, podemos ter dados espaciais em outros formatos, como um arquivo `.csv` que contém coordenadas geográficas (latitude e longitude).
+
+Vamos explorar alguns exemplos de importação de dados espaciais utilizando o pacote `{sf}`.
+
+#### Importação de arquivos de dados espaciais
+
+Para importação de arquivos de dados espaciais, podemos utilizar a função `st_read()`. Esta função é capaz de ler diversos formatos de arquivos, como `shapefile` (`.shp`),  `geopackage` (`.gpkg`),  `GeoJSON`, entre outros.
+
+Neste exemplo, vamos importar dados de rodovias do Distrito Federal, disponibilizados pelo [DNIT](https://www.gov.br/transportes/pt-br/assuntos/dados-de-transportes/bit/bit-mapas)[^1].
+
+[^1]: Os dados originalmente são disponibilizados em `.shp`, com registros de rodovias para todo o Brasil. Porém os dados foram convertidos para o formato `geopackage`, e filtrados apenas para o DF, para deixar o arquivo mais leve e facilitar o exemplo.
+
+```{r}
+arquivo_dnit_df <- "https://github.com/ipeadata-lab/curso_r_intermediario_202501/raw/refs/heads/main/dados/shapefiles/dnit/dnit_df.gpkg"
+
+rodovias_df <- read_sf(arquivo_dnit_df)
+```
+
+
+Vamos explorar as colunas do objeto `rodovias_df`:
+
+```{r}
+dplyr::glimpse(rodovias_df)
+```
+
+Perceba que o objeto `rodovias_df` é um objeto do tipo `sf`, e possui informações sobre a geometria (tipo de geometria, dimensão, *bounding box* e sistema de referência de coordenadas):
+```{r}
+#| eval: false
+rodovias_df
+
+# Simple feature collection with 128 features and 28 fields
+# Geometry type: LINESTRING
+# Dimension:     XY
+# Bounding box:  xmin: -48.25963 ymin: -16.05217 xmax: -47.3186 ymax: -15.50038
+# Geodetic CRS:  SIRGAS 2000
+```
+
+
+O pacote `ggplot2` apresenta a geometria `geom_sf()` para visualização de dados espaciais. Vamos visualizar no mapa o que foi importado:
+
+```{r}
+ggplot() +
+  geom_sf(data = rodovias_df)
+```
+
+
+
+#### Coordenadas como texto
+
+Neste exemplo, vamos utilizar um arquivo `.csv` que contém coordenadas de latitude e longitude, e então vamos transformar esses dados em um objeto do tipo `sf`.
+
+Os dados que vamos utilizar são da base de dados de [Classificação Nacional de Barragens de Mineração](https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem), disponiblizada pela Agência Nacional de Mineração (ANM).
+
+```{r}
+caminho_arquivo <- "https://github.com/ipeadata-lab/curso_r_intermediario_202501/raw/refs/heads/main/dados/sigbm_20252118.csv"
+
+dados_sigbm <- readr::read_csv2(caminho_arquivo, show_col_types = FALSE)
+```
+
+Vamos visualizar as primeiras linhas do arquivo:
+
+```{r}
+dplyr::glimpse(dados_sigbm)
+```
+
+Perceba que as colunas `LatitudeFormatada` e `LongitudeFormatada` estão no formato de texto, e não número.
+
+
+Para transformar essas colunas em coordenadas geográficas, podemos utilizar funções do pacote `{parzer}`, para fazer o *parse* de coordenadas geográficas:
+
+```{r}
+dados_sigbm_parzer <- dados_sigbm |> 
+  dplyr::mutate(
+    lat = parzer::parse_lat(LatitudeFormatada),
+    lon = parzer::parse_lon(LongitudeFormatada)
+  )
+
+dplyr::glimpse(dados_sigbm_parzer)
+```
+Perceba que agora temos as colunas `lat` e `lon` no formato numérico, que representam as coordenadas geográficas. Com essas colunas, podemos criar um objeto do tipo `sf`, utilizando a função `st_as_sf()`, e informando nos argumentos: 1) `coords` o nome das colunas  que representam as coordenadas geográficas; e 2) `crs` o sistema de referência de coordenadas (CRS, *Coordinate Reference System*).
+
+```{r}
+dados_sigbm_sf <- st_as_sf(dados_sigbm_parzer,
+                           coords = c("lon", "lat"),
+                           crs = 4674)
+```
+
+Observe a classe do objeto `dados_sigbm_sf`:
+```{r}
+class(dados_sigbm_sf)
+```
+
+
+Ao transformar os dados em um objeto do tipo `sf`, o objeto apresentará informações sobre: tipo de geometria (ponto, linha, polígono), a dimensão, o *bouding box* (limites do quadrante onde nossos dados estão contidos), e o sistema de referência de coordenadas (CRS).
+
+```{r}
+#| eval: false
+dados_sigbm_sf
+
+# Simple feature collection with 919 features and 23 fields
+# Geometry type: POINT
+# Dimension:     XY
+# Bounding box:  xmin: -63.62128 ymin: -30.91978 xmax: -36.29974 ymax: 2.321194
+# Geodetic CRS:  WGS 84
+```
+
+
+Agora que temos um objeto do tipo `sf`, podemos visualizar esses dados em um mapa. Para isso, vamos utilizar a função `geom_sf()` do pacote `{ggplot2}`:
+
+```{r}
+dados_sigbm_sf |> 
+  ggplot() +
+  geom_sf() +
+  facet_wrap(vars(SituacaoNivelEmergencial))
+```
+
+
+## Introdução ao pacote `{geobr}`
+
+<img src="images/logo-geobr.png" class="img-rstudio" align="right" width="120px"/>
+
+O pacote [`{geobr}`](https://ipeagit.github.io/geobr/) disponibiliza funções para obter diversas bases de dados espaciais oficiais do Brasil. Este pacote está disponível para `R` e `Python`.
+
+O pacote foi desenvolvido e é mantido pela equipe do [Instituto de Pesquisa Econômica Aplicada (IPEA)](https://www.ipea.gov.br/portal/).
+
+```{r}
+library(geobr)
+```
+
+
+### Principais funções
+
+O pacote `{geobr}` possui diversas funções para baixar bases de dados espaciais do Brasil.
+
+A função `list_geobr()` retorna uma tabela com informações sobre as bases de dados disponíveis no pacote: 
+
+```{r}
+#| echo: false
+geobr::list_geobr() |> 
+ dplyr::select(-years) |>  
+  knitr::kable()
+```
+
+
+Em algumas funções, podemos passar argumentos para filtrar os dados que queremos baixar. Por exemplo, a função `read_municipality()` permite baixar a delimitação de um município específico, passando o código do IBGE do município como argumento. 
+
+
+::: {.callout-tip}
+## Como saber o código IBGE de um município?
+
+Você pode consultar o código IBGE de um município no site do [IBGE](https://www.ibge.gov.br/explica/codigos-dos-municipios.php).
+
+[![](images/codigo-muni.png){fig-align="center"
+width="80%"}](https://www.ibge.gov.br/explica/codigos-dos-municipios.php)
+
+:::
+
+A seguir, estão as funções que apresentam a delimitação do Brasil, seus estados e municípios:
+
+- `read_country()`: Delimitação do Brasil.
+
+- `read_state()`: Delimitação dos estados do Brasil.
+
+- `read_state("SP")`: Delimitação de um estado específico, usando a sigla como argumento.
+
+- `read_municipality()`: Delimitação de todos os municípios do Brasil.  É uma base pesada!
+
+- `read_municipality(code_muni = 3550308)`: Delimitação de um município específico, usando o código do IBGE do município.
+
+### Dica: armazenar uma cópia dos dados
+
+O pacote `{geobr}` faz o download das bases de dados. Isso significa que você precisa estar conectado à internet para baixar as bases de dados. Caso o servidor onde os dados estão armazenados esteja fora do ar, ou você esteja com problemas de conexão de internet, você não conseguirá baixar as bases de dados.
+    
+Uma sugestão é salvar os resultados em um arquivo após baixar os dados, para evitar ter que baixar novamente, com a função `readr::write_rds()`. Por exemplo:
+
+
+1) Lendo a delimitação dos estados:
+
+```{r}
+#| eval: false
+estados_br <- read_state() 
+# Using year/date 2010
+# Download status: 27 done; 0 in progress. Total size: 4.19 Mb (287%)... done!  
+```
+
+2) Salvando os dados obtidos em formato `.rds`:
+
+```{r}
+#| eval: false
+readr::write_rds(estados_br, "dados/geobr/estados_br.rds")
+```
+
+
+3) Carregando a delimitação dos estados quando necessário:
+
+```{r}
+estados_br <- readr::read_rds("dados/geobr/estados_br.rds")
+```
+
+Com o objeto `estados_br`, podemos utilizar a função `geom_sf()` do pacote `{ggplot2}` para visualizar a delimitação dos estados brasileiros:
+
+```{r}
+ggplot() +
+  geom_sf(data = estados_br)
+```
+
+
 
 ## Criação de mapas temáticos
 
@@ -72,11 +322,8 @@ Em breve!
 <!-- Geoprocessamento básico (operações de filtro e interseção espacial, cálculo de distâncias) -->
 
 
-## Introdução ao pacote `{geobr}`
+<!-- https://github.com/rstudio/cheatsheets/blob/main/sf.pdf -->
 
-Em breve!
-<!-- pacote geocodebr - geolocalização -->
-<!-- pacote geobr -->
 
 
 ## Material complementar
