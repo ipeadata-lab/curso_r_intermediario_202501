@@ -6,7 +6,15 @@ library(sf)
 fcu <- read_sf("dados/shapefiles/ibge/poligonos_FCUs_shp/qg_2022_670_fcu_agreg.shp")
 
 fcu_df <- fcu |>
-  dplyr::filter(sigla_uf == "DF")
+  dplyr::filter(sigla_uf == "DF") 
+
+
+fcu_df$area_m2 <- st_area(fcu_df)
+
+fcu_df$area_m2 <- as.numeric(fcu_df$area_m2)
+
+fcu_df$area_km2  <- fcu_df$area_m2 / 1e6
+
 
 sf::write_sf(fcu_df, "dados/shapefiles/ibge/fcu_df.gpkg")
 
