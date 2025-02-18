@@ -26,6 +26,16 @@ library(sf) # <3>
 2. Carrega o pacote geobr, para importar dados espaciais do Brasil
 3. Carrega o pacote sf, para manipulação de dados espaciais
 
+::: {.callout-warning}
+
+## Cuidado com a memória RAM!
+
+Atenção: dados espaciais são mais pesados que dados tabulares (ou seja, arquivos simples com linhas e colunas). Se você estiver utilizando um computador com pouca memória RAM, pode ser que tenha problemas ao importar bases de dados espaciais.
+
+Também evite usar a função `View()` para visualizar bases de dados espaciais, pois isso pode travar o RStudio.
+
+:::
+
 ## Tipos de dados espaciais
 
 Os modelos de dados espaciais são uma forma de representar o mundo real em um ambiente computacional.
@@ -340,12 +350,135 @@ ggplot() +
   geom_sf(data = estados_br)
 ```
 
-
-
 ## Criação de mapas temáticos
 
-Em breve!
+Mapas temáticos são mapas que representam um fenômeno geográfico, como a distribuição de uma variável em um território.
 
+Para criar mapas temáticos, podemos utilizar a função `geom_sf()` do pacote `{ggplot2}`, e mapear uma variável para a cor de preenchimento (`fill`) ou cor do contorno (`color`) das geometrias.
+
+Além disso, é comum utilizar mais que uma camada de informação no mapa, como a delimitação de estados, municípios, rodovias, entre outros.
+
+Para explorar alguns conceitos úteis, vamos criar um mapa temático com a base de dados `voos`. Para isso, vamos importar a base de dados `voos` (utilizada em aulas anteriores):
+
+```{r}
+#| message: false
+#| warning: false
+voos <- read_csv2("dados/voos_dez-2024-alterado.csv")
+```
+
+Vamos sumarizar os dados, e contar a quantidade de voos por estado de origem e destino:
+
+```{r}
+dados_origem <- voos |>
+  count(sg_uf_origem) |>
+  rename(estado = sg_uf_origem, n_voos = n) |>
+  mutate(referencia = "Origem")
+
+
+dados_destino <- voos |>
+  count(sg_uf_destino) |>
+  rename(estado = sg_uf_destino, n_voos = n) |>
+  mutate(referencia = "Destino")
+
+base_contagem_voos_uf <- bind_rows(dados_origem,
+                                   dados_destino) |>
+  drop_na(estado)
+```
+
+
+Porém, para criar um mapa temático, precisamos de uma base de dados espaciais. Observe que não temos a coluna `geometry` na base de dados `base_contagem_voos_uf`:
+
+```{r}
+glimpse(base_contagem_voos_uf)
+```
+
+Vamos utilizar a função `read_state()` do pacote `{geobr}` para obter a delimitação dos estados brasileiros, e então vamos fazer um *join* com a base de dados `base_contagem_voos_uf`:
+
+```{r}
+estados_br <- read_state()
+```
+```{r}
+dados_voos_unidos <- full_join(
+  estados_br, 
+  base_contagem_voos_uf,
+  by = c("abbrev_state" = "estado")
+)
+```
+
+Para criar um mapa temático, vamos mapear a variável do número de voos para a cor de preenchimento das geometrias:
+
+```{r}
+#| label: sf-ggplot2-voos-1
+ggplot() +
+  geom_sf(data = dados_voos_unidos, aes(fill = n_voos)) +
+  facet_wrap(vars(referencia))
+```
+
+
+Criamos um mapa simples, porém podemos melhorar a visualização!
+
+
+Muitas vezes, é interessante adaptar os dados para melhorar a visualização. Por exemplo, podemos criar categorias para a quantidade de voos, e mapear essas categorias para a cor de preenchimento das geometrias:
+
+```{r}
+dados_voos_arrumados <- dados_voos_unidos |>
+  mutate(
+    referencia = factor(referencia, labels = c("Origem", "Destino")),
+    categoria_n_voos = cut(
+      n_voos,
+      breaks = c(0, 100, 500, 1000, 5000, 10000, 15000,
+                 20000, 25000, Inf),
+      labels = c(
+        "0-100",
+        "101-500",
+        "501-1.000",
+        "1.001-5.000",
+        "5.001-10.000",
+        "10.001-15.000",
+        "15.001-20.000",
+        "20.001-25.000",
+        "25.001 ou mais"
+      )
+    )
+  ) 
+```
+
+
+Com os dados arrumados, podemos criar um mapa mais interessante:
+
+```{r}
+#| label: sf-ggplot2-voos-2
+mapa_voos <- ggplot() +
+  geom_sf(data = dados_voos_arrumados, aes(fill = categoria_n_voos)) +
+  facet_wrap(vars(referencia)) +
+  theme_minimal() +
+  labs(title = "Quantidade de voos por estado, em Dezembro/2024",
+       fill = "Número de voos", 
+       caption = "Dados obtidos com o pacote flightsbr do R.") +
+  theme(legend.position = "bottom",
+        axis.text.y = element_text(angle = 90)) +
+  scale_fill_viridis_d() 
+
+mapa_voos
+```
+
+É possível ir além, e adicionar elementos como o Norte, a escala, entre outros. Para isso, podemos utilizar o pacote `{ggspatial}`:
+
+```{r}
+#| label: sf-ggplot2-voos-3
+mapa_voos +
+  ggspatial::annotation_scale() +
+    # Adiciona o Norte Geográfico
+  ggspatial::annotation_north_arrow(
+    location = "bl",
+    which_north = "true",
+    pad_x = unit(0.5, "cm"),
+    pad_y = unit(0.8, "cm"),
+    height = unit(1, "cm"),
+    width = unit(1, "cm")
+  )
+```
+Neste exemplo, exploramos elementos que te ajudarão a criar mapas temáticos com outros dados!
 
 ## Geoprocessamento básico 
 
@@ -361,6 +494,7 @@ Em breve!
 
 - [Livro Geocomputation with R](https://r.geocompx.org/)
 - [Capítulo 15 - Dados geoespaciais, livro Análises Ecológicas no R](https://analises-ecologicas.com/cap15)
+  - Workshop [Trabalhando com dados espaciais no R](https://beamilz.com/talks/pt/2023-12-dados-espaciais/), por Beatriz Milz e Laís Brasileiro.
 
 - Dados Raster:
   - [Spatial Data Science](https://rspatial.org/).
@@ -374,7 +508,7 @@ Em breve!
   - [Pacote `{parzer}`](https://docs.ropensci.org/parzer/) - Pacote para ajudar a limpar coordenadas geográficas para o formato que o R entende.
   - [Pacote `{sf}`](https://r-spatial.github.io/sf/) - Pacote para manipulação de dados espaciais.
   - [Pacote `{geobr}`](https://ipeagit.github.io/geobr/) - Pacote para baixar dados geográficos do Brasil.
-  
+  - Workshop [Conhecendo o pacote geobr](https://beamilz.com/talks/pt/2024-09-amostra-ime-usp-geobr/), por Beatriz Milz.
   
 - Visualização de dados espaciais:
   - [Pacote `{leaflet}`](https://rstudio.github.io/leaflet/) - Pacote para visualização interativa de mapas.
@@ -384,3 +518,5 @@ Em breve!
   
 - Aplicações:
   - [Livro "Introdução à acessibilidade urbana"](https://ipeagit.github.io/intro_access_book/pt/)
+  - [Texto: Criando mapas com os pacotes tidyverse e geobr](https://beamilz.com/posts/2020-07-27-criando-mapas-com-os-pacotes-tidyverse-e-geobr/pt/), por Beatriz Milz.
+  - [Texto: Drawing waterlines with ggplot2 in R](https://www.brunomioto.com/posts/waterlines/en/), por Bruno Mioto.
