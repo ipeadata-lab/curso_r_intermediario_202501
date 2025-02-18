@@ -114,9 +114,11 @@ Se você tiver problemas para instalar o pacote, tente instalar o pacote diretam
 
 ```{r}
 #| eval: false
-install.packages("remotes")
-remotes::install_github(repo = "r-spatial/sf")
+install.packages("remotes") #<1>
+remotes::install_github(repo = "r-spatial/sf") # <2>
 ```
+1. Instala o pacote `remotes`, que permite instalar pacotes diretamente do GitHub.
+2. Instala o pacote `sf` diretamente do GitHub.
 
 Caso ainda tenha problemas, consulte as [instruções de instalação na documentação oficial do pacote](https://r-spatial.github.io/sf/#installing).
 
@@ -221,6 +223,7 @@ dados_sigbm_parzer <- dados_sigbm |>
 
 glimpse(dados_sigbm_parzer)
 ```
+
 Perceba que agora temos as colunas `lat` e `lon` no formato numérico, que representam as coordenadas geográficas. Com essas colunas, podemos criar um objeto do tipo `sf`, utilizando a função `st_as_sf()`, e informando nos argumentos: 1) `coords` o nome das colunas  que representam as coordenadas geográficas; e 2) `crs` o sistema de referência de coordenadas (CRS, *Coordinate Reference System*).
 
 ```{r}
@@ -370,20 +373,27 @@ Vamos sumarizar os dados, e contar a quantidade de voos por estado de origem e d
 
 ```{r}
 dados_origem <- voos |>
-  count(sg_uf_origem) |>
-  rename(estado = sg_uf_origem, n_voos = n) |>
-  mutate(referencia = "Origem")
-
+  count(sg_uf_origem) |> # <1>
+  rename(estado = sg_uf_origem, n_voos = n) |> # <2>
+  mutate(referencia = "Origem") # <3>
 
 dados_destino <- voos |>
-  count(sg_uf_destino) |>
-  rename(estado = sg_uf_destino, n_voos = n) |>
-  mutate(referencia = "Destino")
+  count(sg_uf_destino) |> # <4>
+  rename(estado = sg_uf_destino, n_voos = n) |> # <5>
+  mutate(referencia = "Destino") # <6>
 
 base_contagem_voos_uf <- bind_rows(dados_origem,
-                                   dados_destino) |>
+                                   dados_destino) |> # <7>
   drop_na(estado)
 ```
+1. Conta o número de voos por estado de origem
+2. Renomeia as colunas para padronizar os nomes
+3. Adiciona uma coluna indicando que são dados de origem
+4. Conta o número de voos por estado de destino
+5. Renomeia as colunas para padronizar os nomes
+6. Adiciona uma coluna indicando que são dados de destino
+7. Une as bases de dados de origem e destino
+8. Remove linhas cujo estado é `NA`
 
 
 Porém, para criar um mapa temático, precisamos de uma base de dados espaciais. Observe que não temos a coluna `geometry` na base de dados `base_contagem_voos_uf`:
