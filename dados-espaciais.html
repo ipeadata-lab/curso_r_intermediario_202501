@@ -287,6 +287,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dl>
 </div>
 </div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Cuidado com a memória RAM!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Atenção: dados espaciais são mais pesados que dados tabulares (ou seja, arquivos simples com linhas e colunas). Se você estiver utilizando um computador com pouca memória RAM, pode ser que tenha problemas ao importar bases de dados espaciais.</p>
+<p>Também evite usar a função <code>View()</code> para visualizar bases de dados espaciais, pois isso pode travar o RStudio.</p>
+</div>
+</div>
 <section id="tipos-de-dados-espaciais" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="tipos-de-dados-espaciais"><span class="header-section-number">8.1</span> Tipos de dados espaciais</h2>
 <p>Os modelos de dados espaciais são uma forma de representar o mundo real em um ambiente computacional.</p>
@@ -358,8 +372,20 @@ Problemas de instalação?
 </div>
 <p>Se você tiver problemas para instalar o pacote, tente instalar o pacote diretamente do GitHub:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="at">repo =</span> <span class="st">"r-spatial/sf"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-28"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-28" data-target-annotation="1">1</button><span id="annotated-cell-28-1" class="code-annotation-target"><a href="#annotated-cell-28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-28" data-target-annotation="2">2</button><span id="annotated-cell-28-2" class="code-annotation-target"><a href="#annotated-cell-28-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="at">repo =</span> <span class="st">"r-spatial/sf"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-28" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-28" data-code-lines="1" data-code-annotation="1">Instala o pacote <code>remotes</code>, que permite instalar pacotes diretamente do GitHub.</span>
+</dd>
+<dt data-target-cell="annotated-cell-28" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-28" data-code-lines="2" data-code-annotation="2">Instala o pacote <code>sf</code> diretamente do GitHub.</span>
+</dd>
+</dl>
+</div>
 </div>
 <p>Caso ainda tenha problemas, consulte as <a href="https://r-spatial.github.io/sf/#installing">instruções de instalação na documentação oficial do pacote</a>.</p>
 </div>
@@ -385,13 +411,13 @@ Problemas de instalação?
 <p>Para importação de arquivos de dados espaciais, podemos utilizar a função <code>st_read()</code>. Esta função é capaz de ler diversos formatos de arquivos, como <code>shapefile</code> (<code>.shp</code>), <code>geopackage</code> (<code>.gpkg</code>), <code>GeoJSON</code>, entre outros.</p>
 <p>Neste exemplo, vamos importar dados de rodovias do Distrito Federal, disponibilizados pelo <a href="https://www.gov.br/transportes/pt-br/assuntos/dados-de-transportes/bit/bit-mapas">DNIT</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>arquivo_dnit_df <span class="ot">&lt;-</span> <span class="st">"https://github.com/ipeadata-lab/curso_r_intermediario_202501/raw/refs/heads/main/dados/shapefiles/dnit/dnit_df.gpkg"</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>rodovias_df <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(arquivo_dnit_df)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>arquivo_dnit_df <span class="ot">&lt;-</span> <span class="st">"https://github.com/ipeadata-lab/curso_r_intermediario_202501/raw/refs/heads/main/dados/shapefiles/dnit/dnit_df.gpkg"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>rodovias_df <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(arquivo_dnit_df)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Vamos explorar as colunas do objeto <code>rodovias_df</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(rodovias_df)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(rodovias_df)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 128
 Columns: 29
@@ -428,18 +454,18 @@ $ geom       &lt;LINESTRING [°]&gt; LINESTRING (-47.85885 -15.6..., LINESTRING 
 </div>
 <p>Perceba que o objeto <code>rodovias_df</code> é um objeto do tipo <code>sf</code>, e possui informações sobre a geometria (tipo de geometria, dimensão, <em>bounding box</em> e sistema de referência de coordenadas):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rodovias_df</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple feature collection with 128 features and 28 fields</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Geometry type: LINESTRING</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Dimension:     XY</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Bounding box:  xmin: -48.25963 ymin: -16.05217 xmax: -47.3186 ymax: -15.50038</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Geodetic CRS:  SIRGAS 2000</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rodovias_df</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple feature collection with 128 features and 28 fields</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Geometry type: LINESTRING</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Dimension:     XY</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Bounding box:  xmin: -48.25963 ymin: -16.05217 xmax: -47.3186 ymax: -15.50038</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Geodetic CRS:  SIRGAS 2000</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>O pacote <code>ggplot2</code> apresenta a geometria <code>geom_sf()</code> para visualização de dados espaciais. Vamos visualizar no mapa o que foi importado:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rodovias_df)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rodovias_df)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -454,13 +480,13 @@ $ geom       &lt;LINESTRING [°]&gt; LINESTRING (-47.85885 -15.6..., LINESTRING 
 <p>Neste exemplo, vamos utilizar um arquivo <code>.csv</code> que contém coordenadas de latitude e longitude, e então vamos transformar esses dados em um objeto do tipo <code>sf</code>.</p>
 <p>Os dados que vamos utilizar são da base de dados de <a href="https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem">Classificação Nacional de Barragens de Mineração</a>, disponiblizada pela Agência Nacional de Mineração (ANM).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>caminho_arquivo <span class="ot">&lt;-</span> <span class="st">"https://github.com/ipeadata-lab/curso_r_intermediario_202501/raw/refs/heads/main/dados/sigbm_20252118.csv"</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>dados_sigbm <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(caminho_arquivo)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>caminho_arquivo <span class="ot">&lt;-</span> <span class="st">"https://github.com/ipeadata-lab/curso_r_intermediario_202501/raw/refs/heads/main/dados/sigbm_20252118.csv"</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>dados_sigbm <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(caminho_arquivo)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Vamos visualizar as primeiras linhas do arquivo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(dados_sigbm)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(dados_sigbm)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 919
 Columns: 23
@@ -492,13 +518,13 @@ $ StatusEmbargo                                  &lt;chr&gt; "Não Embargada", "
 <p>Perceba que as colunas <code>LatitudeFormatada</code> e <code>LongitudeFormatada</code> estão no formato de texto, e não número.</p>
 <p>Para transformar essas colunas em coordenadas geográficas, podemos utilizar funções do pacote <code>{parzer}</code>, para fazer o <em>parse</em> de coordenadas geográficas:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dados_sigbm_parzer <span class="ot">&lt;-</span> dados_sigbm <span class="sc">|&gt;</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">lat =</span> parzer<span class="sc">::</span><span class="fu">parse_lat</span>(LatitudeFormatada),</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">lon =</span> parzer<span class="sc">::</span><span class="fu">parse_lon</span>(LongitudeFormatada)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(dados_sigbm_parzer)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dados_sigbm_parzer <span class="ot">&lt;-</span> dados_sigbm <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">lat =</span> parzer<span class="sc">::</span><span class="fu">parse_lat</span>(LatitudeFormatada),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">lon =</span> parzer<span class="sc">::</span><span class="fu">parse_lon</span>(LongitudeFormatada)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(dados_sigbm_parzer)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 919
 Columns: 25
@@ -531,33 +557,33 @@ $ lon                                            &lt;dbl&gt; -56.49088, -60.1383
 </div>
 <p>Perceba que agora temos as colunas <code>lat</code> e <code>lon</code> no formato numérico, que representam as coordenadas geográficas. Com essas colunas, podemos criar um objeto do tipo <code>sf</code>, utilizando a função <code>st_as_sf()</code>, e informando nos argumentos: 1) <code>coords</code> o nome das colunas que representam as coordenadas geográficas; e 2) <code>crs</code> o sistema de referência de coordenadas (CRS, <em>Coordinate Reference System</em>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dados_sigbm_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(dados_sigbm_parzer,</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"lon"</span>, <span class="st">"lat"</span>),</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">crs =</span> <span class="dv">4674</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dados_sigbm_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(dados_sigbm_parzer,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"lon"</span>, <span class="st">"lat"</span>),</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">crs =</span> <span class="dv">4674</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Observe a classe do objeto <code>dados_sigbm_sf</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dados_sigbm_sf)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dados_sigbm_sf)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "sf"         "tbl_df"     "tbl"        "data.frame"</code></pre>
 </div>
 </div>
 <p>Ao transformar os dados em um objeto do tipo <code>sf</code>, o objeto apresentará informações sobre: tipo de geometria (ponto, linha, polígono), a dimensão, o <em>bouding box</em> (limites do quadrante onde nossos dados estão contidos), e o sistema de referência de coordenadas (CRS).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dados_sigbm_sf</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple feature collection with 919 features and 23 fields</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Geometry type: POINT</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Dimension:     XY</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Bounding box:  xmin: -63.62128 ymin: -30.91978 xmax: -36.29974 ymax: 2.321194</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Geodetic CRS:  WGS 84</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>dados_sigbm_sf</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple feature collection with 919 features and 23 fields</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Geometry type: POINT</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Dimension:     XY</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Bounding box:  xmin: -63.62128 ymin: -30.91978 xmax: -36.29974 ymax: 2.321194</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Geodetic CRS:  WGS 84</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Agora que temos um objeto do tipo <code>sf</code>, podemos visualizar esses dados em um mapa. Para isso, vamos utilizar a função <code>geom_sf()</code> do pacote <code>{ggplot2}</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dados_sigbm_sf <span class="sc">|&gt;</span> </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(SituacaoNivelEmergencial))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dados_sigbm_sf <span class="sc">|&gt;</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(SituacaoNivelEmergencial))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -575,7 +601,7 @@ $ lon                                            &lt;dbl&gt; -56.49088, -60.1383
 <p>O pacote <a href="https://ipeagit.github.io/geobr/"><code>{geobr}</code></a> disponibiliza funções para obter diversas bases de dados espaciais oficiais do Brasil. Este pacote está disponível para <code>R</code> e <code>Python</code>.</p>
 <p>O pacote foi desenvolvido e é mantido pela equipe do <a href="https://www.ipea.gov.br/portal/">Instituto de Pesquisa Econômica Aplicada (IPEA)</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geobr)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geobr)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="principais-funções" class="level3" data-number="8.3.1">
 <h3 data-number="8.3.1" class="anchored" data-anchor-id="principais-funções"><span class="header-section-number">8.3.1</span> Principais funções</h3>
@@ -772,26 +798,26 @@ Como saber o código IBGE de um município?
 <li>Lendo a delimitação dos estados:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>estados_br <span class="ot">&lt;-</span> <span class="fu">read_state</span>() </span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using year/date 2010</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Download status: 27 done; 0 in progress. Total size: 4.19 Mb (287%)... done!  </span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>estados_br <span class="ot">&lt;-</span> <span class="fu">read_state</span>() </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using year/date 2010</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Download status: 27 done; 0 in progress. Total size: 4.19 Mb (287%)... done!  </span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li>Salvando os dados obtidos em formato <code>.rds</code>:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(estados_br, <span class="st">"dados/geobr/estados_br.rds"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(estados_br, <span class="st">"dados/geobr/estados_br.rds"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="3" type="1">
 <li>Carregando a delimitação dos estados quando necessário:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>estados_br <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"dados/geobr/estados_br.rds"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>estados_br <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"dados/geobr/estados_br.rds"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Com o objeto <code>estados_br</code>, podemos utilizar a função <code>geom_sf()</code> do pacote <code>{ggplot2}</code> para visualizar a delimitação dos estados brasileiros:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> estados_br)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> estados_br)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -804,7 +830,171 @@ Como saber o código IBGE de um município?
 </section>
 <section id="criação-de-mapas-temáticos" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="criação-de-mapas-temáticos"><span class="header-section-number">8.4</span> Criação de mapas temáticos</h2>
-<p>Em breve!</p>
+<p>Mapas temáticos são mapas que representam um fenômeno geográfico, como a distribuição de uma variável em um território.</p>
+<p>Para criar mapas temáticos, podemos utilizar a função <code>geom_sf()</code> do pacote <code>{ggplot2}</code>, e mapear uma variável para a cor de preenchimento (<code>fill</code>) ou cor do contorno (<code>color</code>) das geometrias.</p>
+<p>Além disso, é comum utilizar mais que uma camada de informação no mapa, como a delimitação de estados, municípios, rodovias, entre outros.</p>
+<p>Para explorar alguns conceitos úteis, vamos criar um mapa temático com a base de dados <code>voos</code>. Para isso, vamos importar a base de dados <code>voos</code> (utilizada em aulas anteriores):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>voos <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"dados/voos_dez-2024-alterado.csv"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vamos sumarizar os dados, e contar a quantidade de voos por estado de origem e destino:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-19"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-19-1"><a href="#annotated-cell-19-1" aria-hidden="true" tabindex="-1"></a>dados_origem <span class="ot">&lt;-</span> voos <span class="sc">|&gt;</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="1">1</button><span id="annotated-cell-19-2" class="code-annotation-target"><a href="#annotated-cell-19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sg_uf_origem) <span class="sc">|&gt;</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="2">2</button><span id="annotated-cell-19-3" class="code-annotation-target"><a href="#annotated-cell-19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">estado =</span> sg_uf_origem, <span class="at">n_voos =</span> n) <span class="sc">|&gt;</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="3">3</button><span id="annotated-cell-19-4" class="code-annotation-target"><a href="#annotated-cell-19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">referencia =</span> <span class="st">"Origem"</span>)</span>
+<span id="annotated-cell-19-5"><a href="#annotated-cell-19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-19-6"><a href="#annotated-cell-19-6" aria-hidden="true" tabindex="-1"></a>dados_destino <span class="ot">&lt;-</span> voos <span class="sc">|&gt;</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="4">4</button><span id="annotated-cell-19-7" class="code-annotation-target"><a href="#annotated-cell-19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sg_uf_destino) <span class="sc">|&gt;</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="5">5</button><span id="annotated-cell-19-8" class="code-annotation-target"><a href="#annotated-cell-19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">estado =</span> sg_uf_destino, <span class="at">n_voos =</span> n) <span class="sc">|&gt;</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="6">6</button><span id="annotated-cell-19-9" class="code-annotation-target"><a href="#annotated-cell-19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">referencia =</span> <span class="st">"Destino"</span>)</span>
+<span id="annotated-cell-19-10"><a href="#annotated-cell-19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-19-11"><a href="#annotated-cell-19-11" aria-hidden="true" tabindex="-1"></a>base_contagem_voos_uf <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(dados_origem,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="7">7</button><span id="annotated-cell-19-12" class="code-annotation-target"><a href="#annotated-cell-19-12" aria-hidden="true" tabindex="-1"></a>                                   dados_destino) <span class="sc">|&gt;</span></span>
+<span id="annotated-cell-19-13"><a href="#annotated-cell-19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(estado)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-19" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-19" data-code-lines="2" data-code-annotation="1">Conta o número de voos por estado de origem</span>
+</dd>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-19" data-code-lines="3" data-code-annotation="2">Renomeia as colunas para padronizar os nomes</span>
+</dd>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-19" data-code-lines="4" data-code-annotation="3">Adiciona uma coluna indicando que são dados de origem</span>
+</dd>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-19" data-code-lines="7" data-code-annotation="4">Conta o número de voos por estado de destino</span>
+</dd>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-19" data-code-lines="8" data-code-annotation="5">Renomeia as colunas para padronizar os nomes</span>
+</dd>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-19" data-code-lines="9" data-code-annotation="6">Adiciona uma coluna indicando que são dados de destino</span>
+</dd>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="7">7</dt>
+<dd>
+<span data-code-cell="annotated-cell-19" data-code-lines="12" data-code-annotation="7">Une as bases de dados de origem e destino</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Porém, para criar um mapa temático, precisamos de uma base de dados espaciais. Observe que não temos a coluna <code>geometry</code> na base de dados <code>base_contagem_voos_uf</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(base_contagem_voos_uf)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 54
+Columns: 3
+$ estado     &lt;chr&gt; "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA",…
+$ n_voos     &lt;int&gt; 181, 962, 1643, 168, 3787, 1987, 4531, 1045, 1212, 607, 596…
+$ referencia &lt;chr&gt; "Origem", "Origem", "Origem", "Origem", "Origem", "Origem",…</code></pre>
+</div>
+</div>
+<p>Vamos utilizar a função <code>read_state()</code> do pacote <code>{geobr}</code> para obter a delimitação dos estados brasileiros, e então vamos fazer um <em>join</em> com a base de dados <code>base_contagem_voos_uf</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>estados_br <span class="ot">&lt;-</span> <span class="fu">read_state</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Using year/date 2010</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>dados_voos_unidos <span class="ot">&lt;-</span> <span class="fu">full_join</span>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  estados_br, </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  base_contagem_voos_uf,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"abbrev_state"</span> <span class="ot">=</span> <span class="st">"estado"</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para criar um mapa temático, vamos mapear a variável do número de voos para a cor de preenchimento das geometrias:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> dados_voos_unidos, <span class="fu">aes</span>(<span class="at">fill =</span> n_voos)) <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(referencia))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dados-espaciais_files/figure-html/sf-ggplot2-voos-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Criamos um mapa simples, porém podemos melhorar a visualização!</p>
+<p>Muitas vezes, é interessante adaptar os dados para melhorar a visualização. Por exemplo, podemos criar categorias para a quantidade de voos, e mapear essas categorias para a cor de preenchimento das geometrias:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>dados_voos_arrumados <span class="ot">&lt;-</span> dados_voos_unidos <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">referencia =</span> <span class="fu">factor</span>(referencia, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Origem"</span>, <span class="st">"Destino"</span>)),</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">categoria_n_voos =</span> <span class="fu">cut</span>(</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>      n_voos,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">500</span>, <span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">10000</span>, <span class="dv">15000</span>,</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>                 <span class="dv">20000</span>, <span class="dv">25000</span>, <span class="cn">Inf</span>),</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"0-100"</span>,</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"101-500"</span>,</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"501-1.000"</span>,</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"1.001-5.000"</span>,</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">"5.001-10.000"</span>,</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">"10.001-15.000"</span>,</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">"15.001-20.000"</span>,</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"20.001-25.000"</span>,</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"25.001 ou mais"</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Com os dados arrumados, podemos criar um mapa mais interessante:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>mapa_voos <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> dados_voos_arrumados, <span class="fu">aes</span>(<span class="at">fill =</span> categoria_n_voos)) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(referencia)) <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Quantidade de voos por estado, em Dezembro/2024"</span>,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Número de voos"</span>, </span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Dados obtidos com o pacote flightsbr do R."</span>) <span class="sc">+</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>)) <span class="sc">+</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>() </span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>mapa_voos</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dados-espaciais_files/figure-html/sf-ggplot2-voos-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>É possível ir além, e adicionar elementos como o Norte, a escala, entre outros. Para isso, podemos utilizar o pacote <code>{ggspatial}</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>mapa_voos <span class="sc">+</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  ggspatial<span class="sc">::</span><span class="fu">annotation_scale</span>() <span class="sc">+</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Adiciona o Norte Geográfico</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  ggspatial<span class="sc">::</span><span class="fu">annotation_north_arrow</span>(</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">location =</span> <span class="st">"bl"</span>,</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">which_north =</span> <span class="st">"true"</span>,</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">pad_x =</span> <span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"cm"</span>),</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">pad_y =</span> <span class="fu">unit</span>(<span class="fl">0.8</span>, <span class="st">"cm"</span>),</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>),</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>)</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Scale on map varies by more than 10%, scale bar may be inaccurate
+Scale on map varies by more than 10%, scale bar may be inaccurate</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dados-espaciais_files/figure-html/sf-ggplot2-voos-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Neste exemplo, exploramos elementos que te ajudarão a criar mapas temáticos com outros dados!</p>
 </section>
 <section id="geoprocessamento-básico" class="level2" data-number="8.5">
 <h2 data-number="8.5" class="anchored" data-anchor-id="geoprocessamento-básico"><span class="header-section-number">8.5</span> Geoprocessamento básico</h2>
@@ -814,9 +1004,12 @@ Como saber o código IBGE de um município?
 <section id="material-complementar" class="level2" data-number="8.6">
 <h2 data-number="8.6" class="anchored" data-anchor-id="material-complementar"><span class="header-section-number">8.6</span> Material complementar</h2>
 <ul>
-<li><p><a href="https://r.geocompx.org/">Livro Geocomputation with R</a></p></li>
-<li><p><a href="https://analises-ecologicas.com/cap15">Capítulo 15 - Dados geoespaciais, livro Análises Ecológicas no R</a></p></li>
-<li><p>Dados Raster:</p>
+<li><a href="https://r.geocompx.org/">Livro Geocomputation with R</a></li>
+<li><a href="https://analises-ecologicas.com/cap15">Capítulo 15 - Dados geoespaciais, livro Análises Ecológicas no R</a>
+<ul>
+<li>Workshop <a href="https://beamilz.com/talks/pt/2023-12-dados-espaciais/">Trabalhando com dados espaciais no R</a>, por Beatriz Milz e Laís Brasileiro.</li>
+</ul></li>
+<li>Dados Raster:
 <ul>
 <li><a href="https://rspatial.org/">Spatial Data Science</a>.</li>
 <li><a href="https://www.neonscience.org/resources/learning-hub/tutorials/dc-raster-data-r">Tutorial: Raster 00: Intro to Raster Data in R</a>, escrito pelo <em>National Ecological Observatory Network</em>.</li>
@@ -824,21 +1017,24 @@ Como saber o código IBGE de um município?
 <li><a href="https://rspatial.github.io/terra/index.html"><code>{terra}</code></a> - Pacote para trabalhar com dados raster.</li>
 <li><a href="https://r-spatial.github.io/stars/"><code>{stars}</code> - Spatiotemporal Arrays: Raster and Vector Datacubes</a> - pacote para trabalhar com dados raster, especialmente com dados espaço-temporais.</li>
 </ul></li>
-<li><p>Dados Vetoriais:</p>
+<li>Dados Vetoriais:
 <ul>
 <li><a href="https://docs.ropensci.org/parzer/">Pacote <code>{parzer}</code></a> - Pacote para ajudar a limpar coordenadas geográficas para o formato que o R entende.</li>
 <li><a href="https://r-spatial.github.io/sf/">Pacote <code>{sf}</code></a> - Pacote para manipulação de dados espaciais.</li>
 <li><a href="https://ipeagit.github.io/geobr/">Pacote <code>{geobr}</code></a> - Pacote para baixar dados geográficos do Brasil.</li>
+<li>Workshop <a href="https://beamilz.com/talks/pt/2024-09-amostra-ime-usp-geobr/">Conhecendo o pacote geobr</a>, por Beatriz Milz.</li>
 </ul></li>
-<li><p>Visualização de dados espaciais:</p>
+<li>Visualização de dados espaciais:
 <ul>
 <li><a href="https://rstudio.github.io/leaflet/">Pacote <code>{leaflet}</code></a> - Pacote para visualização interativa de mapas.</li>
 <li><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">Pacote <code>{ggplot2}</code> - Geometria <code>geom_sf</code></a> - Geometria específica para dados espaciais.</li>
 <li><a href="https://r-tmap.github.io/tmap/">Pacote <code>{tmap}</code></a> - Pacote para visualização de dados espaciais.</li>
 </ul></li>
-<li><p>Aplicações:</p>
+<li>Aplicações:
 <ul>
 <li><a href="https://ipeagit.github.io/intro_access_book/pt/">Livro “Introdução à acessibilidade urbana”</a></li>
+<li><a href="https://beamilz.com/posts/2020-07-27-criando-mapas-com-os-pacotes-tidyverse-e-geobr/pt/">Texto: Criando mapas com os pacotes tidyverse e geobr</a>, por Beatriz Milz.</li>
+<li><a href="https://www.brunomioto.com/posts/waterlines/en/">Texto: Drawing waterlines with ggplot2 in R</a>, por Bruno Mioto.</li>
 </ul></li>
 </ul>
 
