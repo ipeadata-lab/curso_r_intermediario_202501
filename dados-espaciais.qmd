@@ -113,13 +113,16 @@ Para importação de arquivos de dados espaciais, podemos utilizar a função `s
 
 Neste exemplo, vamos importar dados de rodovias do Distrito Federal, disponibilizados pelo [DNIT](https://www.gov.br/transportes/pt-br/assuntos/dados-de-transportes/bit/bit-mapas)[^1].
 
-[^1]: Os dados originalmente são disponibilizados em `.shp`, com registros de rodovias para todo o Brasil. Porém os dados foram convertidos para o formato `geopackage`, e filtrados apenas para o DF, para deixar o arquivo mais leve e facilitar o exemplo.
+[^1]: Os dados originalmente são disponibilizados em `.shp`, com registros de rodovias para todo o Brasil. Porém os dados foram convertidos para o formato `geopackage`, e filtrados apenas para o DF, para deixar o arquivo mais leve e facilitar o exemplo. Caso queira acessar os dados originais, faça o download do arquivo `.zip` disponível no site do [DNIT](https://www.gov.br/transportes/pt-br/assuntos/dados-de-transportes/bit/bit-mapas) (em Rodovias -> Base georreferenciada), descompacte o arquivo e utilize o arquivo `.shp` para a leitura com a função `read_sf()`.
 
 ```{r}
 arquivo_dnit_df <- "https://github.com/ipeadata-lab/curso_r_intermediario_202501/raw/refs/heads/main/dados/shapefiles/dnit/dnit_df.gpkg"
 
 rodovias_df <- read_sf(arquivo_dnit_df)
 ```
+
+
+
 
 
 Vamos explorar as colunas do objeto `rodovias_df`:
