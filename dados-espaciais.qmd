@@ -3,6 +3,8 @@ title: "Dados espaciais no R"
 code-annotations: hover
 execute:
   freeze: auto
+  cache: true
+lightbox: true  
 ---
 
 Dados espaciais são dados que possuem uma localização geográfica associada, como coordenadas geográficas, endereços, códigos de municípios, entre outros.
