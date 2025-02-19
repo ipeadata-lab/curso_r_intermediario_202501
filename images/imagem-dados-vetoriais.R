@@ -7,6 +7,9 @@ cod_municipio <- 3534401
 # baixa geometria do municipio
 muni <- geobr::read_municipality(cod_municipio)
 
+sf::write_sf(muni, "dados/geobr/osasco-sp.gpkg")
+
+
 escolas <- geobr::read_schools()
 
 escolas_muni <- escolas |>
@@ -15,6 +18,10 @@ escolas_muni <- escolas |>
 
 # Não subir este shapefile no github, é grande
 rodovias <- sf::read_sf("dados/shapefiles/dnit/SNV_202501A.shp")
+
+rodovias |> 
+  dplyr::filter(sg_uf == "SP") |> 
+  sf::write_sf("dados/shapefiles/dnit/dnit_sp.gpkg")
 
 rodovias_muni <- sf::st_filter(rodovias, muni, .predicate = st_intersects)
 
