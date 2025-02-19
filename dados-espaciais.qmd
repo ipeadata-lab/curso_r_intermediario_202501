@@ -499,6 +499,34 @@ mapa_voos +
 ```
 Neste exemplo, exploramos elementos que te ajudarão a criar mapas temáticos com outros dados!
 
+## Visualização interativa
+
+Utilizando objetos do tipo `sf`, vimos que é possível criar mapas estáticos com `ggplot2`.
+
+
+No entanto, é possível criar visualizações interativas, com o pacote [`{mapview}`](https://r-spatial.github.io/mapview/).
+
+
+Vamos criar um mapa interativo com a base de dados `dados_sigbm_sf`:
+
+```{r}
+#| label: sf-mapview-sigbm
+
+mapview::mapview(dados_sigbm_sf) 
+```
+Para visualizar grandes bases de dados espaciais, é interessante rodar a opção a seguir antes de criar o mapa. Para que isso funcione, é necessário ter o pacote `leafgl` instalado.
+
+```{r}
+#| eval: false
+# install.packages("leafgl")
+# Configura a opção
+mapview::mapviewOptions(platform = 'leafgl')
+
+# Visualiza o mapa
+mapview::mapview(dados_sigbm_sf) 
+```
+
+
 ## Geoprocessamento básico 
 
 Em breve!
