@@ -98,7 +98,7 @@ O pacote [`{sf}`](https://r-spatial.github.io/sf/) (*Simple Features for R*) é 
 
 ## Problemas de instalação?
 
-O pacote `{sf}` possui dependências que devem ser instalados no computador (e não no R), e que podem ser um pouco complicadas de instalar.
+O pacote `{sf}` possui dependências que são instalados no computador (e não no R), e que podem ser um pouco complicadas de instalar para quem utiliza **MacOS e Linux**.
 
 Observe que, ao carregar o pacote `{sf}`, uma mensagem é apresentada, com informações sobre as dependências:
 
@@ -109,8 +109,7 @@ library(sf)
 # sf_use_s2() is TRUE
 ```
 
-
-Se você tiver problemas para instalar o pacote, tente instalar o pacote diretamente do GitHub:
+Se você tiver problemas para instalar, tente instalar o pacote diretamente do GitHub:
 
 ```{r}
 #| eval: false
