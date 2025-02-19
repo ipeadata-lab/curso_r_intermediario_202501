@@ -574,16 +574,129 @@ estados_br_simplificado_exagerado <- st_simplify(estados_br,
 ggplot() +
   geom_sf(data = estados_br_simplificado_exagerado)
 ```
-### Filtro e Interseção espacial
-### Cálculo de distâncias
+### Filtro e interseção espacial
 
-Em breve!
+Caso o objetivo é fazer um filtro utilizando algum atributo que está na tabela, podemos utilizar a função `filter()` do pacote `{dplyr}`. Por exemplo, para filtrar os estados de Minas Gerais:
 
+```{r}
+estado_mg <- estados_br |> 
+  filter(abbrev_state == "MG")
+```
+
+Porém, muitas vezes queremos fazer filtros com objetos espaciais. Neste caso, podemos utilizar funções do pacote `{sf}`.
+
+O exemplo abaixo utiliza os dados de barragens de mineração no Brasil (`dados_sigbm_sf`), e filtra as barragens que estão localizadas no estado de Minas Gerais, utilizando a função `st_filter()`:
+
+```{r}
+sigbm_mg <- st_filter(dados_sigbm_sf, estado_mg)
+
+ggplot() +
+  geom_sf(data = estado_mg) +
+  geom_sf(data = sigbm_mg)
+```
+
+Perceba que a função `st_filter()` retorna um objeto do tipo `sf`. Essa função filtra as geometrias inteiras que têm algum ponto dentro da área de interesse. Se uma linha ou polígono tiver pelo menos um ponto dentro do município, ele será mantido inteiro. Portanto, essa função não modifica a geometria original, apenas faz um filtro.
+
+Outra operação espacial muito comum é a interseção entre geometrias. A função `st_intersection()` permite retornar a interseção entre duas geometrias. 
+
+Para este exemplo, vamos carregar a base de dados de rodovias de São Paulo, disponibilizada pelo DNIT:
+
+```{r}
+caminho_dnit_sp <- "https://github.com/ipeadata-lab/curso_r_intermediario_202501/raw/refs/heads/main/dados/shapefiles/dnit/dnit_sp.gpkg"
+
+rodovias_sp <- read_sf(caminho_dnit_sp)
+```
+
+Vamos também carregar o limite do município de Osasco:
 
 ```{r}
 #| echo: false
-# sf::st_point_on_surface()
+municipio_osasco <- read_sf("https://github.com/ipeadata-lab/curso_r_intermediario_202501/raw/refs/heads/main/dados/geobr/osasco-sp.gpkg")
 ```
+
+
+```{r}
+#| eval: false
+municipio_osasco <- read_municipality(code_muni = 3534401)
+```
+
+Vamos visualizar as geometrias:
+
+```{r}
+#| label: sf-ggplot2-intersecao-1
+
+ggplot() +
+  geom_sf(data = rodovias_sp) +
+  geom_sf(data = municipio_osasco, color = "red")
+```
+
+E se a gente quiser saber quais rodovias estão dentro do município de Osasco? Podemos utilizar a função `st_intersection()`:
+
+
+```{r}
+#| label: sf-ggplot2-intersecao-2
+intersection_rodovia_osasco <- st_intersection(rodovias_sp, municipio_osasco)
+
+ggplot() +
+  geom_sf(data = municipio_osasco, color = "red") +
+  geom_sf(data = intersection_rodovia_osasco) 
+```
+
+Essa função retorna apenas a parte da geometria que efetivamente cruza a outra. Se uma linha ou polígono estiver parcialmente dentro da área de interesse, ele será **cortado** na interseção. Essa função é útil quando se deseja manter apenas os trechos de linhas ou polígonos que estão dentro do limite espacial.
+
+Caso você queira manter a geometria original, lembre-se que podemos usar a função `st_filter()`: ela mantém a geometria original, mas filtra as linhas ou polígonos que estão dentro da área de interesse.
+
+```{r}
+#| label: sf-ggplot2-filter-2
+filter_rodovia_osasco <- st_filter(rodovias_sp, municipio_osasco)
+
+ggplot() +
+  geom_sf(data = municipio_osasco, color = "red") +
+  geom_sf(data = filter_rodovia_osasco) 
+```
+
+
+### Cálculo de distâncias e áreas
+
+A função `st_area()` permite calcular a área de uma geometria, e a função `st_distance()` permite calcular a distância entre duas geometrias.
+
+Por exemplo, podemos calcular a área do polígono do município de Osasco:
+
+```{r}
+area_municipio_osasco <- st_area(municipio_osasco)
+area_municipio_osasco
+```
+Também podemos calcular a área de vários polígonos ao mesmo tempo, como os estados brasileiros. A função `st_area()` retorna um vetor com a área de cada polígono:
+
+```{r}
+estados_br$area_estado_m2 <- st_area(estados_br)
+```
+
+Por padrão, a função `st_area()` retorna a área em metros quadrados.
+
+Também podemos calcular a distância entre dois pontos. Por exemplo, vamos calcular a distância entre as duas barragens com maior volume atual:
+
+```{r}
+barragens_alto_volume <- sigbm_mg |> 
+  slice_max(order_by = VolumeAtualFormatado, n = 2) 
+
+st_distance(barragens_alto_volume[1, ], 
+            barragens_alto_volume[2, ], by_element = TRUE)
+```
+Caso seja informado um conjunto de pontos, a função `st_distance()` retorna uma matriz de distâncias entre todos os pontos. Por exemplo:
+
+```{r}
+matriz_de_distancias <- st_distance(head(sigbm_mg))
+
+matriz_de_distancias
+```
+
+## Conclusão
+
+A análise de dados espaciais e o geoprocessamento são áreas muito amplas, e o objetivo desta aula foi apresentar uma introdução!
+
+Nesta aula, aprendemos sobre o pacote `{sf}`, que é um dos principais pacotes para manipulação de dados espaciais no R. Vimos como importar dados espaciais, criar mapas temáticos, realizar geoprocessamento básico e visualização interativa.
+
 
 
 ## Material complementar
