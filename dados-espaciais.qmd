@@ -296,7 +296,17 @@ Em algumas funções, podemos passar argumentos para filtrar os dados que querem
 ::: {.callout-tip}
 ## Como saber o código IBGE de um município?
 
-Você pode consultar o código IBGE de um município no site do [IBGE](https://www.ibge.gov.br/explica/codigos-dos-municipios.php).
+Existe uma função no pacote `{geobr}`, chamada `lookup_muni()`, que permite buscar o código IBGE de um município pelo nome (ou também consultar o nome do município a partir de um código!). Por exemplo:
+
+```{r}
+lookup_muni(name_muni = 'fortaleza')
+
+lookup_muni(code_muni = 4106902)
+```
+
+
+
+Você também pode consultar o código IBGE de um município no site do [IBGE](https://www.ibge.gov.br/explica/codigos-dos-municipios.php).
 
 [![](images/codigo-muni.png){fig-align="center"
 width="80%"}](https://www.ibge.gov.br/explica/codigos-dos-municipios.php)
