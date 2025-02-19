@@ -395,7 +395,7 @@ dados_destino <- voos |>
 
 base_contagem_voos_uf <- bind_rows(dados_origem,
                                    dados_destino) |> # <7>
-  drop_na(estado)
+  drop_na(estado) # <8>
 ```
 1. Conta o número de voos por estado de origem
 2. Renomeia as colunas para padronizar os nomes
@@ -416,6 +416,7 @@ glimpse(base_contagem_voos_uf)
 Vamos utilizar a função `read_state()` do pacote `{geobr}` para obter a delimitação dos estados brasileiros, e então vamos fazer um *join* com a base de dados `base_contagem_voos_uf`:
 
 ```{r}
+#| eval: false
 estados_br <- read_state()
 ```
 ```{r}
@@ -531,12 +532,58 @@ mapview::mapview(dados_sigbm_sf)
 
 ## Geoprocessamento básico 
 
+O geoprocessamento permite realizar operações espaciais, como filtro, interseção e cálculo de distâncias entre objetos geográficos.
+O pacote `{sf}` oferece diversas funções para essas tarefas.
+
+A *cheatsheet* (ou folha de cola) do pacote `{sf}` apresenta diversas as principais funções do pacote. Você pode acessar a *cheatsheet* [neste link](https://github.com/rstudio/cheatsheets/blob/main/sf.pdf).
+
+
+::: {layout-ncol=2}
+![Cheatsheet - Página 1](images/sf_page-0001.jpg)
+
+![Cheatsheet - Página 2](images/sf_page-0002.jpg)
+:::
+
+
+Essa área também é muito ampla, então vamos apresentar apenas algumas funções básicas do pacote `{sf}`.
+ 
+
+### Simplificação de geometrias
+
+Em alguns casos, como quando temos bases de dados muito grandes e limitação de memória RAM, podemos simplificar as geometrias, para reduzir a complexidade dos dados. A função `st_simplify()` permite simplificar geometrias, e é importante observar o argumento `dTolerance`que permite controlar o nível de generalização das unidades do mapa. 
+
+```{r}
+#| label: sf-simplify
+estados_br_simplificado <- st_simplify(estados_br,
+                                       dTolerance = 1000)
+
+
+ggplot() +
+  geom_sf(data = estados_br_simplificado)
+```
+
+
+Mas atenção: a simplificação pode alterar a forma das geometrias, então é importante tomar cuidado com o valor de `dTolerance` para não simplificar demais.
+
+```{r}
+#| label: sf-simplify-exagerado
+estados_br_simplificado_exagerado <- st_simplify(estados_br,
+                                                 dTolerance = 100000)
+
+
+ggplot() +
+  geom_sf(data = estados_br_simplificado_exagerado)
+```
+### Filtro e Interseção espacial
+### Cálculo de distâncias
+
 Em breve!
-<!-- Geoprocessamento básico (operações de filtro e interseção espacial, cálculo de distâncias) -->
 
 
-<!-- https://github.com/rstudio/cheatsheets/blob/main/sf.pdf -->
-
+```{r}
+#| echo: false
+# sf::st_point_on_surface()
+```
 
 
 ## Material complementar
