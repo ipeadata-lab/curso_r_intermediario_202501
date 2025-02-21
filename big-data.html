@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.6.41">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -37,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-48ffa3e5b9d089919c6712c39e5b00f2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-2ce9fc9ac8b614e7ffef13962cc12eaf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -174,7 +208,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#material-complementar" id="toc-material-complementar" class="nav-link active" data-scroll-target="#material-complementar"><span class="header-section-number">9.1</span> Material complementar</a></li>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">9.1</span> Introdução</a></li>
+  <li><a href="#banco-de-dados-sql" id="toc-banco-de-dados-sql" class="nav-link" data-scroll-target="#banco-de-dados-sql"><span class="header-section-number">9.2</span> Banco de dados SQL</a>
+  <ul>
+  <li><a href="#conexão-com-bancos-de-dados-sql" id="toc-conexão-com-bancos-de-dados-sql" class="nav-link" data-scroll-target="#conexão-com-bancos-de-dados-sql"><span class="header-section-number">9.2.1</span> Conexão com bancos de dados SQL</a></li>
+  </ul></li>
+  <li><a href="#utilizando-a-sintaxe-do-dplyr" id="toc-utilizando-a-sintaxe-do-dplyr" class="nav-link" data-scroll-target="#utilizando-a-sintaxe-do-dplyr"><span class="header-section-number">9.3</span> Utilizando a sintaxe do dplyr</a></li>
+  <li><a href="#dbplyr" id="toc-dbplyr" class="nav-link" data-scroll-target="#dbplyr"><span class="header-section-number">9.4</span> dbplyr</a></li>
+  <li><a href="#arrow" id="toc-arrow" class="nav-link" data-scroll-target="#arrow"><span class="header-section-number">9.5</span> Arrow</a></li>
+  <li><a href="#material-complementar" id="toc-material-complementar" class="nav-link" data-scroll-target="#material-complementar"><span class="header-section-number">9.6</span> Material complementar</a></li>
   </ul>
 </nav>
     </div>
@@ -206,9 +248,117 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="introdução" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">9.1</span> Introdução</h2>
+<p>Neste curso (e na maior parte do <a href="https://ipeadata-lab.github.io/curso_r_intro_202409/">curso introdutório</a>), focamos em trabalhar com conjuntos de dados pequenos e que cabem na memória RAM do computador. Isso permite que possamos carregar, manipular e analisar os dados diretamente no R sem grandes preocupações com limitações de hardware.</p>
+<p>No entanto, muitas vezes, os dados são grandes demais para caber na memória do computador. Neste caso, é necessário usar técnicas diferentes para trabalhar com esses dados.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Big Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O termo <em>Big Data</em> é usado para descrever conjuntos de dados que são tão grandes ou complexos que se tornam difíceis de processar com ferramentas tradicionais.</p>
+<p><em>Big Data</em> é geralmente definido em termos de <a href="https://cloud.google.com/learn/what-is-big-data">“3 Vs”: volume, variedade, velocidade</a>.</p>
+<p>Nesta aula, vamos utilizar este termo para descrever <strong>conjuntos de dados que são grandes demais para caber na memória do computador</strong>.</p>
+<blockquote class="blockquote">
+<p><em>““Big Data” is a relative term depending on who is discussing it. Big Data to Amazon or Google is very different than Big Data to a medium-sized insurance organization, but no less “Big” in the minds of those contending with it.”</em> (<a href="https://www.dataversity.net/brief-history-big-data/">A Brief History of Big Data, Keith D, 2017</a>)</p>
+</blockquote>
+</div>
+</div>
+<p>Caso não tenha os pacotes necessários instalados, você pode instalar executando o código abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacotes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"DBI"</span>, <span class="st">"RSQLite"</span>, <span class="st">"dbplyr"</span>, <span class="st">"arrow"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(pacotes)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="banco-de-dados-sql" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="banco-de-dados-sql"><span class="header-section-number">9.2</span> Banco de dados SQL</h2>
+<p>Grande parte dos dados utilizados em pesquisas e análises estão armazenados em bancos de dados relacionais, que utilizam a linguagem SQL (<em>Structured Query Language</em>) para consulta e manipulação de dados.</p>
+<p>O objetivo desta aula <strong>não</strong> é ensinar SQL, mas sim mostrar como podemos usar o R para se conectar a um banco de dados SQL e realizar consultas e manipulações de dados.</p>
+<p>O fluxo de trabalho para trabalhar com dados armazenados em bancos de dados SQL no R é semelhante ao que já aprendemos com o uso de <code>data.frames</code> e <code>tibbles</code>, mas possui algumas diferenças, como:</p>
+<ul>
+<li><p><strong>Conectar com o banco de dados:</strong> em vez de carregar a base completa no R (como fazemos com arquivos <code>.csv</code>), precisamos fazer uma conexão com o banco de dados.</p></li>
+<li><p><strong>Pensar no problema que queremos resolver:</strong> antes de realizar qualquer consulta, é importante ter em mente o que queremos analisar e quais dados são necessários. Por exemplo: se queremos fazer uma análise dos dados da RAIS em um ano específico, e para um estado específico, não faz sentido carregar todos os dados da RAIS no R. Precisamos pensar em quais operações são necessárias.</p></li>
+<li><p><strong>Consulta:</strong> Fazer as operações necessárias no banco de dados para obter os dados desejados.</p></li>
+<li><p><strong>Coletar os dados:</strong> após realizar a consulta, precisamos “coletar” os dados no R para realizar análises.</p></li>
+<li><p><strong>Desconectar do banco de dados:</strong> após finalizar as análises, é importante desconectar do banco de dados.</p></li>
+<li><p><strong>Continuar a análise:</strong> após coletar os dados, podemos continuar a análise como fizemos anteriormente.</p></li>
+</ul>
+<section id="conexão-com-bancos-de-dados-sql" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="conexão-com-bancos-de-dados-sql"><span class="header-section-number">9.2.1</span> Conexão com bancos de dados SQL</h3>
+<p>O pacote <a href="https://dbi.r-dbi.org/"><code>{DBI}</code></a> (<em>R Database Interface</em>) é uma interface para se conectar a bancos de dados SQL. Ele fornece funções que permitem se conectar a diferentes bancos de dados SQL, permitindo que você use a mesma sintaxe.</p>
+<p>Para se conectar a um banco de dados específico, você precisa instalar o pacote que fornece a conexão com o banco de dados, como:</p>
+<ul>
+<li><p>PostgreSQL (com o pacote <a href="https://rpostgres.r-dbi.org/"><code>{RPostgres}</code></a>)</p></li>
+<li><p>MySQL ou MariaDB (com o pacote <a href="https://rmariadb.r-dbi.org/"><code>{RMariaDB}</code></a>)</p></li>
+<li><p>SQLite (com o pacote <a href="https://rsqlite.r-dbi.org/"><code>{RSQLite}</code></a>)</p></li>
+<li><p>Google Big Query (com o pacote <a href="https://bigrquery.r-dbi.org/"><code>{bigrquery}</code></a>)</p></li>
+<li><p>odbc (com o pacote <a href="https://odbc.r-dbi.org/"><code>{odbc}</code></a>)</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("DBI")</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O pacote DBI apresenta funções para se conectar a um banco de dados, como <code>dbConnect()</code> e <code>dbDisconnect()</code>.</p>
+<p>Vamos explorar a função <code>dbConnect()</code> para conectar a um banco de dados. Essa função recebe como argumento <code>drv</code> (o driver do banco de dados) e as informações necessárias para a conexão, como: o nome do banco de dados, o usuário, senha, entre outros.</p>
+<p>Geralmente, acessamos bancos de dados SQL em um servidor, que requer credenciais de acesso, como usuário e senha.</p>
+<p>O código abaixo mostra um exemplo de conexão com um banco de dados PostgreSQL:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">drv =</span> RPostgres<span class="sc">::</span><span class="fu">Postgres</span>(),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">host =</span> <span class="st">"..."</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">user =</span> <span class="st">"..."</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">port =</span> <span class="dv">5432</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">password =</span> <span class="st">"..."</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>No exemplo acima, estamos nos conectando a um banco de dados PostgreSQL, informando o host, usuário, porta e senha. As informações de conexão dependem do banco de dados que você está utilizando, e você deve consultá-las com o administrador do banco de dados.</p>
+<p>Perceba que o código acima salva o resultado da conexão no objeto <code>con</code>. Utilizaremos esse objeto para realizar o acesso ao banco de dados.</p>
+<p>Também é possível se conectar a um banco de dados SQLite, que é um banco de dados disponibilizado em um arquivo, e que não requer um servidor:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(<span class="at">drv =</span> RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(),</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                 <span class="co"># caminho para um arquivo SQLite</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dbname =</span> <span class="st">"dados/flights_br.sqlite"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Conseguimos listar as tabelas disponíveis no banco de dados com a função <code>dbListTables()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] "voos"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Algo importante a se destacar é que, ao finalizar a análise, é importante desconectar do banco de dados com a função <code>dbDisconnect()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(con)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="utilizando-a-sintaxe-do-dplyr" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="utilizando-a-sintaxe-do-dplyr"><span class="header-section-number">9.3</span> Utilizando a sintaxe do dplyr</h2>
+<p><img src="images/logo-dplyr.png" class="img-rstudio" align="right" width="120px"></p>
+<p>No curso anterior, aprendemos a usar o pacote <code>{dplyr}</code> para manipulação de dados. No entanto, exploramos apenas a utilização com o uso de <code>data.frames</code> e <code>tibbles</code>.</p>
+<p>No entanto, o <code>{dplyr}</code> possui suporte para diferentes <em>backends</em> que permitem trabalhar com conjuntos de dados que não cabem na memória do computador. Isso significa que podemos usar a mesma sintaxe do <code>{dplyr}</code> para manipular dados armazenados em bancos de dados SQL, em arquivos Apache Arrow, entre outros. Na documentação, podemos encontrar uma lista de <em>backends</em> disponíveis: <a href="https://dplyr.tidyverse.org/#backends">dplyr backends</a>.</p>
+<p>Vamos explorar dois pacotes que apresentam backends do dplyr: <a href="https://dbplyr.tidyverse.org/articles/dbplyr.html"><code>{dbplyr}</code></a> (para trabalhar com dados armazenados em bancos de dados sql) e <a href="https://arrow.apache.org/docs/r/articles/arrow.html"><code>{Arrow}</code></a>.</p>
+</section>
+<section id="dbplyr" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="dbplyr"><span class="header-section-number">9.4</span> dbplyr</h2>
+<p><img src="images/logo-dbplyr.png" class="img-rstudio" align="right" width="120px"></p>
 <p>Em breve!</p>
-<section id="material-complementar" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="material-complementar"><span class="header-section-number">9.1</span> Material complementar</h2>
+<!-- dbplyr: Uma interface que permite usar a sintaxe do dplyr para manipular dados armazenados em bancos de dados SQL, sem precisar carregar os dados inteiramente na memória. -->
+<!-- # DuckDB e SQL -->
+<!-- DuckDB e SQL: DuckDB é um banco de dados embutido altamente otimizado para consultas analíticas, permitindo trabalhar com grandes conjuntos de dados de forma eficiente sem necessidade de um servidor externo. -->
+</section>
+<section id="arrow" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="arrow"><span class="header-section-number">9.5</span> Arrow</h2>
+<p><img src="images/logo-arrow.png" class="img-rstudio" align="right" width="120px"></p>
+<p>Em breve!</p>
+<!-- Arrow: Permite o uso do formato Apache Arrow para leitura e escrita de dados de forma otimizada, reduzindo o tempo de processamento e permitindo o uso de dados maiores que a memória RAM. -->
+</section>
+<section id="material-complementar" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="material-complementar"><span class="header-section-number">9.6</span> Material complementar</h2>
 <ul>
 <li>Capítulos do livro <a href="https://pt.r4ds.hadley.nz/">“R para Ciência de Dados” (2 ed)</a> por Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund:
 <ul>
