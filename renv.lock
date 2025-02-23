@@ -102,6 +102,25 @@
       ],
       "Hash": "beb7e18bf3f9e096f716a52a77ec793c"
     },
+    "RSQLite": {
+      "Package": "RSQLite",
+      "Version": "2.3.9",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "DBI",
+        "R",
+        "bit64",
+        "blob",
+        "cpp11",
+        "memoise",
+        "methods",
+        "pkgconfig",
+        "plogr",
+        "rlang"
+      ],
+      "Hash": "52294139fc7a21bca806b49ae2f315ca"
+    },
     "Rcpp": {
       "Package": "Rcpp",
       "Version": "1.0.14",
@@ -148,6 +167,28 @@
         "tibble"
       ],
       "Hash": "e7f8b650fdbbb8f93ca067c6fa046be9"
+    },
+    "arrow": {
+      "Package": "arrow",
+      "Version": "18.1.0.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "R6",
+        "assertthat",
+        "bit64",
+        "cpp11",
+        "glue",
+        "methods",
+        "purrr",
+        "rlang",
+        "stats",
+        "tidyselect",
+        "utils",
+        "vctrs"
+      ],
+      "Hash": "0d1937a1096257bd7e4dddbf3e837d9f"
     },
     "askpass": {
       "Package": "askpass",
