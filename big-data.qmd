@@ -447,7 +447,34 @@ Mas o que temos no diretório `dados/flightsbr_parquet/`? Vamos listar os arquiv
 
 
 ```{r}
+#| eval: false
 fs::dir_tree(diretorio_parquet)
+dados/flightsbr_parquet/
+└── nr_ano_referencia=2024
+    ├── nr_mes_referencia=1
+    │   └── part-0.parquet
+    ├── nr_mes_referencia=10
+    │   └── part-0.parquet
+    ├── nr_mes_referencia=11
+    │   └── part-0.parquet
+    ├── nr_mes_referencia=12
+    │   └── part-0.parquet
+    ├── nr_mes_referencia=2
+    │   └── part-0.parquet
+    ├── nr_mes_referencia=3
+    │   └── part-0.parquet
+    ├── nr_mes_referencia=4
+    │   └── part-0.parquet
+    ├── nr_mes_referencia=5
+    │   └── part-0.parquet
+    ├── nr_mes_referencia=6
+    │   └── part-0.parquet
+    ├── nr_mes_referencia=7
+    │   └── part-0.parquet
+    ├── nr_mes_referencia=8
+    │   └── part-0.parquet
+    └── nr_mes_referencia=9
+        └── part-0.parquet
 ```
 
 Podemos também listar os arquivos e o tamanho de cada arquivo com o código abaixo:
