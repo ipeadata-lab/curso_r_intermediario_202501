@@ -455,7 +455,7 @@ Curiosidade: o que é armazenado em uma variável do tipo <code>Date</code>?
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-02-23 01:19:32 UTC"</code></pre>
+<pre><code>[1] "2025-02-23 23:13:49 UTC"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">Sys.time</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1119,10 +1119,11 @@ Exemplo 1: <code>"*.csv$"</code>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="st">"dados"</span>, <span class="at">regexp =</span> <span class="st">".csv$"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>dados/mtcars.csv                 dados/sidrar_4092_bruto.csv      
-dados/sidrar_4092_bruto_2.csv    dados/sigbm_20252118.csv         
-dados/uf_regiao.csv              dados/voos_dez-2024-alterado.csv 
-dados/voos_dez-2024.csv          </code></pre>
+<pre><code>dados/df_voos_contagem_mes_2024.csv dados/mtcars.csv                    
+dados/sidrar_4092_bruto.csv         dados/sidrar_4092_bruto_2.csv       
+dados/sigbm_20252118.csv            dados/tab_tamanho_parquet.csv       
+dados/uf_regiao.csv                 dados/voos_dez-2024-alterado.csv    
+dados/voos_dez-2024.csv             </code></pre>
 </div>
 </div>
 </div>
