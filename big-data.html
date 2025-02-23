@@ -212,9 +212,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#banco-de-dados-sql" id="toc-banco-de-dados-sql" class="nav-link" data-scroll-target="#banco-de-dados-sql"><span class="header-section-number">9.2</span> Banco de dados SQL</a>
   <ul>
   <li><a href="#conexão-com-bancos-de-dados-sql" id="toc-conexão-com-bancos-de-dados-sql" class="nav-link" data-scroll-target="#conexão-com-bancos-de-dados-sql"><span class="header-section-number">9.2.1</span> Conexão com bancos de dados SQL</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">9.2.2</span> Exercícios</a></li>
   </ul></li>
-  <li><a href="#utilizando-a-sintaxe-do-dplyr" id="toc-utilizando-a-sintaxe-do-dplyr" class="nav-link" data-scroll-target="#utilizando-a-sintaxe-do-dplyr"><span class="header-section-number">9.3</span> Utilizando a sintaxe do dplyr</a></li>
-  <li><a href="#dbplyr" id="toc-dbplyr" class="nav-link" data-scroll-target="#dbplyr"><span class="header-section-number">9.4</span> dbplyr</a></li>
+  <li><a href="#utilizando-a-sintaxe-do-dplyr" id="toc-utilizando-a-sintaxe-do-dplyr" class="nav-link" data-scroll-target="#utilizando-a-sintaxe-do-dplyr"><span class="header-section-number">9.3</span> Utilizando a sintaxe do dplyr</a>
+  <ul>
+  <li><a href="#exercícios-1" id="toc-exercícios-1" class="nav-link" data-scroll-target="#exercícios-1"><span class="header-section-number">9.3.1</span> Exercícios</a></li>
+  </ul></li>
+  <li><a href="#dbplyr" id="toc-dbplyr" class="nav-link" data-scroll-target="#dbplyr"><span class="header-section-number">9.4</span> dbplyr</a>
+  <ul>
+  <li><a href="#exercícios-2" id="toc-exercícios-2" class="nav-link" data-scroll-target="#exercícios-2"><span class="header-section-number">9.4.1</span> Exercícios</a></li>
+  </ul></li>
   <li><a href="#arrow" id="toc-arrow" class="nav-link" data-scroll-target="#arrow"><span class="header-section-number">9.5</span> Arrow</a></li>
   <li><a href="#material-complementar" id="toc-material-complementar" class="nav-link" data-scroll-target="#material-complementar"><span class="header-section-number">9.6</span> Material complementar</a></li>
   </ul>
@@ -335,6 +342,10 @@ Big Data
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(con)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
+<section id="exercícios" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">9.2.2</span> Exercícios</h3>
+<p>Em breve!</p>
+</section>
 </section>
 <section id="utilizando-a-sintaxe-do-dplyr" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="utilizando-a-sintaxe-do-dplyr"><span class="header-section-number">9.3</span> Utilizando a sintaxe do dplyr</h2>
@@ -342,14 +353,134 @@ Big Data
 <p>No curso anterior, aprendemos a usar o pacote <code>{dplyr}</code> para manipulação de dados. No entanto, exploramos apenas a utilização com o uso de <code>data.frames</code> e <code>tibbles</code>.</p>
 <p>No entanto, o <code>{dplyr}</code> possui suporte para diferentes <em>backends</em> que permitem trabalhar com conjuntos de dados que não cabem na memória do computador. Isso significa que podemos usar a mesma sintaxe do <code>{dplyr}</code> para manipular dados armazenados em bancos de dados SQL, em arquivos Apache Arrow, entre outros. Na documentação, podemos encontrar uma lista de <em>backends</em> disponíveis: <a href="https://dplyr.tidyverse.org/#backends">dplyr backends</a>.</p>
 <p>Vamos explorar dois pacotes que apresentam backends do dplyr: <a href="https://dbplyr.tidyverse.org/articles/dbplyr.html"><code>{dbplyr}</code></a> (para trabalhar com dados armazenados em bancos de dados sql) e <a href="https://arrow.apache.org/docs/r/articles/arrow.html"><code>{Arrow}</code></a>.</p>
+<p>Antes de explorar os pacotes, vamos conhecer duas funções importantes do <code>{dplyr}</code> que são utilizadas para trabalhar com bancos de dados SQL: <code>tbl()</code> e <code>collect()</code>.</p>
+<ul>
+<li><p><code>tbl()</code>: cria um objeto que representa uma tabela no banco de dados. Esse objeto é uma referência à tabela, e não carrega os dados na memória.</p></li>
+<li><p><code>collect()</code>: coleta os dados da tabela no banco de dados e carrega na memória.</p></li>
+</ul>
+<p>Vamos ver um exemplo de como usar essas funções, a partir de um objeto que representa uma conexão com um banco de dados:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carragar o pacote dplyr</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>db_dados_voos <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">"voos"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>No exemplo acima, criamos um objeto <code>db_dados_voos</code> que representa a tabela <code>voos</code> no banco de dados. Perceba que os dados não foram carregados na memória.</p>
+<p>Podemos verificar o tipo do objeto criado com a função <code>class()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(db_dados_voos)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] "tbl_SQLiteConnection" "tbl_dbi"             </span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># [3] "tbl_sql"              "tbl_lazy"            </span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># [5] "tbl"        </span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Algo muito importante é que, ao usar o <code>tbl()</code>, não conseguimos visualizar as colunas da tabela com a função <code>names()</code>, e precisamos usar a função <code>colnames()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(db_dados_voos)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ! The `names()` method of &lt;tbl_lazy&gt; is for internal</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   use only.</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ℹ Did you mean `colnames()`?</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   [1] "src"        "lazy_query"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Utilizando a função <code>colnames()</code>, conseguimos visualizar as colunas da tabela:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(db_dados_voos)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># [1] "id_basica"                 </span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a> <span class="co"># [2] "id_empresa"                </span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a> <span class="co"># [3] "sg_empresa_icao"           </span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># [4] "sg_empresa_iata"           </span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a> <span class="co"># [5] "nm_empresa"                </span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a> <span class="co"># [6] "nm_pais" </span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a> <span class="co"># .... </span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para coletar os dados na memória, utilizamos a função <code>collect()</code>. Porém o ideal é apenas coletar os dados necessários para a análise, e não a tabela inteira. Vamos explorar exemplos com a função <code>collect()</code> mais adiante.</p>
+<section id="exercícios-1" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="exercícios-1"><span class="header-section-number">9.3.1</span> Exercícios</h3>
+<p>Em breve!</p>
+</section>
 </section>
 <section id="dbplyr" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="dbplyr"><span class="header-section-number">9.4</span> dbplyr</h2>
 <p><img src="images/logo-dbplyr.png" class="img-rstudio" align="right" width="120px"></p>
+<p>O pacote <a href="https://dbplyr.tidyverse.org/"><code>{dbplyr}</code></a> é um <em>backend</em> do <code>{dplyr}</code> que permite usar a sintaxe do <code>{dplyr}</code> para manipular dados armazenados em bancos de dados SQL, sem precisar carregar os dados inteiramente na memória.</p>
+<p>O que o pacote <code>dbplyr</code> faz é <strong>traduzir as operações do <code>{dplyr}</code> em consultas SQL</strong>, que são executadas diretamente no banco de dados.</p>
+<p>Vamos carregar o pacote:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dbplyr)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vamos utilizar o objeto <code>db_dados_voos</code> que criamos anteriormente para explorar o pacote <code>dbplyr</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>db_dados_voos <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">"voos"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As principais funções do <code>dplyr</code> são suportadas pelo <code>dbplyr</code>, como <code>filter()</code>, <code>select()</code>, <code>mutate()</code>, <code>group_by()</code>, <code>summarise()</code>, entre outras.</p>
+<p>Imagine que queremos contar o número de voos por mês e ano. Podemos fazer isso com a função <code>count()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>voos_contagem_mes <span class="ot">&lt;-</span> db_dados_voos <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(nr_ano_referencia, nr_mes_referencia)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Perceba que a operação acima não coleta os dados na memória, mas sim traduz a operação em uma consulta SQL que é executada no banco de dados. A função <code>show_query()</code> permite visualizar a consulta SQL gerada:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">show_query</span>(voos_contagem_mes)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt;SQL&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># SELECT `nr_ano_referencia`, `nr_mes_referencia`, COUNT(*) AS `n`</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># FROM `voos`</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># GROUP BY `nr_ano_referencia`, `nr_mes_referencia`</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Algo muito legal de perceber é como muitas funções do <code>{dplyr}</code> tem nomes muito parecidos com as funções e comandos do SQL. O autor do pacote <code>dplyr</code>, Hadley Wickham, já utilizava SQL antes de criar o pacote <code>{dplyr}</code>!</p>
+<p>Para coletar os dados na memória, utilizamos a função <code>collect()</code>. Ao utilizar essa função, o <code>dbplyr</code> traduz o código em <code>{dplyr}</code> para uma consulta de banco de dados, que é executada, e então e os dados são coletados na memória.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_voos_contagem_mes <span class="ot">&lt;-</span> <span class="fu">collect</span>(voos_contagem_mes)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>df_voos_contagem_mes</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 12 × 3</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#    nr_ano_referencia nr_mes_referencia     n</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#                &lt;dbl&gt;             &lt;dbl&gt; &lt;int&gt;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#  1              2024                 1 82196</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#  2              2024                 2 73587</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#  3              2024                 3 77415</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#  4              2024                 4 77478</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#  5              2024                 5 75139</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#  6              2024                 6 75319</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">#  7              2024                 7 84388</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">#  8              2024                 8 81439</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">#  9              2024                 9 78120</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 10              2024                10 80455</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 11              2024                11 76429</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 12              2024                12 82044</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Nas aulas anteriores, utilizamos os dados de vôos para dezembro/2024. No resultado acima, é possível notar que temos dados de vôos de origem ou destino para o Brasil para todos os meses de 2024.</p>
+<p>Perceba que essa base originalmente tem 944 mil linhas, para apenas um ano. Imagine se a gente precisasse trabalhar com toda a série histórica disponível! Dificilmente seria possível utilizando apenas a memória RAM do computador.</p>
+<p>Observe também que o objeto <code>df_voos_contagem_mes</code> é um <code>tibble</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df_voos_contagem_mes)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] "tbl_df"     "tbl"        "data.frame"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Com os dados coletados na memória, podemos continuar a análise como estamos habituados.</p>
+<p>Entretanto, é importante lembrar que nem todas as funções do <code>dplyr</code> são suportadas pelo <code>dbplyr</code>.</p>
+<p>Um exemplo é a função <code>tail()</code>, que retorna as últimas linhas de uma tabela:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(voos_contagem_mes)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Error in `tail()`:</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ! `tail()` is not supported on database</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   backends.</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Backtrace:</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  1. utils::tail(voos_contagem_mes)</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">#  2. dbplyr:::tail.tbl_lazy(voos_contagem_mes)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Lembre-se de desconectar do banco de dados após finalizar a análise:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(con)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="exercícios-2" class="level3" data-number="9.4.1">
+<h3 data-number="9.4.1" class="anchored" data-anchor-id="exercícios-2"><span class="header-section-number">9.4.1</span> Exercícios</h3>
 <p>Em breve!</p>
-<!-- dbplyr: Uma interface que permite usar a sintaxe do dplyr para manipular dados armazenados em bancos de dados SQL, sem precisar carregar os dados inteiramente na memória. -->
-<!-- # DuckDB e SQL -->
-<!-- DuckDB e SQL: DuckDB é um banco de dados embutido altamente otimizado para consultas analíticas, permitindo trabalhar com grandes conjuntos de dados de forma eficiente sem necessidade de um servidor externo. -->
+</section>
 </section>
 <section id="arrow" class="level2" data-number="9.5">
 <h2 data-number="9.5" class="anchored" data-anchor-id="arrow"><span class="header-section-number">9.5</span> Arrow</h2>
