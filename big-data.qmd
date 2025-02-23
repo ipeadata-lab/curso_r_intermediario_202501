@@ -126,6 +126,9 @@ Algo importante a se destacar é que, ao finalizar a análise, é importante des
 dbDisconnect(con)
 ```
 
+### Exercícios
+
+Em breve!
 
 
 ## Utilizando a sintaxe do dplyr 
@@ -138,19 +141,190 @@ No entanto, o `{dplyr}` possui suporte para diferentes *backends* que permitem t
 
 Vamos explorar dois pacotes que apresentam backends do dplyr: [`{dbplyr}`](https://dbplyr.tidyverse.org/articles/dbplyr.html) (para trabalhar com dados armazenados em bancos de dados sql) e [`{Arrow}`](https://arrow.apache.org/docs/r/articles/arrow.html).
 
+Antes de explorar os pacotes, vamos conhecer duas funções importantes do `{dplyr}` que são utilizadas para trabalhar com bancos de dados SQL: `tbl()` e `collect()`.
+
+- `tbl()`: cria um objeto que representa uma tabela no banco de dados. Esse objeto é uma referência à tabela, e não carrega os dados na memória.
+
+- `collect()`: coleta os dados da tabela no banco de dados e carrega na memória.
+
+Vamos ver um exemplo de como usar essas funções, a partir de um objeto que representa uma conexão com um banco de dados:
+
+```{r}
+#| message: false
+# Carragar o pacote dplyr
+library(dplyr)
+```
+
+
+```{r}
+#| eval: false
+db_dados_voos <- tbl(con, "voos")
+```
+
+No exemplo acima, criamos um objeto `db_dados_voos` que representa a tabela `voos` no banco de dados. Perceba que os dados não foram carregados na memória.
+
+Podemos verificar o tipo do objeto criado com a função `class()`: 
+
+```{r}
+#| eval: false
+class(db_dados_voos)
+
+# [1] "tbl_SQLiteConnection" "tbl_dbi"             
+# [3] "tbl_sql"              "tbl_lazy"            
+# [5] "tbl"        
+```
+Algo muito importante é que, ao usar o `tbl()`, não conseguimos visualizar as colunas da tabela com a função `names()`, e precisamos usar a função `colnames()`:
+
+```{r}
+#| eval: false
+names(db_dados_voos)
+
+# ! The `names()` method of <tbl_lazy> is for internal
+#   use only.
+# ℹ Did you mean `colnames()`?
+#   [1] "src"        "lazy_query"
+```
+
+Utilizando a função `colnames()`, conseguimos visualizar as colunas da tabela:
+
+```{r}
+#| eval: false
+colnames(db_dados_voos)
+
+ # [1] "id_basica"                 
+ # [2] "id_empresa"                
+ # [3] "sg_empresa_icao"           
+ # [4] "sg_empresa_iata"           
+ # [5] "nm_empresa"                
+ # [6] "nm_pais" 
+ # .... 
+```
+
+
+
+Para coletar os dados na memória, utilizamos a função `collect()`. Porém o ideal é apenas coletar os dados necessários para a análise, e não a tabela inteira. Vamos explorar exemplos com a função `collect()` mais adiante.
+
+### Exercícios
+
+Em breve!
+
+
 ## dbplyr
 
 <img src="images/logo-dbplyr.png" class="img-rstudio" align="right" width="120px"/>
 
 
+O pacote [`{dbplyr}`](https://dbplyr.tidyverse.org/) é um *backend* do `{dplyr}` que permite usar a sintaxe do `{dplyr}` para manipular dados armazenados em bancos de dados SQL, sem precisar carregar os dados inteiramente na memória.
+
+O que o pacote `dbplyr` faz é **traduzir as operações do `{dplyr}` em consultas SQL**, que são executadas diretamente no banco de dados.
+
+Vamos carregar o pacote:
+
+```{r}
+#| message: false
+library(dbplyr)
+```
+
+Vamos utilizar o objeto `db_dados_voos` que criamos anteriormente para explorar o pacote `dbplyr`:
+
+```{r}
+#| eval: false
+db_dados_voos <- tbl(con, "voos")
+```
+
+
+As principais funções do `dplyr` são suportadas pelo `dbplyr`, como `filter()`, `select()`, `mutate()`, `group_by()`, `summarise()`, entre outras. 
+
+Imagine que queremos contar o número de voos por mês e ano. Podemos fazer isso com a função `count()`:
+
+```{r}
+#| eval: false
+voos_contagem_mes <- db_dados_voos |> 
+  count(nr_ano_referencia, nr_mes_referencia)
+```
+
+Perceba que a operação acima não coleta os dados na memória, mas sim traduz a operação em uma consulta SQL que é executada no banco de dados. A função `show_query()` permite visualizar a consulta SQL gerada:
+
+```{r}
+#| eval: false
+show_query(voos_contagem_mes)
+
+# <SQL>
+# SELECT `nr_ano_referencia`, `nr_mes_referencia`, COUNT(*) AS `n`
+# FROM `voos`
+# GROUP BY `nr_ano_referencia`, `nr_mes_referencia`
+```
+
+Algo muito legal de perceber é como muitas funções do `{dplyr}` tem nomes muito parecidos com as funções e comandos do SQL. O autor do pacote `dplyr`, Hadley Wickham, já utilizava SQL antes de criar o pacote `{dplyr}`!
+
+
+Para coletar os dados na memória, utilizamos a função `collect()`. Ao utilizar essa função, o `dbplyr` traduz o código em `{dplyr}` para uma consulta de banco de dados, que é executada, e então e os dados são coletados na memória.
+
+```{r}
+#| eval: false
+df_voos_contagem_mes <- collect(voos_contagem_mes)
+
+df_voos_contagem_mes
+
+# # A tibble: 12 × 3
+#    nr_ano_referencia nr_mes_referencia     n
+#                <dbl>             <dbl> <int>
+#  1              2024                 1 82196
+#  2              2024                 2 73587
+#  3              2024                 3 77415
+#  4              2024                 4 77478
+#  5              2024                 5 75139
+#  6              2024                 6 75319
+#  7              2024                 7 84388
+#  8              2024                 8 81439
+#  9              2024                 9 78120
+# 10              2024                10 80455
+# 11              2024                11 76429
+# 12              2024                12 82044
+```
+
+Nas aulas anteriores, utilizamos os dados de vôos para dezembro/2024. No resultado acima, é possível notar que temos dados de vôos de origem ou destino para o Brasil para todos os meses de 2024.
+
+Perceba que essa base originalmente tem 944 mil linhas, para apenas um ano. Imagine se a gente precisasse trabalhar com toda a série histórica disponível! Dificilmente seria possível utilizando apenas a memória RAM do computador.
+
+Observe também que o objeto `df_voos_contagem_mes` é um `tibble`:
+
+```{r}
+#| eval: false
+class(df_voos_contagem_mes)
+# [1] "tbl_df"     "tbl"        "data.frame"
+```
+
+Com os dados coletados na memória, podemos continuar a análise como estamos habituados.
+
+
+Entretanto, é importante lembrar que nem todas as funções do `dplyr` são suportadas pelo `dbplyr`.
+
+Um exemplo é a função `tail()`, que retorna as últimas linhas de uma tabela:
+
+```{r}
+#| eval: false
+tail(voos_contagem_mes)
+
+# Error in `tail()`:
+# ! `tail()` is not supported on database
+#   backends.
+# Backtrace:
+#  1. utils::tail(voos_contagem_mes)
+#  2. dbplyr:::tail.tbl_lazy(voos_contagem_mes)
+```
+
+Lembre-se de desconectar do banco de dados após finalizar a análise:
+
+```{r}
+#| eval: false
+dbDisconnect(con)
+```
+
+### Exercícios 
+
 Em breve!
 
-<!-- dbplyr: Uma interface que permite usar a sintaxe do dplyr para manipular dados armazenados em bancos de dados SQL, sem precisar carregar os dados inteiramente na memória. -->
-
-
-<!-- # DuckDB e SQL -->
-
-<!-- DuckDB e SQL: DuckDB é um banco de dados embutido altamente otimizado para consultas analíticas, permitindo trabalhar com grandes conjuntos de dados de forma eficiente sem necessidade de um servidor externo. -->
 
 ## Arrow
 
