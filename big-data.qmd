@@ -241,7 +241,7 @@ Imagine que queremos contar o número de voos considerando algumas variáveis, c
 
 ```{r}
 #| eval: false
-voos_contagem_mes <- db_dados_voos |> 
+query_voos_contagem_mes <- db_dados_voos |> 
   group_by(nr_ano_referencia, nr_mes_referencia,
            ds_servico_tipo_linha, ds_natureza_etapa) |>
   summarise(quantidade_de_voos = n(), .groups = "drop")
@@ -250,7 +250,7 @@ voos_contagem_mes <- db_dados_voos |>
 
 ```{r}
 #| eval: false
-voos_contagem_mes
+query_voos_contagem_mes
 ```
 
 
@@ -258,7 +258,7 @@ Perceba que a operação acima não coleta os dados na memória, mas sim traduz 
 
 ```{r}
 #| eval: false
-show_query(voos_contagem_mes)
+show_query(query_voos_contagem_mes)
 
 # <SQL>
 # SELECT
@@ -282,7 +282,7 @@ Para coletar os dados na memória, utilizamos a função `collect()`. Ao utiliza
 
 ```{r}
 #| eval: false
-df_voos_contagem_mes <- collect(voos_contagem_mes)
+df_voos_contagem_mes <- collect(query_voos_contagem_mes)
 
 df_voos_contagem_mes
 
@@ -380,14 +380,14 @@ Um exemplo é a função `tail()`, que retorna as últimas linhas de uma tabela:
 
 ```{r}
 #| eval: false
-tail(voos_contagem_mes)
+tail(db_dados_voos)
 
 # Error in `tail()`:
 # ! `tail()` is not supported on database
 #   backends.
 # Backtrace:
-#  1. utils::tail(voos_contagem_mes)
-#  2. dbplyr:::tail.tbl_lazy(voos_contagem_mes)
+#  1. utils::tail(db_dados_voos)
+#  2. dbplyr:::tail.tbl_lazy(db_dados_voos)
 ```
 
 
@@ -401,9 +401,210 @@ Em breve!
 
 <img src="images/logo-arrow.png" class="img-rstudio" align="right" width="120px"/>
 
-Em breve!
 
-<!-- Arrow: Permite o uso do formato Apache Arrow para leitura e escrita de dados de forma otimizada, reduzindo o tempo de processamento e permitindo o uso de dados maiores que a memória RAM. -->
+O [Arrow](https://arrow.apache.org/overview/) é um projeto da [Apache Software Foundation](https://www.apache.org/), com o objetivo de criar um formato colunar universal, e que funcione em várias linguagens de programação.
+
+
+O pacote [`{arrow}`](https://arrow.apache.org/docs/r/articles/arrow.html) é a interface do R para o Arrow, e permite trabalhar com dados armazenados em arquivos no formato `.parquet`. 
+
+Este pacote também é permite usar a mesma sintaxe do `{dplyr}` para manipular dados armazenados em arquivos `.parquet`. Confira a lista de [funções disponíveis com a interface do dplyr](https://arrow.apache.org/docs/r/reference/acero.html?q=dplyr#dplyr).
+
+::: {.callout-note}
+No curso introdutório, na aula sobre [explorando o Censo demográfico](https://ipeadata-lab.github.io/curso_r_intro_202409/11_censobr_microdados.html), foi apresentado um exemplo de uso do pacote `{arrow}` para trabalhar com dados armazenados em arquivos no formato `.parquet`.
+
+Após a leitura desta aula, você pode revisitar o exemplo e explorar outros exemplos com o pacote `{arrow}`.
+:::
+
+Vamos carregar o pacote:
+
+```{r}
+#| message: false
+library(arrow)
+```
+### Importando dados no formato `.parquet`
+
+
+O pacote tem duas funções importantes para a leitura e escrita: `open_dataset()` e `write_dataset()`. 
+
+A função `open_dataset()` permite abrir um conjunto de dados armazenados em um diretório, e a função `write_dataset()` permite escrever um conjunto de dados em um diretório.
+
+Vamos abrir um conjunto de dados de voos armazenados em arquivos `.parquet`. A função `open_dataset()` recebe como argumento o caminho para o diretório onde os arquivos estão armazenados, e o argumento `format = "parquet"`:
+
+```{r}
+diretorio_parquet <- "dados/flightsbr_parquet/"
+```
+
+
+```{r}
+#| eval: false
+dados_voos_parquet <- open_dataset(
+   sources = diretorio_parquet,
+   format = "parquet"
+)
+```
+
+Mas o que temos no diretório `dados/flightsbr_parquet/`? Vamos listar os arquivos com a função `fs::dir_tree()`:
+
+
+```{r}
+fs::dir_tree(diretorio_parquet)
+```
+
+Podemos também listar os arquivos e o tamanho de cada arquivo com o código abaixo:
+
+```{r}
+#| eval: false
+tab_tamanho_parquet <- tibble(
+  arquivos = list.files(diretorio_parquet, recursive = TRUE),
+  tamanho_MB = round(file.size(file.path(diretorio_parquet, arquivos)) / 1024^2, 2)
+)
+```
+
+```{r}
+#| eval: true
+#| echo: false
+#| message: false
+# readr::write_csv2(tab_tamanho_parquet, "dados/tab_tamanho_parquet.csv")
+
+tab_tamanho_parquet <- readr::read_csv2("dados/tab_tamanho_parquet.csv")
+```
+
+
+```{r}
+tab_tamanho_parquet
+```
+
+
+Perceba que o conjunto de dados está dividido em vários arquivos `.parquet`, e que o maior arquivo tem menos de 10 MB. No total, o conjunto de dados tem ~80 MB.
+
+Para fins didáticos, exportei o mesmo conjunto de dados em `.csv`, e o arquivo tem ~800MB.
+
+
+### Utilizando o pacote arrow com o dplyr
+
+Ao executar o objeto `dados_voos_parquet`, percebemos que é bem diferente de um `data.frame` ou `tibble`, pois ele retorna informações sobre a estrutura do conjunto de dados (schema):
+
+```{r}
+#| eval: false
+dados_voos_parquet
+
+# FileSystemDataset with 12 Parquet files
+# 111 columns
+# id_basica: string
+# id_empresa: string
+# sg_empresa_icao: string
+# sg_empresa_iata: string
+# nm_empresa: string
+# nm_pais: string
+# ds_tipo_empresa: string
+# nr_voo: double
+# nr_singular: string
+# id_di: string
+# cd_di: string
+# ds_di: string
+# ds_grupo_di: string
+# dt_referencia: string
+# nr_semestre_referencia: double
+# nm_semestre_referencia: string
+# nr_trimestre_referencia: double
+# nm_trimestre_referencia: string
+# nm_mes_referencia: string
+# nr_semana_referencia: double
+# ...
+# 91 more columns
+# Use `schema()` to see entire schema
+```
+
+Ao consultar a classe de um objeto criado com o pacote `arrow`, percebemos que ele é um `FileSystemDataset`:
+
+```{r}
+#| eval: false
+class(dados_voos_parquet)
+
+# [1] "FileSystemDataset" "Dataset"          
+# [3] "ArrowObject"       "R6"
+```
+Similar ao que fizemos com o `dbplyr`, podemos utilizar a mesma sintaxe do `{dplyr}` para trabalhar com os dados armazenados em arquivos `.parquet`. 
+
+
+```{r}
+#| eval: false
+query_pq_quantidade_voos <- dados_voos_parquet |> 
+  group_by(nr_ano_referencia, nr_mes_referencia,
+           ds_servico_tipo_linha, ds_natureza_etapa) |>
+  summarise(quantidade_de_voos = n(), .groups = "drop")
+```
+
+
+```{r}
+#| eval: false
+query_pq_quantidade_voos
+# FileSystemDataset (query)
+# nr_ano_referencia: int32
+# nr_mes_referencia: int32
+# ds_servico_tipo_linha: string
+# ds_natureza_etapa: string
+# quantidade_de_voos: int64
+# 
+# See $.data for the source Arrow object
+```
+
+Perceba que a operação acima não coleta os dados na memória, mas sim traduz a operação em uma consulta Arrow:
+
+```{r}
+#| eval: false
+show_query(query_pq_quantidade_voos)
+
+# ExecPlan with 4 nodes:
+# 3:SinkNode{}
+#   2:GroupByNode{keys=["nr_ano_referencia", "nr_mes_referencia", "ds_servico_tipo_linha", "ds_natureza_etapa"], aggregates=[
+#   	hash_count_all(*),
+#   ]}
+#     1:ProjectNode{projection=[nr_ano_referencia, nr_mes_referencia, ds_servico_tipo_linha, ds_natureza_etapa]}
+#       0:SourceNode{}
+```
+
+Para coletar os dados na memória, utilizamos a função `collect()` (assim como fizemos com o `dbplyr`):
+
+```{r}
+#| eval: false
+
+df_pq_quantidade_voos <- collect(query_pq_quantidade_voos)
+```
+
+```{r}
+#| eval: false
+df_pq_quantidade_voos
+
+# # A tibble: 60 × 5
+#    nr_ano_referencia nr_mes_referencia ds_servico_tipo_linha
+#                <int>             <int> <chr>                
+#  1              2024                11 NÃO IDENTIFICADO     
+#  2              2024                11 PASSAGEIRO           
+#  3              2024                11 PASSAGEIRO           
+#  4              2024                11 CARGUEIRO            
+#  5              2024                12 PASSAGEIRO           
+#  6              2024                12 NÃO IDENTIFICADO     
+#  7              2024                12 CARGUEIRO            
+#  8              2024                12 PASSAGEIRO           
+#  9              2024                12 CARGUEIRO            
+# 10              2024                 5 PASSAGEIRO           
+# # ℹ 50 more rows
+# # ℹ 2 more variables: ds_natureza_etapa <chr>,
+# #   quantidade_de_voos <int>
+# # ℹ Use `print(n = ...)` to see more rows
+```
+
+
+
+
+
+
+
+
+### Exercícios
+
+Em breve
 
 
 ## Material complementar
