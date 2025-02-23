@@ -49,9 +49,9 @@ O fluxo de trabalho para trabalhar com dados armazenados em bancos de dados SQL 
 - **Consulta:** Fazer as operações necessárias no banco de dados para obter os dados desejados. 
 
 
-- **Coletar os dados:** após realizar a consulta, precisamos "coletar" os dados no R para realizar análises. 
+- **Coletar os dados:** após realizar a consulta, precisamos trazer os dados para a memória da sessão do R, para realizar análises. 
 
-- **Desconectar do banco de dados:** após finalizar as análises, é importante desconectar do banco de dados.
+- **Desconectar do banco de dados:** após finalizar as análises, é importante desconectar do banco de dados para não utilizar recursos desnecessários do servidor.
 
 - **Continuar a análise:** após coletar os dados, podemos continuar a análise como fizemos anteriormente.
 
@@ -77,7 +77,7 @@ Para se conectar a um banco de dados específico, você precisa instalar o pacot
 library(DBI)
 ```
 
-O pacote DBI apresenta funções para se conectar a um banco de dados, como `dbConnect()` e `dbDisconnect()`.
+O pacote DBI apresenta funções para se conectar a um banco de dados, como `dbConnect()` e `dbDisconnect()`. Na prática, essas funções são apenas interfaces, e são implementadas pelos pacotes específicos listados acima. 
 
 Vamos explorar a função `dbConnect()` para conectar a um banco de dados. Essa função recebe como argumento `drv`  (o driver do banco de dados) e as informações necessárias para a conexão, como: o nome do banco de dados, o usuário, senha, entre outros.
 
@@ -119,11 +119,13 @@ dbListTables(con)
 # [1] "voos"
 ```
 
-Algo importante a se destacar é que, ao finalizar a análise, é importante desconectar do banco de dados com a função `dbDisconnect()`:
+Como dito anteriormente, ao finalizar a análise, é necessário desconectar do banco de dados com a função `dbDisconnect()`:
 
 ```{r}
 #| eval: false
 dbDisconnect(con)
+# <SQLiteConnection>
+#   DISCONNECTED
 ```
 
 ### Exercícios
@@ -139,7 +141,7 @@ No curso anterior, aprendemos a usar o pacote `{dplyr}` para manipulação de da
 
 No entanto, o `{dplyr}` possui suporte para diferentes *backends* que permitem trabalhar com conjuntos de dados que não cabem na memória do computador. Isso significa que podemos usar a mesma sintaxe do `{dplyr}` para manipular dados armazenados em bancos de dados SQL, em arquivos Apache Arrow, entre outros. Na documentação, podemos encontrar uma lista de *backends* disponíveis: [dplyr backends](https://dplyr.tidyverse.org/#backends).
 
-Vamos explorar dois pacotes que apresentam backends do dplyr: [`{dbplyr}`](https://dbplyr.tidyverse.org/articles/dbplyr.html) (para trabalhar com dados armazenados em bancos de dados sql) e [`{Arrow}`](https://arrow.apache.org/docs/r/articles/arrow.html).
+Vamos explorar dois pacotes que apresentam backends do dplyr: [`{dbplyr}`](https://dbplyr.tidyverse.org/articles/dbplyr.html) (para trabalhar com dados armazenados em bancos de dados sql) e [`{arrow}`](https://arrow.apache.org/docs/r/articles/arrow.html).
 
 Antes de explorar os pacotes, vamos conhecer duas funções importantes do `{dplyr}` que são utilizadas para trabalhar com bancos de dados SQL: `tbl()` e `collect()`.
 
@@ -235,13 +237,22 @@ db_dados_voos <- tbl(con, "voos")
 
 As principais funções do `dplyr` são suportadas pelo `dbplyr`, como `filter()`, `select()`, `mutate()`, `group_by()`, `summarise()`, entre outras. 
 
-Imagine que queremos contar o número de voos por mês e ano. Podemos fazer isso com a função `count()`:
+Imagine que queremos contar o número de voos considerando algumas variáveis, como o mês, ano, e características do voo:
 
 ```{r}
 #| eval: false
 voos_contagem_mes <- db_dados_voos |> 
-  count(nr_ano_referencia, nr_mes_referencia)
+  group_by(nr_ano_referencia, nr_mes_referencia,
+           ds_servico_tipo_linha, ds_natureza_etapa) |>
+  summarise(quantidade_de_voos = n(), .groups = "drop")
 ```
+
+
+```{r}
+#| eval: false
+voos_contagem_mes
+```
+
 
 Perceba que a operação acima não coleta os dados na memória, mas sim traduz a operação em uma consulta SQL que é executada no banco de dados. A função `show_query()` permite visualizar a consulta SQL gerada:
 
@@ -250,9 +261,18 @@ Perceba que a operação acima não coleta os dados na memória, mas sim traduz 
 show_query(voos_contagem_mes)
 
 # <SQL>
-# SELECT `nr_ano_referencia`, `nr_mes_referencia`, COUNT(*) AS `n`
+# SELECT
+#   `nr_ano_referencia`,
+#   `nr_mes_referencia`,
+#   `ds_servico_tipo_linha`,
+#   `ds_natureza_etapa`,
+#   COUNT(*) AS `quantidade_de_voos`
 # FROM `voos`
-# GROUP BY `nr_ano_referencia`, `nr_mes_referencia`
+# GROUP BY
+#   `nr_ano_referencia`,
+#   `nr_mes_referencia`,
+#   `ds_servico_tipo_linha`,
+#   `ds_natureza_etapa`
 ```
 
 Algo muito legal de perceber é como muitas funções do `{dplyr}` tem nomes muito parecidos com as funções e comandos do SQL. O autor do pacote `dplyr`, Hadley Wickham, já utilizava SQL antes de criar o pacote `{dplyr}`!
@@ -266,26 +286,22 @@ df_voos_contagem_mes <- collect(voos_contagem_mes)
 
 df_voos_contagem_mes
 
-# # A tibble: 12 × 3
-#    nr_ano_referencia nr_mes_referencia     n
-#                <dbl>             <dbl> <int>
-#  1              2024                 1 82196
-#  2              2024                 2 73587
-#  3              2024                 3 77415
-#  4              2024                 4 77478
-#  5              2024                 5 75139
-#  6              2024                 6 75319
-#  7              2024                 7 84388
-#  8              2024                 8 81439
-#  9              2024                 9 78120
-# 10              2024                10 80455
-# 11              2024                11 76429
-# 12              2024                12 82044
+# # A tibble: 60 × 5
+#    nr_ano_referencia nr_mes_referencia ds_servico_tipo_linha ds_natureza_etapa quantidade_de_voos
+#                <dbl>             <dbl> <chr>                 <chr>                          <int>
+#  1              2024                 1 CARGUEIRO             DOMÉSTICA                       1916
+#  2              2024                 1 CARGUEIRO             INTERNACIONAL                    201
+#  3              2024                 1 NÃO IDENTIFICADO      INTERNACIONAL                   9459
+#  4              2024                 1 PASSAGEIRO            DOMÉSTICA                      66719
+#  5              2024                 1 PASSAGEIRO            INTERNACIONAL                   3901
+#  6              2024                 2 CARGUEIRO             DOMÉSTICA                       1787
+#  7              2024                 2 CARGUEIRO             INTERNACIONAL                    195
+#  8              2024                 2 NÃO IDENTIFICADO      INTERNACIONAL                   8867
+#  9              2024                 2 PASSAGEIRO            DOMÉSTICA                      59537
+# 10              2024                 2 PASSAGEIRO            INTERNACIONAL                   3201
+# # ℹ 50 more rows
+# # ℹ Use `print(n = ...)` to see more rows
 ```
-
-Nas aulas anteriores, utilizamos os dados de vôos para dezembro/2024. No resultado acima, é possível notar que temos dados de vôos de origem ou destino para o Brasil para todos os meses de 2024.
-
-Perceba que essa base originalmente tem 944 mil linhas, para apenas um ano. Imagine se a gente precisasse trabalhar com toda a série histórica disponível! Dificilmente seria possível utilizando apenas a memória RAM do computador.
 
 Observe também que o objeto `df_voos_contagem_mes` é um `tibble`:
 
@@ -297,8 +313,68 @@ class(df_voos_contagem_mes)
 
 Com os dados coletados na memória, podemos continuar a análise como estamos habituados.
 
+Vamos visualizar a quantidade de voos domésticos de passageiros por mês em 2024. Para isso vamos preparar os dados, e então utilizar o pacote `{ggplot2}` para criar um gráfico de barras.
 
-Entretanto, é importante lembrar que nem todas as funções do `dplyr` são suportadas pelo `dbplyr`.
+```{r}
+#| message: false
+#| echo: false
+# df_voos_contagem_mes |> 
+#   readr::write_csv2("dados/df_voos_contagem_mes_2024.csv")
+
+df_voos_contagem_mes <- readr::read_csv2("dados/df_voos_contagem_mes_2024.csv")
+```
+
+
+```{r}
+df_voos_contagem_mes_prep <- df_voos_contagem_mes |> 
+  filter(ds_natureza_etapa == "DOMÉSTICA") |> 
+  filter(ds_servico_tipo_linha == "PASSAGEIRO") |> 
+  mutate(mil_voos = quantidade_de_voos / 1000,
+         nr_mes_referencia_fct = factor(nr_mes_referencia,
+                                    levels = 1:12,
+                                    labels = c("Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+                                               "Jul", "Ago", "Set", "Out", "Nov", "Dez")),
+         alta_temporada = ifelse(nr_mes_referencia %in% c(1, 7, 12), "Sim", "Não"),
+         alta_temporada = factor(alta_temporada, levels = c("Sim", "Não")))
+```
+
+
+```{r}
+#| label: "plot-voos"
+
+library(ggplot2)
+
+df_voos_contagem_mes_prep |>
+  ggplot(aes(x = nr_mes_referencia_fct, y = mil_voos)) +
+  geom_col(aes(fill = alta_temporada)) +
+  labs(title = "Quantidade de voos domésticos de passageiros por mês em 2024",
+       x = "Mês",
+       y = "",
+       fill = "Alta temporada") +
+  coord_cartesian(ylim = c(55, 70)) +
+  scale_y_continuous(labels  = ~ paste0(.x, " mil")) +
+  theme_light(base_family = "Arial") +
+  theme(legend.position = "bottom")
+```
+
+
+Nas aulas anteriores, utilizamos os dados de vôos para dezembro/2024. No resultado acima, é possível notar que temos dados de vôos de origem ou destino para o Brasil para todos os meses de 2024.
+
+Essa base originalmente tem 944 mil linhas, para apenas um ano. Imagine se a gente precisasse trabalhar com toda a série histórica disponível! Dificilmente seria possível utilizando apenas a memória RAM do computador.
+
+Lembre-se de desconectar do banco de dados após finalizar a análise:
+
+```{r}
+#| eval: false
+dbDisconnect(con)
+# <SQLiteConnection>
+#   DISCONNECTED
+```
+
+
+### Limitações
+
+Nem todas as funções do `dplyr` são suportadas pelo `dbplyr`.
 
 Um exemplo é a função `tail()`, que retorna as últimas linhas de uma tabela:
 
@@ -314,12 +390,7 @@ tail(voos_contagem_mes)
 #  2. dbplyr:::tail.tbl_lazy(voos_contagem_mes)
 ```
 
-Lembre-se de desconectar do banco de dados após finalizar a análise:
 
-```{r}
-#| eval: false
-dbDisconnect(con)
-```
 
 ### Exercícios 
 
