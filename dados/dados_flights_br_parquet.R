@@ -28,3 +28,7 @@ col_tab_voos |>
   readr::write_csv2("dados/flightsbr_2024.csv")
 
 
+# Criando um zip com os arquivos parquet
+zip::zip(
+  zipfile = "dados/flightsbr_parquet.zip", parquet_path
+)

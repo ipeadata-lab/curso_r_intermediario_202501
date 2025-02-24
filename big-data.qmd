@@ -560,6 +560,19 @@ library(arrow)
 ### Importando dados no formato `.parquet`
 
 
+::: {.callout-note}
+Caso queira fazer download dos arquivos utilizados nos exemplos, [clique aqui](https://github.com/ipeadata-lab/curso_r_intermediario_202501/releases/download/dados/flightsbr_parquet.zip).  
+
+
+Atenção: esse arquivo tem 61.7 MB.
+
+É um arquivo `.zip` e precisa ser descompactado para ser utilizado.
+
+A pasta `flightsbr_parquet` deve ser movida para a pasta `dados` do seu projeto.
+:::
+
+
+
 O pacote tem duas funções importantes para a leitura e escrita: `open_dataset()` e `write_dataset()`. 
 
 A função `open_dataset()` permite abrir um conjunto de dados armazenados em um diretório, e a função `write_dataset()` permite escrever um conjunto de dados em um diretório.
@@ -768,9 +781,12 @@ df_pq_quantidade_voos
 Não é necessário desconectar do banco de dados após finalizar a análise, pois os dados estão armazenados em arquivos `.parquet` (e não em um banco de dados!).
 
 
-### Exercícios
+<!-- ### Exercícios -->
 
-Em breve
+
+
+
+
 
 
 ## Material complementar
@@ -779,3 +795,5 @@ Em breve
   - [Bancos de dados](https://pt.r4ds.hadley.nz/databases.html)
   - [Arrow](https://pt.r4ds.hadley.nz/arrow.html)
 
+
+- No curso introdutório, confira a aula sobre ["Explorando o Censo demográfico"](https://ipeadata-lab.github.io/curso_r_intro_202409/09_censobr_intro.html).
