@@ -130,8 +130,16 @@ dbDisconnect(con)
 
 ### Exercícios
 
-Em breve!
+1. Conecte-se ao banco de dados com as informações abaixo:
+  - **Driver**: SQLite (dica: use `RSQLite::SQLite()` para o argumento `drv`)
+  - **host**: "grotesquely-fatherly-boxfish.data-1.use1.tembo.io"
+  - **user**: "readonly"
+  - **port**: 5432
+  - **password**: "bYKPaY7XOnbs7iIM"
 
+2. Liste as tabelas disponíveis no banco de dados. Quais tabelas estão disponíveis?
+
+Não desconecte do banco de dados, pois vamos utilizar a conexão para os próximos exercícios.
 
 ## Utilizando a sintaxe do dplyr 
 
@@ -420,7 +428,109 @@ tail(db_dados_voos)
 
 ### Exercícios 
 
-Em breve!
+
+1. Crie um objeto que representa a tabela `voos` no banco de dados, utilizando a função `tbl()`. Salve o resultado no objeto `db_dados_voos`.
+
+::: {.callout-caution collapse="true"}
+
+## Expanda para ver uma solução
+
+```{r}
+#| eval: false
+db_dados_voos <- tbl(con, "voos")
+```
+:::
+
+2. Considerando apenas os voos domésticos de passageiros (confira as colunas `ds_natureza_etapa` e `ds_servico_tipo_linha`), confira:
+
+
+::: {.callout-caution collapse="true"}
+
+## Expanda para ver uma solução
+
+```{r}
+#| eval: false
+db_voos_domesticos <- db_dados_voos |> 
+  filter(ds_natureza_etapa == "DOMÉSTICA", ds_servico_tipo_linha == "PASSAGEIRO") 
+```
+:::
+
+a.  O que significa quando a variável `km_distancia` é igual a zero?
+
+
+::: {.callout-caution collapse="true"}
+## Expanda para ver uma solução
+
+```{r}
+#| eval: false
+db_distancia_0km <- db_voos_domesticos |> 
+  mutate(km_distancia = as.numeric(km_distancia)) |> 
+  filter(km_distancia == 0) 
+```
+:::
+
+
+  
+b. Qual a quantidade de voos por empresa que tem distância igual a zero?  
+  
+  
+
+::: {.callout-caution collapse="true"}
+## Expanda para ver uma solução
+
+```{r}
+#| eval: false
+distancia_0km_empresa <- db_distancia_0km |> 
+  count(nm_empresa, sort = TRUE) |> 
+  collect()
+```
+:::  
+  
+c. Quais são os aeroportos de origem dos voos que tiveram mais vôos (em números absolutos) com distância igual a zero?
+
+::: {.callout-caution collapse="true"}
+## Expanda para ver uma solução
+
+```{r}
+#| eval: false
+distancia_0km_aeroportos <- db_distancia_0km |> 
+  count(nm_aerodromo_origem, nm_municipio_origem, sg_uf_origem, sort = TRUE) |> 
+  collect()
+```
+:::  
+
+d. Quais são os aeroportos de origem dos voos que tiveram mais vôos (proporcionalmente) com distância igual a zero?
+
+::: {.callout-caution collapse="true"}
+## Expanda para ver uma solução
+
+```{r}
+#| eval: false
+voos_categorizados_dist_0km <- db_voos_domesticos |>
+  mutate(
+    km_distancia = as.numeric(km_distancia),
+    distancia_0 = ifelse(km_distancia == 0, "voos_0km", "voos_mais_de_0km")
+  ) |>
+  count(nm_aerodromo_origem,
+        nm_municipio_origem,
+        sg_uf_origem,
+        distancia_0,
+        sort = TRUE) |>
+  collect()
+
+voos_categorizados_dist_0km |>
+  tidyr::pivot_wider(names_from = distancia_0,
+                     values_from = n,
+                     values_fill = 0) |>
+  mutate(proporcao_0km = voos_0km / (voos_0km + voos_mais_de_0km)) |>
+  arrange(desc(proporcao_0km))
+```
+:::
+
+3. Desconecte do banco de dados.
+
+
+
 
 
 ## Arrow
