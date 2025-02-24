@@ -224,7 +224,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#importando-dados-no-formato-.parquet" id="toc-importando-dados-no-formato-.parquet" class="nav-link" data-scroll-target="#importando-dados-no-formato-.parquet"><span class="header-section-number">9.5.1</span> Importando dados no formato <code>.parquet</code></a></li>
   <li><a href="#utilizando-o-pacote-arrow-com-o-dplyr" id="toc-utilizando-o-pacote-arrow-com-o-dplyr" class="nav-link" data-scroll-target="#utilizando-o-pacote-arrow-com-o-dplyr"><span class="header-section-number">9.5.2</span> Utilizando o pacote arrow com o dplyr</a></li>
-  <li><a href="#exercícios-2" id="toc-exercícios-2" class="nav-link" data-scroll-target="#exercícios-2"><span class="header-section-number">9.5.3</span> Exercícios</a></li>
   </ul></li>
   <li><a href="#material-complementar" id="toc-material-complementar" class="nav-link" data-scroll-target="#material-complementar"><span class="header-section-number">9.6</span> Material complementar</a></li>
   </ul>
@@ -754,6 +753,22 @@ Nota
 </div>
 <section id="importando-dados-no-formato-.parquet" class="level3" data-number="9.5.1">
 <h3 data-number="9.5.1" class="anchored" data-anchor-id="importando-dados-no-formato-.parquet"><span class="header-section-number">9.5.1</span> Importando dados no formato <code>.parquet</code></h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Caso queira fazer download dos arquivos utilizados nos exemplos, <a href="https://github.com/ipeadata-lab/curso_r_intermediario_202501/releases/download/dados/flightsbr_parquet.zip">clique aqui</a>.</p>
+<p>Atenção: esse arquivo tem 61.7 MB.</p>
+<p>É um arquivo <code>.zip</code> e precisa ser descompactado para ser utilizado.</p>
+<p>A pasta <code>flightsbr_parquet</code> deve ser movida para a pasta <code>dados</code> do seu projeto.</p>
+</div>
+</div>
 <p>O pacote tem duas funções importantes para a leitura e escrita: <code>open_dataset()</code> e <code>write_dataset()</code>.</p>
 <p>A função <code>open_dataset()</code> permite abrir um conjunto de dados armazenados em um diretório, e a função <code>write_dataset()</code> permite escrever um conjunto de dados em um diretório.</p>
 <p>Vamos abrir um conjunto de dados de voos armazenados em arquivos <code>.parquet</code>. A função <code>open_dataset()</code> recebe como argumento o caminho para o diretório onde os arquivos estão armazenados, e o argumento <code>format = "parquet"</code>:</p>
@@ -933,10 +948,7 @@ Nota
 <span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a><span class="co"># # ℹ Use `print(n = ...)` to see more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Não é necessário desconectar do banco de dados após finalizar a análise, pois os dados estão armazenados em arquivos <code>.parquet</code> (e não em um banco de dados!).</p>
-</section>
-<section id="exercícios-2" class="level3" data-number="9.5.3">
-<h3 data-number="9.5.3" class="anchored" data-anchor-id="exercícios-2"><span class="header-section-number">9.5.3</span> Exercícios</h3>
-<p>Em breve</p>
+<!-- ### Exercícios -->
 </section>
 </section>
 <section id="material-complementar" class="level2" data-number="9.6">
@@ -947,6 +959,7 @@ Nota
 <li><a href="https://pt.r4ds.hadley.nz/databases.html">Bancos de dados</a></li>
 <li><a href="https://pt.r4ds.hadley.nz/arrow.html">Arrow</a></li>
 </ul></li>
+<li>No curso introdutório, confira a aula sobre <a href="https://ipeadata-lab.github.io/curso_r_intro_202409/09_censobr_intro.html">“Explorando o Censo demográfico”</a>.</li>
 </ul>
 
 
