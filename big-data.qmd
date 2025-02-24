@@ -202,13 +202,39 @@ colnames(db_dados_voos)
  # .... 
 ```
 
+Também é interessante ver o que é retornado ao chamar o objeto `db_dados_voos`: parece o retorno de uma tibble, mas não temos a informação do número de linhas (aparece `??`), e sim apenas o número de colunas:
+
+```{r}
+#| eval: false
+db_dados_voos
+# # Source:   table<`voos`> [?? x 111]
+# # Database: sqlite 3.47.1 [/Users/beatrizmilz/Documents/IPEA-DATALAB/curso_r_intermediario_202501/dados/flights_br.sqlite]
+#    id_basica id_empresa sg_empresa_icao sg_empresa_iata nm_empresa          nm_pais
+#    <chr>     <chr>      <chr>           <chr>           <chr>               <chr>  
+#  1 27724522  1000641    LTG             M3              ABSA - AEROLINHAS … BRASIL 
+#  2 27724482  1000641    LTG             M3              ABSA - AEROLINHAS … BRASIL 
+#  3 27724537  1000641    LTG             M3              ABSA - AEROLINHAS … BRASIL 
+#  4 27724748  1000641    LTG             M3              ABSA - AEROLINHAS … BRASIL 
+#  5 27724633  1000641    LTG             M3              ABSA - AEROLINHAS … BRASIL 
+#  6 27724678  1000641    LTG             M3              ABSA - AEROLINHAS … BRASIL 
+#  7 27872377  1000974    UAL             UA              UNITED AIRLINES, I… ESTADO…
+#  8 27872383  1000974    UAL             UA              UNITED AIRLINES, I… ESTADO…
+#  9 27872384  1000974    UAL             UA              UNITED AIRLINES, I… ESTADO…
+# 10 27872386  1000974    UAL             UA              UNITED AIRLINES, I… ESTADO…
+# # ℹ more rows
+# # ℹ 105 more variables: ds_tipo_empresa <chr>, nr_voo <dbl>, nr_singular <chr>,
+# #   id_di <chr>, cd_di <chr>, ds_di <chr>, ds_grupo_di <chr>, dt_referencia <chr>,
+# #   nr_ano_referencia <dbl>, nr_semestre_referencia <dbl>,
+# #   nm_semestre_referencia <chr>, nr_trimestre_referencia <dbl>,
+# #   nm_trimestre_referencia <chr>, nr_mes_referencia <dbl>,
+# #   nm_mes_referencia <chr>, nr_semana_referencia <dbl>, …
+# # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
+```
+
 
 
 Para coletar os dados na memória, utilizamos a função `collect()`. Porém o ideal é apenas coletar os dados necessários para a análise, e não a tabela inteira. Vamos explorar exemplos com a função `collect()` mais adiante.
 
-### Exercícios
-
-Em breve!
 
 
 ## dbplyr
@@ -481,19 +507,21 @@ Podemos também listar os arquivos e o tamanho de cada arquivo com o código aba
 
 ```{r}
 #| eval: false
-tab_tamanho_parquet <- tibble(
-  arquivos = list.files(diretorio_parquet, recursive = TRUE),
-  tamanho_MB = round(file.size(file.path(diretorio_parquet, arquivos)) / 1024^2, 2)
-)
+tab_tamanho_parquet <- diretorio_parquet |> 
+  fs::dir_ls(recurse = TRUE, type = "file") |> 
+  fs::file_info() |> 
+  select(path, size) 
 ```
 
 ```{r}
 #| eval: true
 #| echo: false
 #| message: false
-# readr::write_csv2(tab_tamanho_parquet, "dados/tab_tamanho_parquet.csv")
+# readr::write_csv(tab_tamanho_parquet, "dados/tab_tamanho_parquet.csv")
 
-tab_tamanho_parquet <- readr::read_csv2("dados/tab_tamanho_parquet.csv")
+tab_tamanho_parquet <- readr::read_csv("dados/tab_tamanho_parquet.csv")
+
+
 ```
 
 
@@ -505,6 +533,12 @@ tab_tamanho_parquet
 Perceba que o conjunto de dados está dividido em vários arquivos `.parquet`, e que o maior arquivo tem menos de 10 MB. No total, o conjunto de dados tem ~80 MB.
 
 Para fins didáticos, exportei o mesmo conjunto de dados em `.csv`, e o arquivo tem ~800MB.
+
+
+::: {.callout-note}
+Para importar um arquivo único, também é possível utilizar as funções `arrow::read_parquet()` e `arrow::write_parquet()`.
+:::
+
 
 
 ### Utilizando o pacote arrow com o dplyr
