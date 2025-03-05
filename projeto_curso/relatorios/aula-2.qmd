@@ -1,7 +1,8 @@
 ---
+# Material elaborado na aula: https://ipeadata-lab.github.io/curso_r_intermediario_202501/relatorios.html
 title: "Meu primeiro relatório"
 date: "2024-01-22"
-author: 
+author:
   - "Beatriz"
   - "Pedro"
   - "Rafael"
@@ -14,7 +15,7 @@ format:
     number-depth: 6
 lang: pt
 editor: source
-execute: 
+execute:
   message: false
   warning: false
   echo: false
@@ -97,7 +98,7 @@ penguins |>
 ```{r}
 #| label: codigo-escondido-starwars
 #| echo: false
-# starwars |> 
+# starwars |>
 #   ggplot() +
 #   aes(x = height, y = mass) +
 #   geom_point()

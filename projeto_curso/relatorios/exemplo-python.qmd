@@ -1,7 +1,11 @@
 ---
+# Material criado a partir de uma dúvida
+# Aula: https://ipeadata-lab.github.io/curso_r_intermediario_202501/relatorios.html
 title: "Exemplo Quarto com Python"
 jupyter: python3
 ---
+
+# Instalando dependências
 
 ```{python}
 # Executei esses códigos na linha de comando, para instalar as dependências:
@@ -11,6 +15,8 @@ jupyter: python3
 # python -m pip install pandas
 # python -m pip install seaborn
 ```
+
+
 # Importando bibliotecas
 
 ```{python}

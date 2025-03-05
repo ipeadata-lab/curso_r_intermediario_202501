@@ -1,13 +1,14 @@
 ---
+# Material elaborado na aula: https://ipeadata-lab.github.io/curso_r_intermediario_202501/relatorios.html
 title: "Meu primeiro relatório"
 date: "2024-01-22"
-author: 
+author:
   - "Beatriz"
   - "Pedro"
   - "Rafael"
 # https://quarto.org/docs/output-formats/html-basics.html#table-of-contents
 format: #revealjs
-  # docx: 
+  # docx:
   #   reference-doc: template.docx
   html:
     toc: true
@@ -16,7 +17,7 @@ format: #revealjs
     number-depth: 6
 lang: pt
 editor: source
-execute: 
+execute:
   message: false
   warning: false
   echo: false
@@ -99,7 +100,7 @@ penguins |>
 ```{r}
 #| label: codigo-escondido-starwars
 #| echo: false
-# starwars |> 
+# starwars |>
 #   ggplot() +
 #   aes(x = height, y = mass) +
 #   geom_point()
@@ -180,13 +181,13 @@ penguins |>
 ### Tabela
 
 ```{r}
-pinguins_frequencia <- penguins |> 
+pinguins_frequencia <- penguins |>
   count(species, island, sort = TRUE)
 
 pinguins_frequencia
 ```
 
-`knitr::kable()`: 
+`knitr::kable()`:
 
 ```{r}
 knitr::kable(pinguins_frequencia, col.names = c("Espécie", "Ilha", "Quantidade"))
@@ -216,7 +217,7 @@ A base de dados penguins apresenta pinguins de `r length(especies_penguins)` esp
 library(abjData)
 # pnud_min
 
-pnud_mais_recente <- pnud_min |> 
+pnud_mais_recente <- pnud_min |>
   filter(ano == max(ano))
 
 
