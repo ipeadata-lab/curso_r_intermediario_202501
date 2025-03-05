@@ -1,3 +1,6 @@
+# Material da aula: https://ipeadata-lab.github.io/curso_r_intermediario_202501/big-data.html#arrow
+
+
 # Carrega os pacotes necessários
 library(arrow)  # para trabalhar com arquivos parquet
 library(dplyr)  # para manipulação de dados
@@ -19,7 +22,7 @@ schema(dados_voos_parquet)
 
 # Cria uma consulta para contar voos por ano, mês e tipo
 # A consulta não é executada ainda (lazy evaluation)
-query_pq_quantidade_voos <- dados_voos_parquet |> 
+query_pq_quantidade_voos <- dados_voos_parquet |>
   group_by(nr_ano_referencia, nr_mes_referencia,
            ds_servico_tipo_linha, ds_natureza_etapa) |>
   summarise(quantidade_de_voos = n(), .groups = "drop")
@@ -38,7 +41,7 @@ arrow::write_parquet(palmerpenguins::penguins, "dados/pinguins.parquet")
 pinguins_pq <- arrow::read_parquet("dados/pinguins.parquet")
 
 # Código comentado que mostra como escrever dados agrupados em múltiplos arquivos parquet
-# col_tab_voos |> 
-#   group_by(nr_ano_referencia, nr_mes_referencia) |> 
+# col_tab_voos |>
+#   group_by(nr_ano_referencia, nr_mes_referencia) |>
 #   write_dataset(path = parquet_path, format = "parquet")
 

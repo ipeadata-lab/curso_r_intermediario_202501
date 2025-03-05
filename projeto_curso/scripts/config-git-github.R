@@ -1,10 +1,16 @@
+# Material da aula: https://ipeadata-lab.github.io/curso_r_intermediario_202501/git-github.html
+
+# Instalar o pacote usethis, se necessário
 # install.packages("usethis")
+
+# Carregar o pacote usethis
 library(usethis)
 
-# git situation report
+# Relatório da situação do Git
+# Essa função ajuda a encontrar possíveis erros de configuração
 git_sitrep()
 
-# ── Git global (user) 
+# ── Git global (user)
 # • Name: "Beatriz Milz"
 # • Email: "42153618+beatrizmilz@users.noreply.github.com"
 # • Global (user-level) gitignore file:
@@ -12,8 +18,8 @@ git_sitrep()
 # ℹ See `usethis::git_vaccinate()` to learn more.
 # • Default Git protocol: "https"
 # • Default initial branch name: "main"
-# 
-# ── GitHub user 
+#
+# ── GitHub user
 # • Default GitHub host: "https://github.com"
 # ! /Users/beatrizmilz/.Renviron defines the environment variable:
 # • GITHUB_TOKEN
@@ -33,21 +39,21 @@ git_sitrep()
 #   "milz.bea@gmail.com (primary)", and "contato@mangekyou.dev"
 # ✖ Git user's email ("42153618+beatrizmilz@users.noreply.github.com")
 #   doesn't appear to be registered with GitHub host.
-# 
+#
 # ── Active usethis project: "/Users/beatrizmilz/Desktop/ipea-intermediario-2025" ──
-# 
+#
 # ℹ Active project is not a Git repo.
 
-
-# nos apresenta para o Git (o git instalado no computador)
+# Configura o Git com nome e email do usuário
 use_git_config(
   user.name = "Beatriz Milz",
   user.email = "milz.bea@gmail.com"
 )
 
+# Verifica novamente a situação do Git
 git_sitrep()
 
-# ── Git global (user) 
+# ── Git global (user)
 # • Name: "Beatriz Milz"
 # • Email: "42153618+beatrizmilz@users.noreply.github.com"
 
@@ -55,19 +61,21 @@ git_sitrep()
 
 # PAT -----
 
-# função para abrir a página do github e criar um token
+# Abre a página do GitHub para criar um token de acesso pessoal (PAT)
 create_github_token()
 
-# função para salvar o token criado
+# O token tem um formato parecido com isso:
+# ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+# ATENÇÃO: NUNCA SALVE O TOKEN NO SEU SCRIPT!!!!
+
+# Salva o token criado
 gitcreds::gitcreds_set()
 
-# ghp_xxxxxxx
 
 # ? Enter password or token: {COLOCAR O TOKEN!}
 # -> Adding new credentials...
 # -> Removing credentials from cache...
 # -> Done.
-
 
 # Reiniciar a sessão do R
 # Menu superior -> session -> restart R
@@ -76,33 +84,17 @@ gitcreds::gitcreds_set()
 
 library(usethis)
 
-# git situation report
+# Relatório da situação do Git
 git_sitrep()
-
 
 # • Personal access token for "https://github.com": <discovered>
 
-# Se tiver como <unset> é pq deu errado!
+# Se tiver como <unset> é porque deu errado!
 
-
-# transformar o rproj em um repositorio do git
+# Transforma o projeto R em um repositório Git
 library(usethis)
-
 use_git()
 
-
-# usethis::proj_get()
-
-
+# Cria um repositório no GitHub e conecta ao repositório local
 use_github()
-
-
-
-# 
-# ! [remote rejected] HEAD -> main (push declined due to email privacy restrictions)
-# error: failed to push some refs to 'https://github.com/Itaquesb/testeDoGit'
-
-# Itaquê, eu resolvi esse problema mudando as configurações no meu Github: Settings -> Emails  e desabilitei a opção 
-# "Block command line pushes that expose my email"
-
-
+# Irá abrir uma página no seu navegador com a página do repositório criado
