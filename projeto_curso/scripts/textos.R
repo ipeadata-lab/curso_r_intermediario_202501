@@ -1,13 +1,13 @@
 # Material da aula: https://ipeadata-lab.github.io/curso_r_intermediario_202501/texto-data.html#manipula%C3%A7%C3%A3o-de-textos-strings
 
-
+# Carregar pacotes necessários
 library(tidyverse)
 
+# Ler os dados de voos
 voos <- read_csv2("dados/voos_dez-2024-alterado.csv")
 
-# alternativa:
+# Alternativa para ler os dados diretamente da URL
 # voos <- read_csv2("https://github.com/ipeadata-lab/curso_r_intermediario_202501/raw/refs/heads/main/dados/voos_dez-2024-alterado.csv")
-
 
 # textos ----------------------
 
@@ -76,36 +76,46 @@ str_view(palavras_pro, "^pro", html = TRUE)
 str_view(palavras_pro, "pro$", html = TRUE)
 
 # Parte 2 ----------------------
+
+# Filtrar voos com origem em Congonhas
 voos |>
   filter(nm_aerodromo_origem == "CONGONHAS") |> View()
 
+# Filtrar voos com origem em Guarulhos
 voos |>
   filter(nm_aerodromo_origem == "GUARULHOS") |> View()
 
+# Verificar se o nome do aeródromo contém "GUARULHOS"
 str_detect(voos$nm_aerodromo_origem, "GUARULHOS")
 
+# Filtrar voos com origem em Guarulhos e contar
 voos |>
   filter(str_detect(nm_aerodromo_origem, "GUARULHOS")) |>
   count(nm_aerodromo_origem)
 
+# Filtrar voos com origem em Guarulhos ou Congonhas
 voos |>
   filter(str_detect(nm_aerodromo_origem, "GUARULHOS|CONGONHAS"))
 
 # Exemplo LATAM
+# Filtrar voos da LATAM e contar
 voos |>
   filter(str_detect(nm_empresa, "^LATAM")) |>
   count(nm_empresa)
 
+# Outra forma de filtrar voos da LATAM e contar
 voos |>
   filter(str_starts(nm_empresa, "LATAM")) |>  # também existe o str_ends
   count(nm_empresa)
 
-# pergunta: e quando tem maiúscula e minúscula?
+# Pergunta: e quando tem maiúscula e minúscula?
+# Filtrar voos da LATAM ignorando maiúsculas e minúsculas
 voos |>
   filter(str_starts(str_to_lower(nm_empresa), "latam"))
 
-# funções que usamos com mutate
+# Funções que usamos com mutate
 
+# Manipular e limpar nomes de empresas
 voos |>
   distinct(nm_empresa) |>
   mutate(
@@ -117,19 +127,21 @@ voos |>
     # sigla = substr(nome_separado, start = 1, stop = 1)
   ) |> View()
 
-
+# Exemplo de manipulação de espaços em branco
 exemplo_espacos <- tibble(
   nomes = c(" Beatriz Milz", "Beatriz Milz ", "Beatriz  Milz", "Beatriz Milz")
 )
 
+# Contar ocorrências de nomes com espaços em branco
 exemplo_espacos |>
   count(nomes)
 
+# Remover espaços em branco e contar novamente
 exemplo_espacos |>
   mutate(nomes = str_squish(nomes)) |>
   count(nomes)
 
-
+# Limpar e padronizar nomes de aeródromos
 voos |>
   mutate(
     nm_aerodromo_origem = str_squish(nm_aerodromo_origem),
@@ -140,22 +152,25 @@ voos |>
   ) |>
   count(nm_aerodromo_origem, sort = TRUE) |> View()
 
-# reclassificação
+# Reclassificação de empresas aéreas
 
+# Filtrar voos domésticos
 voos_brasil <- voos |>
   filter(ds_natureza_etapa == "DOMÉSTICA")
 
+# Contar ocorrências de empresas aéreas
 voos_brasil |>
   count(nm_empresa, sort = TRUE)
 
+# Filtrar voos da empresa AZUL
 voos_azul <- voos_brasil |>
   filter(str_detect(nm_empresa, "^AZUL "))
 
-
+# Contar ocorrências de voos da empresa AZUL
 voos_azul |>
   count(nm_empresa, sort = TRUE)
 
-
+# Reclassificar nomes de empresas aéreas
 voos_brasil |>
   select(nm_empresa) |>
   mutate(
