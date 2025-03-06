@@ -448,6 +448,16 @@ Também é uma boa prática evitar alterar objetos fora do ambiente de execuçã
 
 Além disso, ao utilizar pacotes dentro de funções, o ideal é usar a notação `::` (por exemplo, `dplyr::filter()`) em vez de `library()`. Isso porque `library()` altera o ambiente global, carregando o pacote para todo o script, enquanto `::` garante que a função específica seja chamada diretamente do pacote desejado, sem afetar o restante do código. Isso melhora a legibilidade e evita conflitos entre funções de diferentes pacotes.
 
+### Dica de organização: função `source()`
+
+Quando aprendemos a criar funções, é comum que a gente crie várias funções para auxiliar nosso trabalho!
+
+Nesse caso, é útil guardar as funções em um script separado e carregá-las no script principal com a função `source(caminho-do-arquivo-com-funcoes.R)`.
+
+A função `source()` executa o código de um arquivo R, permitindo que as funções definidas no arquivo sejam utilizadas no script principal.
+
+Isso ajuda a manter o código organizado e facilita a reutilização de funções em diferentes scripts.
+
 ### Indo além com funções
 
 Nesta aula, apresentamos uma introdução sobre como criar funções no R. Criar funções é uma habilidade importante para tornar o código mais organizado, reutilizável e fácil de manter, e para melhorar essa habilidade é **preciso praticar**!

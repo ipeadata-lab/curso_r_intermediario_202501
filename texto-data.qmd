@@ -897,10 +897,6 @@ O pacote [`{fuzzyjoin}`](https://github.com/dgrtwo/fuzzyjoin) permite fazer join
 O pacote [`{SoundexBR}`](https://github.com/dmarcelinobr/SoundexBR) é um pacote que fornece um algoritmo que possibilita buscar similaridades nos sons das palavras em português (pareamento fonético). 
 
 
-
-
-
-
 ## Material complementar
 
 -   Capítulos do livro ["R para Ciência de Dados" (2 ed)](https://pt.r4ds.hadley.nz/) por Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund:
