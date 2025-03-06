@@ -550,7 +550,8 @@ Embora seja uma ferramenta poderosa, o `{targets}` pode ser excessivo para anál
 
 ## Outros pacotes citados em aula
 
-- [`{reprex}`](https://reprex.tidyverse.org/) - este pacote nos auxilia a criar exemplos reprodutíveis. Ele é útil para compartilhar dúvidas em fóruns, reportar bugs e criar tutoriais. 
+- [`{reprex}`](https://reprex.tidyverse.org/) - este pacote nos auxilia a criar exemplos reprodutíveis. Ele é útil para compartilhar dúvidas em fóruns, reportar bugs e criar tutoriais.
+  - [Existe um vídeo de alguns anos atrás que eu gravei com dicas sobre como usar o reprex ](https://youtu.be/IxlGYVnaGXk?feature=shared).
 
 - [`{conflicted}`](https://conflicted.r-lib.org/) - este pacote nos ajuda a gerenciar conflitos de funções. Ele é útil quando dois pacotes possuem funções com o mesmo nome, e precisamos escolher qual função utilizar. 
 
