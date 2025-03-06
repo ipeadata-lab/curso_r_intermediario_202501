@@ -52,8 +52,8 @@ dados_sigbm <- read_csv2(caminho_arquivo)
 library(parzer)
 
 # Funções para parsear latitude e longitude
-parse_lat()
-parse_lon()
+# parse_lat()
+# parse_lon()
 
 # Parsear as coordenadas e adicionar ao dataframe
 dados_sigbm_parzer <- dados_sigbm |>

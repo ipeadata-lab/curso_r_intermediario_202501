@@ -180,6 +180,57 @@ rodovias_df
 ```
 
 
+::: {.callout-note}
+## CRS - Sistema de referência de coordenadas
+O sistema de referência de coordenadas (CRS - *Coordinate Reference System*) é uma informação importante, pois define como as coordenadas geográficas são representadas. No exemplo acima, o CRS é [`SIRGAS 2000`](https://epsg.io/4674), que é um sistema de referência utilizado no Brasil. 
+
+Cada CRS também possui um código chamado EPSG, que é um identificador único para cada sistema de referência de coordenadas, e pode ser consultado no site [epsg.io](https://epsg.io/). O EPSG para o CRS SIRGAS 2000 é 4674.
+
+A função `sf::st_crs(objeto_sf)` permite consultar o CRS de um objeto do tipo `sf`:
+
+```{r}
+#| eval: false
+sf::st_crs(rodovias_df)
+
+# Coordinate Reference System:
+#   User input: SIRGAS 2000 
+#   wkt:
+# GEOGCRS["SIRGAS 2000",
+#     DATUM["Sistema de Referencia Geocentrico para las AmericaS 2000",
+#         ELLIPSOID["GRS 1980",6378137,298.257222101,
+#             LENGTHUNIT["metre",1]]],
+#     PRIMEM["Greenwich",0,
+#         ANGLEUNIT["degree",0.0174532925199433]],
+#     CS[ellipsoidal,2],
+#         AXIS["geodetic latitude (Lat)",north,
+#             ORDER[1],
+#             ANGLEUNIT["degree",0.0174532925199433]],
+#         AXIS["geodetic longitude (Lon)",east,
+#             ORDER[2],
+#             ANGLEUNIT["degree",0.0174532925199433]],
+#     USAGE[
+#         SCOPE["Horizontal component of 3D system."],
+#         AREA["Latin America - Central America and South America - onshore and offshore. Brazil - onshore and offshore."],
+#         BBOX[-59.87,-122.19,32.72,-25.28]],
+#     ID["EPSG",4674]]
+```
+
+A função `sf::st_transform(objeto_sf, crs = ...)` permite alterar o CRS de um objeto do tipo `sf`. Por exemplo, para alterar o CRS para `WGS 84` (EPSG 4326), podemos fazer:
+
+```{r}
+#| eval: false
+rodovias_sf_wgs84 <- sf::st_transform(rodovias_df, crs = 4326)
+rodovias_sf_wgs84
+
+# Simple feature collection with 128 features and 28 fields
+# Geometry type: LINESTRING
+# Dimension:     XY
+# Bounding box:  xmin: -48.25963 ymin: -16.05217 xmax: -47.3186 ymax: -15.50038
+# Geodetic CRS:  WGS 84
+```
+:::
+
+
 O pacote `ggplot2` apresenta a geometria `geom_sf()` para visualização de dados espaciais. Vamos visualizar no mapa o que foi importado:
 
 ```{r}
@@ -501,6 +552,38 @@ mapa_voos +
   )
 ```
 Neste exemplo, exploramos elementos que te ajudarão a criar mapas temáticos com outros dados!
+
+::: {.callout-note}
+
+## Pacote tmap
+
+Existem outros pacotes que permitem fazer visualizações com dados espaciais, como o [`{tmap}` - *thematic maps in R*](https://r-tmap.github.io/tmap/).
+
+Veja um exemplo de como criar um mapa temático com o pacote `{tmap}`, com os mesmos dados explorados no exemplo acima (filtrados para origem): 
+
+```{r}
+#| label: exemplo-tmap
+library(tmap)
+dados_voos_arrumados |>
+  filter(referencia == "Origem") |>
+  tm_shape() +
+  tm_polygons(
+    fill = "n_voos",
+    fill.scale = tm_scale_intervals(
+      # tipos de quebras: fixed, sd, equal, pretty, quantile, fisher, jenks
+      style = "jenks",
+      # quantidade de classes
+      n = 10,
+      # paleta de cores
+      values = "pu_gn_div"
+    )
+  )
+```
+
+:::
+
+
+
 
 ## Visualização interativa
 
