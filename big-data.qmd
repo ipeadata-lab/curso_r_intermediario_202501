@@ -69,7 +69,7 @@ Para se conectar a um banco de dados específico, você precisa instalar o pacot
 
   - Google Big Query (com o pacote [`{bigrquery}`](https://bigrquery.r-dbi.org/))
 
-  - odbc (com o pacote [`{odbc}`](https://odbc.r-dbi.org/))
+  - Padrão odbc (*Open Database Connectivity*), como por exemplo Microsoft SQL Server (com o pacote [`{odbc}`](https://odbc.r-dbi.org/))
 
 
 ```{r}
@@ -660,6 +660,67 @@ Para fins didáticos, exportei o mesmo conjunto de dados em `.csv`, e o arquivo 
 
 ::: {.callout-note}
 Para importar um arquivo único, também é possível utilizar as funções `arrow::read_parquet()` e `arrow::write_parquet()`.
+:::
+
+
+::: {.callout-note}
+
+Caso você queira exportar os dados particionados por uma ou mais variáveis, utilize o `group_by()` para agrupar pelas variáveis desejadas, e então utilize a função `write_dataset()` para exportar os dados particionados.
+
+Exemplo:
+```{r}
+#| eval: false
+dados_sigbm_parzer |>
+  dplyr::group_by(UF) |>
+  arrow::write_dataset(path = "dados/sigbm/", format = "parquet")
+
+
+fs::dir_tree("dados/sigbm/")
+# dados/sigbm/
+# ├── UF=AL
+# │   └── part-0.parquet
+# ├── UF=AM
+# │   └── part-0.parquet
+# ├── UF=AP
+# │   └── part-0.parquet
+# ├── UF=BA
+# │   └── part-0.parquet
+# ├── UF=GO
+# │   └── part-0.parquet
+# ├── UF=MA
+# │   └── part-0.parquet
+# ├── UF=MG
+# │   └── part-0.parquet
+# ├── UF=MS
+# │   └── part-0.parquet
+# ├── UF=MT
+# │   └── part-0.parquet
+# ├── UF=PA
+# │   └── part-0.parquet
+# ├── UF=PB
+# │   └── part-0.parquet
+# ├── UF=PI
+# │   └── part-0.parquet
+# ├── UF=PR
+# │   └── part-0.parquet
+# ├── UF=RJ
+# │   └── part-0.parquet
+# ├── UF=RN
+# │   └── part-0.parquet
+# ├── UF=RO
+# │   └── part-0.parquet
+# ├── UF=RS
+# │   └── part-0.parquet
+# ├── UF=SC
+# │   └── part-0.parquet
+# ├── UF=SE
+# │   └── part-0.parquet
+# ├── UF=SP
+# │   └── part-0.parquet
+# └── UF=TO
+#     └── part-0.parquet
+```
+
 :::
 
 
