@@ -13,10 +13,17 @@ book:
   title: "R intermediário e pesquisa reprodutível"
   site-url: "https://ipeadata-lab.github.io/curso_r_intermediario_202501"
   repo-url: "https://github.com/ipeadata-lab/curso_r_intermediario_202501"
+  navbar:
+    right: 
+      - text: "Materiais"
+        menu:
+          - text: "Introdução à análise de dados no R"
+            href: "https://ipeadata-lab.github.io/curso_r_intro_202409/"
+          - text: "R intermediário e pesquisa reprodutível"
+            href: "https://ipeadata-lab.github.io/curso_r_intermediario_202501/"
   chapters:
     - text: "Página inicial"
       href: index.qmd  
-#    - href: calendario.qmd
     - href: instalacao.qmd
     - href: reprodutibilidade.qmd
     - href: relatorios.qmd

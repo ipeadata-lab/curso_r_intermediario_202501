@@ -12,7 +12,7 @@ O curso será realizado de forma remota híbrida, com aulas ao vivo e atividades
 
 Além deste site, o material do curso também é composto por:
 
-- [Scripts em R que foram utilizados nas aulas](https://github.com/ipeadata-lab/curso_r_intermediario_202501/tree/main/scripts)
+- [Scripts em R que foram utilizados nas aulas](https://github.com/ipeadata-lab/curso_r_intermediario_202501/tree/main/projeto_curso)
 
 - Gravação das aulas, em um link disponibilizado para as pessoas matriculadas no curso.
 
@@ -34,7 +34,7 @@ Este curso é uma continuação do [Introdução à análise de dados no R](http
 **Beatriz Milz** <br>
 *Pesquisadora Colaboradora | Estágio pós-doutoral* <br>
 [Laboratório de Planejamento Territorial (LaPlan)](https://laplan.pesquisa.ufabc.edu.br/) - Universidade Federal do ABC (UFABC) <br>
-[Email](mailto:milz.bea@gmail.com) | [GitHub](https://github.com/beatrizmilz) | [LinkedIn](https://www.linkedin.com/in/beatrizmilz/) |
+[Email](mailto:milz.bea@gmail.com) | [Website](https://beamilz.com) | [GitHub](https://github.com/beatrizmilz) | [LinkedIn](https://www.linkedin.com/in/beatrizmilz/) |
 [ResearchGate](https://www.researchgate.net/profile/Beatriz-Milz) | [Currículo Lattes](http://lattes.cnpq.br/5150665880581477) | [Orcid](https://orcid.org/0000-0002-3064-4486)
 
 
