@@ -7,17 +7,54 @@ code-annotations: hover
 Os softwares R e RStudio devem ser instalados antes do início do curso. Caso tenha alguma dúvida, consulte as [instruções de instalação do curso introdutório](https://ipeadata-lab.github.io/curso_r_intro_202409/00_instrucoes_pre_curso.html).
 :::
 
-## Instalação de pacotes necessários
+## Instalação de pacotes
 
-Para instalar os pacotes necessários para o curso, execute o seguinte código:
+Para instalar os pacotes usados no curso, execute o seguinte código:
 
 ```{r}
 #| eval: false
-install.packages(c("tidyverse", "usethis", "renv",
-                   "here", "fuzzyjoin", "furrr",
-                   "dbplyr", "arrow", "vroom",
-                   "duckdb", "sf", "geobr", "quarto")) 
+
+pacotes <- c("abjData", "arrow", "DBI", "dbplyr", "duckdb", "fletable", 
+  "fs", "furrr", "future", "fuzzyjoin", "geobr", "gghighlight", 
+  "ggspatial", "ggthemes", "gitcreds", "here", "here", "htmltools", 
+  "janitor", "knitr", "leaflet", "mapview", "palmerpenguins", "parzer", 
+  "quarto", "reactable", "renv", "renv", "RPostgres", "RSQLite", 
+  "sf", "tidyverse", "tinytex", "usethis", "usethis", "vroom")
+
+install.packages(pacotes) 
 ```
+
+Nem todos os pacotes são essenciais para o acompanhamento do curso, alguns são úteis para exemplos mais específicos. 
+
+Caso você tenha problemas com a instalação de algum pacote, tente seguir os passos abaixo:
+
+- Verifique qual é o caminho onde o R está instalando os pacotes. Você pode fazer isso executando o seguinte comando no console do R:
+
+```{r}
+#| eval: false
+.libPaths()
+# > "/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library"
+```
+
+
+- Verifique se não está tentando instalar o pacote em uma pasta que está sincronizada com a nuvem (Google Drive, OneDrive, etc). Isso pode causar problemas na instalação de pacotes. 
+
+- Reinicie o RStudio e tente instalar o pacote novamente.
+
+- Veja a mensagem de erro e tente identificar o problema. 
+
+- O erro indica que falta um pacote de dependência (ou seja, um pacote que o pacote que você está tentando instalar precisa)? Se sim, instale o pacote de dependência e tente instalar o pacote original novamente. As vezes precisamos realizar essa etapa mais de uma vez.
+
+- Se você estiver utilizando o Windows, pode ser necessário instalar o [Rtools](https://cran.r-project.org/bin/windows/Rtools/).
+
+
+- Se você estiver utilizando o Windows, delete o arquivo `00LOCK` na pasta de instalação de pacotes.
+
+- Se você estiver utilizando o Linux ou MacOS, pode ser necessário instalar dependências de sistema. Procure por mensagens de erro que indiquem que você precisa instalar algo no sistema operacional (geralmente no terminal). A documentação de pacotes com dependências de sistema geralmente indica o que é necessário instalar.
+
+
+- Se você não conseguir resolver o problema, peça ajuda para a equipe do curso.
+
 
 ## Instalação do TinyTeX
 
