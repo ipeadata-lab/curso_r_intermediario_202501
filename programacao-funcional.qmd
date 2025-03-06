@@ -56,7 +56,18 @@ nome_da_funcao <- function(argumento1, argumento2, ...) {
 
 Uma forma que facilita o processo de criação de funções é pensar em pequenas tarefas que podem ser agrupadas em uma função. Assim, a função se torna mais fácil de entender e de testar.
 
-Por exemplo, na aula de [relatórios com Quarto](relatorios.qmd), utilizamos a função knitr::combine_words() para combinar palavras em uma frase. Se quisermos criar uma função que faça isso, poderíamos seguir os seguintes passos:
+Por exemplo, na aula de [relatórios com Quarto](relatorios.qmd), utilizamos a função `knitr::combine_words()` para combinar palavras em uma frase. Por exemplo:
+
+```{r}
+knitr::combine_words(
+  unique(voos$sg_uf_origem),
+  and =  " e ",
+  oxford_comma = FALSE
+)
+```
+
+
+Se quisermos criar uma função que faça isso, poderíamos seguir os seguintes passos:
 
 ```{r}
 combinar_palavras <- function(vetor_de_palavras) { #<1>
@@ -397,6 +408,20 @@ contagem_coluna("sg_uf_origem")
 # Experimentando a função: município de origem
 contagem_coluna("nm_municipio_origem")
 ```
+
+::: {callout-note}
+## O que é  `.data[[coluna]]`?
+Essa sintaxe permite acessar a coluna de um data frame.
+
+Essa sintaxe é similar ao subsetting de um data frame (com R base):
+
+```{r}
+options(max.print = 100)
+voos[["sg_uf_origem"]]
+```
+
+:::
+
 
 O que acontece se tentarmos executar a função `contagem_coluna()`? Observe que estamos usando a base de dados `voos` dentro da função, mas ela não foi passada como argumento.
 
