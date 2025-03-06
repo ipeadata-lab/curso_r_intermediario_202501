@@ -892,10 +892,14 @@ ggplot() + # <1>
 
 #### Extra - Joins avançados
 
-O pacote [`{fuzzyjoin}`](https://github.com/dgrtwo/fuzzyjoin) permite fazer joins entre tabelas considerando similaridade entre textos, utilizando técnicas de *fuzzy join*, que permite unir tabelas com base em similaridade parcial entre as chaves, em vez de exigir correspondência exata. Isso é útil quando trabalhamos com bases de dados que podem ter inconsistências, como erros de digitação em nomes de pessoas ou pequenas variações em endereços.
+O pacote [`{fuzzyjoin}`](https://github.com/dgrtwo/fuzzyjoin) permite fazer joins entre tabelas considerando similaridade entre textos, utilizando técnicas de *fuzzy match*, que permite unir tabelas com base em similaridade parcial entre as chaves, em vez de exigir correspondência exata. Isso é útil quando trabalhamos com bases de dados que podem ter inconsistências, como erros de digitação em nomes de pessoas ou pequenas variações em endereços.
 
-<!-- Pareamento (probabilístico e fonético)  - pensar se vamos discutir -->
-<!-- left join window **/ intervalo**; fuzzy join** -->
+O pacote [`{SoundexBR}`](https://github.com/dmarcelinobr/SoundexBR) é um pacote que fornece um algoritmo que possibilita buscar similaridades nos sons das palavras em português (pareamento fonético). 
+
+
+
+
+
 
 ## Material complementar
 
