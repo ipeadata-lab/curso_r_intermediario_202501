@@ -701,6 +701,101 @@ format:
 Caso necessário, consulte a [página de documentação](https://quarto.org/docs/output-formats/html-publishing.html#standalone-html).
 :::
 
+::: callout-note
+## É possível adicionar citações em um documento Quarto?
+
+Sim. O Quarto permite adicionar citações em um documento. Para isso, é necessário utilizar um ou mais arquivos de referências bibliográficas (um arquivo `.bib`), e adicionar as citações no texto utilizando `@` e a chave da citação.
+
+O editor visual também possui uma opção para adicionar citações. Para isso, clique em "Insert" e depois em "Citation". Uma janela será aberta para adicionar a citação.
+
+Leia a [página sobre escrita técnica na documentação do Quarto](https://quarto.org/docs/visual-editor/technical.html#citations) para mais informações.
+:::
+
+::: callout-note
+## É possível conectar o Zotero com o RStudio?
+
+Sim. Para fazer essa configuração, no menu superior clique em "Tools" -> "Global Options" -> "RMarkdown" -> "Citations". Isso abrirá a página onde você pode configurar a conexão com o Zotero.
+
+Nas configurações, você precisa indicar se quer se conectar com a biblioteca local (ou seja, no seu computador) ou web (ou seja, a biblioteca online do Zotero). 
+
+
+
+![Onde configurar o Zotero no RStudio](images/rstudio-zotero.png){class="borda-imagem" fig-align="center" width="80%"}
+
+
+Uma recomendação é utilizar também o [Better Bibtex for Zotero](https://retorque.re/zotero-better-bibtex/), que permite ["fixar" as chaves das referências bibliográficas](https://retorque.re/zotero-better-bibtex/citing/index.html#set-your-own-fixed-citation-keys), evitando que elas mudem ao longo do tempo.
+
+:::
+
+
+:::callout-note
+## Como posso criar um documento Quarto que execute códigos em Python?
+
+Primeiro, é importante que você tenha o Python instalado no seu computador. Para isso, você pode instalar o Python fazendo o download do instalador do [site oficial](https://www.python.org/downloads/).
+
+Instale também o [jupyter](https://jupyter.org/install), caso ainda não tenha instalado: ele será o motor (*engine*) para a elaboração do documento (com R utilizamos o pacote `{knitr}`).
+
+Configure o motor Python no Quarto, adicionando a seguinte configuração nos metadados:
+
+``` r
+---
+jupyter: python3
+---
+```
+
+Para adicionar códigos em Python em um documento Quarto, você pode utilizar o campo de código `python` (ao criar o chunk, em vez de `r`, utilize `python`). Por exemplo:
+
+
+```{python}
+#| echo: fenced
+print("Olá!")
+```
+
+
+Deixamos um exemplo de [arquivo com códigos em Python](https://github.com/ipeadata-lab/curso_r_intermediario_202501/blob/main/projeto_curso/relatorios/exemplo-python.qmd) no repositório do curso. Ele é bem simples, e mostra como adicionar códigos em Python em um documento Quarto.
+
+
+Outra sugestão é consultar documentação:
+
+  - [Using Python](https://quarto.org/docs/computations/python.html)
+
+  - [Code Cells: Jupyter](https://quarto.org/docs/reference/cells/cells-jupyter.html). 
+
+  - [Using Julia](https://quarto.org/docs/computations/julia.html)
+  
+
+:::
+
+
+
+::: callout-note
+## Como personalizar a fonte dos textos?
+
+Você pode alterar as opções de fontes nos metadados do documento. Por exemplo (está exagerado propositalmente, ok?):
+
+``` r
+---
+format: 
+  html:
+    mainfont: "Times New Roman"
+    fontsize: 20pt
+    fontcolor: "red"
+---
+```
+
+Atenção: se você não tiver a fonte instalada no seu computador, o texto será exibido com a fonte padrão do navegador.
+
+[Consulte aqui a documentação](https://quarto.org/docs/reference/formats/html.html#fonts).
+
+Se quiser maior personalização:
+
+- Quando estamos trabalhando com arquivos HTML, podemos utilizar a opção `css` nos metadados para adicionar um arquivo `.css` (ou `.scss`) personalizado. Uma recomendação para que as fontes sempre funcionem, a opção mais fácil é utilizar do [Google Fonts](https://fonts.google.com/).
+
+:::
+
+
+
+
 ### Links úteis na documentação do Quarto
 
 -   [Como instalar](https://quarto.org/docs/get-started/)
