@@ -287,6 +287,11 @@ Siga as instruções que aparecem no *Console* do R, e informe o token gerado qu
 Atenção: após informar o token, reinicie a sessão do RStudio para que as alterações sejam aplicadas: no menu superior do RStudio, clique em `Session` -> `Restart R`.
 
 
+:::{.callout-danger}
+Atenção! **Nunca** escreva o seu token (ou outras senhas que você utiliza) em um script R que você vai fazer controle de versão (ou seja, versionar com o Git e "subir" para o GitHub). 
+:::
+
+
 ### Verificar se o RStudio está conectado ao GitHub
 
 Para verificar se o RStudio está conectado ao GitHub, podemos utilizar novamente a função `git_sitrep()` do pacote `{usethis}`. No output, é importante que a opção `Personal access token for ...` esteja como `<discovered>`:
@@ -465,6 +470,20 @@ Fonte: [Glossário da Carpentries](https://glosario.carpentries.org/pt/)
 "Um repositório é o elemento mais básico do GitHub. É mais fácil imaginá-lo como uma pasta de projetos. Um repositório contém todos os arquivos de projeto (incluindo a documentação) e armazena o histórico de revisão de cada arquivo. Os repositórios podem ter vários colaboradores e podem ser públicos ou privados."
 
 Fonte: [Glossário do GitHub](https://docs.github.com/pt/get-started/learning-about-github/github-glossary)
+:::
+
+::: callout-note
+## Fork
+
+"Um *fork* é uma cópia do repositório de outro usuário que está em sua conta. Os forks permitem que você faça alterações livremente em um projeto sem afetar o repositório original. Você também pode abrir um *pull request* no repositório principal e manter o fork sincronizado com as alterações mais recentes, pois os dois repositórios ainda estão conectados."
+
+Fonte: [Glossário do GitHub](https://docs.github.com/pt/get-started/learning-about-github/github-glossary)
+
+Para [criar um Fork de um repositório](https://docs.github.com/pt/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo#forking-a-repository), acesse a página do repositório no GitHub e clique no botão "Fork" no canto superior direito da página:
+
+![Botão para criar um Fork. Fonte da imagem: [documentação do GitHub.](https://docs.github.com/pt/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)](images/fork-button.webp){class="borda-imagem" fig-align="center" width="80%"}
+
+
 
 ::: 
 
@@ -525,6 +544,40 @@ Fonte: [Glossário do GitHub](https://docs.github.com/pt/get-started/learning-ab
 <!-- - Merge: integração de um branch em outro branch. -->
 
 <!-- - Pull request: solicitação para integrar as alterações de um branch em outro branch. -->
+
+## Dúvidas
+
+
+::: callout-note
+## Qual é o limite de tamanho de arquivos no GitHub?
+
+Existem **limites de tamanho de arquivos** no repositório. Leia mais na documentação:
+  
+  - [Cada push deve ter no máximo 2GB](https://docs.github.com/pt/get-started/using-git/troubleshooting-the-2-gb-push-limit)
+
+  - [O GitHub "reclama" quando fazemos push de arquivos com mais de 50Mb, e bloqueia o push que contém arquivos de mais de 100Mb](https://docs.github.com/pt/repositories/working-with-files/managing-large-files/about-large-files-on-github)
+  
+  - [Para armazenar arquivos grandes, experimente o pacote piggyback](https://docs.ropensci.org/piggyback/): ele auxilia a armazenar arquivos grandes nas RELEASES dos repositórios no GitHub.
+
+::: 
+
+
+::: callout-note
+## Como alterar a visibilidade de um repositório existente?
+
+Para isso, acesse as configurações do repositório (*Settings*):
+
+![](images/github-repo-settings.png){class="borda-imagem" fig-align="center" width="80%"}
+
+E então, ao final da página, em *danger zone* (área de perigo), clique em "Change visibility":
+
+![](images/github-repo-visibility.png){class="borda-imagem" fig-align="center" width="80%"}
+
+
+Para mais informações sobre a visibilidade dos repositórios, e sobre como alterar a visibilidade de um repositório existente, consulte a [documentação do GitHub](https://docs.github.com/pt/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility#about-repository-visibility-changes).
+
+:::
+
 
 
 ## Materiais
