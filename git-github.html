@@ -266,7 +266,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#exercícios-6" id="toc-exercícios-6" class="nav-link" data-scroll-target="#exercícios-6"><span class="header-section-number">5.8.6</span> Exercícios</a></li>
   </ul></li>
   <li><a href="#glossário" id="toc-glossário" class="nav-link" data-scroll-target="#glossário"><span class="header-section-number">5.9</span> Glossário</a></li>
-  <li><a href="#materiais" id="toc-materiais" class="nav-link" data-scroll-target="#materiais"><span class="header-section-number">5.10</span> Materiais</a></li>
+  <li><a href="#dúvidas" id="toc-dúvidas" class="nav-link" data-scroll-target="#dúvidas"><span class="header-section-number">5.10</span> Dúvidas</a></li>
+  <li><a href="#materiais" id="toc-materiais" class="nav-link" data-scroll-target="#materiais"><span class="header-section-number">5.11</span> Materiais</a></li>
   </ul>
 </nav>
     </div>
@@ -629,6 +630,9 @@ O que é uma mensagem de commit?
 </div>
 <p>Siga as instruções que aparecem no <em>Console</em> do R, e informe o token gerado quando solicitado.</p>
 <p>Atenção: após informar o token, reinicie a sessão do RStudio para que as alterações sejam aplicadas: no menu superior do RStudio, clique em <code>Session</code> -&gt; <code>Restart R</code>.</p>
+<div class="callout-danger">
+<p>Atenção! <strong>Nunca</strong> escreva o seu token (ou outras senhas que você utiliza) em um script R que você vai fazer controle de versão (ou seja, versionar com o Git e “subir” para o GitHub).</p>
+</div>
 </section>
 <section id="verificar-se-o-rstudio-está-conectado-ao-github" class="level3" data-number="5.7.5">
 <h3 data-number="5.7.5" class="anchored" data-anchor-id="verificar-se-o-rstudio-está-conectado-ao-github"><span class="header-section-number">5.7.5</span> Verificar se o RStudio está conectado ao GitHub</h3>
@@ -835,6 +839,27 @@ Repositório
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
+Fork
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>“Um <em>fork</em> é uma cópia do repositório de outro usuário que está em sua conta. Os forks permitem que você faça alterações livremente em um projeto sem afetar o repositório original. Você também pode abrir um <em>pull request</em> no repositório principal e manter o fork sincronizado com as alterações mais recentes, pois os dois repositórios ainda estão conectados.”</p>
+<p>Fonte: <a href="https://docs.github.com/pt/get-started/learning-about-github/github-glossary">Glossário do GitHub</a></p>
+<p>Para <a href="https://docs.github.com/pt/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo#forking-a-repository">criar um Fork de um repositório</a>, acesse a página do repositório no GitHub e clique no botão “Fork” no canto superior direito da página:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fork-button.webp" class="borda-imagem img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Botão para criar um Fork. Fonte da imagem: <a href="https://docs.github.com/pt/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo">documentação do GitHub.</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
 Arquivo <code>README</code>
 </div>
 </div>
@@ -903,8 +928,54 @@ Mensagem de <em>Commit</em>
 <!-- - Merge: integração de um branch em outro branch. -->
 <!-- - Pull request: solicitação para integrar as alterações de um branch em outro branch. -->
 </section>
-<section id="materiais" class="level2" data-number="5.10">
-<h2 data-number="5.10" class="anchored" data-anchor-id="materiais"><span class="header-section-number">5.10</span> Materiais</h2>
+<section id="dúvidas" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="dúvidas"><span class="header-section-number">5.10</span> Dúvidas</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Qual é o limite de tamanho de arquivos no GitHub?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Existem <strong>limites de tamanho de arquivos</strong> no repositório. Leia mais na documentação:</p>
+<ul>
+<li><p><a href="https://docs.github.com/pt/get-started/using-git/troubleshooting-the-2-gb-push-limit">Cada push deve ter no máximo 2GB</a></p></li>
+<li><p><a href="https://docs.github.com/pt/repositories/working-with-files/managing-large-files/about-large-files-on-github">O GitHub “reclama” quando fazemos push de arquivos com mais de 50Mb, e bloqueia o push que contém arquivos de mais de 100Mb</a></p></li>
+<li><p><a href="https://docs.ropensci.org/piggyback/">Para armazenar arquivos grandes, experimente o pacote piggyback</a>: ele auxilia a armazenar arquivos grandes nas RELEASES dos repositórios no GitHub.</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Como alterar a visibilidade de um repositório existente?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para isso, acesse as configurações do repositório (<em>Settings</em>):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/github-repo-settings.png" class="borda-imagem img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<p>E então, ao final da página, em <em>danger zone</em> (área de perigo), clique em “Change visibility”:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/github-repo-visibility.png" class="borda-imagem img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<p>Para mais informações sobre a visibilidade dos repositórios, e sobre como alterar a visibilidade de um repositório existente, consulte a <a href="https://docs.github.com/pt/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility#about-repository-visibility-changes">documentação do GitHub</a>.</p>
+</div>
+</div>
+</section>
+<section id="materiais" class="level2" data-number="5.11">
+<h2 data-number="5.11" class="anchored" data-anchor-id="materiais"><span class="header-section-number">5.11</span> Materiais</h2>
 <p>O material do workshop <a href="https://git4researchers-latinr2024.netlify.app/">“Introducción a GitHub para Investigador(a|e)s”</a>, ministrado por Beatriz Milz e Yanina Belllini Saibene, foi utilizado como base para a elaboração de parte do material desta aula.</p>
 
 
