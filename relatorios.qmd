@@ -743,14 +743,7 @@ jupyter: python3
 ---
 ```
 
-Para adicionar códigos em Python em um documento Quarto, você pode utilizar o campo de código `python` (ao criar o chunk, em vez de `r`, utilize `python`). Por exemplo:
-
-
-```{python}
-#| echo: fenced
-print("Olá!")
-```
-
+Para adicionar códigos em Python em um documento Quarto, você pode criar um campo de código `python` (no campo de código, em vez de `{r}`, utilize `{python}`).
 
 Deixamos um exemplo de [arquivo com códigos em Python](https://github.com/ipeadata-lab/curso_r_intermediario_202501/blob/main/projeto_curso/relatorios/exemplo-python.qmd) no repositório do curso. Ele é bem simples, e mostra como adicionar códigos em Python em um documento Quarto.
 
