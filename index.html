@@ -42,11 +42,11 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-a34d670291f06f286357e447776a572a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -73,10 +73,45 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R intermediário e pesquisa reprodutível</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-materiais" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Materiais</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-materiais">    
+        <li>
+    <a class="dropdown-item" href="https://ipeadata-lab.github.io/curso_r_intro_202409/">
+ <span class="dropdown-text">Introdução à análise de dados no R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://ipeadata-lab.github.io/curso_r_intermediario_202501/">
+ <span class="dropdown-text">R intermediário e pesquisa reprodutível</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/ipeadata-lab/curso_r_intermediario_202501" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -85,29 +120,13 @@ ul.task-list li input[type="checkbox"] {
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Página inicial</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">R intermediário e pesquisa reprodutível</a> 
-        <div class="sidebar-tools-main">
-    <a href="https://github.com/ipeadata-lab/curso_r_intermediario_202501" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
-</div>
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Procurar"></div>
-        </div>
-        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -219,7 +238,7 @@ ul.task-list li input[type="checkbox"] {
 <p>O curso será realizado de forma remota híbrida, com aulas ao vivo e atividades práticas.</p>
 <p>Além deste site, o material do curso também é composto por:</p>
 <ul>
-<li><p><a href="https://github.com/ipeadata-lab/curso_r_intermediario_202501/tree/main/scripts">Scripts em R que foram utilizados nas aulas</a></p></li>
+<li><p><a href="https://github.com/ipeadata-lab/curso_r_intermediario_202501/tree/main/projeto_curso">Scripts em R que foram utilizados nas aulas</a></p></li>
 <li><p>Gravação das aulas, em um link disponibilizado para as pessoas matriculadas no curso.</p></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -243,7 +262,7 @@ Nota
 </section>
 <section id="equipe-do-curso" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="equipe-do-curso">Equipe do curso</h2>
-<p><strong>Beatriz Milz</strong> <br> <em>Pesquisadora Colaboradora | Estágio pós-doutoral</em> <br> <a href="https://laplan.pesquisa.ufabc.edu.br/">Laboratório de Planejamento Territorial (LaPlan)</a> - Universidade Federal do ABC (UFABC) <br> <a href="mailto:milz.bea@gmail.com">Email</a> | <a href="https://github.com/beatrizmilz">GitHub</a> | <a href="https://www.linkedin.com/in/beatrizmilz/">LinkedIn</a> | <a href="https://www.researchgate.net/profile/Beatriz-Milz">ResearchGate</a> | <a href="http://lattes.cnpq.br/5150665880581477">Currículo Lattes</a> | <a href="https://orcid.org/0000-0002-3064-4486">Orcid</a></p>
+<p><strong>Beatriz Milz</strong> <br> <em>Pesquisadora Colaboradora | Estágio pós-doutoral</em> <br> <a href="https://laplan.pesquisa.ufabc.edu.br/">Laboratório de Planejamento Territorial (LaPlan)</a> - Universidade Federal do ABC (UFABC) <br> <a href="mailto:milz.bea@gmail.com">Email</a> | <a href="https://beamilz.com">Website</a> | <a href="https://github.com/beatrizmilz">GitHub</a> | <a href="https://www.linkedin.com/in/beatrizmilz/">LinkedIn</a> | <a href="https://www.researchgate.net/profile/Beatriz-Milz">ResearchGate</a> | <a href="http://lattes.cnpq.br/5150665880581477">Currículo Lattes</a> | <a href="https://orcid.org/0000-0002-3064-4486">Orcid</a></p>
 <p><strong>Pedro Cavalcanti Gonçalves Ferreira</strong> <br> <em>Coordenação de Ciência de Dados - COCD</em> <br> Instituto de Pesquisa Econômica Aplicada (Ipea) <br> <a href="https://github.com/cavalcanti1985">GitHub</a> | <a href="https://www.linkedin.com/in/pedro-cavalcanti-256806235/">LinkedIn</a> | <a href="http://lattes.cnpq.br/1425315335920636">Currículo Lattes</a> | <a href="https://orcid.org/0000-0002-8540-1860">Orcid</a></p>
 <p><strong>Rafael H. M. Pereira</strong> <br> <em>Coordenador de Ciência de Dados</em> <br> Instituto de Pesquisa Econômica Aplicada (Ipea) <br> <a href="https://www.urbandemographics.org/about/">Website</a> | <a href="https://scholar.google.com.br/citations?user=dbRivsEAAAAJ&amp;hl">Google Scholar</a> | <a href="https://www.linkedin.com/in/rafael-h-m-pereira/">Linkedin</a> |</p>
 </section>

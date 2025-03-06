@@ -77,11 +77,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-a34d670291f06f286357e447776a572a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -108,10 +108,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R intermediário e pesquisa reprodutível</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-materiais" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Materiais</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-materiais">    
+        <li>
+    <a class="dropdown-item" href="https://ipeadata-lab.github.io/curso_r_intro_202409/">
+ <span class="dropdown-text">Introdução à análise de dados no R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://ipeadata-lab.github.io/curso_r_intermediario_202501/">
+ <span class="dropdown-text">R intermediário e pesquisa reprodutível</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/ipeadata-lab/curso_r_intermediario_202501" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -120,29 +155,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./instalacao.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Instalações e outros preparativos</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">R intermediário e pesquisa reprodutível</a> 
-        <div class="sidebar-tools-main">
-    <a href="https://github.com/ipeadata-lab/curso_r_intermediario_202501" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
-</div>
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Procurar"></div>
-        </div>
-        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -209,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#instalação-de-pacotes-necessários" id="toc-instalação-de-pacotes-necessários" class="nav-link active" data-scroll-target="#instalação-de-pacotes-necessários"><span class="header-section-number">2.1</span> Instalação de pacotes necessários</a></li>
+  <li><a href="#instalação-de-pacotes" id="toc-instalação-de-pacotes" class="nav-link active" data-scroll-target="#instalação-de-pacotes"><span class="header-section-number">2.1</span> Instalação de pacotes</a></li>
   <li><a href="#instalação-do-tinytex" id="toc-instalação-do-tinytex" class="nav-link" data-scroll-target="#instalação-do-tinytex"><span class="header-section-number">2.2</span> Instalação do TinyTeX</a></li>
   <li><a href="#instalar-git" id="toc-instalar-git" class="nav-link" data-scroll-target="#instalar-git"><span class="header-section-number">2.3</span> Instalação do Git</a>
   <ul>
@@ -261,26 +280,49 @@ Importante
 <p>Os softwares R e RStudio devem ser instalados antes do início do curso. Caso tenha alguma dúvida, consulte as <a href="https://ipeadata-lab.github.io/curso_r_intro_202409/00_instrucoes_pre_curso.html">instruções de instalação do curso introdutório</a>.</p>
 </div>
 </div>
-<section id="instalação-de-pacotes-necessários" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="instalação-de-pacotes-necessários"><span class="header-section-number">2.1</span> Instalação de pacotes necessários</h2>
-<p>Para instalar os pacotes necessários para o curso, execute o seguinte código:</p>
+<section id="instalação-de-pacotes" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="instalação-de-pacotes"><span class="header-section-number">2.1</span> Instalação de pacotes</h2>
+<p>Para instalar os pacotes usados no curso, execute o seguinte código:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"usethis"</span>, <span class="st">"renv"</span>,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"here"</span>, <span class="st">"fuzzyjoin"</span>, <span class="st">"furrr"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"dbplyr"</span>, <span class="st">"arrow"</span>, <span class="st">"vroom"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"duckdb"</span>, <span class="st">"sf"</span>, <span class="st">"geobr"</span>, <span class="st">"quarto"</span>)) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacotes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"abjData"</span>, <span class="st">"arrow"</span>, <span class="st">"DBI"</span>, <span class="st">"dbplyr"</span>, <span class="st">"duckdb"</span>, <span class="st">"fletable"</span>, </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"fs"</span>, <span class="st">"furrr"</span>, <span class="st">"future"</span>, <span class="st">"fuzzyjoin"</span>, <span class="st">"geobr"</span>, <span class="st">"gghighlight"</span>, </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggspatial"</span>, <span class="st">"ggthemes"</span>, <span class="st">"gitcreds"</span>, <span class="st">"here"</span>, <span class="st">"here"</span>, <span class="st">"htmltools"</span>, </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"janitor"</span>, <span class="st">"knitr"</span>, <span class="st">"leaflet"</span>, <span class="st">"mapview"</span>, <span class="st">"palmerpenguins"</span>, <span class="st">"parzer"</span>, </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"quarto"</span>, <span class="st">"reactable"</span>, <span class="st">"renv"</span>, <span class="st">"renv"</span>, <span class="st">"RPostgres"</span>, <span class="st">"RSQLite"</span>, </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"sf"</span>, <span class="st">"tidyverse"</span>, <span class="st">"tinytex"</span>, <span class="st">"usethis"</span>, <span class="st">"usethis"</span>, <span class="st">"vroom"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(pacotes) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Nem todos os pacotes são essenciais para o acompanhamento do curso, alguns são úteis para exemplos mais específicos.</p>
+<p>Caso você tenha problemas com a instalação de algum pacote, tente seguir os passos abaixo:</p>
+<ul>
+<li>Verifique qual é o caminho onde o R está instalando os pacotes. Você pode fazer isso executando o seguinte comando no console do R:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.libPaths</span>()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt; "/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><p>Verifique se não está tentando instalar o pacote em uma pasta que está sincronizada com a nuvem (Google Drive, OneDrive, etc). Isso pode causar problemas na instalação de pacotes.</p></li>
+<li><p>Reinicie o RStudio e tente instalar o pacote novamente.</p></li>
+<li><p>Veja a mensagem de erro e tente identificar o problema.</p></li>
+<li><p>O erro indica que falta um pacote de dependência (ou seja, um pacote que o pacote que você está tentando instalar precisa)? Se sim, instale o pacote de dependência e tente instalar o pacote original novamente. As vezes precisamos realizar essa etapa mais de uma vez.</p></li>
+<li><p>Se você estiver utilizando o Windows, pode ser necessário instalar o <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a>.</p></li>
+<li><p>Se você estiver utilizando o Windows, delete o arquivo <code>00LOCK</code> na pasta de instalação de pacotes.</p></li>
+<li><p>Se você estiver utilizando o Linux ou MacOS, pode ser necessário instalar dependências de sistema. Procure por mensagens de erro que indiquem que você precisa instalar algo no sistema operacional (geralmente no terminal). A documentação de pacotes com dependências de sistema geralmente indica o que é necessário instalar.</p></li>
+<li><p>Se você não conseguir resolver o problema, peça ajuda para a equipe do curso.</p></li>
+</ul>
 </section>
 <section id="instalação-do-tinytex" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="instalação-do-tinytex"><span class="header-section-number">2.2</span> Instalação do TinyTeX</h2>
 <p>Para a aula de <a href="./relatorios.html">“Produção de relatórios com Quarto”</a>, para exportar o relatório em PDF será necessário ter algum sistema de LaTeX instalado. O TinyTeX é uma versão mínima do LaTeX que é suficiente para o uso no curso.</p>
 <p>Primeiramente, precisamos instalar o pacote <code>tinytex</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'tinytex'</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'tinytex'</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>E então instalar o TinyTeX:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="instalar-git" class="level2" data-number="2.3">
@@ -297,7 +339,7 @@ Importante
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="o-rstudio-encontrou-a-instalação-do-git"><span class="header-section-number">2.3.1</span> O RStudio encontrou a instalação do Git?</h3>
 <p>Para verificar se o Git foi instalado corretamente, execute o seguinte comando no painel “Terminal” do RStudio:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>git version 2.48.1</code></pre>
 </div>
