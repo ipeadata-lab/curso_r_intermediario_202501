@@ -493,7 +493,7 @@ Curiosidade: o que é armazenado em uma variável do tipo <code>Date</code>?
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-03-06 21:08:14 UTC"</code></pre>
+<pre><code>[1] "2025-03-06 21:17:55 UTC"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">Sys.time</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1661,9 +1661,8 @@ Aviso
 </section>
 <section id="extra---joins-avançados" class="level4" data-number="6.3.3.6">
 <h4 data-number="6.3.3.6" class="anchored" data-anchor-id="extra---joins-avançados"><span class="header-section-number">6.3.3.6</span> Extra - Joins avançados</h4>
-<p>O pacote <a href="https://github.com/dgrtwo/fuzzyjoin"><code>{fuzzyjoin}</code></a> permite fazer joins entre tabelas considerando similaridade entre textos, utilizando técnicas de <em>fuzzy join</em>, que permite unir tabelas com base em similaridade parcial entre as chaves, em vez de exigir correspondência exata. Isso é útil quando trabalhamos com bases de dados que podem ter inconsistências, como erros de digitação em nomes de pessoas ou pequenas variações em endereços.</p>
-<!-- Pareamento (probabilístico e fonético)  - pensar se vamos discutir -->
-<!-- left join window **/ intervalo**; fuzzy join** -->
+<p>O pacote <a href="https://github.com/dgrtwo/fuzzyjoin"><code>{fuzzyjoin}</code></a> permite fazer joins entre tabelas considerando similaridade entre textos, utilizando técnicas de <em>fuzzy match</em>, que permite unir tabelas com base em similaridade parcial entre as chaves, em vez de exigir correspondência exata. Isso é útil quando trabalhamos com bases de dados que podem ter inconsistências, como erros de digitação em nomes de pessoas ou pequenas variações em endereços.</p>
+<p>O pacote <a href="https://github.com/dmarcelinobr/SoundexBR"><code>{SoundexBR}</code></a> é um pacote que fornece um algoritmo que possibilita buscar similaridades nos sons das palavras em português (pareamento fonético).</p>
 </section>
 </section>
 </section>
