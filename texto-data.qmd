@@ -50,6 +50,21 @@ voos <- read_csv2("dados/voos_dez-2024-alterado.csv")
 glimpse(voos)
 ```
 
+::: {.callout-note}
+
+Caso você esteja com dificuldades de fazer download do arquivo `.csv`, você pode importar a base de dados diretamente do GitHub com o código abaixo:
+
+```{r}
+#| eval: false
+library(readr)
+voos <- read_csv2(
+  "https://github.com/ipeadata-lab/curso_r_intermediario_202501/raw/refs/heads/main/dados/voos_dez-2024-alterado.csv"
+  )
+```
+
+
+:::
+
 ## Manipulação de datas
 
 
