@@ -1260,6 +1260,94 @@ Arquivo autocontido
 <p>Caso necessário, consulte a <a href="https://quarto.org/docs/output-formats/html-publishing.html#standalone-html">página de documentação</a>.</p>
 </div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+É possível adicionar citações em um documento Quarto?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sim. O Quarto permite adicionar citações em um documento. Para isso, é necessário utilizar um ou mais arquivos de referências bibliográficas (um arquivo <code>.bib</code>), e adicionar as citações no texto utilizando <code>@</code> e a chave da citação.</p>
+<p>O editor visual também possui uma opção para adicionar citações. Para isso, clique em “Insert” e depois em “Citation”. Uma janela será aberta para adicionar a citação.</p>
+<p>Leia a <a href="https://quarto.org/docs/visual-editor/technical.html#citations">página sobre escrita técnica na documentação do Quarto</a> para mais informações.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+É possível conectar o Zotero com o RStudio?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sim. Para fazer essa configuração, no menu superior clique em “Tools” -&gt; “Global Options” -&gt; “RMarkdown” -&gt; “Citations”. Isso abrirá a página onde você pode configurar a conexão com o Zotero.</p>
+<p>Nas configurações, você precisa indicar se quer se conectar com a biblioteca local (ou seja, no seu computador) ou web (ou seja, a biblioteca online do Zotero).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/rstudio-zotero.png" class="borda-imagem img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Onde configurar o Zotero no RStudio</figcaption>
+</figure>
+</div>
+<p>Uma recomendação é utilizar também o <a href="https://retorque.re/zotero-better-bibtex/">Better Bibtex for Zotero</a>, que permite <a href="https://retorque.re/zotero-better-bibtex/citing/index.html#set-your-own-fixed-citation-keys">“fixar” as chaves das referências bibliográficas</a>, evitando que elas mudem ao longo do tempo.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Como posso criar um documento Quarto que execute códigos em Python?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Primeiro, é importante que você tenha o Python instalado no seu computador. Para isso, você pode instalar o Python fazendo o download do instalador do <a href="https://www.python.org/downloads/">site oficial</a>.</p>
+<p>Instale também o <a href="https://jupyter.org/install">jupyter</a>, caso ainda não tenha instalado: ele será o motor (<em>engine</em>) para a elaboração do documento (com R utilizamos o pacote <code>{knitr}</code>).</p>
+<p>Configure o motor Python no Quarto, adicionando a seguinte configuração nos metadados:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>jupyter<span class="sc">:</span> python3</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para adicionar códigos em Python em um documento Quarto, você pode criar um campo de código <code>python</code> (no campo de código, em vez de <code>{r}</code>, utilize <code>{python}</code>).</p>
+<p>Deixamos um exemplo de <a href="https://github.com/ipeadata-lab/curso_r_intermediario_202501/blob/main/projeto_curso/relatorios/exemplo-python.qmd">arquivo com códigos em Python</a> no repositório do curso. Ele é bem simples, e mostra como adicionar códigos em Python em um documento Quarto.</p>
+<p>Outra sugestão é consultar documentação:</p>
+<ul>
+<li><p><a href="https://quarto.org/docs/computations/python.html">Using Python</a></p></li>
+<li><p><a href="https://quarto.org/docs/reference/cells/cells-jupyter.html">Code Cells: Jupyter</a>.</p></li>
+<li><p><a href="https://quarto.org/docs/computations/julia.html">Using Julia</a></p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Como personalizar a fonte dos textos?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Você pode alterar as opções de fontes nos metadados do documento. Por exemplo (está exagerado propositalmente, ok?):</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  html<span class="sc">:</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    mainfont<span class="sc">:</span> <span class="st">"Times New Roman"</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="sc">:</span> <span class="dv">20</span>pt</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    fontcolor<span class="sc">:</span> <span class="st">"red"</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Atenção: se você não tiver a fonte instalada no seu computador, o texto será exibido com a fonte padrão do navegador.</p>
+<p><a href="https://quarto.org/docs/reference/formats/html.html#fonts">Consulte aqui a documentação</a>.</p>
+<p>Se quiser maior personalização:</p>
+<ul>
+<li>Quando estamos trabalhando com arquivos HTML, podemos utilizar a opção <code>css</code> nos metadados para adicionar um arquivo <code>.css</code> (ou <code>.scss</code>) personalizado. Uma recomendação para que as fontes sempre funcionem, a opção mais fácil é utilizar do <a href="https://fonts.google.com/">Google Fonts</a>.</li>
+</ul>
+</div>
+</div>
 </section>
 <section id="links-úteis-na-documentação-do-quarto" class="level3" data-number="4.4.14">
 <h3 data-number="4.4.14" class="anchored" data-anchor-id="links-úteis-na-documentação-do-quarto"><span class="header-section-number">4.4.14</span> Links úteis na documentação do Quarto</h3>
