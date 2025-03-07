@@ -70,6 +70,8 @@ Para saber mais sobre o uso do VS Code com R, consulte:
 
 - [Documentação do VS Code: *R in Visual Studio Code*](https://code.visualstudio.com/docs/languages/r)
 
+- Post [R no VS Code](https://lente.dev/posts/vscode-r/), por [Caio Lente](https://lente.dev/).
+
 
 
 ### GitHub Copilot no VS Code
@@ -123,6 +125,37 @@ Existem outras extensões que permitem utilizar ferramentas de IA no VS Code, co
 
 ## Positron
 
+Um breve contexto histórico: até 2022, a empresa que desenvolvia o RStudio era chamada de... **RStudio PBC**. Em 2022, a empresa mudou de nome para Posit. Essa mudança de nome foi feita para refletir a expansão da empresa para além da IDE RStudio. Desde então, a Posit tem desenvolvido novas ferramentas e produtos para usar além do R, como o [Positron](https://posit.co/positron/).
+
+O Positron é uma IDE que permite programar em diversas linguagens de programação, como Python, R, Julia, entre outras. Ele é uma alternativa ao RStudio e ao VS Code, e é uma opção para quem programa em várias linguagens de programação.
+
+![Captura de tela do Positron](images/positron.png)
+
+
+
+O Positron é visualmente parecido com o VS Code, pois é baseado no [CODE OSS](https://github.com/microsoft/vscode) (a versão open-source do VS Code). Porém, o Positron foi desenvolvido para ser usado para análise de dados com R e Python.
+
+
+
+Comentamos anteriormente que o VS Code apresenta algumas dificuldades para programar em R: esse não é o caso do Positron, pois **foi desenvolvido para facilitar o uso do R e Python**. No canto superior direito da tela existe um botão que permite alternar entre R e Python:
+
+![Captura de tela do Positron: Botão para alterar entre R e Python](images/positron-r-python.png)
+
+
+Outra coisa muito legal é que o Positron tem acesso à loja de extensões do VS Code, então a maioria das extensões citadas anteriormente para o VS Code podem ser utilizadas no Positron.
+
+
+![Captura de tela do Positron: Extensões](images/positron-extensoes.png)
+
+
+- [Veja como começar a usar o Positron na documentação](https://positron.posit.co/start.html)
+
+### GitHub Copilot no Positron
+
+Em breve!
+
+### Outras extensões
+
 Em breve!
 
 
@@ -154,3 +187,8 @@ Alguns trechos deste texto foram adaptados do post ["Como começar a utilizar o 
 ## Extra
 
 - [2023] A palestra ["Large Language Models no Direito"](https://jtrecenti.github.io/slides/docs/gptjur/index.html#/title-slide) ([video disponível no Youtube](https://www.youtube.com/live/XaoUJkplDJM?feature=shared&t=470) e [código disponível no GitHub](https://github.com/jtrecenti/slides/tree/master/20230920-gptjur)) é um exemplo de aplicação de uso de LLMs no R.
+
+
+- TO DO: Adicionar live da Curso-R que o Caio fez sobre o Positron.
+
+- TO DO: Adicionar corte da live da Curso-R onde o Julio fala sobre o Positron.
