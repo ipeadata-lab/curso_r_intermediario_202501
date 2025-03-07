@@ -32,6 +32,7 @@ book:
     - href: programacao-funcional.qmd
     - href: dados-espaciais.qmd    
     - href: big-data.qmd    
+    - href: extra.qmd
     
 page-navigation: true
 

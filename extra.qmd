@@ -1,0 +1,156 @@
+---
+title: "Ferramentas de Inteligência Artificial e outras IDEs"
+---
+
+::: {.callout-warning}
+
+Em desenvolvimento!
+:::
+
+
+
+A última aula do curso foi dedicada para conversar sobre as dúvidas. Durante essa aula, dois temas foram mais discutidos: outras possibilidades de ambiente de desenvolvimento integrado (IDE) como o VS Code e o Positron, e a utilização de ferramentas de IA nessas IDEs.
+
+A seguir, elencaremos cada uma das IDEs discutidas e as principais ferramentas de IA que podem ser utilizadas em cada uma delas.
+
+
+
+## RStudio
+
+Neste curso e no [curso de introdução](https://ipeadata-lab.github.io/curso_r_intro_202409/), utilizamos o RStudio (da [Posit](https://posit.co/)) para programar em R.
+
+O RStudio é a IDE **mais utilizada** para programar em R, e foi criada para isso: ser um ambiente integrado para programar em R.
+
+Dentre as ferramentas de IA que podem ser utilizadas no RStudio, destacamos o [GitHub Copilot](https://copilot.github.com/). 
+
+O GitHub Copilot originalmente apresenta duas funcionalidades: sugestão de códigos enquanto escrevemos, e o Copilot Chat (similar ao ChatGPT). Entretanto, no RStudio apenas a sugestão de códigos está disponível.
+
+Para ativar o Copilot no RStudio, é necessário acessar o menu `Tools` > `Global Options` > `Copilot` e selecionar a opção `Enable GitHub Copilot`. Se o menu do Copilot não aparecer, significa que o RStudio está desatualizado[^rstudio].
+
+[^rstudio]: Para atualizar o RStudio, acesse o [site do RStudio Desktop](https://posit.co/download/rstudio-desktop/) para baixar o instalador mais recente.
+
+Será necessário fazer a autentição com a sua conta do GitHub.
+
+
+::: {layout-ncol=2}
+![Ativar o Copilot no RStudio](images/rstudio-copilot-enable.png)
+
+![Copilot ativado no RStudio](images/rstudio-copilot-enabled.png)
+:::
+
+
+Depois de ativar o Copilot, você verá as sugestões enquanto escreve o código no RStudio. Para utilizar uma sugestão, basta pressionar `Tab` para aceitar a sugestão. 
+
+Mas atenção: o Copilot pode sugerir códigos que não estão corretos, então é importante sempre revisar o código gerado, e entender o que ele está fazendo.
+
+
+No exemplo abaixo, comecei carregando dois pacotes e com o nome de um dataset (`dados::pinguins`), e o Copilot sugeriu o código para criar um gráfico. Porém ao executar o código, um erro foi gerado pois o Copilot errou o nome da variável. Depois de corrigir o nome da variável, o gráfico foi gerado corretamente: 
+
+![Exemplo de uso do Copilot no RStudio](images/pinguins.gif)
+
+Uma dica para evitar o erro acima é colocar o resultado da função `dplyr::glimpse()` como comentário (`#`) no Script. Assim, o Copilot terá o contexto de quais são as variáveis do dataset, e poderá fazer sugestões com menos erros:
+
+![Exemplo de uso do Copilot no RStudio - Com glimpse](images/pinguins2.gif)
+
+Em projetos e scripts com mais código, o Copilot tende a fazer sugestões melhores, por ter mais contexto.
+
+Outra dica é escrever como comentários o que você quer fazer, e o Copilot faz a sugestão do código. 
+
+
+Confira o [manual do RStudio](https://docs.posit.co/ide/user/ide/guide/tools/copilot.html) para mais informações sobre o GitHub Copilot no RStudio.
+
+
+## Visual Studio Code (VS Code)
+
+O Visual Studio Code (VS Code) é uma IDE desenvolvida pela Microsoft, e é uma das IDEs mais populares para programar em diversas linguagens de programação. O VS Code apresenta uma loja de extensões, onde é possível instalar diversas extensões para facilitar o desenvolvimento em diversas linguagens. 
+
+Mas atenção: o VS Code não é a IDE "mais fácil" para programar em R. Existem várias configurações necessárias para programar em R no VS Code, e a experiência de programar em R no RStudio é mais amigável e simples para quem está começando.
+
+Para saber mais sobre o uso do VS Code com R, consulte:
+
+- [Documentação do VS Code: *R in Visual Studio Code*](https://code.visualstudio.com/docs/languages/r)
+
+
+
+### GitHub Copilot no VS Code
+
+O VS Code oferece a experiência mais completa de integração com o GitHub Copilot[^microsoft].
+
+[^microsoft]: É importante lembrar também que a GitHub também é da Microsoft.
+
+Para instalar o GitHub Copilot no VS Code, é necessário procurar por "GitHub Copilot" na loja de extensões, e instalar a extensão oficial.
+
+
+![Extensão do GitHub Copilot no VS Code](images/vs-code-copilot-extension.png)
+
+Depois de instalar a extensão, o botão do Copilot ficará disponível ao lado da barra de pesquisa (no menu superior da tela):
+
+![Botão do Copilot no VS Code](images/vs-code-copilot-button.png) 
+
+Com este botão, é possível acessar o Chat do Copilot no VS Code:
+
+![Copilot Chat no VS Code](images/vs-code-chat.png)
+
+O Chat do Copilot é a minha ferramenta favorita no VS Code, pois podemos fazer referência a arquivos do nosso projeto.
+
+Exemplo de uso do Chat do Copilot, usando um arquivo Quarto (`.qmd`):
+
+
+![Exemplo do Copilot Chat no VS Code](images/vs-code-chat-2.png)
+
+Perceba que o Copilot inclusive gera sugestões de blocos de códigos que podemos utilizar (neste caso, como o arquivo contém textos com marcações em Markdown, a sugestão é em Markdown):
+
+![Exemplo do Copilot Chat no VS Code - Parte 2](images/vs-code-chat-3.png)
+
+
+A funcionalidade de sugestão de códigos também existe, e é similar ao que vimos no RStudio.
+
+Dentro do script, também podemos usar o atalho `Ctrl/Command + I` para abrir uma caixa de texto, e escrever um prompt para o Copilot. O Copilot irá sugerir códigos baseados no prompt que você escreveu, diretamente no script.
+
+### Outras extensões
+
+Como mencionado anteriormente, o VS Code possui uma loja de extensões, onde é possível instalar diversas extensões para facilitar o desenvolvimento em diversas linguagens.
+
+Existem outras extensões que permitem utilizar ferramentas de IA no VS Code, como:
+
+- [Qodo](https://www.qodo.ai/) (anteriormente chamada de [CodiumAI](https://www.codium.ai/qodo))
+
+- [Gemini Code Assist](https://blog.google/technology/developers/gemini-code-assist-free/) da Google
+
+- [Codeium](https://codeium.com/vscode_tutorial)
+
+- [Continue](https://docs.continue.dev/getting-started/overview)
+
+## Positron
+
+Em breve!
+
+
+## Pacotes de IA para R (independentes da IDE)
+
+Em breve!
+
+### `{ellmer}`
+
+<img src="images/logo-ellmer.png" class="img-rstudio" align="right" width="120px"/>
+
+
+Com o avanço dos *large language models* (LLM), diversos pacotes foram criados para facilitar o uso desses modelos no R. Um exemplo é o pacote `{openai}`, que permite o uso dos modelos da OpenAI (como o GPT) no R. Porém logo muitos provedores foram criados, e cada um com sua API e forma de uso.
+
+O pacote [`{ellmer}`](https://ellmer.tidyverse.org/) foi criado para facilitar o uso de modelos LLM no partir do R, utilizando uma interface unificada para diversos provedores!
+
+Ele apresenta suporte para vários provedores de LLM, como OpenAI, Ollama, Google Gemini, DeepSeek, Claude (Anthropic), entre outros. Você pode consultar a lista completa na [documentação do pacote](https://ellmer.tidyverse.org/#providers).
+
+
+
+
+
+
+
+## Material
+
+Alguns trechos deste texto foram adaptados do post ["Como começar a utilizar o GitHub Copilot?"](https://beamilz.com/posts/2025-02-24-github-copilot-rstudio/pt/), escrito por [Beatriz Milz](https://beamilz.com/).
+
+## Extra
+
+- [2023] A palestra ["Large Language Models no Direito"](https://jtrecenti.github.io/slides/docs/gptjur/index.html#/title-slide) ([video disponível no Youtube](https://www.youtube.com/live/XaoUJkplDJM?feature=shared&t=470) e [código disponível no GitHub](https://github.com/jtrecenti/slides/tree/master/20230920-gptjur)) é um exemplo de aplicação de uso de LLMs no R.
