@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -217,6 +251,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#pacotes-de-ia-para-r-independentes-da-ide" id="toc-pacotes-de-ia-para-r-independentes-da-ide" class="nav-link" data-scroll-target="#pacotes-de-ia-para-r-independentes-da-ide"><span class="header-section-number">10.5</span> Pacotes de IA para R (independentes da IDE)</a>
   <ul>
   <li><a href="#ellmer" id="toc-ellmer" class="nav-link" data-scroll-target="#ellmer"><span class="header-section-number">10.5.1</span> <code>{ellmer}</code></a></li>
+  <li><a href="#chores" id="toc-chores" class="nav-link" data-scroll-target="#chores"><span class="header-section-number">10.5.2</span> <code>{chores}</code></a></li>
   </ul></li>
   <li><a href="#material" id="toc-material" class="nav-link" data-scroll-target="#material"><span class="header-section-number">10.6</span> Material</a></li>
   <li><a href="#extra" id="toc-extra" class="nav-link" data-scroll-target="#extra"><span class="header-section-number">10.7</span> Extra</a></li>
@@ -517,13 +552,90 @@ Qual extensão baixar no Positron/VS Code?
 <h2 data-number="10.5" class="anchored" data-anchor-id="pacotes-de-ia-para-r-independentes-da-ide"><span class="header-section-number">10.5</span> Pacotes de IA para R (independentes da IDE)</h2>
 <p>Até agora, comentamos de ferramentas de IA que podem ser utilizadas nas IDEs RStudio, VS Code e Positron.</p>
 <p>Mas existem pacotes de R que permitem utilizar ferramentas de IA diretamente no R, sem depender de uma IDE específica.</p>
-<p>O <code>{ellmer}</code> é o principal pacote de R que permitem utilizar ferramentas de IA diretamente no R!</p>
 <section id="ellmer" class="level3" data-number="10.5.1">
 <h3 data-number="10.5.1" class="anchored" data-anchor-id="ellmer"><span class="header-section-number">10.5.1</span> <code>{ellmer}</code></h3>
 <p><img src="images/logo-ellmer.png" class="img-rstudio" align="right" width="120px"></p>
 <p>Com o avanço dos <em>large language models</em> (LLM), diversos pacotes foram criados para facilitar o uso desses modelos no R. Um exemplo é o pacote <code>{openai}</code>, que permite o uso dos modelos da OpenAI (como o GPT) no R. Porém logo muitos provedores foram criados, e cada um com sua API e forma de uso.</p>
 <p>O pacote <a href="https://ellmer.tidyverse.org/"><code>{ellmer}</code></a> foi criado para facilitar o uso de modelos LLM no partir do R, utilizando uma interface unificada para diversos provedores!</p>
 <p>Ele apresenta suporte para vários provedores de LLM, como OpenAI, Ollama, Google Gemini, DeepSeek, Claude (Anthropic), entre outros. Você pode consultar a lista completa na <a href="https://ellmer.tidyverse.org/#providers">documentação do pacote</a>.</p>
+<p>Para utilizar o pacote, é necessário 1) instalar e 2) configurar a chave de acesso ao modelo LLM como uma variável de ambiente.</p>
+<ol type="1">
+<li>Instalar:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ellmer"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>Configurar a chave de acesso ao modelo LLM como uma variável de ambiente:</li>
+</ol>
+<p>Abra o arquivo <code>.Renviron</code> e adicione a chave de acesso ao modelo LLM. Para abrir o arquivo, utilize a função:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">edit_r_environ</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Adicione nesse arquivo a chave, seguindo o padrão <code>NOME_KEY="VALOR_KEY"</code>. No caso da Open AI, o nome da chave deve ser <code>OPENAI_API_KEY</code>. Exemplo:</p>
+<pre><code>OPENAI_API_KEY="...."</code></pre>
+<p>Após adicionar a API Key, salve o arquivo e reinicie a sessão do R antes de continuar.</p>
+<p>Agora, você pode utilizar o pacote para fazer perguntas ao modelo LLM. Por exemplo, para fazer uma pergunta ao modelo GPT-4 da OpenAI, precisamos primeiramente iniciar o chat:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>chat_criado <span class="ot">&lt;-</span> ellmer<span class="sc">::</span><span class="fu">chat_openai</span>(<span class="at">model =</span> <span class="st">"gpt-4o"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O objeto <code>chat_criado</code> é diferente dos tipos de objetos que exploramos no curso: ele é da classe R6:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(chat_criado)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] "Chat" "R6"  </span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Isso significa que esse objeto tem métodos específicos que podemos utilizar de forma similar a funções, porém os métodos são como elementos de uma lista: acessamos usando o <code>$</code>.</p>
+<p>Para saber quais são os métodos disponíveis, podemos usar a função <code>names()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(chat_criado)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  [1] ".__enclos_env__"    "clone"              "register_tool"     </span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  [4] "stream_async"       "stream"             "chat_async"        </span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  [7] "extract_data_async" "extract_data"       "chat"              </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># [10] "last_turn"          "tokens"             "set_system_prompt" </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># [13] "get_model"          "get_system_prompt"  "set_turns"         </span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># [16] "get_turns"          "initialize"        </span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para fazer uma pergunta ao chat, podemos usar o método <code>chat()</code>. Vamos fazer alguns exemplos <strong>nada sérios</strong> de perguntas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>resposta <span class="ot">&lt;-</span> chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Quem é beatriz milz?"</span>, <span class="at">echo =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>resposta</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>“Beatriz Milz é uma cientista de dados e influenciadora digital brasileira conhecida por seu trabalho na divulgação científica e educação sobre ciência de dados e programação. Ela possui um canal no YouTube e outras redes sociais onde compartilha conteúdos relacionados a análise de dados, R e Python, entre outros tópicos técnicos e profissionais. Beatriz é reconhecida por sua habilidade em ensinar conceitos complexos de forma acessível e por fomentar a inclusão e diversidade na área de tecnologia.”</p>
+</blockquote>
+<p>Eu (Beatriz) não concordo na parte de “influenciadora digital”, mas acertou algumas coisas! Vamos tentar outro prompt?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>resposta_2 <span class="ot">&lt;-</span> chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Quem é Rafael H. M. Pereira ?"</span>, <span class="at">echo =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>resposta_2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>“Rafael H. M. Pereira é um pesquisador conhecido por seu trabalho em áreas como geografia urbana, mobilidade urbana e justiça social. Ele tem uma formação interdisciplinar que combina geografia, planejamento urbano e questões sociais, e frequentemente utiliza métodos quantitativos e ferramentas de ciência de dados em suas pesquisas. Seus estudos muitas vezes focam em entender como políticas urbanas e de transporte podem impactar diversos grupos sociais de maneira desigual, avaliando acessibilidade e equidade. Rafael H. M. Pereira é ativo em publicações acadêmicas e pode estar associado a instituições de pesquisa ou ensino superior.”</p>
+</blockquote>
+<p>Parece que o modelo acertou mais no caso do Rafael! 😅</p>
+<p>Vamos fazer uma pergunta polêmica:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>resposta_3 <span class="ot">&lt;-</span> chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Qual é a melhor linguagem de programação para analisar dados?"</span>, <span class="at">echo =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>resposta_3</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>“A escolha da melhor linguagem de programação para análise de dados pode depender de vários fatores, incluindo o ambiente de trabalho, os requisitos específicos do projeto e a experiência pessoal. No entanto, algumas linguagens se destacam na comunidade de análise de dados: 1. <strong>Python</strong>: É uma das linguagens mais populares para análise de dados. Possui uma vasta gama de bibliotecas e ferramentas, como Pandas, NumPy, Matplotlib, Seaborn, SciPy, Scikit-learn, entre outras, que facilitam a manipulação, visualização e modelagem de dados. 2. <strong>R</strong>: Muito utilizado em estatística e ciência de dados, R é conhecido por suas poderosas capacidades de análise estatística e visualização gráfica. Pacotes como dplyr, ggplot2 e tidyr tornam o R uma escolha excelente para análise de dados exploratória e estatística. 3. <strong>SQL</strong>: Embora não seja uma linguagem de programação no sentido tradicional, SQL é essencial para consultar e manipular dados em bancos de dados relacionais. É uma habilidade importante para qualquer analista de dados. 4. <strong>Julia</strong>: É uma linguagem mais recente que foi projetada para alta performance em cálculos numéricos. Está ganhando popularidade em análise de dados e ciências computacionais por sua velocidade e eficiência. A escolha entre essas linguagens pode ser guiada pelo tipo de análise que você pretende realizar, a comunidade de apoio (fóruns, pacotes, recursos educacionais) e as ferramentas já em uso na sua organização ou equipe. Python e R são geralmente as escolhas mais comuns devido à sua versatilidade e ampla adoção na indústria e na academia.”</p>
+</blockquote>
+<p>O modelo não quis participar da briga das torcidas de futebol dos times Python e R! 😅</p>
+<p>Esse breve (e ilustrativo) exemplo mostra como podemos utilizar o pacote <code>{ellmer}</code> para fazer perguntas para ferramentas de LLM diretamente do R.</p>
+</section>
+<section id="chores" class="level3" data-number="10.5.2">
+<h3 data-number="10.5.2" class="anchored" data-anchor-id="chores"><span class="header-section-number">10.5.2</span> <code>{chores}</code></h3>
+<p><img src="images/logo-chores.png" class="img-rstudio" align="right" width="120px"></p>
+<p>O pacote <a href="https://github.com/simonpcouch/chores"><code>{chores}</code></a> (anteriormente chamado de <code>pal</code>) é um pacote que fornece assistentes de LLM projetados para ajudar a completar tarefas repetitivas.</p>
+<p>Com esse pacote, você pode configurar um atalho do teclado para iniciar o assistente. Depois disso, você pode selecionar o código e pressionar o atalho do teclado para que o assistente te ajude na tarefa desejada.</p>
+<p>A documentação do pacote apresenta um GIF que mostra como o pacote funciona:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://github.com/simonpcouch/chores"><img src="images/chores-addin.gif" class="img-fluid figure-img" alt="Exemplo de uso do pacote chores. Fonte da imagem: documentação do pacote"></a></p>
+<figcaption>Exemplo de uso do pacote chores. Fonte da imagem: documentação do pacote</figcaption>
+</figure>
+</div>
 </section>
 </section>
 <section id="material" class="level2" data-number="10.6">
