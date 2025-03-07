@@ -1,18 +1,28 @@
 ---
-title: "Ferramentas de Inteligência Artificial e outras IDEs"
+title: "IDEs além do RStudio"
+subtitle: "E ferramentas de IA"
 ---
 
-::: {.callout-warning}
 
-Em desenvolvimento!
-:::
+A última aula do curso foi dedicada para conversar sobre as dúvidas. Durante essa aula, dois temas foram mais discutidos: outras possibilidades de ambiente de desenvolvimento integrado (IDE) como o VS Code e o Positron, e a utilização de ferramentas de inteligência artificial (IA) nessas IDEs.
 
-
-
-A última aula do curso foi dedicada para conversar sobre as dúvidas. Durante essa aula, dois temas foram mais discutidos: outras possibilidades de ambiente de desenvolvimento integrado (IDE) como o VS Code e o Positron, e a utilização de ferramentas de IA nessas IDEs.
+Neste contexto, utilizaremos o termo IA como sinônimo de ferramentas que utilizam *large language models* (LLMs) para auxiliar na escrita de códigos. Ou seja: ferramentas que fazem sugestões de códigos, apresentam um chat onde é possível fazer perguntas e obter sugestão de blocos de código, etc.
 
 A seguir, elencaremos cada uma das IDEs discutidas e as principais ferramentas de IA que podem ser utilizadas em cada uma delas.
 
+## Cuidados ao utilizar ferramentas de IA
+
+Antes de comentar sobre as ferramentas de IA,  é importante lembrar que a utilização de ferramentas de IA em ambientes de desenvolvimento pode apresentar riscos de segurança e privacidade. 
+
+Para evitar problemas, leia os termos de uso e a política de privacidade das ferramentas de IA que você está utilizando. Se você está usando uma ferramenta de IA que acessa a internet, é importante ter cuidado com os dados que você está compartilhando.
+
+- Confira se existe alguma configuração de privacidade que você pode ajustar.
+
+- Evite utilizar ferramentas de IA para escrever códigos que envolvam dados sensíveis.
+
+- Não compartilhe códigos, dados, textos ou qualquer outro formato que tenha informações sensíveis ou confidenciais com ferramentas de IA.
+
+Essas recomendações não são exaustivas: é importante tomar muito cuidado ao lidar com dados sensíveis e confidenciais, e sempre buscar informações sobre a segurança e privacidade das ferramentas que você está utilizando. Converse com pessoas que trabalham com você, com a equipe de TI e de segurança da sua instituição, e busque informações sobre as práticas que a instituição tem recomendado para lidar com o uso de ferramentas de IA.
 
 
 ## RStudio
@@ -58,6 +68,18 @@ Outra dica é escrever como comentários o que você quer fazer, e o Copilot faz
 
 
 Confira o [manual do RStudio](https://docs.posit.co/ide/user/ide/guide/tools/copilot.html) para mais informações sobre o GitHub Copilot no RStudio.
+
+### `{gptstudio}`
+
+<img src="images/logo-gptstudio.png" class="img-rstudio" align="right" width="120px"/>
+
+O pacote [`{gptstudio}`](https://michelnivard.github.io/gptstudio/articles/chat.html) foi criado para facilitar o uso de *LLMs* quando trabalhamos com R.
+
+Ele também funciona com outras IDEs, porém o RStudio é a IDE que apresenta a melhor integração com o pacote.
+
+A ideia do pacote é que podemos utilizar o chat (por exemplo, do GPT) diretamente do RStudio com uma extensão (Addin). Entretanto, esse Addin funciona com Shiny, o que faz com que a sessão do R fique ocupada enquanto o chat está aberto. Ou seja: não é possível utilizar o chat e continuar a executar códigos em R ao mesmo tempo.
+
+[![Exemplo de uso do pacote gptstudio. Fonte da imagem: documentação do pacote](images/gptstudio-ggplot2-example.gif)](https://michelnivard.github.io/gptstudio/articles/chat.html)
 
 
 ## Visual Studio Code (VS Code)
@@ -113,21 +135,15 @@ Dentro do script, também podemos usar o atalho `Ctrl/Command + I` para abrir um
 
 Como mencionado anteriormente, o VS Code possui uma loja de extensões, onde é possível instalar diversas extensões para facilitar o desenvolvimento em diversas linguagens.
 
-Existem outras extensões que permitem utilizar ferramentas de IA no VS Code, como:
+Existem outras extensões que permitem utilizar ferramentas de IA no VS Code, mas para evitar a repetição de informações, apresentamos uma [lista de extensões que permitem utilizar ferramentas de IA no VS Code/Positron](#positron-outras-extensoes) no tópico sobre o Positron.
 
-- [Qodo](https://www.qodo.ai/) (anteriormente chamada de [CodiumAI](https://www.codium.ai/qodo))
 
-- [Gemini Code Assist](https://blog.google/technology/developers/gemini-code-assist-free/) da Google
-
-- [Codeium](https://codeium.com/vscode_tutorial)
-
-- [Continue](https://docs.continue.dev/getting-started/overview)
 
 ## Positron
 
 Um breve contexto histórico: até 2022, a empresa que desenvolvia o RStudio era chamada de... **RStudio PBC**. Em 2022, a empresa mudou de nome para Posit. Essa mudança de nome foi feita para refletir a expansão da empresa para além da IDE RStudio. Desde então, a Posit tem desenvolvido novas ferramentas e produtos para usar além do R, como o [Positron](https://posit.co/positron/).
 
-O Positron é uma IDE que permite programar em diversas linguagens de programação, como Python, R, Julia, entre outras. Ele é uma alternativa ao RStudio e ao VS Code, e é uma opção para quem programa em várias linguagens de programação.
+O Positron é uma IDE que permite programar com Python e R. Ele é uma alternativa ao RStudio e ao VS Code, e é uma opção para quem programa em várias linguagens de programação.
 
 ![Captura de tela do Positron](images/positron.png)
 
@@ -150,18 +166,87 @@ Outra coisa muito legal é que o Positron tem acesso à loja de extensões do VS
 
 - [Veja como começar a usar o Positron na documentação](https://positron.posit.co/start.html)
 
+- Live da Curso-R: [Positron: o filho do RStudio com o VS Code](https://www.youtube.com/live/1wwPgLsJCZw?feature=shared) com Caio Lente.
+
 ### GitHub Copilot no Positron
 
-Em breve!
+Anteriormente, comentamos que:
 
-### Outras extensões
+  - O VS Code oferece a experiência mais completa de integração com o GitHub Copilot, e
 
-Em breve!
+  - o Positron é baseado no CODE OSS, a versão open-source do VS Code.
+  
+Então a lógica seria que o GitHub Copilot estivesse disponível de forma completa no Positron, certo? **Errado**.
+
+Até o momento da produção deste texto, **o GitHub Copilot não está disponível na loja de extensões Positron 😭**
+
+Como comentamos na aula sobre [Git e GitHub](git-github.qmd), muitas ferramentas são desenvolvidas por lá, e o Positron é uma delas. Então fizemos uma busca nas [issues do repositório](https://github.com/posit-dev/positron/issues) a discussão sobre o GitHub Copilot no Positron, e encontramos algumas issues que abordam o assunto.
+
+Pontos principais:
+
+- [Junho/2024 - #476](https://github.com/posit-dev/positron/issues/476#issuecomment-2195868720):  A extensão do GitHub Copilot é apenas oficialmente suportada (e licenciada para funcionar) dentro do Visual Studio Code (a versão comercial da Microsoft, não a versão Open Source), então a autenticação não funcionará no Positron. A Posit está trabalhando em uma solução para isso.
+
+- [Julho/2024 - #3871](https://github.com/posit-dev/positron/discussions/3871#discussioncomment-9961736): "Nós gostaríamos de ter suporte para o GitHub Copilot no futuro, mas por enquanto existem muitas extensões que fornecem Chat, Completions Inline, e outras modalidades de uso de GenAI." - [Tom Mock](https://github.com/jthomasmock) (que trabalha na Posit)
+
+**Em resumo:**
+
+
+::: {.callout-warning}
+## GitHub Copilot no Positron (resumo)
+Existe limitações de licença para o uso do GitHub Copilot no Positron. A equipe da Positron está trabalhando para encontrar uma solução para isso. Por enquanto, eles recomendam explorar outras extensões que fornecem funcionalidades similares ao Copilot. 
+:::
+
+### Outras extensões {#positron-outras-extensoes}
+
+Como mencionado anteriormente, o Positron tem acesso à loja de extensões do VS Code, então a maioria das extensões citadas anteriormente para o VS Code podem ser utilizadas no Positron.
+
+A seguir, temos uma lista de extensões que estão disponíveis na loja de extensões do Positron (e do VS Code), e que permitem utilizar ferramentas de IA no Positron:
+
+- [Gemini Code Assist](https://blog.google/technology/developers/gemini-code-assist-free/) da Google
+
+![Captura de tela do Positron: Extensões -> Gemini Code Assist](images/positron-gemini-code-assist.png)
+
+
+
+- [Codeium](https://codeium.com/vscode_tutorial) - [Manual sobre como usar](https://codeium.com/university)
+
+![Captura de tela do Positron: Extensões -> Codeium](images/positron-codeium.png)
+
+- [Continue](https://docs.continue.dev/getting-started/overview)
+
+![Captura de tela do Positron: Extensões -> Continue](images/positron-continue.png)
+
+
+::: {.callout-warning}
+
+## Qual extensão baixar no Positron/VS Code?
+
+As lojas de extensão do VS Code e do Positron são muito grandes, e existem muitas extensões disponíveis. 
+
+Quando pesquisamos algum tema, MUITAS extensões podem aparecer. Nem sempre as extensões são boas ou confiáveis... Então como escolher? 
+
+Algumas dicas para ajudar a escolher uma extensão:
+
+- Veja quem é o desenvolvedor da extensão (ou empresa responsável). Por exemplo, a extensão do Gemini Code Assist é da Google, então é uma extensão confiável.
+
+![](images/extensao-autor.png){class="borda-imagem" fig-align="center" width="80%"}
+
+- Veja a popularidade da extensão. Extensões mais populares tendem a ser mais confiáveis: mais pessoas já testaram, aprovaram e recomendaram por aí. Dentre as que citamos anteriormente, a Continue e Codeium são as mais populares: até agora, mais de 204 mil pessoas já baixaram a Continue, e 121 mil já baixaram o Codeium. **Mas atenção:** ter menos downloads não significa necessariamente que a extensão seja ruim! Ela pode ser mais recente, como é o caso do Gemini Code Assist.
+
+![](images/extensao-data.png){class="borda-imagem" fig-align="center" width="80%"}
+
+- Veja também quais extensões outras pessoas da sua área estão utilizando! 
+
+:::
 
 
 ## Pacotes de IA para R (independentes da IDE)
 
-Em breve!
+Até agora, comentamos de ferramentas de IA que podem ser utilizadas nas IDEs RStudio, VS Code e Positron. 
+
+Mas existem pacotes de R que permitem utilizar ferramentas de IA diretamente no R, sem depender de uma IDE específica.
+
+O `{ellmer}` é o principal pacote de R que permitem utilizar ferramentas de IA diretamente no R!
 
 ### `{ellmer}`
 
@@ -177,9 +262,6 @@ Ele apresenta suporte para vários provedores de LLM, como OpenAI, Ollama, Googl
 
 
 
-
-
-
 ## Material
 
 Alguns trechos deste texto foram adaptados do post ["Como começar a utilizar o GitHub Copilot?"](https://beamilz.com/posts/2025-02-24-github-copilot-rstudio/pt/), escrito por [Beatriz Milz](https://beamilz.com/).
@@ -188,7 +270,7 @@ Alguns trechos deste texto foram adaptados do post ["Como começar a utilizar o 
 
 - [2023] A palestra ["Large Language Models no Direito"](https://jtrecenti.github.io/slides/docs/gptjur/index.html#/title-slide) ([video disponível no Youtube](https://www.youtube.com/live/XaoUJkplDJM?feature=shared&t=470) e [código disponível no GitHub](https://github.com/jtrecenti/slides/tree/master/20230920-gptjur)) é um exemplo de aplicação de uso de LLMs no R.
 
+- [2024]: Live da Curso-R: [Positron: o filho do RStudio com o VS Code](https://www.youtube.com/live/1wwPgLsJCZw?feature=shared) com Caio Lente.
 
-- TO DO: Adicionar live da Curso-R que o Caio fez sobre o Positron.
+- [2025] Live da Curso-R: [GitHub Copilot: a inteligência artificial no RStudio]() com Julio Trecenti.
 
-- TO DO: Adicionar corte da live da Curso-R onde o Julio fala sobre o Positron.
