@@ -246,18 +246,137 @@ Até agora, comentamos de ferramentas de IA que podem ser utilizadas nas IDEs RS
 
 Mas existem pacotes de R que permitem utilizar ferramentas de IA diretamente no R, sem depender de uma IDE específica.
 
-O `{ellmer}` é o principal pacote de R que permitem utilizar ferramentas de IA diretamente no R!
+
 
 ### `{ellmer}`
 
 <img src="images/logo-ellmer.png" class="img-rstudio" align="right" width="120px"/>
 
-
 Com o avanço dos *large language models* (LLM), diversos pacotes foram criados para facilitar o uso desses modelos no R. Um exemplo é o pacote `{openai}`, que permite o uso dos modelos da OpenAI (como o GPT) no R. Porém logo muitos provedores foram criados, e cada um com sua API e forma de uso.
+
+
 
 O pacote [`{ellmer}`](https://ellmer.tidyverse.org/) foi criado para facilitar o uso de modelos LLM no partir do R, utilizando uma interface unificada para diversos provedores!
 
+
+
 Ele apresenta suporte para vários provedores de LLM, como OpenAI, Ollama, Google Gemini, DeepSeek, Claude (Anthropic), entre outros. Você pode consultar a lista completa na [documentação do pacote](https://ellmer.tidyverse.org/#providers).
+
+Para utilizar o pacote, é necessário 1) instalar e 2) configurar a chave de acesso ao modelo LLM como uma variável de ambiente.
+
+1) Instalar:
+
+```{r}
+#| eval: false
+install.packages("ellmer")
+```
+
+2) Configurar a chave de acesso ao modelo LLM como uma variável de ambiente:
+
+Abra o arquivo `.Renviron` e adicione a chave de acesso ao modelo LLM. Para abrir o arquivo, utilize a função:
+
+```{r}
+#| eval: false
+usethis::edit_r_environ()
+```
+
+Adicione nesse arquivo a chave, seguindo o padrão `NOME_KEY="VALOR_KEY"`. No caso da Open AI, o nome da chave deve ser `OPENAI_API_KEY`. Exemplo:
+
+```
+OPENAI_API_KEY="...."
+```
+Após adicionar a API Key, salve o arquivo e reinicie a sessão do R antes de continuar.
+
+
+Agora, você pode utilizar o pacote para fazer perguntas ao modelo LLM. Por exemplo, para fazer uma pergunta ao modelo GPT-4 da OpenAI,  precisamos primeiramente iniciar o chat:
+
+```{r}
+#| eval: false
+chat_criado <- ellmer::chat_openai(model = "gpt-4o")
+```
+
+O objeto `chat_criado` é diferente dos tipos de objetos que exploramos no curso: ele é da classe R6:
+
+```{r}
+#| eval: false
+class(chat_criado)
+# [1] "Chat" "R6"  
+```
+Isso significa que esse objeto tem métodos específicos que podemos utilizar de forma similar a funções, porém os métodos são como elementos de uma lista: acessamos usando o `$`.
+
+Para saber quais são os métodos disponíveis, podemos usar a função `names()`:
+
+```{r}
+#| eval: false
+names(chat_criado)
+#  [1] ".__enclos_env__"    "clone"              "register_tool"     
+#  [4] "stream_async"       "stream"             "chat_async"        
+#  [7] "extract_data_async" "extract_data"       "chat"              
+# [10] "last_turn"          "tokens"             "set_system_prompt" 
+# [13] "get_model"          "get_system_prompt"  "set_turns"         
+# [16] "get_turns"          "initialize"        
+```
+
+Para fazer uma pergunta ao chat, podemos usar o método `chat()`. Vamos fazer alguns exemplos **nada sérios** de perguntas:
+
+```{r}
+#| eval: false
+resposta <- chat$chat("Quem é beatriz milz?", echo = FALSE)
+resposta
+```
+
+
+> "Beatriz Milz é uma cientista de dados e influenciadora digital brasileira conhecida por seu trabalho na divulgação científica e educação sobre ciência de dados e programação. Ela possui um canal no YouTube e outras redes sociais onde compartilha conteúdos relacionados a análise de dados, R e Python, entre outros tópicos técnicos e profissionais. Beatriz é reconhecida por sua habilidade em ensinar conceitos complexos de forma acessível e por fomentar a inclusão e diversidade na área de tecnologia."
+
+
+Eu (Beatriz) não concordo na parte de "influenciadora digital", mas acertou algumas coisas! Vamos tentar outro prompt?
+
+
+```{r}
+#| eval: false
+resposta_2 <- chat$chat("Quem é Rafael H. M. Pereira ?", echo = FALSE)
+resposta_2
+```
+
+> "Rafael H. M. Pereira é um pesquisador conhecido por seu trabalho em áreas como geografia urbana, mobilidade urbana e justiça social. Ele tem uma formação interdisciplinar que combina geografia, planejamento urbano e questões sociais, e frequentemente utiliza métodos quantitativos e ferramentas de ciência de dados em suas pesquisas. Seus estudos muitas vezes focam em entender como políticas urbanas e de transporte podem impactar diversos grupos sociais de maneira desigual, avaliando acessibilidade e equidade. Rafael H. M. Pereira é ativo em publicações acadêmicas e pode estar associado a instituições de pesquisa ou ensino superior."
+
+
+Parece que o modelo acertou mais no caso do Rafael! 😅
+
+Vamos fazer uma pergunta polêmica:
+
+```{r}
+#| eval: false
+resposta_3 <- chat$chat("Qual é a melhor linguagem de programação para analisar dados?", echo = FALSE)
+
+resposta_3
+```
+
+> "A escolha da melhor linguagem de programação para análise de dados pode depender de vários fatores, incluindo o ambiente de trabalho, os requisitos específicos do projeto e a experiência pessoal. No entanto, algumas linguagens se destacam na comunidade de análise de dados:
+1. **Python**: É uma das linguagens mais populares para análise de dados. Possui uma vasta gama de bibliotecas e ferramentas, como Pandas, NumPy, Matplotlib, Seaborn, SciPy, Scikit-learn, entre outras, que facilitam a manipulação, visualização e modelagem de dados.
+2. **R**: Muito utilizado em estatística e ciência de dados, R é conhecido por suas poderosas capacidades de análise estatística e visualização gráfica. Pacotes como dplyr, ggplot2 e tidyr tornam o R uma escolha excelente para análise de dados exploratória e estatística.
+3. **SQL**: Embora não seja uma linguagem de programação no sentido tradicional, SQL é essencial para consultar e manipular dados em bancos de dados relacionais. É uma habilidade importante para qualquer analista de dados.
+4. **Julia**: É uma linguagem mais recente que foi projetada para alta performance em cálculos numéricos. Está ganhando popularidade em análise de dados e ciências computacionais por sua velocidade e eficiência.
+A escolha entre essas linguagens pode ser guiada pelo tipo de análise que você pretende realizar, a comunidade de apoio (fóruns, pacotes, recursos educacionais) e as ferramentas já em uso na sua organização ou equipe. Python e R são geralmente as escolhas mais comuns devido à sua versatilidade e ampla adoção na indústria e na academia."
+
+
+O modelo não quis participar da briga das torcidas de futebol dos times Python e R! 😅
+
+
+Esse breve (e ilustrativo) exemplo mostra como podemos utilizar o pacote `{ellmer}` para fazer perguntas para ferramentas de LLM diretamente do R.
+
+### `{chores}`
+
+<img src="images/logo-chores.png" class="img-rstudio" align="right" width="120px"/>
+
+
+O pacote [`{chores}`](https://github.com/simonpcouch/chores) (anteriormente chamado de `pal`) é um pacote que fornece assistentes de LLM projetados para ajudar a completar tarefas repetitivas.
+
+Com esse pacote, você pode configurar um atalho do teclado para iniciar o assistente. Depois disso, você pode selecionar o código e pressionar o atalho do teclado para que o assistente te ajude na tarefa desejada.
+
+A documentação do pacote apresenta um GIF que mostra como o pacote funciona:
+
+[![Exemplo de uso do pacote chores. Fonte da imagem: documentação do pacote](images/chores-addin.gif)](https://github.com/simonpcouch/chores)
 
 
 
