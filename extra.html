@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Beatriz Milz">
+
+<title>10&nbsp; IDEs além do RStudio – R intermediário e pesquisa reprodutível</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./big-data.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a34d670291f06f286357e447776a572a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R intermediário e pesquisa reprodutível</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-materiais" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Materiais</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-materiais">    
+        <li>
+    <a class="dropdown-item" href="https://ipeadata-lab.github.io/curso_r_intro_202409/">
+ <span class="dropdown-text">Introdução à análise de dados no R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://ipeadata-lab.github.io/curso_r_intermediario_202501/">
+ <span class="dropdown-text">R intermediário e pesquisa reprodutível</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/ipeadata-lab/curso_r_intermediario_202501" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./extra.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">IDEs além do RStudio</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Página inicial</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./instalacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Instalações e outros preparativos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reprodutibilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reprodutibilidade e estruturação de projeto</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./relatorios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Produção de relatórios com Quarto</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./git-github.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Introdução ao controle de versão com Git e GitHub</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./texto-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Manipulação de datas e textos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./programacao-funcional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programação funcional</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dados-espaciais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Dados espaciais no R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./big-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introdução à <em>Big Data</em></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./extra.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">IDEs além do RStudio</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#cuidados-ao-utilizar-ferramentas-de-ia" id="toc-cuidados-ao-utilizar-ferramentas-de-ia" class="nav-link active" data-scroll-target="#cuidados-ao-utilizar-ferramentas-de-ia"><span class="header-section-number">10.1</span> Cuidados ao utilizar ferramentas de IA</a></li>
+  <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio"><span class="header-section-number">10.2</span> RStudio</a>
+  <ul>
+  <li><a href="#gptstudio" id="toc-gptstudio" class="nav-link" data-scroll-target="#gptstudio"><span class="header-section-number">10.2.1</span> <code>{gptstudio}</code></a></li>
+  </ul></li>
+  <li><a href="#visual-studio-code-vs-code" id="toc-visual-studio-code-vs-code" class="nav-link" data-scroll-target="#visual-studio-code-vs-code"><span class="header-section-number">10.3</span> Visual Studio Code (VS Code)</a>
+  <ul>
+  <li><a href="#github-copilot-no-vs-code" id="toc-github-copilot-no-vs-code" class="nav-link" data-scroll-target="#github-copilot-no-vs-code"><span class="header-section-number">10.3.1</span> GitHub Copilot no VS Code</a></li>
+  <li><a href="#outras-extensões" id="toc-outras-extensões" class="nav-link" data-scroll-target="#outras-extensões"><span class="header-section-number">10.3.2</span> Outras extensões</a></li>
+  </ul></li>
+  <li><a href="#positron" id="toc-positron" class="nav-link" data-scroll-target="#positron"><span class="header-section-number">10.4</span> Positron</a>
+  <ul>
+  <li><a href="#github-copilot-no-positron" id="toc-github-copilot-no-positron" class="nav-link" data-scroll-target="#github-copilot-no-positron"><span class="header-section-number">10.4.1</span> GitHub Copilot no Positron</a></li>
+  <li><a href="#positron-outras-extensoes" id="toc-positron-outras-extensoes" class="nav-link" data-scroll-target="#positron-outras-extensoes"><span class="header-section-number">10.4.2</span> Outras extensões</a></li>
+  </ul></li>
+  <li><a href="#pacotes-de-ia-para-r-independentes-da-ide" id="toc-pacotes-de-ia-para-r-independentes-da-ide" class="nav-link" data-scroll-target="#pacotes-de-ia-para-r-independentes-da-ide"><span class="header-section-number">10.5</span> Pacotes de IA para R (independentes da IDE)</a>
+  <ul>
+  <li><a href="#ellmer" id="toc-ellmer" class="nav-link" data-scroll-target="#ellmer"><span class="header-section-number">10.5.1</span> <code>{ellmer}</code></a></li>
+  </ul></li>
+  <li><a href="#material" id="toc-material" class="nav-link" data-scroll-target="#material"><span class="header-section-number">10.6</span> Material</a></li>
+  <li><a href="#extra" id="toc-extra" class="nav-link" data-scroll-target="#extra"><span class="header-section-number">10.7</span> Extra</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">IDEs além do RStudio</span></h1>
+<p class="subtitle lead">E ferramentas de IA</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autoria</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="https://www.beamilz.com/">Beatriz Milz</a> <a href="mailto:milz.bea@gmail.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>A última aula do curso foi dedicada para conversar sobre as dúvidas. Durante essa aula, dois temas foram mais discutidos: outras possibilidades de ambiente de desenvolvimento integrado (IDE) como o VS Code e o Positron, e a utilização de ferramentas de inteligência artificial (IA) nessas IDEs.</p>
+<p>Neste contexto, utilizaremos o termo IA como sinônimo de ferramentas que utilizam <em>large language models</em> (LLMs) para auxiliar na escrita de códigos. Ou seja: ferramentas que fazem sugestões de códigos, apresentam um chat onde é possível fazer perguntas e obter sugestão de blocos de código, etc.</p>
+<p>A seguir, elencaremos cada uma das IDEs discutidas e as principais ferramentas de IA que podem ser utilizadas em cada uma delas.</p>
+<section id="cuidados-ao-utilizar-ferramentas-de-ia" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="cuidados-ao-utilizar-ferramentas-de-ia"><span class="header-section-number">10.1</span> Cuidados ao utilizar ferramentas de IA</h2>
+<p>Antes de comentar sobre as ferramentas de IA, é importante lembrar que a utilização de ferramentas de IA em ambientes de desenvolvimento pode apresentar riscos de segurança e privacidade.</p>
+<p>Para evitar problemas, leia os termos de uso e a política de privacidade das ferramentas de IA que você está utilizando. Se você está usando uma ferramenta de IA que acessa a internet, é importante ter cuidado com os dados que você está compartilhando.</p>
+<ul>
+<li><p>Confira se existe alguma configuração de privacidade que você pode ajustar.</p></li>
+<li><p>Evite utilizar ferramentas de IA para escrever códigos que envolvam dados sensíveis.</p></li>
+<li><p>Não compartilhe códigos, dados, textos ou qualquer outro formato que tenha informações sensíveis ou confidenciais com ferramentas de IA.</p></li>
+</ul>
+<p>Essas recomendações não são exaustivas: é importante tomar muito cuidado ao lidar com dados sensíveis e confidenciais, e sempre buscar informações sobre a segurança e privacidade das ferramentas que você está utilizando. Converse com pessoas que trabalham com você, com a equipe de TI e de segurança da sua instituição, e busque informações sobre as práticas que a instituição tem recomendado para lidar com o uso de ferramentas de IA.</p>
+</section>
+<section id="rstudio" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">10.2</span> RStudio</h2>
+<p>Neste curso e no <a href="https://ipeadata-lab.github.io/curso_r_intro_202409/">curso de introdução</a>, utilizamos o RStudio (da <a href="https://posit.co/">Posit</a>) para programar em R.</p>
+<p>O RStudio é a IDE <strong>mais utilizada</strong> para programar em R, e foi criada para isso: ser um ambiente integrado para programar em R.</p>
+<p>Dentre as ferramentas de IA que podem ser utilizadas no RStudio, destacamos o <a href="https://copilot.github.com/">GitHub Copilot</a>.</p>
+<p>O GitHub Copilot originalmente apresenta duas funcionalidades: sugestão de códigos enquanto escrevemos, e o Copilot Chat (similar ao ChatGPT). Entretanto, no RStudio apenas a sugestão de códigos está disponível.</p>
+<p>Para ativar o Copilot no RStudio, é necessário acessar o menu <code>Tools</code> &gt; <code>Global Options</code> &gt; <code>Copilot</code> e selecionar a opção <code>Enable GitHub Copilot</code>. Se o menu do Copilot não aparecer, significa que o RStudio está desatualizado<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>Será necessário fazer a autentição com a sua conta do GitHub.</p>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/rstudio-copilot-enable.png" class="img-fluid figure-img"></p>
+<figcaption>Ativar o Copilot no RStudio</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/rstudio-copilot-enabled.png" class="img-fluid figure-img"></p>
+<figcaption>Copilot ativado no RStudio</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Depois de ativar o Copilot, você verá as sugestões enquanto escreve o código no RStudio. Para utilizar uma sugestão, basta pressionar <code>Tab</code> para aceitar a sugestão.</p>
+<p>Mas atenção: o Copilot pode sugerir códigos que não estão corretos, então é importante sempre revisar o código gerado, e entender o que ele está fazendo.</p>
+<p>No exemplo abaixo, comecei carregando dois pacotes e com o nome de um dataset (<code>dados::pinguins</code>), e o Copilot sugeriu o código para criar um gráfico. Porém ao executar o código, um erro foi gerado pois o Copilot errou o nome da variável. Depois de corrigir o nome da variável, o gráfico foi gerado corretamente:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pinguins.gif" class="img-fluid figure-img"></p>
+<figcaption>Exemplo de uso do Copilot no RStudio</figcaption>
+</figure>
+</div>
+<p>Uma dica para evitar o erro acima é colocar o resultado da função <code>dplyr::glimpse()</code> como comentário (<code>#</code>) no Script. Assim, o Copilot terá o contexto de quais são as variáveis do dataset, e poderá fazer sugestões com menos erros:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pinguins2.gif" class="img-fluid figure-img"></p>
+<figcaption>Exemplo de uso do Copilot no RStudio - Com glimpse</figcaption>
+</figure>
+</div>
+<p>Em projetos e scripts com mais código, o Copilot tende a fazer sugestões melhores, por ter mais contexto.</p>
+<p>Outra dica é escrever como comentários o que você quer fazer, e o Copilot faz a sugestão do código.</p>
+<p>Confira o <a href="https://docs.posit.co/ide/user/ide/guide/tools/copilot.html">manual do RStudio</a> para mais informações sobre o GitHub Copilot no RStudio.</p>
+<section id="gptstudio" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="gptstudio"><span class="header-section-number">10.2.1</span> <code>{gptstudio}</code></h3>
+<p><img src="images/logo-gptstudio.png" class="img-rstudio" align="right" width="120px"></p>
+<p>O pacote <a href="https://michelnivard.github.io/gptstudio/articles/chat.html"><code>{gptstudio}</code></a> foi criado para facilitar o uso de <em>LLMs</em> quando trabalhamos com R.</p>
+<p>Ele também funciona com outras IDEs, porém o RStudio é a IDE que apresenta a melhor integração com o pacote.</p>
+<p>A ideia do pacote é que podemos utilizar o chat (por exemplo, do GPT) diretamente do RStudio com uma extensão (Addin). Entretanto, esse Addin funciona com Shiny, o que faz com que a sessão do R fique ocupada enquanto o chat está aberto. Ou seja: não é possível utilizar o chat e continuar a executar códigos em R ao mesmo tempo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://michelnivard.github.io/gptstudio/articles/chat.html"><img src="images/gptstudio-ggplot2-example.gif" class="img-fluid figure-img" alt="Exemplo de uso do pacote gptstudio. Fonte da imagem: documentação do pacote"></a></p>
+<figcaption>Exemplo de uso do pacote gptstudio. Fonte da imagem: documentação do pacote</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="visual-studio-code-vs-code" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="visual-studio-code-vs-code"><span class="header-section-number">10.3</span> Visual Studio Code (VS Code)</h2>
+<p>O Visual Studio Code (VS Code) é uma IDE desenvolvida pela Microsoft, e é uma das IDEs mais populares para programar em diversas linguagens de programação. O VS Code apresenta uma loja de extensões, onde é possível instalar diversas extensões para facilitar o desenvolvimento em diversas linguagens.</p>
+<p>Mas atenção: o VS Code não é a IDE “mais fácil” para programar em R. Existem várias configurações necessárias para programar em R no VS Code, e a experiência de programar em R no RStudio é mais amigável e simples para quem está começando.</p>
+<p>Para saber mais sobre o uso do VS Code com R, consulte:</p>
+<ul>
+<li><p><a href="https://code.visualstudio.com/docs/languages/r">Documentação do VS Code: <em>R in Visual Studio Code</em></a></p></li>
+<li><p>Post <a href="https://lente.dev/posts/vscode-r/">R no VS Code</a>, por <a href="https://lente.dev/">Caio Lente</a>.</p></li>
+</ul>
+<section id="github-copilot-no-vs-code" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="github-copilot-no-vs-code"><span class="header-section-number">10.3.1</span> GitHub Copilot no VS Code</h3>
+<p>O VS Code oferece a experiência mais completa de integração com o GitHub Copilot<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>Para instalar o GitHub Copilot no VS Code, é necessário procurar por “GitHub Copilot” na loja de extensões, e instalar a extensão oficial.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/vs-code-copilot-extension.png" class="img-fluid figure-img"></p>
+<figcaption>Extensão do GitHub Copilot no VS Code</figcaption>
+</figure>
+</div>
+<p>Depois de instalar a extensão, o botão do Copilot ficará disponível ao lado da barra de pesquisa (no menu superior da tela):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/vs-code-copilot-button.png" class="img-fluid figure-img"></p>
+<figcaption>Botão do Copilot no VS Code</figcaption>
+</figure>
+</div>
+<p>Com este botão, é possível acessar o Chat do Copilot no VS Code:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/vs-code-chat.png" class="img-fluid figure-img"></p>
+<figcaption>Copilot Chat no VS Code</figcaption>
+</figure>
+</div>
+<p>O Chat do Copilot é a minha ferramenta favorita no VS Code, pois podemos fazer referência a arquivos do nosso projeto.</p>
+<p>Exemplo de uso do Chat do Copilot, usando um arquivo Quarto (<code>.qmd</code>):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/vs-code-chat-2.png" class="img-fluid figure-img"></p>
+<figcaption>Exemplo do Copilot Chat no VS Code</figcaption>
+</figure>
+</div>
+<p>Perceba que o Copilot inclusive gera sugestões de blocos de códigos que podemos utilizar (neste caso, como o arquivo contém textos com marcações em Markdown, a sugestão é em Markdown):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/vs-code-chat-3.png" class="img-fluid figure-img"></p>
+<figcaption>Exemplo do Copilot Chat no VS Code - Parte 2</figcaption>
+</figure>
+</div>
+<p>A funcionalidade de sugestão de códigos também existe, e é similar ao que vimos no RStudio.</p>
+<p>Dentro do script, também podemos usar o atalho <code>Ctrl/Command + I</code> para abrir uma caixa de texto, e escrever um prompt para o Copilot. O Copilot irá sugerir códigos baseados no prompt que você escreveu, diretamente no script.</p>
+</section>
+<section id="outras-extensões" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="outras-extensões"><span class="header-section-number">10.3.2</span> Outras extensões</h3>
+<p>Como mencionado anteriormente, o VS Code possui uma loja de extensões, onde é possível instalar diversas extensões para facilitar o desenvolvimento em diversas linguagens.</p>
+<p>Existem outras extensões que permitem utilizar ferramentas de IA no VS Code, mas para evitar a repetição de informações, apresentamos uma <a href="#positron-outras-extensoes">lista de extensões que permitem utilizar ferramentas de IA no VS Code/Positron</a> no tópico sobre o Positron.</p>
+</section>
+</section>
+<section id="positron" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="positron"><span class="header-section-number">10.4</span> Positron</h2>
+<p>Um breve contexto histórico: até 2022, a empresa que desenvolvia o RStudio era chamada de… <strong>RStudio PBC</strong>. Em 2022, a empresa mudou de nome para Posit. Essa mudança de nome foi feita para refletir a expansão da empresa para além da IDE RStudio. Desde então, a Posit tem desenvolvido novas ferramentas e produtos para usar além do R, como o <a href="https://posit.co/positron/">Positron</a>.</p>
+<p>O Positron é uma IDE que permite programar com Python e R. Ele é uma alternativa ao RStudio e ao VS Code, e é uma opção para quem programa em várias linguagens de programação.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/positron.png" class="img-fluid figure-img"></p>
+<figcaption>Captura de tela do Positron</figcaption>
+</figure>
+</div>
+<p>O Positron é visualmente parecido com o VS Code, pois é baseado no <a href="https://github.com/microsoft/vscode">CODE OSS</a> (a versão open-source do VS Code). Porém, o Positron foi desenvolvido para ser usado para análise de dados com R e Python.</p>
+<p>Comentamos anteriormente que o VS Code apresenta algumas dificuldades para programar em R: esse não é o caso do Positron, pois <strong>foi desenvolvido para facilitar o uso do R e Python</strong>. No canto superior direito da tela existe um botão que permite alternar entre R e Python:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/positron-r-python.png" class="img-fluid figure-img"></p>
+<figcaption>Captura de tela do Positron: Botão para alterar entre R e Python</figcaption>
+</figure>
+</div>
+<p>Outra coisa muito legal é que o Positron tem acesso à loja de extensões do VS Code, então a maioria das extensões citadas anteriormente para o VS Code podem ser utilizadas no Positron.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/positron-extensoes.png" class="img-fluid figure-img"></p>
+<figcaption>Captura de tela do Positron: Extensões</figcaption>
+</figure>
+</div>
+<ul>
+<li><p><a href="https://positron.posit.co/start.html">Veja como começar a usar o Positron na documentação</a></p></li>
+<li><p>Live da Curso-R: <a href="https://www.youtube.com/live/1wwPgLsJCZw?feature=shared">Positron: o filho do RStudio com o VS Code</a> com Caio Lente.</p></li>
+</ul>
+<section id="github-copilot-no-positron" class="level3" data-number="10.4.1">
+<h3 data-number="10.4.1" class="anchored" data-anchor-id="github-copilot-no-positron"><span class="header-section-number">10.4.1</span> GitHub Copilot no Positron</h3>
+<p>Anteriormente, comentamos que:</p>
+<ul>
+<li><p>O VS Code oferece a experiência mais completa de integração com o GitHub Copilot, e</p></li>
+<li><p>o Positron é baseado no CODE OSS, a versão open-source do VS Code.</p></li>
+</ul>
+<p>Então a lógica seria que o GitHub Copilot estivesse disponível de forma completa no Positron, certo? <strong>Errado</strong>.</p>
+<p>Até o momento da produção deste texto, <strong>o GitHub Copilot não está disponível na loja de extensões Positron 😭</strong></p>
+<p>Como comentamos na aula sobre <a href="./git-github.html">Git e GitHub</a>, muitas ferramentas são desenvolvidas por lá, e o Positron é uma delas. Então fizemos uma busca nas <a href="https://github.com/posit-dev/positron/issues">issues do repositório</a> a discussão sobre o GitHub Copilot no Positron, e encontramos algumas issues que abordam o assunto.</p>
+<p>Pontos principais:</p>
+<ul>
+<li><p><a href="https://github.com/posit-dev/positron/issues/476#issuecomment-2195868720">Junho/2024 - #476</a>: A extensão do GitHub Copilot é apenas oficialmente suportada (e licenciada para funcionar) dentro do Visual Studio Code (a versão comercial da Microsoft, não a versão Open Source), então a autenticação não funcionará no Positron. A Posit está trabalhando em uma solução para isso.</p></li>
+<li><p><a href="https://github.com/posit-dev/positron/discussions/3871#discussioncomment-9961736">Julho/2024 - #3871</a>: “Nós gostaríamos de ter suporte para o GitHub Copilot no futuro, mas por enquanto existem muitas extensões que fornecem Chat, Completions Inline, e outras modalidades de uso de GenAI.” - <a href="https://github.com/jthomasmock">Tom Mock</a> (que trabalha na Posit)</p></li>
+</ul>
+<p><strong>Em resumo:</strong></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+GitHub Copilot no Positron (resumo)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Existe limitações de licença para o uso do GitHub Copilot no Positron. A equipe da Positron está trabalhando para encontrar uma solução para isso. Por enquanto, eles recomendam explorar outras extensões que fornecem funcionalidades similares ao Copilot.</p>
+</div>
+</div>
+</section>
+<section id="positron-outras-extensoes" class="level3" data-number="10.4.2">
+<h3 data-number="10.4.2" class="anchored" data-anchor-id="positron-outras-extensoes"><span class="header-section-number">10.4.2</span> Outras extensões</h3>
+<p>Como mencionado anteriormente, o Positron tem acesso à loja de extensões do VS Code, então a maioria das extensões citadas anteriormente para o VS Code podem ser utilizadas no Positron.</p>
+<p>A seguir, temos uma lista de extensões que estão disponíveis na loja de extensões do Positron (e do VS Code), e que permitem utilizar ferramentas de IA no Positron:</p>
+<ul>
+<li><a href="https://blog.google/technology/developers/gemini-code-assist-free/">Gemini Code Assist</a> da Google</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/positron-gemini-code-assist.png" class="img-fluid figure-img"></p>
+<figcaption>Captura de tela do Positron: Extensões -&gt; Gemini Code Assist</figcaption>
+</figure>
+</div>
+<ul>
+<li><a href="https://codeium.com/vscode_tutorial">Codeium</a> - <a href="https://codeium.com/university">Manual sobre como usar</a></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/positron-codeium.png" class="img-fluid figure-img"></p>
+<figcaption>Captura de tela do Positron: Extensões -&gt; Codeium</figcaption>
+</figure>
+</div>
+<ul>
+<li><a href="https://docs.continue.dev/getting-started/overview">Continue</a></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/positron-continue.png" class="img-fluid figure-img"></p>
+<figcaption>Captura de tela do Positron: Extensões -&gt; Continue</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Qual extensão baixar no Positron/VS Code?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>As lojas de extensão do VS Code e do Positron são muito grandes, e existem muitas extensões disponíveis.</p>
+<p>Quando pesquisamos algum tema, MUITAS extensões podem aparecer. Nem sempre as extensões são boas ou confiáveis… Então como escolher?</p>
+<p>Algumas dicas para ajudar a escolher uma extensão:</p>
+<ul>
+<li>Veja quem é o desenvolvedor da extensão (ou empresa responsável). Por exemplo, a extensão do Gemini Code Assist é da Google, então é uma extensão confiável.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/extensao-autor.png" class="borda-imagem img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Veja a popularidade da extensão. Extensões mais populares tendem a ser mais confiáveis: mais pessoas já testaram, aprovaram e recomendaram por aí. Dentre as que citamos anteriormente, a Continue e Codeium são as mais populares: até agora, mais de 204 mil pessoas já baixaram a Continue, e 121 mil já baixaram o Codeium. <strong>Mas atenção:</strong> ter menos downloads não significa necessariamente que a extensão seja ruim! Ela pode ser mais recente, como é o caso do Gemini Code Assist.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/extensao-data.png" class="borda-imagem img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Veja também quais extensões outras pessoas da sua área estão utilizando!</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="pacotes-de-ia-para-r-independentes-da-ide" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="pacotes-de-ia-para-r-independentes-da-ide"><span class="header-section-number">10.5</span> Pacotes de IA para R (independentes da IDE)</h2>
+<p>Até agora, comentamos de ferramentas de IA que podem ser utilizadas nas IDEs RStudio, VS Code e Positron.</p>
+<p>Mas existem pacotes de R que permitem utilizar ferramentas de IA diretamente no R, sem depender de uma IDE específica.</p>
+<p>O <code>{ellmer}</code> é o principal pacote de R que permitem utilizar ferramentas de IA diretamente no R!</p>
+<section id="ellmer" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="ellmer"><span class="header-section-number">10.5.1</span> <code>{ellmer}</code></h3>
+<p><img src="images/logo-ellmer.png" class="img-rstudio" align="right" width="120px"></p>
+<p>Com o avanço dos <em>large language models</em> (LLM), diversos pacotes foram criados para facilitar o uso desses modelos no R. Um exemplo é o pacote <code>{openai}</code>, que permite o uso dos modelos da OpenAI (como o GPT) no R. Porém logo muitos provedores foram criados, e cada um com sua API e forma de uso.</p>
+<p>O pacote <a href="https://ellmer.tidyverse.org/"><code>{ellmer}</code></a> foi criado para facilitar o uso de modelos LLM no partir do R, utilizando uma interface unificada para diversos provedores!</p>
+<p>Ele apresenta suporte para vários provedores de LLM, como OpenAI, Ollama, Google Gemini, DeepSeek, Claude (Anthropic), entre outros. Você pode consultar a lista completa na <a href="https://ellmer.tidyverse.org/#providers">documentação do pacote</a>.</p>
+</section>
+</section>
+<section id="material" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="material"><span class="header-section-number">10.6</span> Material</h2>
+<p>Alguns trechos deste texto foram adaptados do post <a href="https://beamilz.com/posts/2025-02-24-github-copilot-rstudio/pt/">“Como começar a utilizar o GitHub Copilot?”</a>, escrito por <a href="https://beamilz.com/">Beatriz Milz</a>.</p>
+</section>
+<section id="extra" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="extra"><span class="header-section-number">10.7</span> Extra</h2>
+<ul>
+<li><p>[2023] A palestra <a href="https://jtrecenti.github.io/slides/docs/gptjur/index.html#/title-slide">“Large Language Models no Direito”</a> (<a href="https://www.youtube.com/live/XaoUJkplDJM?feature=shared&amp;t=470">video disponível no Youtube</a> e <a href="https://github.com/jtrecenti/slides/tree/master/20230920-gptjur">código disponível no GitHub</a>) é um exemplo de aplicação de uso de LLMs no R.</p></li>
+<li><p>[2024]: Live da Curso-R: <a href="https://www.youtube.com/live/1wwPgLsJCZw?feature=shared">Positron: o filho do RStudio com o VS Code</a> com Caio Lente.</p></li>
+<li><p>[2025] Live da Curso-R: <a href="">GitHub Copilot: a inteligência artificial no RStudio</a> com Julio Trecenti.</p></li>
+</ul>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Para atualizar o RStudio, acesse o <a href="https://posit.co/download/rstudio-desktop/">site do RStudio Desktop</a> para baixar o instalador mais recente.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>É importante lembrar também que a GitHub também é da Microsoft.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/ipeadata-lab\.github\.io\/curso_r_intermediario_202501");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
+          }
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./big-data.html" class="pagination-link" aria-label="Introdução à *Big Data*">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introdução à <em>Big Data</em></span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
