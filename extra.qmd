@@ -246,6 +246,13 @@ Até agora, comentamos de ferramentas de IA que podem ser utilizadas nas IDEs RS
 
 Mas existem pacotes de R que permitem utilizar ferramentas de IA diretamente no R, sem depender de uma IDE específica.
 
+:::{.callout-important}
+
+Este material foi finalizado em fevereiro/2025, porém esse assunto está muito em alta!
+
+Recomendamos conferir este material que lista várias ferramentas e pacotes para usar com R: [Large Language Model tools for R](https://luisdva.github.io/llmsr-book/) 
+:::
+
 
 
 ### `{ellmer}`
@@ -379,6 +386,118 @@ A documentação do pacote apresenta um GIF que mostra como o pacote funciona:
 [![Exemplo de uso do pacote chores. Fonte da imagem: documentação do pacote](images/chores-addin.gif)](https://github.com/simonpcouch/chores)
 
 
+### `{gander}`
+
+<img src="images/logo-gander.png" class="img-rstudio" align="right" width="120px"/>
+
+
+O pacote [`{gander}`](https://simonpcouch.github.io/gander/) possibilita utilizar o ellmer para interagir com assistentes de LLM diretamente do RStudio em um chat. 
+
+Neste caso, criamos um atalho para iniciar o chat a partir de um código selecionado, e ele consegue ter o contexto dos códigos do projeto em que estamos trabalhando e os objetos disponíveis no *Environment*.
+
+
+
+A documentação do pacote apresenta um GIF que mostra como o pacote funciona:
+
+[![Exemplo de uso do pacote gander. Fonte da imagem: documentação do pacote](images/gander.gif)](https://simonpcouch.github.io/gander/)
+
+
+Para usar o pacote, existem alguns passos que precisam ser seguidos. Primeiro, instale os pacotes `gander` e `ellmer`:
+
+```{r}
+#| eval: false
+install.packages("ellmer")
+install.packages("gander")
+```
+
+Configure o atalho do teclado para iniciar o chat: isso depende da IDE que está usando. A [documentação](https://simonpcouch.github.io/gander/#installation) detalha como fazer isso no RStudio e no Positron. No RStudio, é necessário acessar as configurações de atalho: `Tools` > `Modify Keyboard Shortcuts`, e então pesquisar por `gander`. Depois de encontrar o atalho, você pode configurar o atalho que deseja utilizar. A documentação sugere usar o atalho `Ctrl + Alt + G` (ou `Cmd + Control + G` no macOS).
+
+![Configurar atalho](images/gander-atalho.png)
+
+Se tentarmos usar o atalho agora, veremos essa mensagem:
+```
+! gander requires configuring an ellmer Chat with the
+  .gander_chat option.
+ℹ Set e.g. `options(.gander_chat =
+  ellmer::chat_claude())` in your ~/.Rprofile and restart
+  R.
+ℹ See "Choosing a model" in `vignette("gander", package =
+  "gander")` to learn more.
+```
+
+Existem mais configurações que precisam ser feitas para que o pacote funcione corretamente!
+
+Salve a chave de acesso ao modelo LLM como uma variável de ambiente. Para isso, adicione a chave de acesso ao modelo LLM no arquivo `.Renviron` (para abrir este arquivo, você pode usar a função `usethis::edit_r_environ()`. 
+
+```{r}
+#| eval: false
+usethis::edit_r_environ()
+```
+
+O nome da chave depende do provedor do modelo LLM. Por exemplo, para a OpenAI, o nome da chave deve ser `OPENAI_API_KEY`. Lembrando que no arquivo `.Renviron` a chave deve seguir o padrão `NOME_KEY="VALOR_KEY"`. Exemplo:
+
+```
+OPENAI_API_KEY="..."
+```
+Reinicie a sessão do R para que a variável de ambiente seja encontrada.
+
+Configure a opção `.gander_chat` para usar o modelo LLM que deseja. Por exemplo, para usar o modelo da OpenAI, você pode configurar da seguinte forma:
+
+```{r}
+#| eval: false
+options(.gander_chat = ellmer::chat_openai())
+
+#> Using model = "gpt-4o".
+```
+
+Agora, você pode utilizar o gander! Selecione o código desejado e pressionando o atalho para iniciar o chat. O chat será aberto com o contexto do código selecionado e do ambiente do RStudio.
+
+Obs: o atalho criado é uma chamada para a função `gander::gander_addin()`, que também pode ser acessada no menu de `Addins` do RStudio. Se você preferir, pode acessar o chat por lá.
+
+
+A função ``gander::gander_peek()`` permite ter informações sobre o contexto usado pelo assistente de LLM. No exemplo abaixo, eu criei um script carregando o pacote `{tidyverse}`, e solicitei que ele gerasse o código para criar um gráfico em `{ggplot2}` com os dados do dataset `starwars`. O assistente respondeu com o código para criar um gráfico de dispersão com os dados de altura e peso dos personagens do Star Wars:
+
+```{r}
+#| eval: false
+gander::gander_peek()
+
+# <Chat turns=3 tokens=166/25>
+# ── system ──────────────────────────────────────────
+# You are a helpful but terse R data scientist. When 
+# asked for code, provide only the requested code, no
+# exposition nor backticks, unless explicitly asked. 
+# Always provide a minimal solution and refrain from 
+# unnecessary additions. Use tidyverse style and, 
+# when relevant, tidyverse packages. For example, 
+# when asked to plot something, use ggplot2, or when 
+# asked to transform data, using dplyr and/or tidyr 
+# unless explicitly instructed otherwise. 
+# ── user ────────────────────────────────────────────
+# Up to this point, the contents of my  file reads: 
+# 
+# library(tidyverse)
+# 
+# Now, crie um gráfico com ggplot2 usando os dados do
+# starwars: 
+# 
+# starwars
+# 
+# For context, the rest of the file reads: 
+# 
+# starwars
+# ── assistant ───────────────────────────────────────
+# ggplot(starwars, aes(x = height, y = mass)) +
+#   geom_point()
+```
+
+
+
+
+
+
+Atualmente, o pacote funciona bem em arquivos `.R`, mas tem dificuldades em fornecer respostas formatadas adequadamente em arquivos `.Qmd` e formatos de arquivo relacionados.
+
+
 
 
 ## Material
@@ -387,9 +506,10 @@ Alguns trechos deste texto foram adaptados do post ["Como começar a utilizar o 
 
 ## Extra
 
+- [2025] [Large Language Model tools for R](https://luisdva.github.io/llmsr-book/) - lista de ferramentas/pacotes para usar LLMs no R.
+
 - [2023] A palestra ["Large Language Models no Direito"](https://jtrecenti.github.io/slides/docs/gptjur/index.html#/title-slide) ([video disponível no Youtube](https://www.youtube.com/live/XaoUJkplDJM?feature=shared&t=470) e [código disponível no GitHub](https://github.com/jtrecenti/slides/tree/master/20230920-gptjur)) é um exemplo de aplicação de uso de LLMs no R.
 
 - [2024]: Live da Curso-R: [Positron: o filho do RStudio com o VS Code](https://www.youtube.com/live/1wwPgLsJCZw?feature=shared) com Caio Lente.
 
-- [2025] Live da Curso-R: [GitHub Copilot: a inteligência artificial no RStudio]() com Julio Trecenti.
 
