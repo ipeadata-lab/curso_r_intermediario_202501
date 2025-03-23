@@ -252,6 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#ellmer" id="toc-ellmer" class="nav-link" data-scroll-target="#ellmer"><span class="header-section-number">10.5.1</span> <code>{ellmer}</code></a></li>
   <li><a href="#chores" id="toc-chores" class="nav-link" data-scroll-target="#chores"><span class="header-section-number">10.5.2</span> <code>{chores}</code></a></li>
+  <li><a href="#gander" id="toc-gander" class="nav-link" data-scroll-target="#gander"><span class="header-section-number">10.5.3</span> <code>{gander}</code></a></li>
   </ul></li>
   <li><a href="#material" id="toc-material" class="nav-link" data-scroll-target="#material"><span class="header-section-number">10.6</span> Material</a></li>
   <li><a href="#extra" id="toc-extra" class="nav-link" data-scroll-target="#extra"><span class="header-section-number">10.7</span> Extra</a></li>
@@ -552,6 +553,20 @@ Qual extensão baixar no Positron/VS Code?
 <h2 data-number="10.5" class="anchored" data-anchor-id="pacotes-de-ia-para-r-independentes-da-ide"><span class="header-section-number">10.5</span> Pacotes de IA para R (independentes da IDE)</h2>
 <p>Até agora, comentamos de ferramentas de IA que podem ser utilizadas nas IDEs RStudio, VS Code e Positron.</p>
 <p>Mas existem pacotes de R que permitem utilizar ferramentas de IA diretamente no R, sem depender de uma IDE específica.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Este material foi finalizado em fevereiro/2025, porém esse assunto está muito em alta!</p>
+<p>Recomendamos conferir este material que lista várias ferramentas e pacotes para usar com R: <a href="https://luisdva.github.io/llmsr-book/">Large Language Model tools for R</a></p>
+</div>
+</div>
 <section id="ellmer" class="level3" data-number="10.5.1">
 <h3 data-number="10.5.1" class="anchored" data-anchor-id="ellmer"><span class="header-section-number">10.5.1</span> <code>{ellmer}</code></h3>
 <p><img src="images/logo-ellmer.png" class="img-rstudio" align="right" width="120px"></p>
@@ -637,6 +652,88 @@ Qual extensão baixar no Positron/VS Code?
 </figure>
 </div>
 </section>
+<section id="gander" class="level3" data-number="10.5.3">
+<h3 data-number="10.5.3" class="anchored" data-anchor-id="gander"><span class="header-section-number">10.5.3</span> <code>{gander}</code></h3>
+<p><img src="images/logo-gander.png" class="img-rstudio" align="right" width="120px"></p>
+<p>O pacote <a href="https://simonpcouch.github.io/gander/"><code>{gander}</code></a> possibilita utilizar o ellmer para interagir com assistentes de LLM diretamente do RStudio em um chat.</p>
+<p>Neste caso, criamos um atalho para iniciar o chat a partir de um código selecionado, e ele consegue ter o contexto dos códigos do projeto em que estamos trabalhando e os objetos disponíveis no <em>Environment</em>.</p>
+<p>A documentação do pacote apresenta um GIF que mostra como o pacote funciona:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://simonpcouch.github.io/gander/"><img src="images/gander.gif" class="img-fluid figure-img" alt="Exemplo de uso do pacote gander. Fonte da imagem: documentação do pacote"></a></p>
+<figcaption>Exemplo de uso do pacote gander. Fonte da imagem: documentação do pacote</figcaption>
+</figure>
+</div>
+<p>Para usar o pacote, existem alguns passos que precisam ser seguidos. Primeiro, instale os pacotes <code>gander</code> e <code>ellmer</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ellmer"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"gander"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Configure o atalho do teclado para iniciar o chat: isso depende da IDE que está usando. A <a href="https://simonpcouch.github.io/gander/#installation">documentação</a> detalha como fazer isso no RStudio e no Positron. No RStudio, é necessário acessar as configurações de atalho: <code>Tools</code> &gt; <code>Modify Keyboard Shortcuts</code>, e então pesquisar por <code>gander</code>. Depois de encontrar o atalho, você pode configurar o atalho que deseja utilizar. A documentação sugere usar o atalho <code>Ctrl + Alt + G</code> (ou <code>Cmd + Control + G</code> no macOS).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/gander-atalho.png" class="img-fluid figure-img"></p>
+<figcaption>Configurar atalho</figcaption>
+</figure>
+</div>
+<p>Se tentarmos usar o atalho agora, veremos essa mensagem:</p>
+<pre><code>! gander requires configuring an ellmer Chat with the
+  .gander_chat option.
+ℹ Set e.g. `options(.gander_chat =
+  ellmer::chat_claude())` in your ~/.Rprofile and restart
+  R.
+ℹ See "Choosing a model" in `vignette("gander", package =
+  "gander")` to learn more.</code></pre>
+<p>Existem mais configurações que precisam ser feitas para que o pacote funcione corretamente!</p>
+<p>Salve a chave de acesso ao modelo LLM como uma variável de ambiente. Para isso, adicione a chave de acesso ao modelo LLM no arquivo <code>.Renviron</code> (para abrir este arquivo, você pode usar a função <code>usethis::edit_r_environ()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">edit_r_environ</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O nome da chave depende do provedor do modelo LLM. Por exemplo, para a OpenAI, o nome da chave deve ser <code>OPENAI_API_KEY</code>. Lembrando que no arquivo <code>.Renviron</code> a chave deve seguir o padrão <code>NOME_KEY="VALOR_KEY"</code>. Exemplo:</p>
+<pre><code>OPENAI_API_KEY="..."</code></pre>
+<p>Reinicie a sessão do R para que a variável de ambiente seja encontrada.</p>
+<p>Configure a opção <code>.gander_chat</code> para usar o modelo LLM que deseja. Por exemplo, para usar o modelo da OpenAI, você pode configurar da seguinte forma:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">.gander_chat =</span> ellmer<span class="sc">::</span><span class="fu">chat_openai</span>())</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Using model = "gpt-4o".</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Agora, você pode utilizar o gander! Selecione o código desejado e pressionando o atalho para iniciar o chat. O chat será aberto com o contexto do código selecionado e do ambiente do RStudio.</p>
+<p>Obs: o atalho criado é uma chamada para a função <code>gander::gander_addin()</code>, que também pode ser acessada no menu de <code>Addins</code> do RStudio. Se você preferir, pode acessar o chat por lá.</p>
+<p>A função <code>gander::gander_peek()</code> permite ter informações sobre o contexto usado pelo assistente de LLM. No exemplo abaixo, eu criei um script carregando o pacote <code>{tidyverse}</code>, e solicitei que ele gerasse o código para criar um gráfico em <code>{ggplot2}</code> com os dados do dataset <code>starwars</code>. O assistente respondeu com o código para criar um gráfico de dispersão com os dados de altura e peso dos personagens do Star Wars:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gander<span class="sc">::</span><span class="fu">gander_peek</span>()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt;Chat turns=3 tokens=166/25&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ── system ──────────────────────────────────────────</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># You are a helpful but terse R data scientist. When </span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># asked for code, provide only the requested code, no</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># exposition nor backticks, unless explicitly asked. </span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Always provide a minimal solution and refrain from </span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># unnecessary additions. Use tidyverse style and, </span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># when relevant, tidyverse packages. For example, </span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># when asked to plot something, use ggplot2, or when </span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># asked to transform data, using dplyr and/or tidyr </span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># unless explicitly instructed otherwise. </span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ── user ────────────────────────────────────────────</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Up to this point, the contents of my  file reads: </span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co"># library(tidyverse)</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, crie um gráfico com ggplot2 usando os dados do</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co"># starwars: </span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="co"># starwars</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="co"># For context, the rest of the file reads: </span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="co"># starwars</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="co"># ── assistant ───────────────────────────────────────</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot(starwars, aes(x = height, y = mass)) +</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="co">#   geom_point()</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Atualmente, o pacote funciona bem em arquivos <code>.R</code>, mas tem dificuldades em fornecer respostas formatadas adequadamente em arquivos <code>.Qmd</code> e formatos de arquivo relacionados.</p>
+</section>
 </section>
 <section id="material" class="level2" data-number="10.6">
 <h2 data-number="10.6" class="anchored" data-anchor-id="material"><span class="header-section-number">10.6</span> Material</h2>
@@ -645,9 +742,9 @@ Qual extensão baixar no Positron/VS Code?
 <section id="extra" class="level2" data-number="10.7">
 <h2 data-number="10.7" class="anchored" data-anchor-id="extra"><span class="header-section-number">10.7</span> Extra</h2>
 <ul>
+<li><p>[2025] <a href="https://luisdva.github.io/llmsr-book/">Large Language Model tools for R</a> - lista de ferramentas/pacotes para usar LLMs no R.</p></li>
 <li><p>[2023] A palestra <a href="https://jtrecenti.github.io/slides/docs/gptjur/index.html#/title-slide">“Large Language Models no Direito”</a> (<a href="https://www.youtube.com/live/XaoUJkplDJM?feature=shared&amp;t=470">video disponível no Youtube</a> e <a href="https://github.com/jtrecenti/slides/tree/master/20230920-gptjur">código disponível no GitHub</a>) é um exemplo de aplicação de uso de LLMs no R.</p></li>
 <li><p>[2024]: Live da Curso-R: <a href="https://www.youtube.com/live/1wwPgLsJCZw?feature=shared">Positron: o filho do RStudio com o VS Code</a> com Caio Lente.</p></li>
-<li><p>[2025] Live da Curso-R: <a href="">GitHub Copilot: a inteligência artificial no RStudio</a> com Julio Trecenti.</p></li>
 </ul>
 
 
