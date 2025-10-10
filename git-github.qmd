@@ -37,7 +37,7 @@ Para utilizar o Git, precisamos primeiramente instalar o software no nosso compu
 
 ## O que é GitHub?
 
-[GitHub](https://github.com/) é uma plataforma web que utiliza o Git para o controle de versões e a colaboração. Permite que as pessoasarmazenem seus repositórios Git na nuvem, facilitando o acesso e a colaboração de qualquer lugar. O GitHub também oferece ferramentas adicionais, como gerenciamento de projetos, e revisão de código.
+[GitHub](https://github.com/) é uma plataforma web que utiliza o Git para o controle de versões e a colaboração. Permite que as pessoas armazenem seus repositórios Git na nuvem, facilitando o acesso e a colaboração de qualquer lugar. O GitHub também oferece ferramentas adicionais, como gerenciamento de projetos, e revisão de código.
 
 Para começar a utilizar o GitHub, precisamos primeiramente criar uma conta gratuita no site (indicado na [página de instalações e outros preparativos](instalacao.qmd#conta-github)).
 
